@@ -8,6 +8,6 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
-    "mysql2": "^3.6.0"
+    "@vercel/node": "^2.0.0"
   }
 }
