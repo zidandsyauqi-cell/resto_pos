@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resto POS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 380px;
+        }
+        .login-box h2 { text-align: center; color: #2c3e50; margin-bottom: 25px; }
+        .login-box .logo { text-align: center; font-size: 48px; margin-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .btn-login { width: 100%; padding: 12px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: 600; }
+        .btn-login:hover { background: #2980b9; }
+        .role-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 10px 0; }
+        .role-selector button { padding: 8px; border: 2px solid #ddd; border-radius: 5px; background: white; cursor: pointer; font-size: 12px; }
+        .role-selector button:hover { border-color: #3498db; background: #f0f8ff; }
+        .role-selector button.active { border-color: #3498db; background: #3498db; color: white; }
+        .info { text-align: center; margin-top: 15px; font-size: 13px; color: #7f8c8d; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center; display: none; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">🍽️</div>
+        <h2>Resto POS</h2>
+        <div id="errorMsg" class="error">Username atau password salah!</div>
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <div class="form-group">
+                <label>Pilih Role</label>
+                <div class="role-selector" id="roleSelector">
+                    <button type="button" data-role="Waiter" onclick="selectRole(this)">👨‍🍳 Waiter</button>
+                    <button type="button" data-role="Cashier" onclick="selectRole(this)">💰 Cashier</button>
+                    <button type="button" data-role="Front Kitchen" onclick="selectRole(this)">🍳 Kitchen</button>
+                    <button type="button" data-role="Customer" onclick="selectRole(this)">👤 Customer</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Masukkan username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Masukkan password" required>
+            </div>
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+        <div class="info"><p>Username: role (contoh: Waiter) | Password: <strong>password</strong></p></div>
+    </div>
+    <script>
+        let selectedRole = 'Waiter';
+        function selectRole(el) {
+            document.querySelectorAll('.role-selector button').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            selectedRole = el.dataset.role;
+            document.getElementById('username').value = selectedRole;
+        }
+        document.querySelector('.role-selector button:first-child').classList.add('active');
+        document.getElementById('username').value = 'Waiter';
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (password === 'password') {
+                localStorage.setItem('user_name', username);
+                localStorage.setItem('user_role', selectedRole);
+                window.location.href = selectedRole === 'Customer' ? 'customer_order.html' : 'dashboard.html';
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+                setTimeout(() => document.getElementById('errorMsg').style.display = 'none', 3000);
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
