@@ -6,23 +6,394 @@
     <title>Pesan Makanan</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; padding: 20px; }
         .container { max-width: 800px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
         .header { text-align: center; padding: 20px 0; border-bottom: 2px solid #ecf0f1; margin-bottom: 20px; }
+        .header .logo { font-size: 48px; }
+        .header h1 { color: #2c3e50; font-size: 24px; }
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
-        .menu-item { background: #f8f9fa; padding: 15px; border-radius: 10px; text-align: center; border: 2px solid #ecf0f1; }
-        .menu-item .name { font-weight: bold; }
-        .menu-item .price { color: #27ae60; font-weight: bold; font-size: 18px; }
-        .menu-item .qty input { width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 5px; }
-        .cart { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .menu-item { background: #f8f9fa; padding: 15px; border-radius: 10px; text-align: center; border: 2px solid #ecf0f1; transition: 0.3s; }
+        .menu-item:hover { border-color: #3498db; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .menu-item .name { font-weight: bold; font-size: 16px; color: #2c3e50; }
+        .menu-item .price { color: #27ae60; font-weight: bold; font-size: 18px; margin: 5px 0; }
+        .menu-item .category { font-size: 12px; color: #7f8c8d; }
+        .menu-item .qty { margin-top: 10px; }
+        .menu-item .qty input { width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        .menu-item .qty input:focus { border-color: #3498db; outline: none; }
+        .cart { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ecf0f1; }
+        .cart h3 { color: #2c3e50; margin-bottom: 10px; }
         .cart-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ddd; }
-        .cart-total { font-weight: bold; font-size: 20px; text-align: right; margin-top: 10px; padding-top: 10px; border-top: 2px solid #2c3e50; }
+        .cart-item:last-child { border-bottom: none; }
+        .cart-total { font-weight: bold; font-size: 20px; text-align: right; margin-top: 10px; padding-top: 10px; border-top: 2px solid #2c3e50; color: #2c3e50; }
         .form-group { margin: 15px 0; }
-        .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; }
-        .btn-order { background: #27ae60; color: white; border: none; padding: 12px 40px; border-radius: 5px; font-size: 18px; font-weight: 600; cursor: pointer; width: 100%; }
-        .btn-order:hover { background: #219a52; }
-        .btn { display: inline-block; padding: 8px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #2c3e50; }
+        .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; font-family: inherit; }
+        .form-group textarea:focus { border-color: #3498db; outline: none; }
+        .btn-order { background: #27ae60; color: white; border: none; padding: 14px 40px; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-order:hover { background: #219a52; transform: translateY(-2px); }
+        .btn-order:disabled { background: #95a5a6; cursor: not-allowed; transform: none; }
+        .btn { display: inline-block; padding: 8px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: 600; cursor: pointer; transition: 0.3s; }
         .btn-danger { background: #e74c3c; color: white; }
+        .btn-danger:hover { background: #c0392b; }
         .btn-secondary { background: #95a5a6; color: white; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .btn-primary { background: #3498db; color: white; }
+        .btn-primary:hover { background: #2980b9; }
         .role-badge { background: #3498db; color: white; padding: 4px 15px; border-radius: 20px; font-size: 13px; }
-        .meja-info { background: #3498db; color: white; padding: 10px 30px; border-radius: 10
+        .meja-info { background: #3498db; color: white; padding: 10px 30px; border-radius: 10px; display: inline-block; font-size: 24px; font-weight: bold; }
+        .footer { margin-top: 20px; padding-top: 15px; border-top: 2px solid #ecf0f1; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .alert { padding: 12px; border-radius: 5px; margin-bottom: 15px; display: none; }
+        .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .loading { text-align: center; padding: 40px; color: #7f8c8d; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .kode-unik {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+            background: #f0f0f0;
+            padding: 4px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+        .empty-cart { color: #7f8c8d; padding: 10px 0; text-align: center; }
+        .badge-status {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-tersedia { background: #d4edda; color: #155724; }
+        .badge-habis { background: #f8d7da; color: #721c24; }
+        @media (max-width: 600px) {
+            .container { padding: 15px; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .meja-info { font-size: 18px; padding: 8px 20px; }
+            .header-flex { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-flex">
+        <div>
+            <div class="meja-info" id="mejaInfo">🪑 Meja Loading...</div>
+            <div class="kode-unik" id="kodeUnik">🔑 Kode: loading...</div>
+            <p style="color: #7f8c8d; margin-top: 5px; font-size: 14px;">Silakan pilih menu yang ingin dipesan</p>
+        </div>
+        <div>
+            <span class="role-badge" id="userInfo">👤 Customer</span>
+            <a href="index.html" class="btn btn-danger" style="margin-top: 5px;">Logout</a>
+        </div>
+    </div>
+
+    <div id="errorMsg" class="alert alert-error"></div>
+    <div id="successMsg" class="alert alert-success"></div>
+
+    <div id="menuList"><div class="loading">⏳ Loading menu...</div></div>
+
+    <div class="cart" id="cartSection">
+        <h3>🛒 Keranjang Pesanan</h3>
+        <div id="cartItems">
+            <div class="empty-cart">Belum ada menu dipilih</div>
+        </div>
+        <div class="cart-total" id="cartTotal">Total: Rp 0</div>
+    </div>
+
+    <div class="form-group">
+        <label>📝 Catatan (opsional)</label>
+        <textarea id="note" rows="2" placeholder="Contoh: Pedas level 2, tidak pakai bawang, es batu sedikit..."></textarea>
+    </div>
+
+    <button class="btn-order" id="btnOrder">🍽️ Pesan Sekarang</button>
+
+    <div class="footer">
+        <a href="check_status.html" class="btn btn-primary">🔍 Cek Status</a>
+        <a href="dashboard.html" class="btn btn-secondary">📊 Dashboard</a>
+    </div>
+</div>
+
+<script>
+    // ============================================
+    // KONFIGURASI KODE UNIK MEJA
+    // ============================================
+    const tableCodes = {
+        'a7f8k3d9': { id: 1, nomor: '01', kapasitas: 2 },
+        'x4c2m1n8': { id: 2, nomor: '02', kapasitas: 4 },
+        'p9q5w7e2': { id: 3, nomor: '03', kapasitas: 2 },
+        'r6t8y4u1': { id: 4, nomor: '04', kapasitas: 6 },
+        'z3v5b7n9': { id: 5, nomor: '05', kapasitas: 4 }
+    };
+
+    // ============================================
+    // AMBIL KODE DARI URL
+    // ============================================
+    const urlParams = new URLSearchParams(window.location.search);
+    const kodeMeja = urlParams.get('kode') || '';
+
+    let mejaId = 1;
+    let mejaNomor = '01';
+    let mejaKapasitas = 2;
+    let isValidKode = false;
+
+    // Cek apakah kode valid
+    if (kodeMeja && tableCodes[kodeMeja]) {
+        const meja = tableCodes[kodeMeja];
+        mejaId = meja.id;
+        mejaNomor = meja.nomor;
+        mejaKapasitas = meja.kapasitas;
+        isValidKode = true;
+    } else {
+        // Jika kode tidak valid, redirect ke error
+        if (kodeMeja) {
+            alert('❌ Kode QR tidak valid! Silakan scan ulang.');
+            window.location.href = 'index.html';
+        }
+        // Default meja 1 untuk testing
+        mejaId = 1;
+        mejaNomor = '01';
+        mejaKapasitas = 2;
+    }
+
+    // Tampilkan info meja
+    document.getElementById('mejaInfo').textContent = `🪑 Meja ${mejaNomor}`;
+    document.getElementById('kodeUnik').textContent = `🔑 Kode: ${kodeMeja || 'Tidak ada kode (testing)'}`;
+    document.getElementById('userInfo').textContent = `👤 Customer (Meja ${mejaNomor})`;
+
+    // ============================================
+    // DATA MENU (Dummy)
+    // ============================================
+    const menus = [
+        { id_menu: 1, Nama_Menu: 'Nasi Goreng Special', Harga: 28000, Kategori: 'Makanan', Status: 'Tersedia' },
+        { id_menu: 2, Nama_Menu: 'Nasi Goreng Seafood', Harga: 32000, Kategori: 'Makanan', Status: 'Tersedia' },
+        { id_menu: 3, Nama_Menu: 'Mie Goreng Jawa', Harga: 25000, Kategori: 'Makanan', Status: 'Tersedia' },
+        { id_menu: 4, Nama_Menu: 'Mie Ayam', Harga: 23000, Kategori: 'Makanan', Status: 'Tersedia' },
+        { id_menu: 5, Nama_Menu: 'Ayam Geprek', Harga: 30000, Kategori: 'Makanan', Status: 'Tersedia' },
+        { id_menu: 6, Nama_Menu: 'Ayam Penyet', Harga: 32000, Kategori: 'Makanan', Status: 'Tersedia' },
+        { id_menu: 7, Nama_Menu: 'Sate Ayam', Harga: 35000, Kategori: 'Makanan', Status: 'Tersedia' },
+        { id_menu: 8, Nama_Menu: 'Bakso', Harga: 20000, Kategori: 'Makanan', Status: 'Tidak Tersedia' },
+        { id_menu: 9, Nama_Menu: 'Es Teh', Harga: 5000, Kategori: 'Minuman', Status: 'Tersedia' },
+        { id_menu: 10, Nama_Menu: 'Jus Jeruk', Harga: 12000, Kategori: 'Minuman', Status: 'Tersedia' },
+        { id_menu: 11, Nama_Menu: 'Kopi Hitam', Harga: 8000, Kategori: 'Minuman', Status: 'Tersedia' },
+        { id_menu: 12, Nama_Menu: 'Es Campur', Harga: 15000, Kategori: 'Minuman', Status: 'Tersedia' },
+        { id_menu: 13, Nama_Menu: 'Teh Tarik', Harga: 10000, Kategori: 'Minuman', Status: 'Tidak Tersedia' },
+        { id_menu: 14, Nama_Menu: 'Jus Alpukat', Harga: 15000, Kategori: 'Minuman', Status: 'Tersedia' }
+    ];
+
+    // ============================================
+    // RENDER MENU
+    // ============================================
+    function renderMenus() {
+        const menuList = document.getElementById('menuList');
+        let html = '';
+        let currentCategory = '';
+
+        menus.forEach(menu => {
+            if (currentCategory !== menu.Kategori) {
+                currentCategory = menu.Kategori;
+                html += `<div style='grid-column:1/-1;font-weight:bold;color:#2c3e50;margin-top:10px;padding:5px 0;border-bottom:1px solid #ecf0f1;'>📂 ${menu.Kategori}</div>`;
+            }
+
+            const statusBadge = menu.Status === 'Tersedia' 
+                ? '<span class="badge-status badge-tersedia">✅ Tersedia</span>' 
+                : '<span class="badge-status badge-habis">❌ Habis</span>';
+
+            const disabled = menu.Status === 'Tidak Tersedia' ? 'disabled' : '';
+            const opacity = menu.Status === 'Tidak Tersedia' ? 'opacity:0.5;' : '';
+
+            html += `
+                <div class="menu-item" style="${opacity}">
+                    <div class="name">${menu.Nama_Menu}</div>
+                    <div class="price">Rp ${menu.Harga.toLocaleString('id-ID')}</div>
+                    <div class="category">${menu.Kategori}</div>
+                    <div style="margin:5px 0;">${statusBadge}</div>
+                    <div class="qty">
+                        <input type="number" min="0" max="99" value="0" data-menu-id="${menu.id_menu}" onchange="updateCart()" ${disabled}>
+                    </div>
+                </div>
+            `;
+        });
+        menuList.innerHTML = html;
+    }
+
+    // ============================================
+    // UPDATE CART
+    // ============================================
+    function updateCart() {
+        const inputs = document.querySelectorAll('input[data-menu-id]');
+        let cartHtml = '';
+        let total = 0;
+        let hasItems = false;
+        let itemCount = 0;
+
+        inputs.forEach(input => {
+            const qty = parseInt(input.value) || 0;
+            if (qty > 0) {
+                hasItems = true;
+                itemCount += qty;
+                const menuId = parseInt(input.dataset.menuId);
+                const menu = menus.find(m => m.id_menu === menuId);
+                if (menu) {
+                    const subtotal = menu.Harga * qty;
+                    total += subtotal;
+                    cartHtml += `
+                        <div class="cart-item">
+                            <span>${menu.Nama_Menu} <strong>x${qty}</strong></span>
+                            <span>Rp ${subtotal.toLocaleString('id-ID')}</span>
+                        </div>
+                    `;
+                }
+            }
+        });
+
+        document.getElementById('cartItems').innerHTML = hasItems ? cartHtml : '<div class="empty-cart">Belum ada menu dipilih</div>';
+        document.getElementById('cartTotal').textContent = `Total: Rp ${total.toLocaleString('id-ID')}`;
+
+        // Update tombol
+        const btnOrder = document.getElementById('btnOrder');
+        if (hasItems) {
+            btnOrder.textContent = `🍽️ Pesan (${itemCount} item)`;
+            btnOrder.disabled = false;
+        } else {
+            btnOrder.textContent = '🍽️ Pesan Sekarang';
+            btnOrder.disabled = true;
+        }
+    }
+
+    // ============================================
+    // PESAN
+    // ============================================
+    document.getElementById('btnOrder').addEventListener('click', async function() {
+        const inputs = document.querySelectorAll('input[data-menu-id]');
+        let items = [];
+        let hasItems = false;
+        let total = 0;
+
+        inputs.forEach(input => {
+            const qty = parseInt(input.value) || 0;
+            if (qty > 0) {
+                hasItems = true;
+                const menuId = parseInt(input.dataset.menuId);
+                const menu = menus.find(m => m.id_menu === menuId);
+                if (menu) {
+                    const subtotal = menu.Harga * qty;
+                    total += subtotal;
+                    items.push({
+                        menu: menuId,
+                        qty: qty,
+                        harga: menu.Harga,
+                        subtotal: subtotal,
+                        nama: menu.Nama_Menu
+                    });
+                }
+            }
+        });
+
+        if (!hasItems) {
+            showError('❌ Silakan pilih minimal 1 menu!');
+            return;
+        }
+
+        const note = document.getElementById('note').value.trim();
+
+        try {
+            this.textContent = '⏳ Memproses...';
+            this.disabled = true;
+
+            // Generate order ID
+            const orderId = Date.now() % 10000;
+
+            // Buat data order
+            const order = {
+                id: orderId,
+                meja: mejaId,
+                nomor_meja: mejaNomor,
+                kode: kodeMeja,
+                status: 'Pending',
+                waktu: new Date().toTimeString().slice(0, 5),
+                tanggal: new Date().toISOString().split('T')[0],
+                items: items,
+                note: note,
+                total: total
+            };
+
+            // Simpan ke localStorage
+            const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+            existingOrders.push(order);
+            localStorage.setItem('orders', JSON.stringify(existingOrders));
+
+            showSuccess(`✅ Pesanan berhasil! Nomor: #${orderId}`);
+
+            // Redirect ke halaman sukses setelah delay
+            setTimeout(() => {
+                window.location.href = `order_success.html?id=${orderId}&kode=${kodeMeja}`;
+            }, 1500);
+
+        } catch (e) {
+            showError('❌ Gagal memesan: ' + e.message);
+            this.textContent = '🍽️ Pesan Sekarang';
+            this.disabled = false;
+        }
+    });
+
+    // ============================================
+    // FUNGSI UTILITY
+    // ============================================
+    function showError(msg) {
+        const el = document.getElementById('errorMsg');
+        el.textContent = msg;
+        el.style.display = 'block';
+        setTimeout(() => { el.style.display = 'none'; }, 4000);
+    }
+
+    function showSuccess(msg) {
+        const el = document.getElementById('successMsg');
+        el.textContent = msg;
+        el.style.display = 'block';
+        setTimeout(() => { el.style.display = 'none'; }, 4000);
+    }
+
+    // ============================================
+    // SCAN ULANG QR CODE
+    // ============================================
+    // Tambahkan tombol scan ulang
+    const qrScanBtn = document.createElement('button');
+    qrScanBtn.textContent = '📷 Scan Ulang QR Code';
+    qrScanBtn.className = 'btn btn-primary';
+    qrScanBtn.style.marginTop = '10px';
+    qrScanBtn.onclick = function() {
+        // Buat QR code baru (simulasi)
+        const newKode = prompt('Masukkan kode QR yang discan:', kodeMeja);
+        if (newKode && tableCodes[newKode]) {
+            window.location.href = `customer_order.html?kode=${newKode}`;
+        } else if (newKode) {
+            alert('❌ Kode QR tidak valid!');
+        }
+    };
+    document.querySelector('.footer').appendChild(qrScanBtn);
+
+    // ============================================
+    // INIT
+    // ============================================
+    renderMenus();
+    updateCart();
+
+    console.log('✅ QR Code System Aktif!');
+    console.log(`📌 Kode: ${kodeMeja}`);
+    console.log(`🪑 Meja: ${mejaNomor}`);
+    console.log(`👤 Kapasitas: ${mejaKapasitas} orang`);
+
+    // Jika tidak ada kode di URL, tapi pakai default, kasih tahu
+    if (!kodeMeja) {
+        console.warn('⚠️ Tidak ada kode QR, pakai default meja 1 (testing)');
+        const infoMsg = document.createElement('div');
+        infoMsg.style.cssText = 'background:#fff3cd;padding:10px;border-radius:8px;margin:10px 0;color:#856404;font-size:13px;';
+        infoMsg.textContent = '⚠️ Mode Testing: Tidak ada kode QR. Pakai meja default 01.';
+        document.querySelector('.header-flex').after(infoMsg);
+    }
+</script>
+</body>
+</html>
