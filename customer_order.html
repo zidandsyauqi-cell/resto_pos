@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Makanan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+        .header { text-align: center; padding: 20px 0; border-bottom: 2px solid #ecf0f1; margin-bottom: 20px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .menu-item { background: #f8f9fa; padding: 15px; border-radius: 10px; text-align: center; border: 2px solid #ecf0f1; }
+        .menu-item .name { font-weight: bold; }
+        .menu-item .price { color: #27ae60; font-weight: bold; font-size: 18px; }
+        .menu-item .qty input { width: 60px; padding: 5px; text-align: center; border: 1px solid #ddd; border-radius: 5px; }
+        .cart { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .cart-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ddd; }
+        .cart-total { font-weight: bold; font-size: 20px; text-align: right; margin-top: 10px; padding-top: 10px; border-top: 2px solid #2c3e50; }
+        .form-group { margin: 15px 0; }
+        .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; }
+        .btn-order { background: #27ae60; color: white; border: none; padding: 12px 40px; border-radius: 5px; font-size: 18px; font-weight: 600; cursor: pointer; width: 100%; }
+        .btn-order:hover { background: #219a52; }
+        .btn { display: inline-block; padding: 8px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .btn-danger { background: #e74c3c; color: white; }
+        .btn-secondary { background: #95a5a6; color: white; }
+        .role-badge { background: #3498db; color: white; padding: 4px 15px; border-radius: 20px; font-size: 13px; }
+        .meja-info { background: #3498db; color: white; padding: 10px 30px; border-radius: 10
