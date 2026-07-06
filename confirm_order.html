@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfirmasi</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+        .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 2px solid #ecf0f1; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .order-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 10px; border-left: 5px solid #f39c12; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .order-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .order-meta { color: #7f8c8d; font-size: 14px; margin: 5px 0 10px 0; }
+        .order-meta span { margin-right: 15px; }
+        .order-total { text-align: right; font-weight: bold; font-size: 16px; border-top: 2px solid #ecf0f1; padding-top: 10px; margin-top: 10px; }
+        .badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-pending { background: #f39c12; color: white; }
+        .btn { display: inline-block; padding: 8px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .btn-warning { background: #f39c12; color: white; }
+        .btn-warning:hover { background: #e67e22; }
+        .btn-danger { background: #e74c3c; color: white; }
+        .btn-primary { background: #3498db; color: white; }
+        .btn-secondary { background: #95a5a6; color: white; }
+        .empty-state { text-align: center; padding: 60px 20px; background: #f8f9fa; border-radius: 10px; }
+        .empty-state .icon { font-size: 64px; }
+        .footer { margin-top: 20px; padding-top: 15px; border-top: 2px solid #ecf0f1; display: flex; gap: 10px; flex-wrap: wrap; }
+        .role-badge { background: #3498db; color: white; padding: 4px 15px; border-radius: 20px; font-size: 13px; }
+        .loading { text-align: center; padding: 40px; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📋 Konfirmasi Pesanan</h1>
+        <div>
+            <span class="role-badge" id="userInfo">👤 Loading...</span>
+            <a href="index.html" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    <p>Konfirmasi pesanan <strong>Pending</strong></p>
+    <hr>
+    <div id="orderList"><div class="loading">⏳ Loading...</div></div>
+    <div class="footer">
+        <a href="order.html" class="btn btn-primary">🍳 Dapur</a>
+        <a href="dashboard.html" class="btn btn-secondary">📊 Dashboard</a>
+    </div>
+</div>
+<script>
+    document.getElementById('userInfo').textContent = `👤 ${localStorage.getItem('user_name') || 'User'}`;
+
+    async function loadOrders() {
+        try {
+            const res = await fetch('/api/pending-orders');
+            const result = await res.json();
+            const orderList = document.getElementById('orderList');
+            
+            if (!result.success || result.data.length === 0) {
+                orderList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">✅</div>
+                        <h3>Tidak ada pesanan pending</h3>
+                        <p>Semua pesanan sudah dikonfirmasi</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            result.data.forEach(order => {
+                const total = order.total || 0;
+                html += `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <h3>Pesanan #${order.id_order}</h3>
+                            <span class="badge badge-pending">⏳ Pending</span>
+                        </div>
+                        <div class="order-meta">
+                            <span>🪑 Meja ${order.Nomor_Meja || 'N/A'}</span>
+                            <span>🕒 ${order.Waktu_Order || '-'}</span>
+                        </div>
+                        <div class="order-total">Total: Rp ${total.toLocaleString('id-ID')}</div>
+                        <div style="margin-top:15px;">
+                            <button class="btn btn-warning" onclick="konfirmasiOrder(${order.id_order})">✅ Konfirmasi & Kirim ke Dapur</button>
+                        </div>
+                    </div>
+                `;
+            });
+            orderList.innerHTML = html;
+        } catch (e) {
+            orderList.innerHTML = '<p>❌ Gagal load data</p>';
+        }
+    }
+
+    async function konfirmasiOrder(orderId) {
+        if (!confirm('Konfirmasi pesanan ini?')) return;
+        try {
+            const res = await fetch('/api/confirm', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ orderId })
+            });
+            if (res.ok) {
+                alert('✅ Pesanan dikonfirmasi!');
+                loadOrders();
+            }
+        } catch (e) {
+            alert('❌ Gagal konfirmasi');
+        }
+    }
+
+    loadOrders();
+</script>
+</body>
+</html>
