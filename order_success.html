@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesanan Berhasil</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .icon {
+            font-size: 80px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .meja-info {
+            background: #3498db;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .order-id {
+            font-size: 36px;
+            font-weight: bold;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        .detail-box {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: left;
+        }
+        .detail-box p {
+            margin: 5px 0;
+        }
+        .detail-box .label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .badge-status {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: #f39c12;
+            color: white;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        .tip {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #7f8c8d;
+            background: #fff3cd;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+        .tip strong {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="icon">✅</div>
+    <h1>Pesanan Berhasil!</h1>
+    <p class="subtitle">Pesanan Anda telah diterima dan sedang diproses</p>
+
+    <div class="meja-info" id="mejaInfo">🪑 Meja 01</div>
+
+    <div>
+        <div style="font-size: 14px; color: #7f8c8d;">Nomor Pesanan</div>
+        <div class="order-id" id="orderId">#0</div>
+    </div>
+
+    <div class="detail-box">
+        <p><span class="label">Status:</span> <span class="badge-status">⏳ Pending</span></p>
+        <p><span class="label">Total:</span> <span id="orderTotal">Rp 0</span></p>
+        <p><span class="label">Waktu:</span> <span id="orderTime">-</span></p>
+    </div>
+
+    <div class="btn-group">
+        <a href="customer_order.html?meja=1" class="btn btn-warning">🍽️ Pesan Lagi</a>
+        <a href="check_status.html?id=0" class="btn btn-primary" id="checkStatusBtn">🔍 Cek Status</a>
+        <a href="index.html" class="btn btn-secondary">🏠 Home</a>
+    </div>
+
+    <div class="tip">
+        💡 <strong>Simpan nomor pesanan ini!</strong><br>
+        Gunakan untuk cek status pesanan Anda nanti.
+    </div>
+</div>
+
+<script>
+    // Ambil parameter dari URL
+    const params = new URLSearchParams(window.location.search);
+    const orderId = parseInt(params.get('id')) || 0;
+    const meja = parseInt(params.get('meja')) || 1;
+
+    // Tampilkan informasi
+    document.getElementById('orderId').textContent = `#${orderId}`;
+    document.getElementById('mejaInfo').textContent = `🪑 Meja ${String(meja).padStart(2, '0')}`;
+
+    // Set link cek status dengan ID yang benar
+    document.getElementById('checkStatusBtn').href = `check_status.html?id=${orderId}`;
+
+    // Data dummy untuk total dan waktu
+    // Di sini kamu bisa fetch data dari API jika mau
+    const now = new Date();
+    const timeStr = now.toTimeString().slice(0, 5);
+    document.getElementById('orderTime').textContent = timeStr;
+
+    // Coba ambil data order dari localStorage
+    try {
+        const savedOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+        const order = savedOrders.find(o => o.id === orderId);
+        if (order) {
+            let total = 0;
+            order.items.forEach(item => {
+                total += item.subtotal || 0;
+            });
+            document.getElementById('orderTotal').textContent = `Rp ${total.toLocaleString('id-ID')}`;
+            if (order.waktu) {
+                document.getElementById('orderTime').textContent = order.waktu;
+            }
+        }
+    } catch (e) {
+        // Jika tidak ada data di localStorage, biarkan default
+        console.log('No local data');
+    }
+</script>
+</body>
+</html>
