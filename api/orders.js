@@ -1,7 +1,6 @@
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     
-    // DATA DUMMY UNTUK TESTING
     const dummyOrders = [
         {
             id_order: 1,
