@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+        .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 2px solid #ecf0f1; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; }
+        .stat-card { background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; border-left: 4px solid #3498db; }
+        .stat-card .number { font-size: 32px; font-weight: bold; color: #2c3e50; }
+        .stat-card .label { font-size: 14px; color: #7f8c8d; margin-top: 5px; }
+        .btn { display: inline-block; padding: 8px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .btn-primary { background: #3498db; color: white; }
+        .btn-warning { background: #f39c12; color: white; }
+        .btn-danger { background: #e74c3c; color: white; }
+        .btn-secondary { background: #95a5a6; color: white; }
+        .footer { margin-top: 20px; padding-top: 15px; border-top: 2px solid #ecf0f1; display: flex; gap: 10px; flex-wrap: wrap; }
+        .role-badge { background: #3498db; color: white; padding: 4px 15px; border-radius: 20px; font-size: 13px; }
+        .loading { text-align: center; padding: 30px; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📊 Dashboard</h1>
+        <div>
+            <span class="role-badge" id="userInfo">👤 Loading...</span>
+            <a href="index.html" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+    <div class="stats" id="stats">
+        <div class="loading">⏳ Loading data...</div>
+    </div>
+    <div class="footer">
+        <a href="order.html" class="btn btn-primary">🍳 Dapur</a>
+        <a href="confirm_order.html" class="btn btn-warning">📋 Konfirmasi</a>
+        <a href="customer_order.html" class="btn btn-secondary">👤 Customer</a>
+    </div>
+</div>
+<script>
+    document.getElementById('userInfo').textContent = `👤 ${localStorage.getItem('user_name') || 'User'}`;
+    
+    async function loadStats() {
+        try {
+            const res = await fetch('/api/orders');
+            const result = await res.json();
+            const stats = document.getElementById('stats');
+            const count = result.success ? result.data.length : 0;
+            stats.innerHTML = `
+                <div class="stat-card"><div class="number">${count}</div><div class="label">📦 Diproses</div></div>
+                <div class="stat-card"><div class="number">8</div><div class="label">👤 User</div></div>
+                <div class="stat-card"><div class="number">5</div><div class="label">🪑 Meja</div></div>
+                <div class="stat-card"><div class="number">10</div><div class="label">🍽️ Menu</div></div>
+            `;
+        } catch (e) {
+            document.getElementById('stats').innerHTML = '<p>❌ Gagal load data</p>';
+        }
+    }
+    loadStats();
+</script>
+</body>
+</html>
