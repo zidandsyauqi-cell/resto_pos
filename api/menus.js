@@ -11,9 +11,9 @@ export default async function handler(req, res) {
         const { data, error } = await supabase
             .from('menu')
             .select('*')
-            .eq('Status_Ketersediaan', 'Tersedia')
-            .order('Kategori', { ascending: true })
-            .order('Nama_Menu', { ascending: true })
+            .eq('status_ketersediaan', 'Tersedia')
+            .order('kategori', { ascending: true })
+            .order('nama_menu', { ascending: true })
         
         if (error) throw error
         
