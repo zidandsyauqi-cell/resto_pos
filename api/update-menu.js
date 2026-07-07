@@ -17,9 +17,9 @@ export default async function handler(req, res) {
         const { data, error } = await supabase
             .from('menu')
             .update({
-                Nama_Menu: nama,
-                Harga: harga,
-                Status_Ketersediaan: status
+                nama_menu: nama,
+                harga: harga,
+                status_ketersediaan: status
             })
             .eq('id_menu', id)
             .select()
