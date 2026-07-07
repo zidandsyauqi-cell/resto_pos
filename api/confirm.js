@@ -14,7 +14,6 @@ export default async function handler(req, res) {
     try {
         const { orderId } = req.body
         
-        // Ambil id_table dari order
         const { data: orderData, error: getError } = await supabase
             .from('orders')
             .select('id_table')
@@ -23,19 +22,17 @@ export default async function handler(req, res) {
         
         if (getError) throw getError
         
-        // Update status order
         const { error: orderError } = await supabase
             .from('orders')
-            .update({ Status_Order: 'Diproses' })
+            .update({ status_order: 'Diproses' })
             .eq('id_order', orderId)
         
         if (orderError) throw orderError
         
-        // Update status meja
         if (orderData) {
             const { error: tableError } = await supabase
                 .from('tables')
-                .update({ Status: 'Sudah Diisi' })
+                .update({ status: 'Sudah Diisi' })
                 .eq('id_table', orderData.id_table)
             
             if (tableError) throw tableError
