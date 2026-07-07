@@ -24,7 +24,6 @@ export default async function handler(req, res) {
         
         // Jika Sudah Dihidangkan, update meja jadi tersedia
         if (status === 'Sudah Dihidangkan') {
-            // Ambil id_table dari order
             const { data: orderData, error: getError } = await supabase
                 .from('orders')
                 .select('id_table')
