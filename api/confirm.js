@@ -14,6 +14,15 @@ export default async function handler(req, res) {
     try {
         const { orderId } = req.body
         
+        // Ambil id_table dari order
+        const { data: orderData, error: getError } = await supabase
+            .from('orders')
+            .select('id_table')
+            .eq('id_order', orderId)
+            .single()
+        
+        if (getError) throw getError
+        
         // Update status order
         const { error: orderError } = await supabase
             .from('orders')
@@ -23,15 +32,14 @@ export default async function handler(req, res) {
         if (orderError) throw orderError
         
         // Update status meja
-        const { error: tableError } = await supabase
-            .from('tables')
-            .update({ Status: 'Sudah Diisi' })
-            .eq('id_table', supabase
-                .from('orders')
-                .select('id_table')
-                .eq('id_order', orderId)
-                .single()
-            )
+        if (orderData) {
+            const { error: tableError } = await supabase
+                .from('tables')
+                .update({ Status: 'Sudah Diisi' })
+                .eq('id_table', orderData.id_table)
+            
+            if (tableError) throw tableError
+        }
         
         res.status(200).json({ success: true, message: 'Order confirmed' })
     } catch (error) {
