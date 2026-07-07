@@ -17,10 +17,10 @@ export default async function handler(req, res) {
         const { data, error } = await supabase
             .from('menu')
             .insert({
-                Nama_Menu: nama,
-                Harga: harga,
-                Kategori: kategori,
-                Status_Ketersediaan: status
+                nama_menu: nama,
+                harga: harga,
+                kategori: kategori,
+                status_ketersediaan: status
             })
             .select()
             .single()
