@@ -11,21 +11,28 @@ export default async function handler(req, res) {
         const { data, error } = await supabase
             .from('orders')
             .select(`
-                *,
-                tables (Nomor_Meja)
+                id_order,
+                id_table,
+                id_user,
+                tanggal_order,
+                waktu_order,
+                status_order,
+                tables (
+                    nomor_meja
+                )
             `)
-            .eq('Status_Order', 'Pending')
+            .eq('status_order', 'Pending')
             .order('id_order', { ascending: true })
         
         if (error) throw error
         
         const formattedData = data.map(order => ({
             id_order: order.id_order,
-            Nomor_Meja: order.tables?.Nomor_Meja || 'N/A',
-            Waktu_Order: order.Waktu_Order,
-            Tanggal_Order: order.Tanggal_Order,
-            Status_Order: order.Status_Order,
-            total: order.total || 0
+            id_table: order.id_table,
+            nomor_meja: order.tables?.nomor_meja || 'N/A',
+            tanggal_order: order.tanggal_order,
+            waktu_order: order.waktu_order,
+            status_order: order.status_order
         }))
         
         res.status(200).json({ success: true, data: formattedData })
