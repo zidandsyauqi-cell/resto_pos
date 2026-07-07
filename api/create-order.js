@@ -16,15 +16,14 @@ export default async function handler(req, res) {
         const today = new Date().toISOString().split('T')[0]
         const now = new Date().toTimeString().slice(0, 5)
         
-        // Insert order
         const { data: orderData, error: orderError } = await supabase
             .from('orders')
             .insert({
                 id_table: meja,
                 id_user: null,
-                Tanggal_Order: today,
-                Waktu_Order: now,
-                Status_Order: 'Pending'
+                tanggal_order: today,
+                waktu_order: now,
+                status_order: 'Pending'
             })
             .select()
             .single()
@@ -32,26 +31,24 @@ export default async function handler(req, res) {
         if (orderError) throw orderError
         const orderId = orderData.id_order
         
-        // Insert order details
         for (const item of items) {
             const { error: detailError } = await supabase
                 .from('orderdetails')
                 .insert({
                     id_order: orderId,
                     id_menu: item.menu,
-                    Jumlah: item.qty,
-                    Harga_Satuan: item.harga,
-                    Subtotal: item.subtotal,
-                    Note: note || ''
+                    jumlah: item.qty,
+                    harga_satuan: item.harga,
+                    subtotal: item.subtotal,
+                    note: note || ''
                 })
             
             if (detailError) throw detailError
         }
         
-        // Update meja
         const { error: tableError } = await supabase
             .from('tables')
-            .update({ Status: 'Sudah Diisi' })
+            .update({ status: 'Sudah Diisi' })
             .eq('id_table', meja)
         
         if (tableError) throw tableError
