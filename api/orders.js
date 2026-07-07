@@ -14,26 +14,25 @@ export default async function handler(req, res) {
                 id_order,
                 id_table,
                 id_user,
-                Tanggal_Order,
-                Waktu_Order,
-                Status_Order,
+                tanggal_order,
+                waktu_order,
+                status_order,
                 tables (
-                    Nomor_Meja
+                    nomor_meja
                 )
             `)
-            .eq('Status_Order', 'Diproses')
+            .eq('status_order', 'Diproses')
             .order('id_order', { ascending: true })
         
         if (error) throw error
         
-        // Format data
         const formattedData = data.map(order => ({
             id_order: order.id_order,
             id_table: order.id_table,
-            Nomor_Meja: order.tables?.Nomor_Meja || 'N/A',
-            Tanggal_Order: order.Tanggal_Order,
-            Waktu_Order: order.Waktu_Order,
-            Status_Order: order.Status_Order
+            nomor_meja: order.tables?.nomor_meja || 'N/A',
+            tanggal_order: order.tanggal_order,
+            waktu_order: order.waktu_order,
+            status_order: order.status_order
         }))
         
         res.status(200).json({ success: true, data: formattedData })
