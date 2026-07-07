@@ -14,15 +14,13 @@ export default async function handler(req, res) {
     try {
         const { orderId, status } = req.body
         
-        // Update status order
         const { error: orderError } = await supabase
             .from('orders')
-            .update({ Status_Order: status })
+            .update({ status_order: status })
             .eq('id_order', orderId)
         
         if (orderError) throw orderError
         
-        // Jika Sudah Dihidangkan, update meja jadi tersedia
         if (status === 'Sudah Dihidangkan') {
             const { data: orderData, error: getError } = await supabase
                 .from('orders')
@@ -33,7 +31,7 @@ export default async function handler(req, res) {
             if (!getError && orderData) {
                 await supabase
                     .from('tables')
-                    .update({ Status: 'Tersedia' })
+                    .update({ status: 'Tersedia' })
                     .eq('id_table', orderData.id_table)
             }
         }
