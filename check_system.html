@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Check - Resto POS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { color: #34495e; margin: 25px 0 15px 0; border-left: 4px solid #3498db; padding-left: 15px; }
+        .status-ok { color: #27ae60; font-weight: bold; }
+        .status-error { color: #e74c3c; font-weight: bold; }
+        .status-warning { color: #f39c12; font-weight: bold; }
+        .status-info { color: #3498db; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th { background: #34495e; color: white; padding: 10px; text-align: left; }
+        td { padding: 8px 10px; border-bottom: 1px solid #ecf0f1; }
+        tr:hover { background: #f8f9fa; }
+        .badge { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-danger { background: #f8d7da; color: #721c24; }
+        .badge-warning { background: #fff3cd; color: #856404; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 15px 0; }
+        .summary-item { background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; border-left: 4px solid #3498db; }
+        .summary-item .number { font-size: 28px; font-weight: bold; color: #2c3e50; }
+        .summary-item .label { font-size: 13px; color: #7f8c8d; margin-top: 5px; }
+        .btn { display: inline-block; padding: 8px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .btn-primary { background: #3498db; color: white; }
+        .btn-secondary { background: #95a5a6; color: white; }
+        .btn-success { background: #27ae60; color: white; }
+        .footer { margin-top: 20px; padding-top: 15px; border-top: 2px solid #ecf0f1; display: flex; gap: 10px; flex-wrap: wrap; }
+        .loading { text-align: center; padding: 20px; color: #7f8c8d; }
+        .error-box { background: #f8d7da; padding: 15px; border-radius: 8px; border-left: 4px solid #e74c3c; margin: 10px 0; }
+        .success-box { background: #d4edda; padding: 15px; border-radius: 8px; border-left: 4px solid #27ae60; margin: 10px 0; }
+        .warning-box { background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #f39c12; margin: 10px 0; }
+        .sql-box { background: #2d2d2d; color: #f8f8f8; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; overflow-x: auto; white-space: pre-wrap; word-break: break-all; margin: 10px 0; }
+        @media (max-width: 600px) { .summary { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔍 System Check - Resto POS</h1>
+    <p>Pengecekan semua komponen sistem: Database, API, dan Data</p>
+    <hr>
+
+    <!-- ======================================== -->
+    <!-- SECTION 1: Ringkasan -->
+    <!-- ======================================== -->
+    <h2>📊 Ringkasan</h2>
+    <div class="summary" id="summary">
+        <div class="summary-item">
+            <div class="number" id="totalOrders">-</div>
+            <div class="label">📦 Total Order</div>
+        </div>
+        <div class="summary-item">
+            <div class="number" id="totalMenus">-</div>
+            <div class="label">🍽️ Total Menu</div>
+        </div>
+        <div class="summary-item">
+            <div class="number" id="totalTables">-</div>
+            <div class="label">🪑 Total Meja</div>
+        </div>
+        <div class="summary-item">
+            <div class="number" id="apiStatus">-</div>
+            <div class="label">📡 API Status</div>
+        </div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- SECTION 2: API Check -->
+    <!-- ======================================== -->
+    <h2>📡 API Check</h2>
+    <div id="apiResults">
+        <div class="loading">⏳ Loading API status...</div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- SECTION 3: Database Data -->
+    <!-- ======================================== -->
+    <h2>📦 Data di Database</h2>
+    <div id="dataResults">
+        <div class="loading">⏳ Loading data...</div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- SECTION 4: Quick Fix -->
+    <!-- ======================================== -->
+    <h2>🔧 Quick Fix</h2>
+    <div class="warning-box">
+        <strong>⚠️ Jika ada masalah, jalankan SQL ini di Supabase SQL Editor:</strong>
+    </div>
+    <div class="sql-box">
+-- ============================================
+-- FIX ALL TABLES
+-- ============================================
+
+-- 1. Buat tabel jika belum ada
+CREATE TABLE IF NOT EXISTS tables (
+    id_table BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    Nomor_Meja TEXT NOT NULL,
+    Kapasitas INT DEFAULT 4,
+    Status TEXT DEFAULT 'Tersedia',
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS menu (
+    id_menu BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    Nama_Menu TEXT NOT NULL,
+    Harga INT NOT NULL,
+    Status_Ketersediaan TEXT DEFAULT 'Tersedia',
+    Kategori TEXT DEFAULT 'Makanan',
+    Gambar TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+    id_order BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    id_table BIGINT REFERENCES tables(id_table) ON DELETE CASCADE,
+    id_user BIGINT NULL,
+    Tanggal_Order DATE NOT NULL,
+    Waktu_Order TIME NOT NULL,
+    Status_Order TEXT DEFAULT 'Pending',
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS orderdetails (
+    id_order_detail BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    id_order BIGINT REFERENCES orders(id_order) ON DELETE CASCADE,
+    id_menu BIGINT REFERENCES menu(id_menu) ON DELETE CASCADE,
+    Jumlah INT DEFAULT 1,
+    Harga_Satuan INT NOT NULL,
+    Subtotal INT NOT NULL,
+    Note TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS users (
+    id_user BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    Nama TEXT NOT NULL,
+    Password TEXT NOT NULL,
+    Role TEXT DEFAULT 'Customer',
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- 2. Insert data sample jika kosong
+INSERT INTO menu (Nama_Menu, Harga, Status_Ketersediaan, Kategori) VALUES
+('Nasi Goreng', 25000, 'Tersedia', 'Makanan'),
+('Mie Goreng', 22000, 'Tersedia', 'Makanan'),
+('Ayam Geprek', 28000, 'Tersedia', 'Makanan'),
+('Es Teh', 5000, 'Tersedia', 'Minuman'),
+('Jus Jeruk', 12000, 'Tersedia', 'Minuman')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO tables (Nomor_Meja, Kapasitas, Status) VALUES
+('01', 2, 'Tersedia'),
+('02', 4, 'Tersedia'),
+('03', 2, 'Tersedia')
+ON CONFLICT DO NOTHING;
+
+INSERT INTO users (Nama, Password, Role) VALUES
+('Admin', 'password', 'Cashier'),
+('Waiter', 'password', 'Waiter'),
+('Front Kitchen', 'password', 'Front Kitchen'),
+('Customer 1', 'password', 'Customer')
+ON CONFLICT DO NOTHING;
+    </div>
+
+    <!-- ======================================== -->
+    <!-- SECTION 5: Footer -->
+    <!-- ======================================== -->
+    <div class="footer">
+        <a href="dashboard.html" class="btn btn-secondary">📊 Dashboard</a>
+        <a href="order.html" class="btn btn-primary">🍳 Dapur</a>
+        <a href="menu_admin.html" class="btn btn-success">📝 Edit Menu</a>
+        <button onclick="location.reload()" class="btn btn-primary">🔄 Refresh</button>
+    </div>
+</div>
+
+<script>
+    // ============================================
+    // MAIN FUNCTION
+    // ============================================
+    async function checkSystem() {
+        await checkAPI();
+        await checkData();
+    }
+
+    // ============================================
+    // CHECK API
+    // ============================================
+    async function checkAPI() {
+        const container = document.getElementById('apiResults');
+        const apis = [
+            { name: '📦 Orders (Diproses)', url: '/api/orders' },
+            { name: '⏳ Orders (Pending)', url: '/api/pending-orders' },
+            { name: '🍽️ Menu', url: '/api/menus' },
+            { name: '📡 API Status', url: '/api/orders' }
+        ];
+
+        let html = `<table>
+            <tr>
+                <th>API Endpoint</th>
+                <th>Status</th>
+                <th>Data</th>
+            </tr>`;
+
+        let apiWorking = 0;
+
+        for (const api of apis) {
+            try {
+                const start = Date.now();
+                const res = await fetch(api.url);
+                const end = Date.now();
+                const result = await res.json();
+
+                const isSuccess = result.success === true;
+                const dataCount = result.data ? result.data.length : 0;
+                const time = end - start;
+
+                if (isSuccess) {
+                    apiWorking++;
+                    html += `
+                        <tr>
+                            <td><strong>${api.name}</strong></td>
+                            <td><span class="badge badge-success">✅ OK (${time}ms)</span></td>
+                            <td>${dataCount} data</td>
+                        </tr>
+                    `;
+                } else {
+                    html += `
+                        <tr>
+                            <td><strong>${api.name}</strong></td>
+                            <td><span class="badge badge-danger">❌ Error</span></td>
+                            <td>${result.error || 'Unknown error'}</td>
+                        </tr>
+                    `;
+                }
+            } catch (e) {
+                html += `
+                    <tr>
+                        <td><strong>${api.name}</strong></td>
+                        <td><span class="badge badge-danger">❌ Gagal</span></td>
+                        <td>${e.message}</td>
+                    </tr>
+                `;
+            }
+        }
+
+        html += `</table>`;
+
+        // Update summary
+        document.getElementById('apiStatus').textContent = `${apiWorking}/${apis.length}`;
+        document.getElementById('apiStatus').style.color = apiWorking === apis.length ? '#27ae60' : '#e74c3c';
+
+        container.innerHTML = html;
+    }
+
+    // ============================================
+    // CHECK DATA
+    // ============================================
+    async function checkData() {
+        const container = document.getElementById('dataResults');
+
+        try {
+            // Ambil semua data
+            const [ordersRes, menusRes, tablesRes] = await Promise.all([
+                fetch('/api/orders'),
+                fetch('/api/menus'),
+                fetch('/api/orders') // ganti dengan /api/tables nanti
+            ]);
+
+            const orders = await ordersRes.json();
+            const menus = await menusRes.json();
+
+            // Update summary
+            document.getElementById('totalOrders').textContent = orders.data ? orders.data.length : 0;
+            document.getElementById('totalMenus').textContent = menus.data ? menus.data.length : 0;
+            document.getElementById('totalTables').textContent = '5'; // dummy
+
+            // Tampilkan detail
+            let html = `
+                <table>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Jumlah</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td><strong>📦 Orders (Diproses)</strong></td>
+                        <td>${orders.data ? orders.data.length : 0}</td>
+                        <td>${orders.success ? '<span class="badge badge-success">✅ OK</span>' : '<span class="badge badge-danger">❌ Error</span>'}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🍽️ Menu (Tersedia)</strong></td>
+                        <td>${menus.data ? menus.data.length : 0}</td>
+                        <td>${menus.success ? '<span class="badge badge-success">✅ OK</span>' : '<span class="badge badge-danger">❌ Error</span>'}</td>
+                    </tr>
+                </table>
+            `;
+
+            // Tampilkan menu list
+            if (menus.data && menus.data.length > 0) {
+                html += `
+                    <h3 style="margin-top:15px;">🍽️ Daftar Menu</h3>
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama</th>
+                            <th>Harga</th>
+                            <th>Kategori</th>
+                            <th>Status</th>
+                        </tr>
+                `;
+                menus.data.slice(0, 10).forEach(menu => {
+                    const statusBadge = menu.Status_Ketersediaan === 'Tersedia' 
+                        ? '<span class="badge badge-success">✅ Tersedia</span>' 
+                        : '<span class="badge badge-danger">❌ Tidak</span>';
+                    html += `
+                        <tr>
+                            <td>${menu.id_menu}</td>
+                            <td><strong>${menu.Nama_Menu}</strong></td>
+                            <td>Rp ${menu.Harga.toLocaleString('id-ID')}</td>
+                            <td>${menu.Kategori}</td>
+                            <td>${statusBadge}</td>
+                        </tr>
+                    `;
+                });
+                if (menus.data.length > 10) {
+                    html += `<tr><td colspan="5" style="text-align:center;color:#7f8c8d;">... dan ${menus.data.length - 10} menu lainnya</td></tr>`;
+                }
+                html += `</table>`;
+            }
+
+            container.innerHTML = html;
+
+        } catch (e) {
+            container.innerHTML = `
+                <div class="error-box">
+                    <strong>❌ Gagal load data:</strong> ${e.message}
+                </div>
+            `;
+        }
+    }
+
+    // ============================================
+    // INIT
+    // ============================================
+    checkSystem();
+</script>
+</body>
+</html>
