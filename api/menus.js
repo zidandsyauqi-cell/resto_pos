@@ -7,23 +7,13 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*')
     
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' })
-    }
-    
     try {
-        const { nama, harga, kategori, status } = req.body
-        
         const { data, error } = await supabase
             .from('menu')
-            .insert({
-                nama_menu: nama,
-                harga: harga,
-                kategori: kategori,
-                status_ketersediaan: status
-            })
-            .select()
-            .single()
+            .select('*')
+            .eq('status_ketersediaan', 'Tersedia')
+            .order('kategori', { ascending: true })
+            .order('nama_menu', { ascending: true })
         
         if (error) throw error
         
