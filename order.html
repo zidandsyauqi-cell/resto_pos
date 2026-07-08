@@ -40,8 +40,11 @@
             margin: 10px 0;
             overflow-x: auto;
             white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
         }
         .debug-box .error { color: #ff6b6b; }
+        .debug-box .success { color: #7bed9f; }
     </style>
 </head>
 <body>
@@ -83,19 +86,20 @@
     // LOAD ORDERS
     // ============================================
     async function loadOrders() {
-        debugBox.innerHTML = '⏳ Memanggil API /api/orders...';
+        debugBox.innerHTML = '⏳ Memanggil API /api/orders...\n';
         
         try {
             const res = await fetch('/api/orders');
-            debugBox.innerHTML += '\n✅ Response status: ' + res.status;
+            debugBox.innerHTML += `✅ Response status: ${res.status}\n`;
             
             const result = await res.json();
-            debugBox.innerHTML += '\n📦 Data dari API:\n' + JSON.stringify(result, null, 2);
+            debugBox.innerHTML += `📦 Data dari API:\n${JSON.stringify(result, null, 2)}\n\n`;
             
             const orderList = document.getElementById('orderList');
             
             // CEK APAKAH DATA ADA
             if (!result.success) {
+                debugBox.innerHTML += `❌ ERROR: ${result.error || 'Unknown error'}\n`;
                 orderList.innerHTML = `
                     <div class="empty-state">
                         <div class="icon">❌</div>
@@ -107,8 +111,10 @@
             }
             
             const orders = result.data || [];
+            debugBox.innerHTML += `📊 Jumlah data: ${orders.length}\n`;
             
             if (orders.length === 0) {
+                debugBox.innerHTML += `⚠️ TIDAK ADA DATA! Cek di Supabase.\n`;
                 orderList.innerHTML = `
                     <div class="empty-state">
                         <div class="icon">🍽️</div>
@@ -117,16 +123,19 @@
                         <p style="margin-top:10px;font-size:12px;color:#7f8c8d;">
                             Cek di Supabase: pastikan ada data di tabel orders dengan status_order = 'Diproses'
                         </p>
+                        <p style="margin-top:5px;font-size:12px;color:#3498db;">
+                            Debug: ${orders.length} data ditemukan
+                        </p>
                     </div>
                 `;
                 return;
             }
 
             // RENDER ORDER
+            debugBox.innerHTML += `✅ Berhasil render ${orders.length} pesanan\n`;
             let html = '';
             orders.forEach(order => {
-                // Ambil total dari detail (simulasi)
-                const total = order.total || 0;
+                debugBox.innerHTML += `  - Order #${order.id_order} | Meja ${order.nomor_meja || order.id_table || 'N/A'}\n`;
                 
                 html += `
                     <div class="order-card">
@@ -135,12 +144,12 @@
                             <span class="badge badge-diproses">🔥 Diproses</span>
                         </div>
                         <div class="order-meta">
-                            <span>🪑 Meja ${order.nomor_meja || 'N/A'}</span>
+                            <span>🪑 Meja ${order.nomor_meja || order.id_table || 'N/A'}</span>
                             <span>🕒 ${order.waktu_order || '-'}</span>
                             <span>📅 ${order.tanggal_order || '-'}</span>
                         </div>
                         <div class="order-total">
-                            Total: Rp ${total.toLocaleString('id-ID')}
+                            Total: Rp ${(order.total || 0).toLocaleString('id-ID')}
                         </div>
                         <div style="margin-top:15px;">
                             <button class="btn btn-success" onclick="selesaiDihidangkan(${order.id_order})">
@@ -152,11 +161,12 @@
             });
             
             orderList.innerHTML = html;
-            debugBox.innerHTML += '\n✅ Berhasil render ' + orders.length + ' pesanan';
+            debugBox.innerHTML += `✅ Selesai!`;
 
         } catch (error) {
             console.error('❌ Error:', error);
-            debugBox.innerHTML += '\n❌ ERROR: ' + error.message;
+            debugBox.innerHTML += `\n❌ ERROR: ${error.message}\n`;
+            debugBox.innerHTML += `Stack: ${error.stack || 'Tidak ada'}\n`;
             document.getElementById('orderList').innerHTML = `
                 <div class="empty-state">
                     <div class="icon">❌</div>
