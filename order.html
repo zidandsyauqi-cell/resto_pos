@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dapur</title>
+    <title>Dapur - Resto POS</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
@@ -30,6 +30,18 @@
         .footer { margin-top: 20px; padding-top: 15px; border-top: 2px solid #ecf0f1; display: flex; gap: 10px; flex-wrap: wrap; }
         .role-badge { background: #3498db; color: white; padding: 4px 15px; border-radius: 20px; font-size: 13px; }
         .loading { text-align: center; padding: 40px; color: #7f8c8d; }
+        .debug-box {
+            background: #2d2d2d;
+            color: #7bed9f;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 10px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .debug-box .error { color: #ff6b6b; }
     </style>
 </head>
 <body>
@@ -43,35 +55,79 @@
     </div>
     <p>Pesanan yang sedang <strong>Diproses</strong></p>
     <hr>
+
+    <!-- DEBUG BOX -->
+    <div class="debug-box" id="debugBox">
+        🔍 Loading data...
+    </div>
+
     <div id="orderList"><div class="loading">⏳ Loading pesanan...</div></div>
+    
     <div class="footer">
         <a href="confirm_order.html" class="btn btn-warning">📋 Konfirmasi</a>
         <a href="dashboard.html" class="btn btn-secondary">📊 Dashboard</a>
     </div>
 </div>
-<script>
-    document.getElementById('userInfo').textContent = `👤 ${localStorage.getItem('user_name') || 'User'}`;
 
+<script>
+    // ============================================
+    // USER INFO
+    // ============================================
+    const userName = localStorage.getItem('user_name') || 'User';
+    const userRole = localStorage.getItem('user_role') || 'Guest';
+    document.getElementById('userInfo').textContent = `👤 ${userName} (${userRole})`;
+
+    const debugBox = document.getElementById('debugBox');
+
+    // ============================================
+    // LOAD ORDERS
+    // ============================================
     async function loadOrders() {
+        debugBox.innerHTML = '⏳ Memanggil API /api/orders...';
+        
         try {
             const res = await fetch('/api/orders');
+            debugBox.innerHTML += '\n✅ Response status: ' + res.status;
+            
             const result = await res.json();
+            debugBox.innerHTML += '\n📦 Data dari API:\n' + JSON.stringify(result, null, 2);
+            
             const orderList = document.getElementById('orderList');
             
-            if (!result.success || result.data.length === 0) {
+            // CEK APAKAH DATA ADA
+            if (!result.success) {
                 orderList.innerHTML = `
                     <div class="empty-state">
-                        <div class="icon">🍽️</div>
-                        <h3>Belum ada pesanan</h3>
-                        <p>Tidak ada pesanan dengan status <strong>Diproses</strong></p>
+                        <div class="icon">❌</div>
+                        <h3>Error dari API</h3>
+                        <p>${result.error || 'Unknown error'}</p>
                     </div>
                 `;
                 return;
             }
             
+            const orders = result.data || [];
+            
+            if (orders.length === 0) {
+                orderList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">🍽️</div>
+                        <h3>Belum ada pesanan</h3>
+                        <p>Tidak ada pesanan dengan status <strong>Diproses</strong></p>
+                        <p style="margin-top:10px;font-size:12px;color:#7f8c8d;">
+                            Cek di Supabase: pastikan ada data di tabel orders dengan status_order = 'Diproses'
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            // RENDER ORDER
             let html = '';
-            result.data.forEach(order => {
+            orders.forEach(order => {
+                // Ambil total dari detail (simulasi)
                 const total = order.total || 0;
+                
                 html += `
                     <div class="order-card">
                         <div class="order-header">
@@ -79,40 +135,66 @@
                             <span class="badge badge-diproses">🔥 Diproses</span>
                         </div>
                         <div class="order-meta">
-                            <span>🪑 Meja ${order.Nomor_Meja || 'N/A'}</span>
-                            <span>🕒 ${order.Waktu_Order || '-'}</span>
-                            <span>📅 ${order.Tanggal_Order || '-'}</span>
+                            <span>🪑 Meja ${order.nomor_meja || 'N/A'}</span>
+                            <span>🕒 ${order.waktu_order || '-'}</span>
+                            <span>📅 ${order.tanggal_order || '-'}</span>
                         </div>
-                        <div class="order-total">Total: Rp ${total.toLocaleString('id-ID')}</div>
+                        <div class="order-total">
+                            Total: Rp ${total.toLocaleString('id-ID')}
+                        </div>
                         <div style="margin-top:15px;">
-                            <button class="btn btn-success" onclick="selesaiDihidangkan(${order.id_order})">✅ Selesai Dihidangkan</button>
+                            <button class="btn btn-success" onclick="selesaiDihidangkan(${order.id_order})">
+                                ✅ Selesai Dihidangkan
+                            </button>
                         </div>
                     </div>
                 `;
             });
+            
             orderList.innerHTML = html;
-        } catch (e) {
-            orderList.innerHTML = '<p>❌ Gagal load data</p>';
+            debugBox.innerHTML += '\n✅ Berhasil render ' + orders.length + ' pesanan';
+
+        } catch (error) {
+            console.error('❌ Error:', error);
+            debugBox.innerHTML += '\n❌ ERROR: ' + error.message;
+            document.getElementById('orderList').innerHTML = `
+                <div class="empty-state">
+                    <div class="icon">❌</div>
+                    <h3>Gagal memuat data</h3>
+                    <p>${error.message}</p>
+                </div>
+            `;
         }
     }
 
+    // ============================================
+    // UPDATE STATUS
+    // ============================================
     async function selesaiDihidangkan(orderId) {
         if (!confirm('Pesanan ini sudah selesai dihidangkan?')) return;
+        
         try {
             const res = await fetch('/api/update-status', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ orderId, status: 'Sudah Dihidangkan' })
             });
-            if (res.ok) {
+            
+            const result = await res.json();
+            if (result.success) {
                 alert('✅ Pesanan selesai dihidangkan!');
                 loadOrders();
+            } else {
+                alert('❌ Gagal: ' + result.error);
             }
         } catch (e) {
-            alert('❌ Gagal update status');
+            alert('❌ Gagal: ' + e.message);
         }
     }
 
+    // ============================================
+    // INIT
+    // ============================================
     loadOrders();
 </script>
 </body>
