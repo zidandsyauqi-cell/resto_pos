@@ -6,16 +6,36 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
     
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' })
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end()
     }
     
+    if (req.method !== 'POST') {
+        return res.status(405).json({ 
+            success: false, 
+            error: 'Method not allowed. Use POST.' 
+        })
+    }
+
     try {
         const { meja, items, note } = req.body
+        
+        if (!meja || !items || items.length === 0) {
+            return res.status(400).json({ 
+                success: false, 
+                error: 'meja and items are required' 
+            })
+        }
+
         const today = new Date().toISOString().split('T')[0]
         const now = new Date().toTimeString().slice(0, 5)
-        
+
+        console.log(`📝 Creating order for table: ${meja}, items: ${items.length}`)
+
+        // Insert order
         const { data: orderData, error: orderError } = await supabase
             .from('orders')
             .insert({
@@ -27,10 +47,20 @@ export default async function handler(req, res) {
             })
             .select()
             .single()
-        
-        if (orderError) throw orderError
+
+        if (orderError) {
+            console.error('❌ Order insert error:', orderError)
+            return res.status(500).json({ 
+                success: false, 
+                error: orderError.message 
+            })
+        }
+
         const orderId = orderData.id_order
-        
+        console.log(`✅ Order created: ${orderId}`)
+
+        // Insert order details
+        let detailErrors = []
         for (const item of items) {
             const { error: detailError } = await supabase
                 .from('orderdetails')
@@ -42,20 +72,38 @@ export default async function handler(req, res) {
                     subtotal: item.subtotal,
                     note: note || ''
                 })
-            
-            if (detailError) throw detailError
+
+            if (detailError) {
+                console.error(`❌ Detail error for menu ${item.menu}:`, detailError)
+                detailErrors.push(detailError.message)
+            }
         }
-        
+
+        // Update table status
         const { error: tableError } = await supabase
             .from('tables')
             .update({ status: 'Sudah Diisi' })
             .eq('id_table', meja)
-        
-        if (tableError) throw tableError
-        
-        res.status(200).json({ success: true, orderId })
+
+        if (tableError) {
+            console.error('⚠️ Table update error:', tableError)
+            // Tidak return error karena order sudah dibuat
+        }
+
+        console.log(`✅ Order ${orderId} completed with ${items.length} items`)
+
+        return res.status(200).json({ 
+            success: true, 
+            orderId: orderId,
+            message: `Order ${orderId} created successfully`,
+            detailErrors: detailErrors.length > 0 ? detailErrors : undefined
+        })
+
     } catch (error) {
-        console.error('Error:', error)
-        res.status(500).json({ success: false, error: error.message })
+        console.error('❌ Error:', error)
+        return res.status(500).json({ 
+            success: false, 
+            error: error.message 
+        })
     }
 }
