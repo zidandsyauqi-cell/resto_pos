@@ -921,9 +921,9 @@
 
     <script>
         // ============ SUPABASE CONFIG ============
-        const SUPABASE_URL = 'https://your-project-id.supabase.co'; // Ganti dengan URL Supabase Anda
-        const SUPABASE_KEY = 'your-anon-key'; // Ganti dengan Anon Key Supabase Anda
-        const STORAGE_BUCKET = 'menu-images'; // Nama bucket untuk gambar
+        const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
+        const STORAGE_BUCKET = 'menu-images';
 
         // Inisialisasi Supabase
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -939,7 +939,6 @@
             loading.classList.add('active');
 
             try {
-                // Ambil data dari tabel 'menu' dengan kolom sesuai struktur
                 const { data, error } = await supabaseClient
                     .from('menu')
                     .select('id_menu, nama_menu, harga, status_ketersediaan, kategori, gambar, created_at')
@@ -948,7 +947,6 @@
                 if (error) throw error;
 
                 if (data && data.length > 0) {
-                    // Mapping data dari database ke format yang digunakan
                     menuItems = data.map(item => ({
                         id: item.id_menu,
                         name: item.nama_menu,
@@ -959,7 +957,6 @@
                         created_at: item.created_at
                     }));
                 } else {
-                    // Fallback ke data default jika tidak ada data
                     menuItems = getDefaultMenu();
                 }
 
@@ -980,12 +977,10 @@
         function getImageUrl(imagePath) {
             if (!imagePath) return null;
 
-            // Cek apakah itu URL lengkap atau path dari storage
             if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
                 return imagePath;
             }
 
-            // Jika dari Supabase Storage
             try {
                 const { data } = supabaseClient.storage
                     .from(STORAGE_BUCKET)
@@ -1000,14 +995,11 @@
         // ============ DEFAULT MENU (Fallback) ============
         function getDefaultMenu() {
             return [
-                // Makanan
                 { id: 1, name: 'Nasi Goreng', price: 25000, category: 'Makanan', status: 'Tersedia', image_url: null },
                 { id: 2, name: 'Mie Goreng', price: 22000, category: 'Makanan', status: 'Tersedia', image_url: null },
                 { id: 3, name: 'Ayam Geprek', price: 28000, category: 'Makanan', status: 'Tersedia', image_url: null },
                 { id: 4, name: 'Sate Ayam', price: 35000, category: 'Makanan', status: 'Tersedia', image_url: null },
                 { id: 5, name: 'Bakso', price: 20000, category: 'Makanan', status: 'Tidak Tersedia', image_url: null },
-
-                // Minuman
                 { id: 6, name: 'Es Teh', price: 5000, category: 'Minuman', status: 'Tersedia', image_url: null },
                 { id: 7, name: 'Jus Jeruk', price: 12000, category: 'Minuman', status: 'Tersedia', image_url: null },
                 { id: 8, name: 'Kopi Hitam', price: 8000, category: 'Minuman', status: 'Tersedia', image_url: null },
@@ -1040,7 +1032,6 @@
                 const qty = existing ? existing.qty : 0;
                 const isAvailable = item.status === 'Tersedia';
 
-                // Get image URL
                 let imageUrl = 'https://placehold.co/50x50/2d2d2d/ffffff?text=Menu';
                 if (item.image_url) {
                     const url = getImageUrl(item.image_url);
