@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RestoPOS - Menu Customer</title>
+    <title>RestoPOS - Customer</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
         * {
@@ -46,16 +46,38 @@
 
         .deco-bg img {
             position: absolute;
-            opacity: 0.1;
+            opacity: 0.15;
         }
 
         .deco-bg img:nth-child(1) {
-            width: 182%;
-            height: 68.2%;
-            left: -10.6%;
-            top: 101.2%;
+            width: 178%;
+            height: 66.7%;
+            left: -9.3%;
+            top: 99.99%;
             transform: rotate(-90deg);
             transform-origin: top left;
+        }
+
+        .deco-bg img:nth-child(2) {
+            width: 92.2%;
+            height: 51.8%;
+            left: -53.2%;
+            top: 61.2%;
+            transform: rotate(-12deg);
+            transform-origin: top left;
+            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
+            filter: blur(3.50px);
+        }
+
+        .deco-bg img:nth-child(3) {
+            width: 77.1%;
+            height: 43.4%;
+            left: 71.8%;
+            top: 10.6%;
+            transform: rotate(21deg);
+            transform-origin: top left;
+            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
+            filter: blur(3.50px);
         }
 
         /* Overlay */
@@ -65,603 +87,428 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             pointer-events: none;
         }
 
-        /* Logo kiri atas */
-        .logo-left {
+        /* Logo */
+        .logo-top {
             position: absolute;
-            left: 4.9%;
-            top: 3%;
+            left: 4.3%;
+            top: 7%;
             z-index: 10;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .logo-left img {
-            width: clamp(50px, 9.4%, 101px);
+        .logo-top img {
+            width: clamp(40px, 7.4%, 80px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
-        .logo-left .brand-text {
+        .logo-top .brand-text {
             color: white;
-            font-size: clamp(14px, 3%, 32px);
+            font-size: clamp(16px, 2.96%, 32px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
         }
 
-        .logo-left .brand-text span {
+        .logo-top .brand-text span {
             color: #98C81C;
         }
 
-        /* Tombol Selesai */
-        .btn-selesai {
+        /* Judul Utama */
+        .title-main {
             position: absolute;
-            right: 6.5%;
-            top: 3.6%;
-            background: #ED1B24;
-            border-radius: 50px;
-            border: 2px solid white;
-            padding: clamp(8px, 1.5%, 15px) clamp(20px, 3%, 40px);
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-selesai:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(237, 27, 36, 0.5);
-        }
-
-        .btn-selesai:active {
-            transform: scale(0.95);
-        }
-
-        .btn-selesai span {
+            left: 39.5%;
+            top: 7%;
+            transform: translateX(-50%);
+            text-align: center;
             color: white;
-            font-size: clamp(18px, 4.2%, 45px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
+            font-size: clamp(24px, 7.4%, 80px);
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            z-index: 5;
+            line-height: 1.1;
+            letter-spacing: 2px;
+            width: 55.6%;
         }
 
-        /* Search box */
-        .search-box {
+        /* Box Menu */
+        .box-menu {
             position: absolute;
-            left: 4.1%;
-            top: 10.8%;
-            width: 91.9%;
-            height: 4.6%;
-            border-radius: 50px;
-            border: 3px solid white;
+            width: 82.2%;
+            height: 28.6%;
+            left: 8.9%;
+            top: 24%;
+            overflow: hidden;
+            border-radius: 65px;
             z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .box-menu:hover {
+            transform: scale(1.02);
+        }
+
+        .box-menu:active {
+            transform: scale(0.98);
+        }
+
+        .box-menu .bg-hijau {
+            position: absolute;
+            width: 99.9%;
+            height: 92.3%;
+            left: 0.1%;
+            top: 9.7%;
+            background: #98C81C;
+            border-radius: 65px;
+            opacity: 0.92;
+        }
+
+        .box-menu .label-menu {
+            position: absolute;
+            left: 3.5%;
+            top: 14.2%;
+            text-align: center;
+            color: white;
+            font-size: clamp(24px, 6%, 65px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        .box-menu .gambar1 {
+            position: absolute;
+            width: 59.7%;
+            height: 81.1%;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .box-menu .gambar1 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-menu .gambar2 {
+            position: absolute;
+            width: 57.2%;
+            height: 92.2%;
+            left: -10.8%;
+            top: 35.3%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .box-menu .gambar2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-menu .gambar3 {
+            position: absolute;
+            width: 45%;
+            height: 74.9%;
+            left: 27.6%;
+            top: 44.1%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .box-menu .gambar3 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        /* Box Pesan */
+        .box-pesan {
+            position: absolute;
+            width: 82.2%;
+            height: 28.6%;
+            left: 8.9%;
+            top: 55.7%;
+            overflow: hidden;
+            border-radius: 65px;
+            z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .box-pesan:hover {
+            transform: scale(1.02);
+        }
+
+        .box-pesan:active {
+            transform: scale(0.98);
+        }
+
+        .box-pesan .bg-hijau {
+            position: absolute;
+            width: 99.9%;
+            height: 92.3%;
+            left: 0.1%;
+            top: 9.7%;
+            background: #98C81C;
+            border-radius: 65px;
+            opacity: 0.92;
+        }
+
+        .box-pesan .label-pesan {
+            position: absolute;
+            left: 3.5%;
+            top: 14.2%;
+            text-align: center;
+            color: white;
+            font-size: clamp(24px, 6%, 65px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        .box-pesan .gambar4 {
+            position: absolute;
+            width: 56.4%;
+            height: 94.2%;
+            left: 18.4%;
+            top: 23.1%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .box-pesan .gambar4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-pesan .gambar5 {
+            position: absolute;
+            width: 49.2%;
+            height: 79.1%;
+            left: 46.6%;
+            top: 60.4%;
+            transform: rotate(107deg);
+            transform-origin: top left;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .box-pesan .gambar5 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-pesan .gambar6 {
+            position: absolute;
+            width: 61.4%;
+            height: 91.1%;
+            left: 45.4%;
+            top: 50.7%;
+            transform: rotate(-10deg);
+            transform-origin: top left;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .box-pesan .gambar6 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        /* Halaman Menu (setelah klik menu) */
+        .menu-page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 50;
+            display: none;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+
+        .menu-page.active {
+            display: block;
+        }
+
+        .menu-page .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0 20px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .menu-page .menu-header .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: clamp(30px, 4%, 50px);
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 5px 15px;
+        }
+
+        .menu-page .menu-header .back-btn:hover {
+            transform: scale(1.1);
+            color: #98C81C;
+        }
+
+        .menu-page .menu-header h2 {
+            color: white;
+            font-size: clamp(20px, 3.7%, 40px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .menu-page .menu-header .cart-count {
+            background: #98C81C;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: clamp(14px, 1.5%, 18px);
+            font-weight: 600;
+        }
+
+        /* Search box di menu page */
+        .menu-page .search-box {
+            width: 100%;
+            margin: 20px 0;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
-            padding: 0 15px;
             gap: 10px;
         }
 
-        .search-box img {
-            width: clamp(25px, 6.2%, 67px);
-            height: auto;
-        }
-
-        .search-box input {
+        .menu-page .search-box input {
             background: transparent;
             border: none;
             color: white;
-            font-size: clamp(16px, 4.6%, 50px);
+            font-size: clamp(16px, 2%, 24px);
             font-family: 'Schoolbell', cursive;
             width: 100%;
             outline: none;
         }
 
-        .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(16px, 4.6%, 50px);
-            font-family: 'Schoolbell', cursive;
+        .menu-page .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Judul MAKANAN */
-        .title-makanan {
-            position: absolute;
-            left: 4.1%;
-            top: 17.2%;
+        .menu-page .search-box span {
+            color: rgba(255,255,255,0.6);
+            font-size: 24px;
+        }
+
+        /* Grid menu */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 10px 0 20px 0;
+        }
+
+        .menu-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: #98C81C;
+            box-shadow: 0 10px 30px rgba(152, 200, 28, 0.2);
+        }
+
+        .menu-card:active {
+            transform: scale(0.95);
+        }
+
+        .menu-card .card-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .menu-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-card .card-info {
+            padding: 12px;
+        }
+
+        .menu-card .card-info .card-name {
             color: white;
-            font-size: clamp(30px, 6.9%, 75px);
-            font-family: 'Poppins', sans-serif;
+            font-size: clamp(14px, 1.8%, 20px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+        }
+
+        .menu-card .card-info .card-price {
+            color: #98C81C;
+            font-size: clamp(12px, 1.5%, 18px);
             font-weight: 600;
-            z-index: 5;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-top: 5px;
         }
 
-        /* Menu Item 1 - Iga Bakar */
-        .menu-item1 {
-            position: absolute;
-            left: 4.8%;
-            top: 23.1%;
-            width: 37%;
-            height: 20.8%;
-            overflow: hidden;
-            z-index: 5;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item1:hover {
-            transform: scale(1.05);
-        }
-
-        .menu-item1:active {
-            transform: scale(0.95);
-        }
-
-        .menu-item1 img {
+        .menu-card .card-info .btn-add {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
-
-        .menu-item1 .gambar-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.3);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item1:hover .gambar-overlay {
-            background: rgba(0,0,0,0.1);
-        }
-
-        /* Nama menu 1 */
-        .menu-name1 {
-            position: absolute;
-            left: 42.5%;
-            top: 26.7%;
-            color: white;
-            font-size: clamp(18px, 4.6%, 50px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            z-index: 5;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* Harga menu 1 */
-        .menu-price1 {
-            position: absolute;
-            left: 42.5%;
-            top: 30.9%;
-            color: white;
-            font-size: clamp(18px, 4.6%, 50px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            z-index: 5;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* Tombol tambah 1 */
-        .btn-tambah1 {
-            position: absolute;
-            left: 8.1%;
-            top: 42.6%;
-            width: 32.1%;
-            height: 3.9%;
+            margin-top: 10px;
+            padding: 8px;
             background: #98C81C;
+            border: none;
             border-radius: 50px;
-            border: 2px solid white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .btn-tambah1:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(152, 200, 28, 0.5);
-        }
-
-        .btn-tambah1:active {
-            transform: scale(0.95);
-        }
-
-        .btn-tambah1 span {
             color: white;
-            font-size: clamp(16px, 4.2%, 45px);
+            font-size: clamp(12px, 1.3%, 16px);
             font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-        }
-
-        /* Garis pemisah 1 */
-        .line1 {
-            position: absolute;
-            left: 4.8%;
-            top: 48.7%;
-            width: 90.4%;
-            height: 0;
-            border: 1px solid rgba(255,255,255,0.3);
-            z-index: 5;
-        }
-
-        /* Menu Item 2 - Iga Bakar Jumbo */
-        .menu-item2 {
-            position: absolute;
-            left: 5.6%;
-            top: 50.8%;
-            width: 37%;
-            height: 20.8%;
-            overflow: hidden;
-            z-index: 5;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .menu-item2:hover {
+        .menu-card .card-info .btn-add:hover {
+            background: #7aa814;
             transform: scale(1.05);
         }
 
-        .menu-item2:active {
-            transform: scale(0.95);
-        }
-
-        .menu-item2 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
-
-        .menu-item2 .gambar-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.3);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item2:hover .gambar-overlay {
-            background: rgba(0,0,0,0.1);
-        }
-
-        /* Nama menu 2 */
-        .menu-name2 {
-            position: absolute;
-            left: 43.2%;
-            top: 51.5%;
-            color: white;
-            font-size: clamp(16px, 4.6%, 50px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            z-index: 5;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* Harga menu 2 */
-        .menu-price2 {
-            position: absolute;
-            left: 43.2%;
-            top: 55.7%;
-            color: white;
-            font-size: clamp(16px, 4.6%, 50px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            z-index: 5;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* Tombol tambah 2 */
-        .btn-tambah2 {
-            position: absolute;
-            left: 7.3%;
-            top: 67.5%;
-            width: 32.1%;
-            height: 3.9%;
-            background: #98C81C;
-            border-radius: 50px;
-            border: 2px solid white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .btn-tambah2:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(152, 200, 28, 0.5);
-        }
-
-        .btn-tambah2:active {
-            transform: scale(0.95);
-        }
-
-        .btn-tambah2 span {
-            color: white;
-            font-size: clamp(16px, 4.2%, 45px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-        }
-
-        /* Garis pemisah 2 */
-        .line2 {
-            position: absolute;
-            left: 4.8%;
-            top: 73.5%;
-            width: 90.4%;
-            height: 0;
-            border: 1px solid rgba(255,255,255,0.3);
-            z-index: 5;
-        }
-
-        /* Menu Item 3 - Sate Potong */
-        .menu-item3 {
-            position: absolute;
-            left: 5.6%;
-            top: 74.7%;
-            width: 37%;
-            height: 20.8%;
-            overflow: hidden;
-            z-index: 5;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item3:hover {
-            transform: scale(1.05);
-        }
-
-        .menu-item3:active {
-            transform: scale(0.95);
-        }
-
-        .menu-item3 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-        }
-
-        .menu-item3 .gambar-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.3);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-item3:hover .gambar-overlay {
-            background: rgba(0,0,0,0.1);
-        }
-
-        /* Nama menu 3 */
-        .menu-name3 {
-            position: absolute;
-            left: 43%;
-            top: 77.8%;
-            color: white;
-            font-size: clamp(16px, 4.6%, 50px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            z-index: 5;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* Harga menu 3 */
-        .menu-price3 {
-            position: absolute;
-            left: 43%;
-            top: 82%;
-            color: white;
-            font-size: clamp(16px, 4.6%, 50px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            z-index: 5;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* Tombol tambah 3 */
-        .btn-tambah3 {
-            position: absolute;
-            left: 7.8%;
-            top: 92.3%;
-            width: 32.1%;
-            height: 3.9%;
-            background: #98C81C;
-            border-radius: 50px;
-            border: 2px solid white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .btn-tambah3:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(152, 200, 28, 0.5);
-        }
-
-        .btn-tambah3:active {
-            transform: scale(0.95);
-        }
-
-        .btn-tambah3 span {
-            color: white;
-            font-size: clamp(16px, 4.2%, 45px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-        }
-
-        /* Gambar overlay untuk menu items */
-        .menu-item1 .gambar1,
-        .menu-item2 .gambar2,
-        .menu-item3 .gambar3 {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Responsive */
-        @media screen and (max-width: 767px) {
-            .customer-container {
-                max-width: 100%;
-                aspect-ratio: 1080/1920;
-                border-radius: 12px;
-            }
-
-            .search-box input::placeholder {
-                font-size: 14px;
-            }
-
-            .btn-tambah1,
-            .btn-tambah2,
-            .btn-tambah3 {
-                height: 3.5%;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .customer-container {
-                border-radius: 10px;
-            }
-
-            .search-box {
-                padding: 0 10px;
-                height: 4%;
-            }
-
-            .search-box input {
-                font-size: 12px;
-            }
-
-            .search-box input::placeholder {
-                font-size: 12px;
-            }
-
-            .btn-selesai {
-                padding: 5px 12px;
-            }
-
-            .btn-selesai span {
-                font-size: 14px;
-            }
-
-            .menu-item1,
-            .menu-item2,
-            .menu-item3 {
-                height: 18%;
-            }
-
-            .btn-tambah1,
-            .btn-tambah2,
-            .btn-tambah3 {
-                height: 3%;
-                width: 28%;
-            }
-
-            .btn-tambah1 span,
-            .btn-tambah2 span,
-            .btn-tambah3 span {
-                font-size: 12px;
-            }
-        }
-
-        @media screen and (max-width: 360px) {
-            .title-makanan {
-                font-size: 24px;
-                top: 16%;
-            }
-
-            .menu-name1,
-            .menu-name2,
-            .menu-name3 {
-                font-size: 14px;
-            }
-
-            .menu-price1,
-            .menu-price2,
-            .menu-price3 {
-                font-size: 14px;
-            }
-
-            .btn-tambah1 span,
-            .btn-tambah2 span,
-            .btn-tambah3 span {
-                font-size: 10px;
-            }
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .customer-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-            }
-        }
-
-        @media screen and (max-height: 500px) and (orientation: landscape) {
-            .customer-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 10px;
-            }
-
-            .title-makanan {
-                font-size: 20px;
-                top: 15%;
-            }
-
-            .menu-name1,
-            .menu-name2,
-            .menu-name3 {
-                font-size: 12px;
-            }
-
-            .menu-price1,
-            .menu-price2,
-            .menu-price3 {
-                font-size: 12px;
-            }
-
-            .btn-tambah1 span,
-            .btn-tambah2 span,
-            .btn-tambah3 span {
-                font-size: 10px;
-            }
-
-            .logo-left .brand-text {
-                font-size: 12px;
-            }
-
-            .logo-left img {
-                width: 30px;
-            }
-        }
-
-        /* Toast notification */
+        /* Toast */
         .toast {
-            position: absolute;
+            position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
@@ -670,8 +517,8 @@
             padding: 15px 30px;
             border-radius: 50px;
             font-family: 'Schoolbell', cursive;
-            font-size: 20px;
-            z-index: 100;
+            font-size: clamp(16px, 2%, 24px);
+            z-index: 200;
             display: none;
             animation: slideUp 0.5s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -691,75 +538,162 @@
                 opacity: 1;
             }
         }
+
+        /* Responsive */
+        @media screen and (max-width: 767px) {
+            .customer-container {
+                max-width: 100%;
+                aspect-ratio: 1080/1920;
+                border-radius: 12px;
+            }
+
+            .menu-grid {
+                gap: 10px;
+            }
+
+            .menu-card .card-info {
+                padding: 8px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .customer-container {
+                border-radius: 10px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .menu-card .card-info .btn-add {
+                padding: 6px;
+                font-size: 10px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .menu-grid {
+                gap: 5px;
+            }
+
+            .menu-card .card-info {
+                padding: 5px;
+            }
+
+            .menu-card .card-info .card-name {
+                font-size: 11px;
+            }
+
+            .menu-card .card-info .card-price {
+                font-size: 10px;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .customer-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .customer-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="customer-container">
         <!-- Dekorasi background -->
         <div class="deco-bg">
-            <img src="https://placehold.co/1965x1310/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/995x995/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/832x832/2d2d2d/ffffff?text=" alt="" loading="lazy" />
         </div>
 
         <!-- Overlay -->
         <div class="overlay"></div>
 
         <!-- Logo -->
-        <div class="logo-left">
-            <img src="https://placehold.co/101x101/98C81C/ffffff?text=🍽️" alt="Logo" loading="lazy" />
+        <div class="logo-top">
+            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
             <div class="brand-text">Resto<span>POS</span></div>
         </div>
 
-        <!-- Tombol Selesai -->
-        <div class="btn-selesai" onclick="selesai()">
-            <span>selesai</span>
+        <!-- Judul Utama -->
+        <div class="title-main">
+            WILUJENG<br>SUMPING!
         </div>
 
-        <!-- Search Box -->
-        <div class="search-box">
-            <img src="https://placehold.co/67x67/ffffff/ffffff?text=🔍" alt="Search" loading="lazy" />
-            <input type="text" placeholder="mau pesan apa hari ini?" id="searchInput" onkeyup="filterMenu()">
+        <!-- Box MENU -->
+        <div class="box-menu" onclick="openMenu()">
+            <div class="bg-hijau"></div>
+            <div class="label-menu">📋 MENU</div>
+            <div class="gambar1">
+                <img src="https://placehold.co/530x445/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
+            <div class="gambar2">
+                <img src="https://placehold.co/477x493/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
+            <div class="gambar3">
+                <img src="https://placehold.co/400x411/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
         </div>
 
-        <!-- Judul MAKANAN -->
-        <div class="title-makanan">MAKANAN</div>
-
-        <!-- Menu Item 1 - Iga Bakar -->
-        <div class="menu-item1" id="menu1" onclick="tambahPesanan('Iga Bakar', 45000)">
-            <img src="https://placehold.co/400x400/2d2d2d/ffffff?text=Iga+Bakar" alt="Iga Bakar" class="gambar1" />
-            <div class="gambar-overlay"></div>
-        </div>
-        <div class="menu-name1">Iga Bakar</div>
-        <div class="menu-price1">Rp 45.000</div>
-        <div class="btn-tambah1" onclick="event.stopPropagation(); tambahPesanan('Iga Bakar', 45000)">
-            <span>tambah</span>
-        </div>
-
-        <!-- Garis 1 -->
-        <div class="line1"></div>
-
-        <!-- Menu Item 2 - Iga Bakar Jumbo -->
-        <div class="menu-item2" id="menu2" onclick="tambahPesanan('Iga Bakar Jumbo', 250000)">
-            <img src="https://placehold.co/400x400/2d2d2d/ffffff?text=Iga+Bakar+Jumbo" alt="Iga Bakar Jumbo" class="gambar2" />
-            <div class="gambar-overlay"></div>
-        </div>
-        <div class="menu-name2">Iga Bakar Jumbo</div>
-        <div class="menu-price2">Rp 250.000</div>
-        <div class="btn-tambah2" onclick="event.stopPropagation(); tambahPesanan('Iga Bakar Jumbo', 250000)">
-            <span>tambah</span>
+        <!-- Box PESAN -->
+        <div class="box-pesan" onclick="openPesan()">
+            <div class="bg-hijau"></div>
+            <div class="label-pesan">🛒 PESAN</div>
+            <div class="gambar4">
+                <img src="https://placehold.co/501x517/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
+            <div class="gambar5">
+                <img src="https://placehold.co/545x547/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
+            <div class="gambar6">
+                <img src="https://placehold.co/626x590/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
         </div>
 
-        <!-- Garis 2 -->
-        <div class="line2"></div>
+        <!-- Halaman Menu -->
+        <div class="menu-page" id="menuPage">
+            <div class="menu-header">
+                <button class="back-btn" onclick="closeMenu()">←</button>
+                <h2>📋 Menu Makanan</h2>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
 
-        <!-- Menu Item 3 - Sate Potong -->
-        <div class="menu-item3" id="menu3" onclick="tambahPesanan('Sate Potong', 45000)">
-            <img src="https://placehold.co/400x400/2d2d2d/ffffff?text=Sate+Potong" alt="Sate Potong" class="gambar3" />
-            <div class="gambar-overlay"></div>
+            <div class="search-box">
+                <span>🔍</span>
+                <input type="text" placeholder="Cari menu..." id="searchInput" onkeyup="filterMenu()">
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu akan di-generate oleh JavaScript -->
+            </div>
         </div>
-        <div class="menu-name3">Sate Potong</div>
-        <div class="menu-price3">Rp 45.000</div>
-        <div class="btn-tambah3" onclick="event.stopPropagation(); tambahPesanan('Sate Potong', 45000)">
-            <span>tambah</span>
+
+        <!-- Halaman Pesan -->
+        <div class="menu-page" id="pesanPage">
+            <div class="menu-header">
+                <button class="back-btn" onclick="closePesan()">←</button>
+                <h2>🛒 Pesanan Saya</h2>
+                <span class="cart-count" id="pesanCount">0</span>
+            </div>
+
+            <div id="orderList" style="margin-top: 20px; color: white;">
+                <p style="text-align: center; color: rgba(255,255,255,0.6); padding: 40px 0; font-size: 18px;">Belum ada pesanan</p>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px; padding-bottom: 20px;">
+                <button class="btn-add" onclick="checkout()" style="flex:1; background:#98C81C; border:none; padding:15px; border-radius:50px; color:white; font-size:18px; font-family:'Schoolbell',cursive; cursor:pointer;">💰 Checkout</button>
+                <button class="btn-add" onclick="clearOrder()" style="flex:1; background:#e74c3c; border:none; padding:15px; border-radius:50px; color:white; font-size:18px; font-family:'Schoolbell',cursive; cursor:pointer;">🗑️ Kosongkan</button>
+            </div>
         </div>
 
         <!-- Toast Notification -->
@@ -767,23 +701,171 @@
     </div>
 
     <script>
+        // Data menu
+        const menuItems = [
+            { id: 1, name: 'Iga Bakar', price: 45000, image: 'https://placehold.co/400x400/2d2d2d/ffffff?text=Iga+Bakar' },
+            { id: 2, name: 'Iga Bakar Jumbo', price: 250000, image: 'https://placehold.co/400x400/2d2d2d/ffffff?text=Iga+Bakar+Jumbo' },
+            { id: 3, name: 'Sate Potong', price: 45000, image: 'https://placehold.co/400x400/2d2d2d/ffffff?text=Sate+Potong' },
+            { id: 4, name: 'Nasi Goreng', price: 25000, image: 'https://placehold.co/400x400/2d2d2d/ffffff?text=Nasi+Goreng' },
+            { id: 5, name: 'Mie Ayam', price: 20000, image: 'https://placehold.co/400x400/2d2d2d/ffffff?text=Mie+Ayam' },
+            { id: 6, name: 'Bakso', price: 18000, image: 'https://placehold.co/400x400/2d2d2d/ffffff?text=Bakso' },
+            { id: 7, name: 'Es Teh', price: 8000, image: 'https://placehold.co/400x400/2d2d2d/ffffff?text=Es+Teh' },
+            { id: 8, name: 'Es Jeruk', price: 10000, image: 'https://placehold.co/400x400/2d2d2d/ffffff?text=Es+Jeruk' }
+        ];
+
         let orders = JSON.parse(localStorage.getItem('customer_orders')) || [];
 
+        // Render menu
+        function renderMenu() {
+            const grid = document.getElementById('menuGrid');
+            grid.innerHTML = '';
+            menuItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'menu-card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy" />
+                    </div>
+                    <div class="card-info">
+                        <div class="card-name">${item.name}</div>
+                        <div class="card-price">Rp ${item.price.toLocaleString()}</div>
+                        <button class="btn-add" onclick="event.stopPropagation(); tambahPesanan('${item.name}', ${item.price})">+ Tambah</button>
+                    </div>
+                `;
+                card.onclick = () => tambahPesanan(item.name, item.price);
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter menu
+        function filterMenu() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach((card, index) => {
+                const name = menuItems[index].name.toLowerCase();
+                if (name.includes(search)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Open menu page
+        function openMenu() {
+            document.getElementById('menuPage').classList.add('active');
+            renderMenu();
+            updateCartCount();
+        }
+
+        // Close menu page
+        function closeMenu() {
+            document.getElementById('menuPage').classList.remove('active');
+        }
+
+        // Open pesan page
+        function openPesan() {
+            document.getElementById('pesanPage').classList.add('active');
+            updateOrderList();
+            updateCartCount();
+        }
+
+        // Close pesan page
+        function closePesan() {
+            document.getElementById('pesanPage').classList.remove('active');
+        }
+
+        // Add order
         function tambahPesanan(nama, harga) {
-            orders.push({ nama, harga, qty: 1 });
+            const existing = orders.find(item => item.nama === nama);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                orders.push({ nama, harga, qty: 1 });
+            }
             localStorage.setItem('customer_orders', JSON.stringify(orders));
+            updateCartCount();
             
             // Show toast
             const toast = document.getElementById('toast');
             toast.textContent = `✅ ${nama} ditambahkan!`;
             toast.className = 'toast show';
-            
             setTimeout(() => {
                 toast.className = 'toast';
             }, 2000);
         }
 
-        function selesai() {
+        // Update cart count
+        function updateCartCount() {
+            const total = orders.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').textContent = total;
+            document.getElementById('pesanCount').textContent = total;
+        }
+
+        // Update order list
+        function updateOrderList() {
+            const container = document.getElementById('orderList');
+            if (orders.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.6); padding: 40px 0; font-size: 18px;">Belum ada pesanan</p>';
+                return;
+            }
+
+            let html = '<div style="max-height: 500px; overflow-y: auto;">';
+            let total = 0;
+            orders.forEach((item, index) => {
+                total += item.harga * item.qty;
+                html += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        <div style="flex:1;">
+                            <div style="color: white; font-size: 16px; font-weight: 600;">${item.nama}</div>
+                            <div style="color: #98C81C; font-size: 14px;">Rp ${(item.harga * item.qty).toLocaleString()}</div>
+                            <div style="color: rgba(255,255,255,0.6); font-size: 12px;">x${item.qty}</div>
+                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <button onclick="updateQty(${index}, -1)" style="background: #e74c3c; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">−</button>
+                            <span style="color: white; font-weight: 600; min-width: 30px; text-align: center;">${item.qty}</span>
+                            <button onclick="updateQty(${index}, 1)" style="background: #98C81C; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+            html += `
+                <div style="padding: 15px; background: rgba(152, 200, 28, 0.2); border-radius: 12px; margin-top: 10px; border: 1px solid #98C81C;">
+                    <div style="display: flex; justify-content: space-between; color: white; font-size: 18px; font-weight: 700;">
+                        <span>Total</span>
+                        <span style="color: #98C81C;">Rp ${total.toLocaleString()}</span>
+                    </div>
+                </div>
+            `;
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Update quantity
+        function updateQty(index, change) {
+            if (orders[index].qty + change <= 0) {
+                orders.splice(index, 1);
+            } else {
+                orders[index].qty += change;
+            }
+            localStorage.setItem('customer_orders', JSON.stringify(orders));
+            updateOrderList();
+            updateCartCount();
+        }
+
+        // Clear order
+        function clearOrder() {
+            if (orders.length === 0) return;
+            if (confirm('Yakin ingin mengosongkan semua pesanan?')) {
+                orders = [];
+                localStorage.setItem('customer_orders', JSON.stringify(orders));
+                updateOrderList();
+                updateCartCount();
+            }
+        }
+
+        // Checkout
+        function checkout() {
             if (orders.length === 0) {
                 alert('⚠️ Belum ada pesanan!');
                 return;
@@ -799,52 +881,16 @@
             
             alert(message);
             
-            // Clear orders after checkout
             orders = [];
             localStorage.setItem('customer_orders', JSON.stringify(orders));
-            
-            // Redirect ke halaman utama customer
-            window.location.href = 'customer_dashboard.html';
+            updateOrderList();
+            updateCartCount();
+            closePesan();
         }
 
-        function filterMenu() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            const menus = [
-                { id: 'menu1', name: 'Iga Bakar' },
-                { id: 'menu2', name: 'Iga Bakar Jumbo' },
-                { id: 'menu3', name: 'Sate Potong' }
-            ];
-
-            menus.forEach(menu => {
-                const element = document.getElementById(menu.id);
-                if (menu.name.toLowerCase().includes(search)) {
-                    element.style.display = 'block';
-                    // Show related text
-                    document.querySelector(`.menu-name${menu.id.slice(-1)}`).style.display = 'block';
-                    document.querySelector(`.menu-price${menu.id.slice(-1)}`).style.display = 'block';
-                    document.querySelector(`.btn-tambah${menu.id.slice(-1)}`).style.display = 'flex';
-                } else {
-                    element.style.display = 'none';
-                    document.querySelector(`.menu-name${menu.id.slice(-1)}`).style.display = 'none';
-                    document.querySelector(`.menu-price${menu.id.slice(-1)}`).style.display = 'none';
-                    document.querySelector(`.btn-tambah${menu.id.slice(-1)}`).style.display = 'none';
-                }
-            });
-        }
-
-        // Enter key support for search
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                filterMenu();
-            }
-        });
-
-        // Load orders from localStorage
+        // Load orders on page load
         window.addEventListener('load', function() {
-            const savedOrders = localStorage.getItem('customer_orders');
-            if (savedOrders) {
-                orders = JSON.parse(savedOrders);
-            }
+            updateCartCount();
         });
     </script>
 </body>
