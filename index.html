@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Resto POS - Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>RestoPOS - Customer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -22,22 +22,17 @@
             padding: 10px;
         }
 
-        /* Container utama */
-        .login-container {
+        .customer-container {
             width: 100%;
             max-width: 1080px;
             aspect-ratio: 1080/1920;
             position: relative;
             background: white;
             overflow: hidden;
-            background-image: url('https://placehold.co/1080x1920/2d2d2d/ffffff?text=Restaurant+Background');
-            background-size: cover;
-            background-position: center;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
 
-        /* Dekorasi background */
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -63,79 +58,37 @@
         }
 
         .deco-bg img:nth-child(2) {
-            width: 84%;
-            height: 44.5%;
-            left: 39.5%;
-            top: 41.6%;
-            transform: rotate(-53deg);
+            width: 92.2%;
+            height: 51.8%;
+            left: -53.2%;
+            top: 61.2%;
+            transform: rotate(-12deg);
             transform-origin: top left;
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
             filter: blur(3.50px);
         }
 
         .deco-bg img:nth-child(3) {
-            width: 69%;
-            height: 38.8%;
-            left: 0.86%;
-            top: 75.7%;
-            transform: rotate(46deg);
+            width: 77.1%;
+            height: 43.4%;
+            left: 71.8%;
+            top: 10.6%;
+            transform: rotate(21deg);
             transform-origin: top left;
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
             filter: blur(3.50px);
         }
 
-        .deco-bg img:nth-child(4) {
-            width: 101.1%;
-            height: 56.9%;
-            left: 37.4%;
-            top: 67%;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(5) {
-            width: 101.1%;
-            height: 56.9%;
-            left: -63.7%;
-            top: -23.3%;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(6) {
-            width: 73.8%;
-            height: 41.5%;
-            left: -23.1%;
-            top: 58.2%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(7) {
-            width: 73.8%;
-            height: 41.5%;
-            left: 72.1%;
-            top: 11.25%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        /* Overlay */
         .overlay {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             pointer-events: none;
         }
 
-        /* Logo di kiri atas */
         .logo-top {
             position: absolute;
             left: 4.3%;
@@ -164,7 +117,6 @@
             color: #98C81C;
         }
 
-        /* Judul Utama */
         .title-main {
             position: absolute;
             left: 39.5%;
@@ -189,480 +141,296 @@
             margin-top: 5px;
         }
 
-        /* Box Customer */
-        .box-customer {
+        /* Info Meja */
+        .meja-info {
             position: absolute;
-            width: 82.1%;
-            height: 26.4%;
-            left: 8.15%;
-            top: 26.15%;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.92;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 5;
-            box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
-        }
-
-        .box-customer:hover {
-            transform: scale(1.03);
-            opacity: 1;
-            box-shadow: 0 12px 50px rgba(152, 200, 28, 0.5);
-        }
-
-        .box-customer:active {
-            transform: scale(0.97);
-        }
-
-        .box-customer .label {
-            color: white;
-            font-size: clamp(24px, 6%, 65px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-            padding: 10px;
-        }
-
-        /* Box Karyawan */
-        .box-karyawan {
-            position: absolute;
-            width: 82.1%;
-            height: 26.4%;
-            left: 8.15%;
-            top: 56.9%;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.92;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 5;
-            box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
-        }
-
-        .box-karyawan:hover {
-            transform: scale(1.03);
-            opacity: 1;
-            box-shadow: 0 12px 50px rgba(152, 200, 28, 0.5);
-        }
-
-        .box-karyawan:active {
-            transform: scale(0.97);
-        }
-
-        .box-karyawan .label {
-            color: white;
-            font-size: clamp(24px, 6%, 65px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-            padding: 10px;
-        }
-
-        /* Modal Login */
-        .login-modal {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.75);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 20px;
-        }
-
-        .login-modal.active {
-            display: flex;
-        }
-
-        .login-box {
-            background: white;
-            padding: clamp(25px, 4.6%, 50px);
-            border-radius: 65px;
-            width: min(500px, 90%);
-            max-height: 95vh;
-            overflow-y: auto;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-            animation: slideUp 0.4s ease;
-            position: relative;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px) scale(0.95);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-        }
-
-        .login-box .close-btn {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            background: none;
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
-            color: #999;
-            transition: all 0.3s;
-            line-height: 1;
-            padding: 5px 10px;
+            right: 4.3%;
+            top: 7%;
             z-index: 10;
-        }
-
-        .login-box .close-btn:hover {
-            color: #333;
-            transform: rotate(90deg);
-        }
-
-        .login-box .icon {
-            text-align: center;
-            font-size: clamp(40px, 4.6%, 50px);
-            margin-bottom: 5px;
-        }
-
-        .login-box h2 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: clamp(22px, 2.6%, 28px);
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .login-box .subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            font-size: clamp(12px, 1.3%, 14px);
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #2c3e50;
-            font-size: clamp(12px, 1.3%, 14px);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: clamp(10px, 1.1%, 12px) clamp(12px, 1.5%, 16px);
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: clamp(13px, 1.3%, 14px);
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s;
-            background: #f8f9fa;
-        }
-
-        .form-group input:focus {
-            border-color: #98C81C;
-            outline: none;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(152, 200, 28, 0.1);
-        }
-
-        .role-selector {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 5px;
-        }
-
-        .role-selector button {
-            padding: clamp(8px, 0.9%, 10px) clamp(4px, 0.7%, 8px);
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            background: #f8f9fa;
-            cursor: pointer;
-            font-size: clamp(10px, 1.1%, 12px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            transition: all 0.3s;
-            color: #555;
-            white-space: nowrap;
-        }
-
-        .role-selector button:hover {
-            border-color: #98C81C;
-            background: #f0f8e8;
-            transform: translateY(-2px);
-        }
-
-        .role-selector button.active {
-            border-color: #98C81C;
-            background: #98C81C;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.2);
             color: white;
-            box-shadow: 0 4px 15px rgba(152, 200, 28, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: clamp(12px, 1.3%, 14px);
-            background: #98C81C;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: clamp(14px, 1.5%, 16px);
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s;
-            margin-top: 5px;
-        }
-
-        .btn-login:hover {
-            background: #7aa814;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(152, 200, 28, 0.3);
-        }
-
-        .btn-login:active {
-            transform: translateY(0);
-        }
-
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            text-align: center;
-            display: none;
+            font-size: clamp(14px, 2%, 22px);
             font-weight: 600;
-            border: 1px solid #f5c6cb;
-            font-size: clamp(12px, 1.3%, 14px);
+            font-family: 'Poppins', sans-serif;
         }
 
-        .info-cred {
-            text-align: center;
-            margin-top: 15px;
-            font-size: clamp(10px, 1%, 11px);
-            color: #7f8c8d;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .info-cred strong {
+        .meja-info span {
             color: #98C81C;
         }
 
-        /* Scrollbar styling */
-        .login-box::-webkit-scrollbar {
-            width: 5px;
+        .box-menu {
+            position: absolute;
+            width: 82.2%;
+            height: 28.6%;
+            left: 8.9%;
+            top: 24%;
+            overflow: hidden;
+            border-radius: 65px;
+            z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .login-box::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
+        .box-menu:hover {
+            transform: scale(1.02);
         }
 
-        .login-box::-webkit-scrollbar-thumb {
+        .box-menu:active {
+            transform: scale(0.98);
+        }
+
+        .box-menu .bg-hijau {
+            position: absolute;
+            width: 99.9%;
+            height: 92.3%;
+            left: 0.1%;
+            top: 9.7%;
             background: #98C81C;
-            border-radius: 10px;
+            border-radius: 65px;
+            opacity: 0.92;
         }
 
-        /* Responsive untuk berbagai ukuran layar */
-        
-        /* Tablet Landscape */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .login-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-            }
+        .box-menu .label-menu {
+            position: absolute;
+            left: 3.5%;
+            top: 14.2%;
+            text-align: center;
+            color: white;
+            font-size: clamp(24px, 6%, 65px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
         }
 
-        /* Tablet Portrait */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .login-container {
-                max-width: 100%;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-            }
+        .box-menu .gambar1 {
+            position: absolute;
+            width: 59.7%;
+            height: 81.1%;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* HP Large */
+        .box-menu .gambar1 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-menu .gambar2 {
+            position: absolute;
+            width: 57.2%;
+            height: 92.2%;
+            left: -10.8%;
+            top: 35.3%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .box-menu .gambar2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-menu .gambar3 {
+            position: absolute;
+            width: 45%;
+            height: 74.9%;
+            left: 27.6%;
+            top: 44.1%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .box-menu .gambar3 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-pesan {
+            position: absolute;
+            width: 82.2%;
+            height: 28.6%;
+            left: 8.9%;
+            top: 55.7%;
+            overflow: hidden;
+            border-radius: 65px;
+            z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .box-pesan:hover {
+            transform: scale(1.02);
+        }
+
+        .box-pesan:active {
+            transform: scale(0.98);
+        }
+
+        .box-pesan .bg-hijau {
+            position: absolute;
+            width: 99.9%;
+            height: 92.3%;
+            left: 0.1%;
+            top: 9.7%;
+            background: #98C81C;
+            border-radius: 65px;
+            opacity: 0.92;
+        }
+
+        .box-pesan .label-pesan {
+            position: absolute;
+            left: 3.5%;
+            top: 14.2%;
+            text-align: center;
+            color: white;
+            font-size: clamp(24px, 6%, 65px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        .box-pesan .gambar4 {
+            position: absolute;
+            width: 56.4%;
+            height: 94.2%;
+            left: 18.4%;
+            top: 23.1%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .box-pesan .gambar4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-pesan .gambar5 {
+            position: absolute;
+            width: 49.2%;
+            height: 79.1%;
+            left: 46.6%;
+            top: 60.4%;
+            transform: rotate(107deg);
+            transform-origin: top left;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .box-pesan .gambar5 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .box-pesan .gambar6 {
+            position: absolute;
+            width: 61.4%;
+            height: 91.1%;
+            left: 45.4%;
+            top: 50.7%;
+            transform: rotate(-10deg);
+            transform-origin: top left;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .box-pesan .gambar6 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        /* Responsive */
         @media screen and (max-width: 767px) {
-            .login-container {
+            .customer-container {
                 max-width: 100%;
                 aspect-ratio: 1080/1920;
                 border-radius: 12px;
             }
-
-            .login-box {
-                border-radius: 40px;
-                padding: 25px;
-            }
-
-            .role-selector {
-                grid-template-columns: 1fr 1fr;
-                gap: 5px;
-            }
-
-            .role-selector button {
-                font-size: 10px;
-                padding: 8px 4px;
-                border-radius: 8px;
-            }
-
-            .box-customer,
-            .box-karyawan {
-                border-radius: 40px;
-            }
         }
 
-        /* HP Medium */
         @media screen and (max-width: 480px) {
-            .login-container {
+            .customer-container {
                 border-radius: 10px;
             }
 
-            .login-box {
-                border-radius: 30px;
-                padding: 20px;
-                width: 95%;
+            .box-menu,
+            .box-pesan {
+                border-radius: 40px;
             }
 
-            .login-box .close-btn {
-                right: 15px;
-                top: 15px;
-                font-size: 24px;
+            .box-menu .bg-hijau,
+            .box-pesan .bg-hijau {
+                border-radius: 40px;
             }
 
-            .role-selector {
-                gap: 4px;
-            }
-
-            .role-selector button {
-                font-size: 9px;
-                padding: 6px 3px;
-                border-radius: 6px;
-            }
-
-            .box-customer,
-            .box-karyawan {
-                border-radius: 30px;
-            }
-
-            .form-group input {
-                padding: 8px 12px;
-                font-size: 12px;
-                border-radius: 8px;
-            }
-
-            .btn-login {
-                padding: 10px;
-                font-size: 13px;
-                border-radius: 8px;
+            .meja-info {
+                padding: 4px 12px;
+                font-size: 11px;
+                right: 2%;
+                top: 6%;
             }
         }
 
-        /* HP Small */
         @media screen and (max-width: 360px) {
-            .login-box {
-                padding: 15px;
-                border-radius: 25px;
-            }
-
-            .login-box .close-btn {
-                right: 10px;
-                top: 10px;
-                font-size: 20px;
-            }
-
-            .role-selector {
-                grid-template-columns: 1fr 1fr;
-                gap: 3px;
-            }
-
-            .role-selector button {
-                font-size: 8px;
-                padding: 5px 2px;
-                border-radius: 5px;
-            }
-
-            .box-customer,
-            .box-karyawan {
-                border-radius: 25px;
-            }
-
-            .box-customer .label,
-            .box-karyawan .label {
-                font-size: 18px;
-            }
-        }
-
-        /* Untuk layar sangat kecil */
-        @media screen and (max-height: 700px) and (orientation: portrait) {
-            .login-box {
-                padding: 20px;
+            .box-menu,
+            .box-pesan {
                 border-radius: 30px;
             }
 
-            .box-customer .label,
-            .box-karyawan .label {
-                font-size: 20px;
+            .box-menu .bg-hijau,
+            .box-pesan .bg-hijau {
+                border-radius: 30px;
             }
 
-            .title-main {
-                font-size: 22px;
-            }
-
-            .title-main small {
-                font-size: 12px;
+            .meja-info {
+                padding: 3px 10px;
+                font-size: 10px;
             }
         }
 
-        /* Landscape mode di HP */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .customer-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+            }
+        }
+
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .login-container {
+            .customer-container {
                 max-width: 90vh;
                 aspect-ratio: 1080/1920;
                 border-radius: 10px;
             }
 
-            .login-box {
-                padding: 15px 20px;
-                border-radius: 25px;
-                max-height: 90vh;
-            }
-
-            .box-customer .label,
-            .box-karyawan .label {
+            .box-menu .label-menu,
+            .box-pesan .label-pesan {
                 font-size: 18px;
             }
 
             .title-main {
                 font-size: 18px;
-            }
-
-            .title-main small {
-                font-size: 10px;
             }
 
             .logo-top .brand-text {
@@ -672,188 +440,90 @@
             .logo-top img {
                 width: 30px;
             }
-
-            .role-selector button {
-                font-size: 8px;
-                padding: 4px 3px;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <!-- Dekorasi background -->
+    <div class="customer-container">
         <div class="deco-bg">
             <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/908x855/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/745x744/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/995x995/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/832x832/2d2d2d/ffffff?text=" alt="" loading="lazy" />
         </div>
 
-        <!-- Overlay -->
         <div class="overlay"></div>
 
-        <!-- Logo -->
         <div class="logo-top">
             <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
             <div class="brand-text">Resto<span>POS</span></div>
         </div>
 
-        <!-- Judul Utama -->
+        <!-- Info Meja -->
+        <div class="meja-info" id="mejaInfo">
+            🪑 Meja <span id="mejaNumber">1</span>
+        </div>
+
         <div class="title-main">
             WILUJENG<br>SUMPING!
             <small>Selamat Datang</small>
         </div>
 
-        <!-- Box Customer -->
-        <div class="box-customer" onclick="openModal('Customer')">
-            <div class="label">👤 CUSTOMER</div>
+        <div class="box-menu" onclick="window.location.href='customer_menu.html'">
+            <div class="bg-hijau"></div>
+            <div class="label-menu">📋 MENU</div>
+            <div class="gambar1">
+                <img src="https://placehold.co/530x445/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
+            <div class="gambar2">
+                <img src="https://placehold.co/477x493/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
+            <div class="gambar3">
+                <img src="https://placehold.co/400x411/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
         </div>
 
-        <!-- Box Karyawan -->
-        <div class="box-karyawan" onclick="openModal('Karyawan')">
-            <div class="label">👨‍💼 KARYAWAN</div>
-        </div>
-
-        <!-- Modal Login -->
-        <div class="login-modal" id="loginModal">
-            <div class="login-box">
-                <button class="close-btn" onclick="closeModal()" aria-label="Close">✕</button>
-                <div class="icon">🍽️</div>
-                <h2 id="modalTitle">Login</h2>
-                <p class="subtitle" id="modalSubtitle">Masuk sebagai Customer</p>
-                
-                <div id="errorMsg" class="error">⚠️ Username atau password salah!</div>
-                
-                <form id="loginForm" onsubmit="return handleLogin(event)">
-                    <div class="form-group">
-                        <label>Pilih Role</label>
-                        <div class="role-selector" id="roleSelector">
-                            <button type="button" data-role="Waiter" onclick="selectRole(this)">👨‍🍳 Waiter</button>
-                            <button type="button" data-role="Cashier" onclick="selectRole(this)">💰 Cashier</button>
-                            <button type="button" data-role="Front Kitchen" onclick="selectRole(this)">🍳 Kitchen</button>
-                            <button type="button" data-role="Customer" onclick="selectRole(this)">👤 Customer</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" id="username" placeholder="Masukkan username" required autocomplete="username">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="password" placeholder="Masukkan password" required autocomplete="current-password">
-                    </div>
-                    <button type="submit" class="btn-login">Login</button>
-                </form>
-                
-                <div class="info-cred">
-                    <p>👤 Username: <strong>role</strong> | 🔑 Password: <strong>password</strong></p>
-                </div>
+        <div class="box-pesan" onclick="window.location.href='customer_order.html'">
+            <div class="bg-hijau"></div>
+            <div class="label-pesan">🛒 PESAN</div>
+            <div class="gambar4">
+                <img src="https://placehold.co/501x517/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
+            <div class="gambar5">
+                <img src="https://placehold.co/545x547/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
+            </div>
+            <div class="gambar6">
+                <img src="https://placehold.co/626x590/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
             </div>
         </div>
     </div>
 
     <script>
-        let selectedRole = 'Waiter';
-        let userType = 'Customer';
-        const modal = document.getElementById('loginModal');
-
-        function selectRole(el) {
-            document.querySelectorAll('.role-selector button').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            selectedRole = el.dataset.role;
-            document.getElementById('username').value = selectedRole;
+        // ============ AMBIL NOMOR MEJA DARI URL ============
+        function getMejaFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const meja = params.get('meja');
+            if (meja && !isNaN(meja) && meja > 0) {
+                return meja;
+            }
+            return '1'; // Default meja 1
         }
 
-        function openModal(type) {
-            userType = type;
-            modal.classList.add('active');
-            document.getElementById('modalTitle').textContent = type === 'Customer' ? 'Login Customer' : 'Login Karyawan';
-            document.getElementById('modalSubtitle').textContent = type === 'Customer' ? 'Masuk sebagai Customer' : 'Masuk sebagai Karyawan';
-            
-            // Reset form
-            document.getElementById('errorMsg').style.display = 'none';
-            document.getElementById('password').value = '';
-            
-            // Set default role
-            if (type === 'Customer') {
-                document.querySelectorAll('.role-selector button').forEach(b => b.classList.remove('active'));
-                document.querySelector('[data-role="Customer"]').classList.add('active');
-                selectedRole = 'Customer';
-                document.getElementById('username').value = 'Customer';
-            } else {
-                document.querySelectorAll('.role-selector button').forEach(b => b.classList.remove('active'));
-                document.querySelector('[data-role="Waiter"]').classList.add('active');
-                selectedRole = 'Waiter';
-                document.getElementById('username').value = 'Waiter';
-            }
+        // ============ SET MEJA ============
+        const mejaNumber = getMejaFromURL();
+        document.getElementById('mejaNumber').textContent = mejaNumber;
+
+        // Simpan ke localStorage untuk digunakan di halaman lain
+        localStorage.setItem('meja_number', mejaNumber);
+        localStorage.setItem('customer_name', 'Customer Meja ' + mejaNumber);
+
+        // ============ CEK APAKAH ADA PARAMETER REDIRECT ============
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get('redirect');
+        if (redirect === 'menu') {
+            window.location.href = 'customer_menu.html?meja=' + mejaNumber;
+        } else if (redirect === 'order') {
+            window.location.href = 'customer_order.html?meja=' + mejaNumber;
         }
-
-        function closeModal() {
-            modal.classList.remove('active');
-        }
-
-        // Close modal when clicking outside
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
-        });
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            if (password === 'password') {
-                localStorage.setItem('user_name', username);
-                localStorage.setItem('user_role', selectedRole);
-                localStorage.setItem('user_type', userType);
-                
-                closeModal();
-                
-                // Redirect based on role
-                if (selectedRole === 'Customer') {
-                    window.location.href = 'customer_order.html';
-                } else {
-                    window.location.href = 'dashboard.html';
-                }
-            } else {
-                const errorMsg = document.getElementById('errorMsg');
-                errorMsg.style.display = 'block';
-                setTimeout(() => {
-                    errorMsg.style.display = 'none';
-                }, 3000);
-            }
-            return false;
-        }
-
-        // Enter key support
-        document.getElementById('password').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
-            }
-        });
-
-        // Prevent zoom on double tap for mobile
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(e) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
     </script>
 </body>
 </html>
