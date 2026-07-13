@@ -33,6 +33,45 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
 
+        .loading-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255,255,255,0.1);
+            border-top: 5px solid #98C81C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+        }
+
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -472,19 +511,54 @@
         .menu-item-row .item-info {
             flex: 1;
             min-width: 120px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .menu-item-row .item-info .item-name {
+        .menu-item-row .item-info .item-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
+            background: #2d2d2d;
+        }
+
+        .menu-item-row .item-info .item-details {
+            flex: 1;
+        }
+
+        .menu-item-row .item-info .item-details .item-name {
             color: white;
             font-size: clamp(14px, 2%, 24px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
         }
 
-        .menu-item-row .item-info .item-price {
+        .menu-item-row .item-info .item-details .item-price {
             color: #98C81C;
             font-size: clamp(12px, 1.5%, 20px);
             font-weight: 600;
+        }
+
+        .menu-item-row .item-info .item-details .item-status {
+            font-size: clamp(10px, 1.2%, 14px);
+            padding: 2px 10px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+
+        .menu-item-row .item-info .item-details .item-status.available {
+            background: rgba(152, 200, 28, 0.3);
+            color: #98C81C;
+        }
+
+        .menu-item-row .item-info .item-details .item-status.unavailable {
+            background: rgba(231, 76, 60, 0.3);
+            color: #e74c3c;
         }
 
         .menu-item-row .item-controls {
@@ -574,6 +648,11 @@
             transform: scale(0.9);
         }
 
+        .menu-item-row.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
         .toast {
             position: fixed;
             bottom: 30px;
@@ -620,6 +699,11 @@
                 padding: 10px 12px;
             }
 
+            .menu-item-row .item-info .item-image {
+                width: 40px;
+                height: 40px;
+            }
+
             .menu-item-row .item-controls .btn-minus,
             .menu-item-row .item-controls .btn-plus {
                 width: 32px;
@@ -648,6 +732,11 @@
                 min-width: 100px;
             }
 
+            .menu-item-row .item-info .item-image {
+                width: 35px;
+                height: 35px;
+            }
+
             .menu-item-row .item-controls {
                 flex: 1;
                 justify-content: flex-end;
@@ -668,6 +757,11 @@
         }
 
         @media screen and (max-width: 360px) {
+            .menu-item-row .item-info .item-image {
+                width: 30px;
+                height: 30px;
+            }
+
             .menu-item-row .item-controls .btn-minus,
             .menu-item-row .item-controls .btn-plus {
                 width: 24px;
@@ -681,11 +775,11 @@
                 font-size: 12px;
             }
 
-            .menu-item-row .item-info .item-name {
+            .menu-item-row .item-info .item-details .item-name {
                 font-size: 12px;
             }
 
-            .menu-item-row .item-info .item-price {
+            .menu-item-row .item-info .item-details .item-price {
                 font-size: 10px;
             }
         }
@@ -709,6 +803,11 @@
                 padding: 6px 10px;
             }
 
+            .menu-item-row .item-info .item-image {
+                width: 30px;
+                height: 30px;
+            }
+
             .menu-item-row .item-controls .btn-minus,
             .menu-item-row .item-controls .btn-plus {
                 width: 24px;
@@ -726,6 +825,12 @@
 </head>
 <body>
     <div class="customer-container">
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Memuat menu...</div>
+        </div>
+
         <div class="deco-bg">
             <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
             <img src="https://placehold.co/995x995/2d2d2d/ffffff?text=" alt="" loading="lazy" />
@@ -780,14 +885,13 @@
 
             <div class="category-tabs" id="categoryTabs">
                 <button class="tab active" data-category="all" onclick="filterCategory('all')">Semua</button>
-                <button class="tab" data-category="makanan" onclick="filterCategory('makanan')">🍚 Makanan</button>
-                <button class="tab" data-category="tambahan" onclick="filterCategory('tambahan')">🍲 Tambahan</button>
-                <button class="tab" data-category="minuman" onclick="filterCategory('minuman')">🥤 Minuman</button>
-                <button class="tab" data-category="jangkung" onclick="filterCategory('jangkung')">☕ Jangkung Kopi</button>
-                <button class="tab" data-category="kopi" onclick="filterCategory('kopi')">☕ Kopi</button>
+                <button class="tab" data-category="Makanan" onclick="filterCategory('Makanan')">🍚 Makanan</button>
+                <button class="tab" data-category="Minuman" onclick="filterCategory('Minuman')">🥤 Minuman</button>
+                <button class="tab" data-category="Tambahan" onclick="filterCategory('Tambahan')">🍲 Tambahan</button>
             </div>
 
             <div class="menu-items" id="menuItems">
+                <!-- Menu akan di-generate oleh JavaScript dari Supabase -->
             </div>
         </div>
 
@@ -811,62 +915,156 @@
         <div class="toast" id="toast"></div>
     </div>
 
-    <script>
-        const menuItems = [
-            { id: 1, name: 'Iga Bakar', price: 45000, category: 'makanan' },
-            { id: 2, name: 'Iga Bakar Jumbo', price: 250000, category: 'makanan' },
-            { id: 3, name: 'Sate Potong', price: 45000, category: 'makanan' },
-            { id: 4, name: 'Nasi Goreng', price: 25000, category: 'makanan' },
-            { id: 5, name: 'Mie Ayam', price: 20000, category: 'makanan' },
-            { id: 6, name: 'Bakso', price: 18000, category: 'makanan' },
-            { id: 7, name: 'Nasi Putih', price: 8000, category: 'tambahan' },
-            { id: 8, name: 'Kerupuk/Emping', price: 7000, category: 'tambahan' },
-            { id: 9, name: 'Air Mineral', price: 7000, category: 'tambahan' },
-            { id: 10, name: 'Jeruk', price: 15000, category: 'tambahan' },
-            { id: 11, name: 'Lemon Tea', price: 15000, category: 'minuman' },
-            { id: 12, name: 'Teh Manis', price: 10000, category: 'minuman' },
-            { id: 13, name: 'Teh Tawar', price: 3000, category: 'minuman' },
-            { id: 14, name: 'Teh Botol', price: 7000, category: 'minuman' },
-            { id: 15, name: 'Tebs', price: 7000, category: 'minuman' },
-            { id: 16, name: 'Fruit Tea', price: 7000, category: 'minuman' },
-            { id: 17, name: 'Benecol', price: 10000, category: 'minuman' },
-            { id: 18, name: 'Americano/Long Black', price: 20000, category: 'jangkung' },
-            { id: 19, name: 'Kopi Tubruk', price: 20000, category: 'jangkung' },
-            { id: 20, name: 'Kopi Sanger', price: 25000, category: 'jangkung' },
-            { id: 21, name: 'Kopi Gula Aren', price: 35000, category: 'kopi' },
-            { id: 22, name: 'Latte', price: 30000, category: 'kopi' },
-            { id: 23, name: 'Flavored Latte', price: 30000, category: 'kopi' },
-            { id: 24, name: 'Espresso', price: 20000, category: 'kopi' },
-            { id: 25, name: 'Cold Brew', price: 30000, category: 'kopi' },
-            { id: 26, name: 'Kopi Botol', price: 35000, category: 'kopi' }
-        ];
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <script>
+        // ============ SUPABASE CONFIG ============
+        const SUPABASE_URL = 'https://your-project-id.supabase.co'; // Ganti dengan URL Supabase Anda
+        const SUPABASE_KEY = 'your-anon-key'; // Ganti dengan Anon Key Supabase Anda
+        const STORAGE_BUCKET = 'menu-images'; // Nama bucket untuk gambar
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // ============ GLOBAL VARIABLES ============
+        let menuItems = [];
         let orders = JSON.parse(localStorage.getItem('customer_orders')) || [];
         let currentCategory = 'all';
 
+        // ============ LOAD MENU FROM SUPABASE ============
+        async function loadMenuFromSupabase() {
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+            
+            try {
+                // Ambil data dari tabel 'menu' dengan kolom sesuai struktur
+                const { data, error } = await supabase
+                    .from('menu')
+                    .select('id_menu, nama_menu, harga, status_ketersediaan, kategori, gambar, created_at')
+                    .order('kategori', { ascending: true });
+                
+                if (error) throw error;
+                
+                if (data && data.length > 0) {
+                    // Mapping data dari database ke format yang digunakan
+                    menuItems = data.map(item => ({
+                        id: item.id_menu,
+                        name: item.nama_menu,
+                        price: item.harga,
+                        category: item.kategori,
+                        status: item.status_ketersediaan,
+                        image_url: item.gambar || null,
+                        created_at: item.created_at
+                    }));
+                } else {
+                    // Fallback ke data default jika tidak ada data
+                    menuItems = getDefaultMenu();
+                }
+                
+                renderMenu(currentCategory);
+                updateCartCount();
+            } catch (error) {
+                console.error('Error loading menu:', error);
+                menuItems = getDefaultMenu();
+                renderMenu(currentCategory);
+                updateCartCount();
+                showToast('⚠️ Gagal memuat menu dari server, menggunakan data lokal');
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        // ============ GET IMAGE URL ============
+        function getImageUrl(imagePath) {
+            if (!imagePath) return null;
+            
+            // Cek apakah itu URL lengkap atau path dari storage
+            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+                return imagePath;
+            }
+            
+            // Jika dari Supabase Storage
+            try {
+                const { data } = supabase.storage
+                    .from(STORAGE_BUCKET)
+                    .getPublicUrl(imagePath);
+                return data.publicUrl;
+            } catch (error) {
+                console.error('Error getting image URL:', error);
+                return null;
+            }
+        }
+
+        // ============ DEFAULT MENU (Fallback) ============
+        function getDefaultMenu() {
+            return [
+                // Makanan
+                { id: 1, name: 'Nasi Goreng', price: 25000, category: 'Makanan', status: 'Tersedia', image_url: null },
+                { id: 2, name: 'Mie Goreng', price: 22000, category: 'Makanan', status: 'Tersedia', image_url: null },
+                { id: 3, name: 'Ayam Geprek', price: 28000, category: 'Makanan', status: 'Tersedia', image_url: null },
+                { id: 4, name: 'Sate Ayam', price: 35000, category: 'Makanan', status: 'Tersedia', image_url: null },
+                { id: 5, name: 'Bakso', price: 20000, category: 'Makanan', status: 'Tidak Tersedia', image_url: null },
+                
+                // Minuman
+                { id: 6, name: 'Es Teh', price: 5000, category: 'Minuman', status: 'Tersedia', image_url: null },
+                { id: 7, name: 'Jus Jeruk', price: 12000, category: 'Minuman', status: 'Tersedia', image_url: null },
+                { id: 8, name: 'Kopi Hitam', price: 8000, category: 'Minuman', status: 'Tersedia', image_url: null },
+                { id: 9, name: 'Es Campur', price: 15000, category: 'Minuman', status: 'Tersedia', image_url: null },
+                { id: 10, name: 'Teh Tarik', price: 10000, category: 'Minuman', status: 'Tidak Tersedia', image_url: null }
+            ];
+        }
+
+        // ============ RENDER MENU ============
         function renderMenu(category = 'all') {
             const container = document.getElementById('menuItems');
             container.innerHTML = '';
             
-            const filtered = category === 'all' ? menuItems : menuItems.filter(item => item.category === category);
+            const filtered = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; color: rgba(255,255,255,0.6); padding: 40px 0; font-size: 18px;">
+                        Tidak ada menu di kategori ini
+                    </div>
+                `;
+                return;
+            }
             
             filtered.forEach(item => {
                 const existing = orders.find(o => o.id === item.id);
                 const qty = existing ? existing.qty : 0;
+                const isAvailable = item.status === 'Tersedia';
+                
+                // Get image URL
+                let imageUrl = 'https://placehold.co/50x50/2d2d2d/ffffff?text=Menu';
+                if (item.image_url) {
+                    const url = getImageUrl(item.image_url);
+                    if (url) imageUrl = url;
+                }
                 
                 const row = document.createElement('div');
-                row.className = 'menu-item-row';
+                row.className = `menu-item-row ${!isAvailable ? 'disabled' : ''}`;
                 row.innerHTML = `
                     <div class="item-info">
-                        <div class="item-name">${item.name}</div>
-                        <div class="item-price">Rp ${item.price.toLocaleString()}</div>
+                        <img class="item-image" src="${imageUrl}" alt="${item.name}" loading="lazy" 
+                             onerror="this.src='https://placehold.co/50x50/2d2d2d/ffffff?text=Menu'">
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-price">Rp ${item.price.toLocaleString()}</div>
+                            <div class="item-status ${isAvailable ? 'available' : 'unavailable'}">
+                                ${isAvailable ? '✅ Tersedia' : '❌ Tidak Tersedia'}
+                            </div>
+                        </div>
                     </div>
                     <div class="item-controls">
                         <button class="btn-minus" onclick="updateQty(${item.id}, -1, '${item.name}', ${item.price})">−</button>
                         <input type="number" class="qty-input" id="qty_${item.id}" 
                                value="${qty}" min="0" 
                                onchange="onQtyChange(${item.id}, '${item.name}', ${item.price}, this.value)"
-                               onfocus="this.select()">
+                               onfocus="this.select()"
+                               ${!isAvailable ? 'disabled' : ''}>
                         <button class="btn-plus" onclick="updateQty(${item.id}, 1, '${item.name}', ${item.price})">+</button>
                     </div>
                 `;
@@ -874,8 +1072,11 @@
             });
         }
 
+        // ============ FUNGSI QTY ============
         function updateQty(id, change, name, price) {
             const input = document.getElementById(`qty_${id}`);
+            if (!input) return;
+            
             let currentQty = parseInt(input.value) || 0;
             let newQty = currentQty + change;
             
@@ -883,7 +1084,6 @@
             
             input.value = newQty;
             
-            // Update order
             const existing = orders.find(item => item.id === id);
             if (newQty <= 0) {
                 if (existing) {
@@ -901,7 +1101,6 @@
             localStorage.setItem('customer_orders', JSON.stringify(orders));
             updateCartCount();
             
-            // Show toast if adding
             if (change > 0 && newQty > 0) {
                 showToast(`✅ ${name} x${newQty}`);
             }
@@ -928,6 +1127,7 @@
             updateCartCount();
         }
 
+        // ============ FILTER KATEGORI ============
         function filterCategory(category) {
             currentCategory = category;
             document.querySelectorAll('.category-tabs .tab').forEach(tab => {
@@ -936,12 +1136,14 @@
             renderMenu(category);
         }
 
+        // ============ UPDATE CART COUNT ============
         function updateCartCount() {
             const total = orders.reduce((sum, item) => sum + item.qty, 0);
             document.getElementById('cartCount').textContent = total;
             document.getElementById('pesanCount').textContent = total;
         }
 
+        // ============ UPDATE ORDER LIST ============
         function updateOrderList() {
             const container = document.getElementById('orderList');
             if (orders.length === 0) {
@@ -953,12 +1155,23 @@
             let total = 0;
             orders.forEach((item, index) => {
                 total += item.price * item.qty;
+                const menuItem = menuItems.find(m => m.id === item.id);
+                let imageUrl = 'https://placehold.co/40x40/2d2d2d/ffffff?text=Menu';
+                if (menuItem?.image_url) {
+                    const url = getImageUrl(menuItem.image_url);
+                    if (url) imageUrl = url;
+                }
+                
                 html += `
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                        <div style="flex:1; min-width:0;">
-                            <div style="color: white; font-size: clamp(14px,1.8%,18px); font-weight: 600;">${item.name}</div>
-                            <div style="color: #98C81C; font-size: clamp(12px,1.5%,16px);">Rp ${(item.price * item.qty).toLocaleString()}</div>
-                            <div style="color: rgba(255,255,255,0.6); font-size: clamp(10px,1.2%,14px);">x${item.qty}</div>
+                        <div style="display: flex; align-items: center; gap: 12px; flex:1; min-width:0;">
+                            <img src="${imageUrl}" style="width:40px;height:40px;border-radius:8px;object-fit:cover;flex-shrink:0;" 
+                                 onerror="this.src='https://placehold.co/40x40/2d2d2d/ffffff?text=Menu'">
+                            <div style="flex:1; min-width:0;">
+                                <div style="color: white; font-size: clamp(14px,1.8%,18px); font-weight: 600;">${item.name}</div>
+                                <div style="color: #98C81C; font-size: clamp(12px,1.5%,16px);">Rp ${(item.price * item.qty).toLocaleString()}</div>
+                                <div style="color: rgba(255,255,255,0.6); font-size: clamp(10px,1.2%,14px);">x${item.qty}</div>
+                            </div>
                         </div>
                         <div style="display: flex; gap: 8px; align-items: center; flex-shrink: 0;">
                             <button onclick="updateQtyPesan(${index}, -1)" style="background: #e74c3c; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px; display:flex; align-items:center; justify-content:center;">−</button>
@@ -995,6 +1208,7 @@
             }
         }
 
+        // ============ OPEN / CLOSE MENU ============
         function openMenu() {
             document.getElementById('menuPage').classList.add('active');
             renderMenu(currentCategory);
@@ -1015,6 +1229,7 @@
             document.getElementById('pesanPage').classList.remove('active');
         }
 
+        // ============ CLEAR ORDER ============
         function clearOrder() {
             if (orders.length === 0) return;
             if (confirm('Yakin ingin mengosongkan semua pesanan?')) {
@@ -1028,6 +1243,7 @@
             }
         }
 
+        // ============ CHECKOUT ============
         function checkout() {
             if (orders.length === 0) {
                 alert('⚠️ Belum ada pesanan!');
@@ -1054,6 +1270,7 @@
             }
         }
 
+        // ============ TOAST ============
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -1063,8 +1280,9 @@
             }, 2000);
         }
 
-        window.addEventListener('load', function() {
-            updateCartCount();
+        // ============ INIT ============
+        window.addEventListener('DOMContentLoaded', function() {
+            loadMenuFromSupabase();
         });
     </script>
 </body>
