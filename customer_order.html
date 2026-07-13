@@ -128,32 +128,23 @@
             pointer-events: none;
         }
 
-        /* Header dengan logo, judul, dan tombol selesai */
-        .header-top {
+        .logo-top {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            left: 4.3%;
+            top: 7%;
             z-index: 10;
-            padding: 30px 35px 10px 35px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .logo-left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .logo-left img {
+        .logo-top img {
             width: clamp(40px, 7.4%, 80px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
-        .logo-left .brand-text {
+        .logo-top .brand-text {
             color: white;
             font-size: clamp(16px, 2.96%, 32px);
             font-weight: 700;
@@ -161,112 +152,13 @@
             white-space: nowrap;
         }
 
-        .logo-left .brand-text span {
+        .logo-top .brand-text span {
             color: #98C81C;
         }
 
-        .btn-selesai {
-            background: #ED1B24;
-            border-radius: 50px;
-            border: 2px solid white;
-            padding: clamp(8px, 1.5%, 15px) clamp(20px, 3%, 40px);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(237, 27, 36, 0.3);
-            min-width: 80px;
-        }
-
-        .btn-selesai:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(237, 27, 36, 0.5);
-        }
-
-        .btn-selesai:active {
-            transform: scale(0.95);
-        }
-
-        .btn-selesai span {
-            color: white;
-            font-size: clamp(18px, 4.2%, 45px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-        }
-
-        /* Search Box */
-        .search-wrapper {
-            position: absolute;
-            left: 4.1%;
-            top: 13%;
-            width: 91.9%;
-            z-index: 10;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 50px;
-            border: 3px solid rgba(255,255,255,0.3);
-            background: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .search-box:focus-within {
-            border-color: #98C81C;
-            background: rgba(255,255,255,0.2);
-            box-shadow: 0 0 20px rgba(152, 200, 28, 0.2);
-        }
-
-        .search-box .search-icon {
-            color: rgba(255,255,255,0.7);
-            font-size: clamp(20px, 2.5%, 30px);
-            flex-shrink: 0;
-        }
-
-        .search-box input {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: clamp(16px, 2.5%, 28px);
-            font-family: 'Schoolbell', cursive;
-            width: 100%;
-            outline: none;
-        }
-
-        .search-box input::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-
-        .search-box .clear-btn {
-            background: none;
-            border: none;
-            color: rgba(255,255,255,0.5);
-            font-size: clamp(18px, 2%, 24px);
-            cursor: pointer;
-            display: none;
-            padding: 0 5px;
-            transition: all 0.3s;
-        }
-
-        .search-box .clear-btn:hover {
-            color: white;
-            transform: scale(1.2);
-        }
-
-        .search-box .clear-btn.show {
-            display: block;
-        }
-
-        /* Title - WILUJENG SUMPING! */
         .title-main {
             position: absolute;
-            left: 50%;
+            left: 39.5%;
             top: 7%;
             transform: translateX(-50%);
             text-align: center;
@@ -278,14 +170,6 @@
             line-height: 1.1;
             letter-spacing: 2px;
             width: 55.6%;
-        }
-
-        .title-main small {
-            font-size: clamp(14px, 3.7%, 40px);
-            display: block;
-            font-weight: 400;
-            opacity: 0.9;
-            margin-top: 5px;
         }
 
         .box-menu {
@@ -563,11 +447,109 @@
             font-weight: 600;
         }
 
+        /* Search box di dalam menu */
+        .menu-search-wrapper {
+            padding: 12px 0;
+            position: sticky;
+            top: 70px;
+            background: rgba(0,0,0,0.95);
+            z-index: 9;
+        }
+
+        .menu-search-box {
+            width: 100%;
+            padding: 10px 18px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-search-box:focus-within {
+            border-color: #98C81C;
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 0 20px rgba(152, 200, 28, 0.15);
+        }
+
+        .menu-search-box .search-icon {
+            color: rgba(255,255,255,0.6);
+            font-size: clamp(18px, 2%, 24px);
+            flex-shrink: 0;
+        }
+
+        .menu-search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: clamp(14px, 2%, 22px);
+            font-family: 'Schoolbell', cursive;
+            width: 100%;
+            outline: none;
+        }
+
+        .menu-search-box input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        .menu-search-box .clear-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.4);
+            font-size: clamp(16px, 1.8%, 22px);
+            cursor: pointer;
+            display: none;
+            padding: 0 5px;
+            transition: all 0.3s;
+        }
+
+        .menu-search-box .clear-btn:hover {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .menu-search-box .clear-btn.show {
+            display: block;
+        }
+
+        /* Tombol selesai di dalam menu */
+        .menu-selesai-btn {
+            background: #ED1B24;
+            border-radius: 50px;
+            border: 2px solid white;
+            padding: clamp(6px, 1.2%, 12px) clamp(15px, 2.5%, 30px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(237, 27, 36, 0.3);
+            white-space: nowrap;
+        }
+
+        .menu-selesai-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(237, 27, 36, 0.5);
+        }
+
+        .menu-selesai-btn:active {
+            transform: scale(0.95);
+        }
+
+        .menu-selesai-btn span {
+            color: white;
+            font-size: clamp(14px, 3%, 32px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+        }
+
         .category-tabs {
             display: flex;
             gap: 8px;
             overflow-x: auto;
-            padding: 15px 0;
+            padding: 10px 0 15px 0;
             scrollbar-width: none;
         }
 
@@ -603,7 +585,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            padding: 10px 0 20px 0;
+            padding: 5px 0 20px 0;
         }
 
         .menu-item-row {
@@ -811,18 +793,6 @@
                 border-radius: 12px;
             }
 
-            .header-top {
-                padding: 20px 20px 5px 20px;
-            }
-
-            .search-wrapper {
-                top: 12%;
-            }
-
-            .search-box {
-                padding: 10px 15px;
-            }
-
             .menu-item-row {
                 padding: 10px 12px;
             }
@@ -849,32 +819,6 @@
         @media screen and (max-width: 480px) {
             .customer-container {
                 border-radius: 10px;
-            }
-
-            .header-top {
-                padding: 15px 15px 5px 15px;
-            }
-
-            .btn-selesai {
-                min-width: 60px;
-                padding: 6px 15px;
-            }
-
-            .btn-selesai span {
-                font-size: 14px;
-            }
-
-            .search-wrapper {
-                top: 11%;
-            }
-
-            .search-box {
-                padding: 8px 12px;
-                border-width: 2px;
-            }
-
-            .search-box input {
-                font-size: 14px;
             }
 
             .menu-item-row {
@@ -908,42 +852,21 @@
                 padding: 3px 4px;
                 font-size: 13px;
             }
+
+            .menu-search-box {
+                padding: 8px 14px;
+            }
+
+            .menu-search-box input {
+                font-size: 12px;
+            }
+
+            .menu-selesai-btn span {
+                font-size: 12px;
+            }
         }
 
         @media screen and (max-width: 360px) {
-            .header-top {
-                padding: 10px 10px 5px 10px;
-            }
-
-            .logo-left .brand-text {
-                font-size: 12px;
-            }
-
-            .logo-left img {
-                width: 30px;
-            }
-
-            .btn-selesai {
-                min-width: 50px;
-                padding: 4px 10px;
-            }
-
-            .btn-selesai span {
-                font-size: 11px;
-            }
-
-            .search-wrapper {
-                top: 10%;
-            }
-
-            .search-box input {
-                font-size: 12px;
-            }
-
-            .search-box .search-icon {
-                font-size: 16px;
-            }
-
             .menu-item-row .item-info .item-image {
                 width: 30px;
                 height: 30px;
@@ -969,6 +892,18 @@
             .menu-item-row .item-info .item-details .item-price {
                 font-size: 10px;
             }
+
+            .menu-search-box input {
+                font-size: 11px;
+            }
+
+            .menu-selesai-btn {
+                padding: 4px 10px;
+            }
+
+            .menu-selesai-btn span {
+                font-size: 10px;
+            }
         }
 
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
@@ -984,39 +919,6 @@
                 max-width: 90vh;
                 aspect-ratio: 1080/1920;
                 border-radius: 10px;
-            }
-
-            .header-top {
-                padding: 10px 15px 5px 15px;
-            }
-
-            .logo-left .brand-text {
-                font-size: 14px;
-            }
-
-            .logo-left img {
-                width: 30px;
-            }
-
-            .btn-selesai {
-                padding: 4px 12px;
-                min-width: 50px;
-            }
-
-            .btn-selesai span {
-                font-size: 12px;
-            }
-
-            .search-wrapper {
-                top: 10%;
-            }
-
-            .search-box {
-                padding: 6px 12px;
-            }
-
-            .search-box input {
-                font-size: 12px;
             }
 
             .menu-item-row {
@@ -1040,6 +942,26 @@
                 padding: 2px 4px;
                 font-size: 12px;
             }
+
+            .menu-search-wrapper {
+                padding: 6px 0;
+            }
+
+            .menu-search-box {
+                padding: 6px 12px;
+            }
+
+            .menu-search-box input {
+                font-size: 11px;
+            }
+
+            .menu-selesai-btn {
+                padding: 3px 10px;
+            }
+
+            .menu-selesai-btn span {
+                font-size: 10px;
+            }
         }
     </style>
 </head>
@@ -1059,30 +981,13 @@
 
         <div class="overlay"></div>
 
-        <!-- Header dengan Logo dan Tombol Selesai -->
-        <div class="header-top">
-            <div class="logo-left">
-                <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
-                <div class="brand-text">Resto<span>POS</span></div>
-            </div>
-            <button class="btn-selesai" onclick="openPesan()">
-                <span>selesai</span>
-            </button>
+        <div class="logo-top">
+            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
+            <div class="brand-text">Resto<span>POS</span></div>
         </div>
 
-        <!-- Search Box -->
-        <div class="search-wrapper">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" placeholder="mau pesan apa hari ini?" oninput="searchMenu()">
-                <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
-            </div>
-        </div>
-
-        <!-- Title - WILUJENG SUMPING! -->
         <div class="title-main">
             WILUJENG<br>SUMPING!
-            <small>Selamat Datang</small>
         </div>
 
         <div class="box-menu" onclick="openMenu()">
@@ -1113,11 +1018,24 @@
             </div>
         </div>
 
+        <!-- ====== HALAMAN MENU ====== -->
         <div class="menu-page" id="menuPage">
             <div class="menu-header">
                 <button class="back-btn" onclick="closeMenu()">←</button>
                 <h2>📋 Menu</h2>
                 <span class="cart-count" id="cartCount">0</span>
+            </div>
+
+            <!-- Search Box di dalam Menu -->
+            <div class="menu-search-wrapper">
+                <div class="menu-search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="mau pesan apa hari ini?" oninput="searchMenu()">
+                    <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
+                    <button class="menu-selesai-btn" onclick="openPesan()">
+                        <span>selesai</span>
+                    </button>
+                </div>
             </div>
 
             <div class="category-tabs" id="categoryTabs">
@@ -1132,6 +1050,7 @@
             </div>
         </div>
 
+        <!-- ====== HALAMAN PESAN ====== -->
         <div class="menu-page" id="pesanPage">
             <div class="menu-header">
                 <button class="back-btn" onclick="closePesan()">←</button>
@@ -1162,7 +1081,6 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
         const STORAGE_BUCKET = 'menu-images';
 
-        // Inisialisasi Supabase
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         // ============ GLOBAL VARIABLES ============
@@ -1253,7 +1171,6 @@
             searchQuery = input.value.toLowerCase().trim();
             const clearBtn = document.getElementById('clearBtn');
 
-            // Show/hide clear button
             if (searchQuery.length > 0) {
                 clearBtn.classList.add('show');
             } else {
@@ -1279,7 +1196,6 @@
                 menuItems :
                 menuItems.filter(item => item.category === category);
 
-            // Apply search filter
             if (searchQuery) {
                 filtered = filtered.filter(item =>
                     item.name.toLowerCase().includes(searchQuery)
@@ -1474,6 +1390,10 @@
         // ============ OPEN / CLOSE MENU ============
         function openMenu() {
             document.getElementById('menuPage').classList.add('active');
+            // Reset search saat buka menu
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearBtn').classList.remove('show');
+            searchQuery = '';
             renderMenu(currentCategory);
             updateCartCount();
         }
