@@ -33,7 +33,6 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
 
-        /* Dekorasi background */
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -80,7 +79,6 @@
             filter: blur(3.50px);
         }
 
-        /* Overlay */
         .overlay {
             position: absolute;
             width: 100%;
@@ -91,7 +89,6 @@
             pointer-events: none;
         }
 
-        /* Logo */
         .logo-top {
             position: absolute;
             left: 4.3%;
@@ -120,7 +117,6 @@
             color: #98C81C;
         }
 
-        /* Judul Utama */
         .title-main {
             position: absolute;
             left: 39.5%;
@@ -137,7 +133,6 @@
             width: 55.6%;
         }
 
-        /* Box Menu */
         .box-menu {
             position: absolute;
             width: 82.2%;
@@ -235,7 +230,6 @@
             opacity: 0.3;
         }
 
-        /* Box Pesan */
         .box-pesan {
             position: absolute;
             width: 82.2%;
@@ -337,7 +331,6 @@
             opacity: 0.3;
         }
 
-        /* Halaman Menu */
         .menu-page {
             position: absolute;
             width: 100%;
@@ -415,7 +408,6 @@
             font-weight: 600;
         }
 
-        /* Category tabs */
         .category-tabs {
             display: flex;
             gap: 8px;
@@ -452,7 +444,6 @@
             border-color: #98C81C;
         }
 
-        /* Menu items */
         .menu-items {
             display: flex;
             flex-direction: column;
@@ -478,6 +469,7 @@
 
         .menu-item-row .item-info {
             flex: 1;
+            min-width: 0;
         }
 
         .menu-item-row .item-info .item-name {
@@ -497,11 +489,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
 
         .menu-item-row .item-controls .qty-input {
-            width: clamp(40px, 5%, 60px);
-            padding: 5px 8px;
+            width: clamp(50px, 6%, 70px);
+            padding: 6px 8px;
             border: 2px solid rgba(255,255,255,0.2);
             border-radius: 8px;
             background: rgba(255,255,255,0.1);
@@ -510,15 +503,27 @@
             text-align: center;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
+            transition: all 0.3s;
         }
 
         .menu-item-row .item-controls .qty-input:focus {
             border-color: #98C81C;
             outline: none;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .menu-item-row .item-controls .qty-input::-webkit-inner-spin-button,
+        .menu-item-row .item-controls .qty-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .menu-item-row .item-controls .qty-input[type=number] {
+            -moz-appearance: textfield;
         }
 
         .menu-item-row .item-controls .btn-add-qty {
-            padding: 5px 12px;
+            padding: 6px 15px;
             background: #98C81C;
             border: none;
             border-radius: 50px;
@@ -535,7 +540,10 @@
             transform: scale(1.05);
         }
 
-        /* Toast */
+        .menu-item-row .item-controls .btn-add-qty:active {
+            transform: scale(0.95);
+        }
+
         .toast {
             position: fixed;
             bottom: 30px;
@@ -551,6 +559,8 @@
             display: none;
             animation: slideUp 0.5s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 90%;
+            text-align: center;
         }
 
         .toast.show {
@@ -568,7 +578,6 @@
             }
         }
 
-        /* Responsive */
         @media screen and (max-width: 767px) {
             .customer-container {
                 max-width: 100%;
@@ -584,11 +593,32 @@
 
             .menu-item-row {
                 padding: 10px 12px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .menu-item-row .item-controls {
+                width: 100%;
+                justify-content: flex-end;
             }
 
             .menu-item-row .item-controls .qty-input {
-                width: 35px;
-                padding: 4px 4px;
+                width: 60px;
+                padding: 4px 6px;
+                font-size: 16px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .menu-item-row .item-controls .qty-input {
+                width: 50px;
+                padding: 3px 4px;
+                font-size: 14px;
+            }
+
+            .menu-item-row .item-controls .btn-add-qty {
+                padding: 4px 10px;
+                font-size: 11px;
             }
         }
 
@@ -611,28 +641,23 @@
 </head>
 <body>
     <div class="customer-container">
-        <!-- Dekorasi background -->
         <div class="deco-bg">
             <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
             <img src="https://placehold.co/995x995/2d2d2d/ffffff?text=" alt="" loading="lazy" />
             <img src="https://placehold.co/832x832/2d2d2d/ffffff?text=" alt="" loading="lazy" />
         </div>
 
-        <!-- Overlay -->
         <div class="overlay"></div>
 
-        <!-- Logo -->
         <div class="logo-top">
             <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
             <div class="brand-text">Resto<span>POS</span></div>
         </div>
 
-        <!-- Judul Utama -->
         <div class="title-main">
             WILUJENG<br>SUMPING!
         </div>
 
-        <!-- Box MENU -->
         <div class="box-menu" onclick="openMenu()">
             <div class="bg-hijau"></div>
             <div class="label-menu">📋 MENU</div>
@@ -647,7 +672,6 @@
             </div>
         </div>
 
-        <!-- Box PESAN -->
         <div class="box-pesan" onclick="openPesan()">
             <div class="bg-hijau"></div>
             <div class="label-pesan">🛒 PESAN</div>
@@ -662,7 +686,6 @@
             </div>
         </div>
 
-        <!-- Halaman Menu -->
         <div class="menu-page" id="menuPage">
             <div class="menu-header">
                 <button class="back-btn" onclick="closeMenu()">←</button>
@@ -680,11 +703,9 @@
             </div>
 
             <div class="menu-items" id="menuItems">
-                <!-- Menu akan di-generate oleh JavaScript -->
             </div>
         </div>
 
-        <!-- Halaman Pesan -->
         <div class="menu-page" id="pesanPage">
             <div class="menu-header">
                 <button class="back-btn" onclick="closePesan()">←</button>
@@ -702,28 +723,21 @@
             </div>
         </div>
 
-        <!-- Toast Notification -->
         <div class="toast" id="toast"></div>
     </div>
 
     <script>
-        // Data menu lengkap
         const menuItems = [
-            // Makanan
             { id: 1, name: 'Iga Bakar', price: 45000, category: 'makanan' },
             { id: 2, name: 'Iga Bakar Jumbo', price: 250000, category: 'makanan' },
             { id: 3, name: 'Sate Potong', price: 45000, category: 'makanan' },
             { id: 4, name: 'Nasi Goreng', price: 25000, category: 'makanan' },
             { id: 5, name: 'Mie Ayam', price: 20000, category: 'makanan' },
             { id: 6, name: 'Bakso', price: 18000, category: 'makanan' },
-            
-            // Tambahan
             { id: 7, name: 'Nasi Putih', price: 8000, category: 'tambahan' },
             { id: 8, name: 'Kerupuk/Emping', price: 7000, category: 'tambahan' },
             { id: 9, name: 'Air Mineral', price: 7000, category: 'tambahan' },
             { id: 10, name: 'Jeruk', price: 15000, category: 'tambahan' },
-            
-            // Minuman
             { id: 11, name: 'Lemon Tea', price: 15000, category: 'minuman' },
             { id: 12, name: 'Teh Manis', price: 10000, category: 'minuman' },
             { id: 13, name: 'Teh Tawar', price: 3000, category: 'minuman' },
@@ -731,13 +745,9 @@
             { id: 15, name: 'Tebs', price: 7000, category: 'minuman' },
             { id: 16, name: 'Fruit Tea', price: 7000, category: 'minuman' },
             { id: 17, name: 'Benecol', price: 10000, category: 'minuman' },
-            
-            // Jangkung Kopi
             { id: 18, name: 'Americano/Long Black', price: 20000, category: 'jangkung' },
             { id: 19, name: 'Kopi Tubruk', price: 20000, category: 'jangkung' },
             { id: 20, name: 'Kopi Sanger', price: 25000, category: 'jangkung' },
-            
-            // Kopi
             { id: 21, name: 'Kopi Gula Aren', price: 35000, category: 'kopi' },
             { id: 22, name: 'Latte', price: 30000, category: 'kopi' },
             { id: 23, name: 'Flavored Latte', price: 30000, category: 'kopi' },
@@ -748,8 +758,8 @@
 
         let orders = JSON.parse(localStorage.getItem('customer_orders')) || [];
         let currentCategory = 'all';
+        let typingTimeout = null;
 
-        // Render menu items
         function renderMenu(category = 'all') {
             const container = document.getElementById('menuItems');
             container.innerHTML = '';
@@ -768,8 +778,9 @@
                         <div class="item-price">Rp ${item.price.toLocaleString()}</div>
                     </div>
                     <div class="item-controls">
-                        <input type="number" class="qty-input" id="qty_${item.id}" value="${qty}" min="0" 
-                               onchange="updateQtyDirect(${item.id}, this.value)" 
+                        <input type="number" class="qty-input" id="qty_${item.id}" 
+                               value="${qty}" min="0" 
+                               oninput="onQtyInput(${item.id}, '${item.name}', ${item.price}, this.value)"
                                onfocus="this.select()">
                         <button class="btn-add-qty" onclick="addToOrder(${item.id}, '${item.name}', ${item.price})">Tambah</button>
                     </div>
@@ -778,13 +789,47 @@
             });
         }
 
-        // Add to order
+        function onQtyInput(id, name, price, value) {
+            // Clear previous timeout
+            if (typingTimeout) {
+                clearTimeout(typingTimeout);
+            }
+            
+            const qty = parseInt(value) || 0;
+            
+            // Update order immediately
+            updateOrderQuantity(id, name, price, qty);
+            
+            // Update cart count
+            updateCartCount();
+        }
+
+        function updateOrderQuantity(id, name, price, qty) {
+            const existing = orders.find(item => item.id === id);
+            
+            if (qty <= 0) {
+                if (existing) {
+                    const index = orders.indexOf(existing);
+                    orders.splice(index, 1);
+                }
+            } else {
+                if (existing) {
+                    existing.qty = qty;
+                } else {
+                    orders.push({ id, name, price, qty });
+                }
+            }
+            
+            localStorage.setItem('customer_orders', JSON.stringify(orders));
+        }
+
         function addToOrder(id, name, price) {
             const qtyInput = document.getElementById(`qty_${id}`);
             let qty = parseInt(qtyInput.value) || 0;
             
             if (qty <= 0) {
                 showToast('⚠️ Masukkan jumlah terlebih dahulu!');
+                qtyInput.focus();
                 return;
             }
             
@@ -803,32 +848,6 @@
             qtyInput.value = qty;
         }
 
-        // Update quantity directly from input
-        function updateQtyDirect(id, value) {
-            const qty = parseInt(value) || 0;
-            const existing = orders.find(item => item.id === id);
-            
-            if (qty <= 0) {
-                if (existing) {
-                    const index = orders.indexOf(existing);
-                    orders.splice(index, 1);
-                }
-            } else {
-                if (existing) {
-                    existing.qty = qty;
-                } else {
-                    const item = menuItems.find(m => m.id === id);
-                    if (item) {
-                        orders.push({ id: item.id, name: item.name, price: item.price, qty });
-                    }
-                }
-            }
-            
-            localStorage.setItem('customer_orders', JSON.stringify(orders));
-            updateCartCount();
-        }
-
-        // Filter by category
         function filterCategory(category) {
             currentCategory = category;
             document.querySelectorAll('.category-tabs .tab').forEach(tab => {
@@ -837,14 +856,12 @@
             renderMenu(category);
         }
 
-        // Update cart count
         function updateCartCount() {
             const total = orders.reduce((sum, item) => sum + item.qty, 0);
             document.getElementById('cartCount').textContent = total;
             document.getElementById('pesanCount').textContent = total;
         }
 
-        // Update order list
         function updateOrderList() {
             const container = document.getElementById('orderList');
             if (orders.length === 0) {
@@ -858,12 +875,12 @@
                 total += item.price * item.qty;
                 html += `
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                        <div style="flex:1;">
+                        <div style="flex:1; min-width:0;">
                             <div style="color: white; font-size: clamp(14px,1.8%,18px); font-weight: 600;">${item.name}</div>
                             <div style="color: #98C81C; font-size: clamp(12px,1.5%,16px);">Rp ${(item.price * item.qty).toLocaleString()}</div>
                             <div style="color: rgba(255,255,255,0.6); font-size: clamp(10px,1.2%,14px);">x${item.qty}</div>
                         </div>
-                        <div style="display: flex; gap: 8px; align-items: center;">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-shrink: 0;">
                             <button onclick="updateQtyPesan(${index}, -1)" style="background: #e74c3c; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px; display:flex; align-items:center; justify-content:center;">−</button>
                             <span style="color: white; font-weight: 600; min-width: 30px; text-align: center;">${item.qty}</span>
                             <button onclick="updateQtyPesan(${index}, 1)" style="background: #98C81C; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px; display:flex; align-items:center; justify-content:center;">+</button>
@@ -883,7 +900,6 @@
             container.innerHTML = html;
         }
 
-        // Update quantity from pesan page
         function updateQtyPesan(index, change) {
             if (orders[index].qty + change <= 0) {
                 orders.splice(index, 1);
@@ -894,37 +910,31 @@
             updateOrderList();
             updateCartCount();
             
-            // Refresh menu if open
             if (document.getElementById('menuPage').classList.contains('active')) {
                 renderMenu(currentCategory);
             }
         }
 
-        // Open menu page
         function openMenu() {
             document.getElementById('menuPage').classList.add('active');
             renderMenu(currentCategory);
             updateCartCount();
         }
 
-        // Close menu page
         function closeMenu() {
             document.getElementById('menuPage').classList.remove('active');
         }
 
-        // Open pesan page
         function openPesan() {
             document.getElementById('pesanPage').classList.add('active');
             updateOrderList();
             updateCartCount();
         }
 
-        // Close pesan page
         function closePesan() {
             document.getElementById('pesanPage').classList.remove('active');
         }
 
-        // Clear order
         function clearOrder() {
             if (orders.length === 0) return;
             if (confirm('Yakin ingin mengosongkan semua pesanan?')) {
@@ -938,7 +948,6 @@
             }
         }
 
-        // Checkout
         function checkout() {
             if (orders.length === 0) {
                 alert('⚠️ Belum ada pesanan!');
@@ -965,7 +974,6 @@
             }
         }
 
-        // Show toast
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -975,7 +983,6 @@
             }, 2000);
         }
 
-        // Load orders on page load
         window.addEventListener('load', function() {
             updateCartCount();
         });
