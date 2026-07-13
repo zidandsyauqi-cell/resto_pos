@@ -448,7 +448,6 @@
             font-weight: 600;
         }
 
-        /* Search box di dalam menu - FIXED */
         .menu-search-wrapper {
             padding: 8px 0 10px 0;
             position: sticky;
@@ -661,6 +660,16 @@
             color: #e74c3c;
         }
 
+        .menu-item-row .item-info .item-details .variant-badge {
+            font-size: clamp(9px, 1%, 12px);
+            color: #98C81C;
+            background: rgba(152, 200, 28, 0.15);
+            padding: 1px 8px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+
         .menu-item-row .item-controls {
             display: flex;
             align-items: center;
@@ -748,6 +757,29 @@
             transform: scale(0.9);
         }
 
+        .menu-item-row .item-controls .btn-detail-add {
+            padding: 6px 18px;
+            background: #98C81C;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: clamp(12px, 1.3%, 18px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border: 2px solid white;
+        }
+
+        .menu-item-row .item-controls .btn-detail-add:hover {
+            background: #7aa814;
+            transform: scale(1.05);
+        }
+
+        .menu-item-row .item-controls .btn-detail-add:active {
+            transform: scale(0.95);
+        }
+
         .menu-item-row.disabled {
             opacity: 0.5;
             pointer-events: none;
@@ -832,7 +864,7 @@
 
         .detail-image {
             width: 100%;
-            max-height: 50%;
+            max-height: 45%;
             overflow: hidden;
             border-radius: 20px;
             margin: 15px 0;
@@ -1099,6 +1131,11 @@
                 font-size: 14px;
             }
 
+            .menu-item-row .item-controls .btn-detail-add {
+                padding: 4px 12px;
+                font-size: 11px;
+            }
+
             .detail-page {
                 padding: 10px 12px;
             }
@@ -1171,6 +1208,11 @@
                 font-size: 13px;
             }
 
+            .menu-item-row .item-controls .btn-detail-add {
+                padding: 3px 10px;
+                font-size: 10px;
+            }
+
             .detail-page {
                 padding: 8px 10px;
             }
@@ -1228,12 +1270,9 @@
                 font-size: 12px;
             }
 
-            .menu-item-row .item-info .item-details .item-name {
-                font-size: 12px;
-            }
-
-            .menu-item-row .item-info .item-details .item-price {
-                font-size: 10px;
+            .menu-item-row .item-controls .btn-detail-add {
+                padding: 2px 8px;
+                font-size: 9px;
             }
 
             .detail-qty-section .qty-btn {
@@ -1312,6 +1351,11 @@
                 width: 35px;
                 padding: 2px 4px;
                 font-size: 12px;
+            }
+
+            .menu-item-row .item-controls .btn-detail-add {
+                padding: 2px 8px;
+                font-size: 9px;
             }
 
             .detail-page {
@@ -1559,24 +1603,24 @@
                 variants: []
             }, {
                 id: 3,
-                name: 'Mie Goreng',
-                price: 22000,
-                category: 'Makanan',
+                name: 'Air Mineral',
+                price: 7000,
+                category: 'Tambahan',
                 status: 'Tersedia',
                 image_url: null,
                 variants: []
             }, {
                 id: 4,
-                name: 'Es Teh',
-                price: 5000,
-                category: 'Minuman',
+                name: 'Jeruk',
+                price: 15000,
+                category: 'Tambahan',
                 status: 'Tersedia',
                 image_url: null,
                 variants: []
             }, {
                 id: 5,
-                name: 'Jus Jeruk',
-                price: 12000,
+                name: 'Es Teh',
+                price: 5000,
                 category: 'Minuman',
                 status: 'Tersedia',
                 image_url: null,
@@ -1650,6 +1694,7 @@
                 const existing = orders.find(o => o.id === item.id);
                 const qty = existing ? existing.qty : 0;
                 const isAvailable = item.status === 'Tersedia';
+                const hasVariants = item.variants && item.variants.length > 0;
 
                 let imageUrl = 'https://placehold.co/50x50/2d2d2d/ffffff?text=Menu';
                 if (item.image_url) {
@@ -1659,13 +1704,30 @@
 
                 const row = document.createElement('div');
                 row.className = `menu-item-row ${!isAvailable ? 'disabled' : ''}`;
-                row.onclick = function() {
-                    if (isAvailable) {
-                        openDetail(item.id);
-                    }
-                };
+
+                let controlsHtml = '';
+                if (hasVariants) {
+                    // Jika ada varian, hanya tombol "pilih" yang mengarah ke detail
+                    controlsHtml = `
+                                <button class="btn-detail-add" onclick="event.stopPropagation(); openDetail(${item.id})">
+                                    ${qty > 0 ? '🛒 ' + qty : 'Pilih'}
+                                </button>
+                            `;
+                } else {
+                    // Jika tidak ada varian, tampilkan tombol + dan -
+                    controlsHtml = `
+                                <button class="btn-minus" onclick="event.stopPropagation(); updateQty(${item.id}, -1, '${item.name}', ${item.price})">−</button>
+                                <input type="number" class="qty-input" id="qty_${item.id}" 
+                                       value="${qty}" min="0" 
+                                       onchange="onQtyChange(${item.id}, '${item.name}', ${item.price}, this.value)"
+                                       onfocus="this.select()"
+                                       ${!isAvailable ? 'disabled' : ''}>
+                                <button class="btn-plus" onclick="event.stopPropagation(); updateQty(${item.id}, 1, '${item.name}', ${item.price})">+</button>
+                            `;
+                }
+
                 row.innerHTML = `
-                            <div class="item-info">
+                            <div class="item-info" onclick="${isAvailable ? `openDetail(${item.id})` : ''}">
                                 <img class="item-image" src="${imageUrl}" alt="${item.name}" loading="lazy" 
                                      onerror="this.src='https://placehold.co/50x50/2d2d2d/ffffff?text=Menu'">
                                 <div class="item-details">
@@ -1674,23 +1736,18 @@
                                     <div class="item-status ${isAvailable ? 'available' : 'unavailable'}">
                                         ${isAvailable ? '✅ Tersedia' : '❌ Tidak Tersedia'}
                                     </div>
+                                    ${hasVariants ? '<div class="variant-badge">📌 Ada Varian</div>' : ''}
                                 </div>
                             </div>
                             <div class="item-controls" onclick="event.stopPropagation();">
-                                <button class="btn-minus" onclick="updateQty(${item.id}, -1, '${item.name}', ${item.price})">−</button>
-                                <input type="number" class="qty-input" id="qty_${item.id}" 
-                                       value="${qty}" min="0" 
-                                       onchange="onQtyChange(${item.id}, '${item.name}', ${item.price}, this.value)"
-                                       onfocus="this.select()"
-                                       ${!isAvailable ? 'disabled' : ''}>
-                                <button class="btn-plus" onclick="updateQty(${item.id}, 1, '${item.name}', ${item.price})">+</button>
+                                ${controlsHtml}
                             </div>
                         `;
                 container.appendChild(row);
             });
         }
 
-        // ============ FUNGSI QTY ============
+        // ============ FUNGSI QTY (Tanpa Varian) ============
         function updateQty(id, change, name, price) {
             const input = document.getElementById(`qty_${id}`);
             if (!input) return;
@@ -1818,12 +1875,10 @@
 
             selectedVariant = item.variants[index];
 
-            // Update UI
             document.querySelectorAll('.variant-item').forEach((el, i) => {
                 el.classList.toggle('selected', i === index);
             });
 
-            // Update price
             let basePrice = item.price;
             let extraPrice = selectedVariant ? selectedVariant.price : 0;
             document.getElementById('detailPrice').textContent = `Rp ${(basePrice + extraPrice).toLocaleString()}`;
@@ -1866,7 +1921,6 @@
             showToast(`✅ ${item.name}${variantName} x${detailQty} ditambahkan!`);
             closeDetail();
 
-            // Update menu page
             if (document.getElementById('menuPage').classList.contains('active')) {
                 renderMenu(currentCategory);
             }
@@ -1973,7 +2027,6 @@
             document.getElementById('pesanPage').classList.add('active');
             updateOrderList();
             updateCartCount();
-            // Close detail if open
             document.getElementById('detailPage').classList.remove('active');
         }
 
