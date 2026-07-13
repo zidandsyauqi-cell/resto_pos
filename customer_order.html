@@ -128,23 +128,32 @@
             pointer-events: none;
         }
 
-        .logo-top {
+        /* Header dengan logo, judul, dan tombol selesai */
+        .header-top {
             position: absolute;
-            left: 4.3%;
-            top: 7%;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 10;
+            padding: 30px 35px 10px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .logo-left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .logo-top img {
+        .logo-left img {
             width: clamp(40px, 7.4%, 80px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
-        .logo-top .brand-text {
+        .logo-left .brand-text {
             color: white;
             font-size: clamp(16px, 2.96%, 32px);
             font-weight: 700;
@@ -152,13 +161,112 @@
             white-space: nowrap;
         }
 
-        .logo-top .brand-text span {
+        .logo-left .brand-text span {
             color: #98C81C;
         }
 
+        .btn-selesai {
+            background: #ED1B24;
+            border-radius: 50px;
+            border: 2px solid white;
+            padding: clamp(8px, 1.5%, 15px) clamp(20px, 3%, 40px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(237, 27, 36, 0.3);
+            min-width: 80px;
+        }
+
+        .btn-selesai:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(237, 27, 36, 0.5);
+        }
+
+        .btn-selesai:active {
+            transform: scale(0.95);
+        }
+
+        .btn-selesai span {
+            color: white;
+            font-size: clamp(18px, 4.2%, 45px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+        }
+
+        /* Search Box */
+        .search-wrapper {
+            position: absolute;
+            left: 4.1%;
+            top: 13%;
+            width: 91.9%;
+            z-index: 10;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 3px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: #98C81C;
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 0 20px rgba(152, 200, 28, 0.2);
+        }
+
+        .search-box .search-icon {
+            color: rgba(255,255,255,0.7);
+            font-size: clamp(20px, 2.5%, 30px);
+            flex-shrink: 0;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: clamp(16px, 2.5%, 28px);
+            font-family: 'Schoolbell', cursive;
+            width: 100%;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .search-box .clear-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.5);
+            font-size: clamp(18px, 2%, 24px);
+            cursor: pointer;
+            display: none;
+            padding: 0 5px;
+            transition: all 0.3s;
+        }
+
+        .search-box .clear-btn:hover {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .search-box .clear-btn.show {
+            display: block;
+        }
+
+        /* Title - WILUJENG SUMPING! */
         .title-main {
             position: absolute;
-            left: 39.5%;
+            left: 50%;
             top: 7%;
             transform: translateX(-50%);
             text-align: center;
@@ -170,6 +278,14 @@
             line-height: 1.1;
             letter-spacing: 2px;
             width: 55.6%;
+        }
+
+        .title-main small {
+            font-size: clamp(14px, 3.7%, 40px);
+            display: block;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 5px;
         }
 
         .box-menu {
@@ -695,6 +811,18 @@
                 border-radius: 12px;
             }
 
+            .header-top {
+                padding: 20px 20px 5px 20px;
+            }
+
+            .search-wrapper {
+                top: 12%;
+            }
+
+            .search-box {
+                padding: 10px 15px;
+            }
+
             .menu-item-row {
                 padding: 10px 12px;
             }
@@ -721,6 +849,32 @@
         @media screen and (max-width: 480px) {
             .customer-container {
                 border-radius: 10px;
+            }
+
+            .header-top {
+                padding: 15px 15px 5px 15px;
+            }
+
+            .btn-selesai {
+                min-width: 60px;
+                padding: 6px 15px;
+            }
+
+            .btn-selesai span {
+                font-size: 14px;
+            }
+
+            .search-wrapper {
+                top: 11%;
+            }
+
+            .search-box {
+                padding: 8px 12px;
+                border-width: 2px;
+            }
+
+            .search-box input {
+                font-size: 14px;
             }
 
             .menu-item-row {
@@ -757,6 +911,39 @@
         }
 
         @media screen and (max-width: 360px) {
+            .header-top {
+                padding: 10px 10px 5px 10px;
+            }
+
+            .logo-left .brand-text {
+                font-size: 12px;
+            }
+
+            .logo-left img {
+                width: 30px;
+            }
+
+            .btn-selesai {
+                min-width: 50px;
+                padding: 4px 10px;
+            }
+
+            .btn-selesai span {
+                font-size: 11px;
+            }
+
+            .search-wrapper {
+                top: 10%;
+            }
+
+            .search-box input {
+                font-size: 12px;
+            }
+
+            .search-box .search-icon {
+                font-size: 16px;
+            }
+
             .menu-item-row .item-info .item-image {
                 width: 30px;
                 height: 30px;
@@ -799,6 +986,39 @@
                 border-radius: 10px;
             }
 
+            .header-top {
+                padding: 10px 15px 5px 15px;
+            }
+
+            .logo-left .brand-text {
+                font-size: 14px;
+            }
+
+            .logo-left img {
+                width: 30px;
+            }
+
+            .btn-selesai {
+                padding: 4px 12px;
+                min-width: 50px;
+            }
+
+            .btn-selesai span {
+                font-size: 12px;
+            }
+
+            .search-wrapper {
+                top: 10%;
+            }
+
+            .search-box {
+                padding: 6px 12px;
+            }
+
+            .search-box input {
+                font-size: 12px;
+            }
+
             .menu-item-row {
                 padding: 6px 10px;
             }
@@ -839,13 +1059,30 @@
 
         <div class="overlay"></div>
 
-        <div class="logo-top">
-            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
-            <div class="brand-text">Resto<span>POS</span></div>
+        <!-- Header dengan Logo dan Tombol Selesai -->
+        <div class="header-top">
+            <div class="logo-left">
+                <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
+                <div class="brand-text">Resto<span>POS</span></div>
+            </div>
+            <button class="btn-selesai" onclick="openPesan()">
+                <span>selesai</span>
+            </button>
         </div>
 
+        <!-- Search Box -->
+        <div class="search-wrapper">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="mau pesan apa hari ini?" oninput="searchMenu()">
+                <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
+            </div>
+        </div>
+
+        <!-- Title - WILUJENG SUMPING! -->
         <div class="title-main">
             WILUJENG<br>SUMPING!
+            <small>Selamat Datang</small>
         </div>
 
         <div class="box-menu" onclick="openMenu()">
@@ -932,6 +1169,7 @@
         let menuItems = [];
         let orders = JSON.parse(localStorage.getItem('customer_orders')) || [];
         let currentCategory = 'all';
+        let searchQuery = '';
 
         // ============ LOAD MENU FROM SUPABASE ============
         async function loadMenuFromSupabase() {
@@ -1009,19 +1247,49 @@
             ];
         }
 
+        // ============ SEARCH FUNCTION ============
+        function searchMenu() {
+            const input = document.getElementById('searchInput');
+            searchQuery = input.value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clearBtn');
+
+            // Show/hide clear button
+            if (searchQuery.length > 0) {
+                clearBtn.classList.add('show');
+            } else {
+                clearBtn.classList.remove('show');
+            }
+
+            renderMenu(currentCategory);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearBtn').classList.remove('show');
+            searchQuery = '';
+            renderMenu(currentCategory);
+        }
+
         // ============ RENDER MENU ============
         function renderMenu(category = 'all') {
             const container = document.getElementById('menuItems');
             container.innerHTML = '';
 
-            const filtered = category === 'all' ?
+            let filtered = category === 'all' ?
                 menuItems :
                 menuItems.filter(item => item.category === category);
+
+            // Apply search filter
+            if (searchQuery) {
+                filtered = filtered.filter(item =>
+                    item.name.toLowerCase().includes(searchQuery)
+                );
+            }
 
             if (filtered.length === 0) {
                 container.innerHTML = `
                             <div style="text-align: center; color: rgba(255,255,255,0.6); padding: 40px 0; font-size: 18px;">
-                                Tidak ada menu di kategori ini
+                                ${searchQuery ? '🔍 Tidak ada menu yang cocok dengan "' + searchQuery + '"' : 'Tidak ada menu di kategori ini'}
                             </div>
                         `;
                 return;
