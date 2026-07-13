@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Resto POS - Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,63 +18,26 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: #1a1a1a;
-            padding: 20px;
+            background: #0a0a0a;
+            padding: 10px;
         }
 
-        /* Container utama dengan ukuran fixed seperti kode pertama */
-        .login-wrapper {
-            width: 1080px;
-            height: 1920px;
+        /* Container utama */
+        .login-container {
+            width: 100%;
+            max-width: 1080px;
+            aspect-ratio: 1080/1920;
             position: relative;
             background: white;
             overflow: hidden;
-            background-image: url('https://placehold.co/1080x1920/2d2d2d/ffffff?text=Background+Resto');
+            background-image: url('https://placehold.co/1080x1920/2d2d2d/ffffff?text=Restaurant+Background');
             background-size: cover;
             background-position: center;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
             border-radius: 20px;
-            transform: scale(0.8);
-            transform-origin: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
 
-        @media screen and (max-width: 1400px) {
-            .login-wrapper {
-                transform: scale(0.65);
-            }
-        }
-
-        @media screen and (max-width: 1200px) {
-            .login-wrapper {
-                transform: scale(0.55);
-            }
-        }
-
-        @media screen and (max-width: 992px) {
-            .login-wrapper {
-                transform: scale(0.45);
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .login-wrapper {
-                transform: scale(0.35);
-            }
-        }
-
-        @media screen and (max-width: 576px) {
-            .login-wrapper {
-                transform: scale(0.28);
-            }
-        }
-
-        @media screen and (max-width: 400px) {
-            .login-wrapper {
-                transform: scale(0.22);
-            }
-        }
-
-        /* Dekorasi background persis seperti kode pertama */
+        /* Dekorasi background */
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -82,26 +45,28 @@
             top: 0;
             left: 0;
             pointer-events: none;
+            overflow: hidden;
         }
 
         .deco-bg img {
             position: absolute;
+            opacity: 0.15;
         }
 
         .deco-bg img:nth-child(1) {
-            width: 1921.75px;
-            height: 1280.85px;
-            left: -100.84px;
-            top: 1919.85px;
+            width: 178%;
+            height: 66.7%;
+            left: -9.3%;
+            top: 99.99%;
             transform: rotate(-90deg);
             transform-origin: top left;
         }
 
         .deco-bg img:nth-child(2) {
-            width: 907.79px;
-            height: 854.71px;
-            left: 427px;
-            top: 799.28px;
+            width: 84%;
+            height: 44.5%;
+            left: 39.5%;
+            top: 41.6%;
             transform: rotate(-53deg);
             transform-origin: top left;
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
@@ -109,10 +74,10 @@
         }
 
         .deco-bg img:nth-child(3) {
-            width: 745.04px;
-            height: 744.16px;
-            left: 9.31px;
-            top: 1454px;
+            width: 69%;
+            height: 38.8%;
+            left: 0.86%;
+            top: 75.7%;
             transform: rotate(46deg);
             transform-origin: top left;
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
@@ -120,28 +85,28 @@
         }
 
         .deco-bg img:nth-child(4) {
-            width: 1092px;
-            height: 1092px;
-            left: 404px;
-            top: 1287px;
+            width: 101.1%;
+            height: 56.9%;
+            left: 37.4%;
+            top: 67%;
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
             filter: blur(3.50px);
         }
 
         .deco-bg img:nth-child(5) {
-            width: 1092px;
-            height: 1092px;
-            left: -688px;
-            top: -448px;
+            width: 101.1%;
+            height: 56.9%;
+            left: -63.7%;
+            top: -23.3%;
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
             filter: blur(3.50px);
         }
 
         .deco-bg img:nth-child(6) {
-            width: 796.58px;
-            height: 796.58px;
-            left: -249.42px;
-            top: 1117px;
+            width: 73.8%;
+            height: 41.5%;
+            left: -23.1%;
+            top: 58.2%;
             transform: rotate(17deg);
             transform-origin: top left;
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
@@ -149,147 +114,159 @@
         }
 
         .deco-bg img:nth-child(7) {
-            width: 796.58px;
-            height: 796.58px;
-            left: 778.58px;
-            top: 216px;
+            width: 73.8%;
+            height: 41.5%;
+            left: 72.1%;
+            top: 11.25%;
             transform: rotate(17deg);
             transform-origin: top left;
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
             filter: blur(3.50px);
         }
 
-        /* Overlay gelap */
+        /* Overlay */
         .overlay {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
             pointer-events: none;
-        }
-
-        /* Elemen hijau seperti kode pertama - CUSTOMER */
-        .box-customer {
-            width: 887px;
-            height: 507px;
-            left: 88px;
-            top: 502px;
-            position: absolute;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 5;
-        }
-
-        .box-customer:hover {
-            transform: scale(1.02);
-            opacity: 1;
-            box-shadow: 0 10px 40px rgba(152, 200, 28, 0.4);
-        }
-
-        .box-customer .label {
-            color: white;
-            font-size: 65px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-        }
-
-        /* Elemen hijau seperti kode pertama - KARYAWAN */
-        .box-karyawan {
-            width: 887px;
-            height: 507px;
-            left: 88px;
-            top: 1092px;
-            position: absolute;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 5;
-        }
-
-        .box-karyawan:hover {
-            transform: scale(1.02);
-            opacity: 1;
-            box-shadow: 0 10px 40px rgba(152, 200, 28, 0.4);
-        }
-
-        .box-karyawan .label {
-            color: white;
-            font-size: 65px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-        }
-
-        /* Judul WILUJENG SUMPING */
-        .title-main {
-            width: 601px;
-            height: 284px;
-            left: 427px;
-            top: 135px;
-            position: absolute;
-            text-align: center;
-            color: white;
-            font-size: 80px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            z-index: 5;
-            line-height: 1.2;
-            letter-spacing: 3px;
-        }
-
-        .title-main small {
-            font-size: 40px;
-            display: block;
-            font-weight: 400;
-            opacity: 0.9;
         }
 
         /* Logo di kiri atas */
         .logo-top {
             position: absolute;
-            left: 46px;
-            top: 135px;
+            left: 4.3%;
+            top: 7%;
             z-index: 10;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .logo-top img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+            width: clamp(40px, 7.4%, 80px);
+            height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
         .logo-top .brand-text {
             color: white;
-            font-size: 32px;
+            font-size: clamp(16px, 2.96%, 32px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            white-space: nowrap;
         }
 
         .logo-top .brand-text span {
             color: #98C81C;
+        }
+
+        /* Judul Utama */
+        .title-main {
+            position: absolute;
+            left: 39.5%;
+            top: 7%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            font-size: clamp(24px, 7.4%, 80px);
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            z-index: 5;
+            line-height: 1.1;
+            letter-spacing: 2px;
+            width: 55.6%;
+        }
+
+        .title-main small {
+            font-size: clamp(14px, 3.7%, 40px);
+            display: block;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* Box Customer */
+        .box-customer {
+            position: absolute;
+            width: 82.1%;
+            height: 26.4%;
+            left: 8.15%;
+            top: 26.15%;
+            background: #98C81C;
+            border-radius: 65px;
+            opacity: 0.92;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
+        }
+
+        .box-customer:hover {
+            transform: scale(1.03);
+            opacity: 1;
+            box-shadow: 0 12px 50px rgba(152, 200, 28, 0.5);
+        }
+
+        .box-customer:active {
+            transform: scale(0.97);
+        }
+
+        .box-customer .label {
+            color: white;
+            font-size: clamp(24px, 6%, 65px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+            padding: 10px;
+        }
+
+        /* Box Karyawan */
+        .box-karyawan {
+            position: absolute;
+            width: 82.1%;
+            height: 26.4%;
+            left: 8.15%;
+            top: 56.9%;
+            background: #98C81C;
+            border-radius: 65px;
+            opacity: 0.92;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
+        }
+
+        .box-karyawan:hover {
+            transform: scale(1.03);
+            opacity: 1;
+            box-shadow: 0 12px 50px rgba(152, 200, 28, 0.5);
+        }
+
+        .box-karyawan:active {
+            transform: scale(0.97);
+        }
+
+        .box-karyawan .label {
+            color: white;
+            font-size: clamp(24px, 6%, 65px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+            padding: 10px;
         }
 
         /* Modal Login */
@@ -299,12 +276,14 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 100;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 20px;
         }
 
         .login-modal.active {
@@ -313,34 +292,40 @@
 
         .login-box {
             background: white;
-            padding: 50px;
+            padding: clamp(25px, 4.6%, 50px);
             border-radius: 65px;
-            width: 500px;
-            max-width: 90%;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            width: min(500px, 90%);
+            max-height: 95vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
             animation: slideUp 0.4s ease;
+            position: relative;
         }
 
         @keyframes slideUp {
             from {
-                transform: translateY(50px);
+                transform: translateY(50px) scale(0.95);
                 opacity: 0;
             }
             to {
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
                 opacity: 1;
             }
         }
 
         .login-box .close-btn {
-            float: right;
+            position: absolute;
+            right: 20px;
+            top: 20px;
             background: none;
             border: none;
             font-size: 30px;
             cursor: pointer;
             color: #999;
             transition: all 0.3s;
-            padding: 0 10px;
+            line-height: 1;
+            padding: 5px 10px;
+            z-index: 10;
         }
 
         .login-box .close-btn:hover {
@@ -350,14 +335,14 @@
 
         .login-box .icon {
             text-align: center;
-            font-size: 50px;
+            font-size: clamp(40px, 4.6%, 50px);
             margin-bottom: 5px;
         }
 
         .login-box h2 {
             text-align: center;
             color: #2c3e50;
-            font-size: 28px;
+            font-size: clamp(22px, 2.6%, 28px);
             font-weight: 700;
             margin-bottom: 5px;
         }
@@ -365,36 +350,34 @@
         .login-box .subtitle {
             text-align: center;
             color: #7f8c8d;
-            font-size: 14px;
-            margin-bottom: 25px;
+            font-size: clamp(12px, 1.3%, 14px);
+            margin-bottom: 20px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             color: #2c3e50;
-            font-size: 14px;
+            font-size: clamp(12px, 1.3%, 14px);
         }
 
-        .form-group input,
-        .form-group select {
+        .form-group input {
             width: 100%;
-            padding: 12px 16px;
+            padding: clamp(10px, 1.1%, 12px) clamp(12px, 1.5%, 16px);
             border: 2px solid #e0e0e0;
             border-radius: 12px;
-            font-size: 14px;
+            font-size: clamp(13px, 1.3%, 14px);
             font-family: 'Poppins', sans-serif;
             transition: all 0.3s;
             background: #f8f9fa;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
+        .form-group input:focus {
             border-color: #98C81C;
             outline: none;
             background: white;
@@ -409,16 +392,17 @@
         }
 
         .role-selector button {
-            padding: 10px 8px;
+            padding: clamp(8px, 0.9%, 10px) clamp(4px, 0.7%, 8px);
             border: 2px solid #e0e0e0;
             border-radius: 12px;
             background: #f8f9fa;
             cursor: pointer;
-            font-size: 12px;
+            font-size: clamp(10px, 1.1%, 12px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             transition: all 0.3s;
             color: #555;
+            white-space: nowrap;
         }
 
         .role-selector button:hover {
@@ -437,13 +421,13 @@
 
         .btn-login {
             width: 100%;
-            padding: 14px;
+            padding: clamp(12px, 1.3%, 14px);
             background: #98C81C;
             color: white;
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: clamp(14px, 1.5%, 16px);
             font-weight: 700;
             font-family: 'Poppins', sans-serif;
             transition: all 0.3s;
@@ -456,6 +440,10 @@
             box-shadow: 0 8px 25px rgba(152, 200, 28, 0.3);
         }
 
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
         .error {
             background: #f8d7da;
             color: #721c24;
@@ -466,13 +454,13 @@
             display: none;
             font-weight: 600;
             border: 1px solid #f5c6cb;
-            font-size: 14px;
+            font-size: clamp(12px, 1.3%, 14px);
         }
 
         .info-cred {
             text-align: center;
             margin-top: 15px;
-            font-size: 11px;
+            font-size: clamp(10px, 1%, 11px);
             color: #7f8c8d;
             background: #f8f9fa;
             padding: 10px;
@@ -483,50 +471,226 @@
             color: #98C81C;
         }
 
-        /* Responsive untuk ukuran layar kecil */
-        @media screen and (max-width: 1080px) {
-            .login-wrapper {
-                transform: scale(0.7);
-            }
+        /* Scrollbar styling */
+        .login-box::-webkit-scrollbar {
+            width: 5px;
         }
 
-        @media screen and (max-width: 768px) {
-            .login-wrapper {
-                transform: scale(0.5);
-            }
+        .login-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
         }
 
-        @media screen and (max-width: 576px) {
-            .login-wrapper {
-                transform: scale(0.35);
-            }
+        .login-box::-webkit-scrollbar-thumb {
+            background: #98C81C;
+            border-radius: 10px;
         }
 
-        @media screen and (max-width: 400px) {
-            .login-wrapper {
-                transform: scale(0.25);
-            }
-        }
-
-        /* Untuk tablet landscape */
+        /* Responsive untuk berbagai ukuran layar */
+        
+        /* Tablet Landscape */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .login-wrapper {
-                transform: scale(0.5);
+            .login-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+            }
+        }
+
+        /* Tablet Portrait */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .login-container {
+                max-width: 100%;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+            }
+        }
+
+        /* HP Large */
+        @media screen and (max-width: 767px) {
+            .login-container {
+                max-width: 100%;
+                aspect-ratio: 1080/1920;
+                border-radius: 12px;
+            }
+
+            .login-box {
+                border-radius: 40px;
+                padding: 25px;
+            }
+
+            .role-selector {
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+
+            .role-selector button {
+                font-size: 10px;
+                padding: 8px 4px;
+                border-radius: 8px;
+            }
+
+            .box-customer,
+            .box-karyawan {
+                border-radius: 40px;
+            }
+        }
+
+        /* HP Medium */
+        @media screen and (max-width: 480px) {
+            .login-container {
+                border-radius: 10px;
+            }
+
+            .login-box {
+                border-radius: 30px;
+                padding: 20px;
+                width: 95%;
+            }
+
+            .login-box .close-btn {
+                right: 15px;
+                top: 15px;
+                font-size: 24px;
+            }
+
+            .role-selector {
+                gap: 4px;
+            }
+
+            .role-selector button {
+                font-size: 9px;
+                padding: 6px 3px;
+                border-radius: 6px;
+            }
+
+            .box-customer,
+            .box-karyawan {
+                border-radius: 30px;
+            }
+
+            .form-group input {
+                padding: 8px 12px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+
+            .btn-login {
+                padding: 10px;
+                font-size: 13px;
+                border-radius: 8px;
+            }
+        }
+
+        /* HP Small */
+        @media screen and (max-width: 360px) {
+            .login-box {
+                padding: 15px;
+                border-radius: 25px;
+            }
+
+            .login-box .close-btn {
+                right: 10px;
+                top: 10px;
+                font-size: 20px;
+            }
+
+            .role-selector {
+                grid-template-columns: 1fr 1fr;
+                gap: 3px;
+            }
+
+            .role-selector button {
+                font-size: 8px;
+                padding: 5px 2px;
+                border-radius: 5px;
+            }
+
+            .box-customer,
+            .box-karyawan {
+                border-radius: 25px;
+            }
+
+            .box-customer .label,
+            .box-karyawan .label {
+                font-size: 18px;
+            }
+        }
+
+        /* Untuk layar sangat kecil */
+        @media screen and (max-height: 700px) and (orientation: portrait) {
+            .login-box {
+                padding: 20px;
+                border-radius: 30px;
+            }
+
+            .box-customer .label,
+            .box-karyawan .label {
+                font-size: 20px;
+            }
+
+            .title-main {
+                font-size: 22px;
+            }
+
+            .title-main small {
+                font-size: 12px;
+            }
+        }
+
+        /* Landscape mode di HP */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .login-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 10px;
+            }
+
+            .login-box {
+                padding: 15px 20px;
+                border-radius: 25px;
+                max-height: 90vh;
+            }
+
+            .box-customer .label,
+            .box-karyawan .label {
+                font-size: 18px;
+            }
+
+            .title-main {
+                font-size: 18px;
+            }
+
+            .title-main small {
+                font-size: 10px;
+            }
+
+            .logo-top .brand-text {
+                font-size: 14px;
+            }
+
+            .logo-top img {
+                width: 30px;
+            }
+
+            .role-selector button {
+                font-size: 8px;
+                padding: 4px 3px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="login-wrapper">
+    <div class="login-container">
         <!-- Dekorasi background -->
         <div class="deco-bg">
-            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" />
-            <img src="https://placehold.co/908x855/2d2d2d/ffffff?text=" alt="" />
-            <img src="https://placehold.co/745x744/2d2d2d/ffffff?text=" alt="" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" />
+            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/908x855/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/745x744/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
         </div>
 
         <!-- Overlay -->
@@ -534,7 +698,7 @@
 
         <!-- Logo -->
         <div class="logo-top">
-            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo" />
+            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
             <div class="brand-text">Resto<span>POS</span></div>
         </div>
 
@@ -557,7 +721,7 @@
         <!-- Modal Login -->
         <div class="login-modal" id="loginModal">
             <div class="login-box">
-                <button class="close-btn" onclick="closeModal()">✕</button>
+                <button class="close-btn" onclick="closeModal()" aria-label="Close">✕</button>
                 <div class="icon">🍽️</div>
                 <h2 id="modalTitle">Login</h2>
                 <p class="subtitle" id="modalSubtitle">Masuk sebagai Customer</p>
@@ -576,11 +740,11 @@
                     </div>
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" id="username" placeholder="Masukkan username" required>
+                        <input type="text" id="username" placeholder="Masukkan username" required autocomplete="username">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" id="password" placeholder="Masukkan password" required>
+                        <input type="password" id="password" placeholder="Masukkan password" required autocomplete="current-password">
                     </div>
                     <button type="submit" class="btn-login">Login</button>
                 </form>
@@ -595,7 +759,7 @@
     <script>
         let selectedRole = 'Waiter';
         let userType = 'Customer';
-        let modal = document.getElementById('loginModal');
+        const modal = document.getElementById('loginModal');
 
         function selectRole(el) {
             document.querySelectorAll('.role-selector button').forEach(b => b.classList.remove('active'));
@@ -639,6 +803,13 @@
             }
         });
 
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
         function handleLogin(e) {
             e.preventDefault();
             const username = document.getElementById('username').value;
@@ -651,6 +822,7 @@
                 
                 closeModal();
                 
+                // Redirect based on role
                 if (selectedRole === 'Customer') {
                     window.location.href = 'customer_order.html';
                 } else {
@@ -672,6 +844,16 @@
                 document.getElementById('loginForm').dispatchEvent(new Event('submit'));
             }
         });
+
+        // Prevent zoom on double tap for mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
