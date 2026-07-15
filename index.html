@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RestoPOS - Login</title>
+    <title>RestoPOS</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -22,25 +22,28 @@
             padding: 10px;
         }
 
-        .login-container {
+        .landing-container {
             width: 100%;
             max-width: 1080px;
             aspect-ratio: 1080/1920;
             position: relative;
-            background: white;
+            background: #98C81C;
             overflow: hidden;
-            background-image: url('https://placehold.co/1080x1920/2d2d2d/ffffff?text=Restaurant+Background');
-            background-size: cover;
-            background-position: center;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .landing-container:active {
+            transform: scale(0.98);
         }
 
         .deco-bg {
             position: absolute;
             width: 100%;
             height: 100%;
-            top: 0;
+            bottom: 0;
             left: 0;
             pointer-events: none;
             overflow: hidden;
@@ -48,491 +51,195 @@
 
         .deco-bg img {
             position: absolute;
-            opacity: 0.15;
-        }
-
-        .deco-bg img:nth-child(1) {
-            width: 178%;
-            height: 66.7%;
-            left: -9.3%;
-            top: 99.99%;
-            transform: rotate(-90deg);
-            transform-origin: top left;
-        }
-
-        .deco-bg img:nth-child(2) {
-            width: 84%;
-            height: 44.5%;
-            left: 39.5%;
-            top: 41.6%;
-            transform: rotate(-53deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(3) {
-            width: 69%;
-            height: 38.8%;
-            left: 0.86%;
-            top: 75.7%;
-            transform: rotate(46deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(4) {
-            width: 101.1%;
-            height: 56.9%;
-            left: 37.4%;
-            top: 67%;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(5) {
-            width: 101.1%;
-            height: 56.9%;
-            left: -63.7%;
-            top: -23.3%;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(6) {
-            width: 73.8%;
-            height: 41.5%;
-            left: -23.1%;
-            top: 58.2%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(7) {
-            width: 73.8%;
-            height: 41.5%;
-            left: 72.1%;
-            top: 11.25%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .overlay {
-            position: absolute;
             width: 100%;
-            height: 100%;
-            top: 0;
+            height: auto;
+            bottom: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.4);
+            opacity: 0.2;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.2);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: rgba(255,255,255,0.8);
+            font-size: clamp(12px, 1.5%, 18px);
+            font-weight: 400;
+            letter-spacing: 4px;
+        }
+
+        /* Logo besar di tengah */
+        .logo-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            padding: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .logo-center .logo-icon {
+            font-size: clamp(100px, 20%, 200px);
+            display: block;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+            filter: drop-shadow(0 10px 40px rgba(0,0,0,0.2));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .logo-center .brand-text {
+            color: white;
+            font-size: clamp(40px, 8%, 80px);
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            letter-spacing: 4px;
+        }
+
+        .logo-center .brand-text span {
+            color: #2d2d2d;
+        }
+
+        .logo-center .subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: clamp(14px, 2.5%, 28px);
+            margin-top: 10px;
+            font-weight: 400;
+            letter-spacing: 6px;
+        }
+
+        /* Decorative shapes */
+        .shape-1 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            top: -100px;
+            right: -100px;
             pointer-events: none;
         }
 
-        .btn-back {
+        .shape-2 {
             position: absolute;
-            left: 4.3%;
-            top: 7%;
-            z-index: 10;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(5px);
-            padding: 8px 18px;
-            border-radius: 50px;
-            border: 2px solid rgba(255,255,255,0.2);
-            color: white;
-            font-size: clamp(20px, 3%, 32px);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: none;
-            border: none;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            bottom: -50px;
+            left: -50px;
+            pointer-events: none;
         }
 
-        .btn-back:hover {
-            transform: scale(1.1);
-            color: #98C81C;
-        }
-
-        .btn-back:active {
-            transform: scale(0.95);
-        }
-
-        .logo-top {
+        .shape-3 {
             position: absolute;
-            left: 50%;
-            top: 7%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-top img {
-            width: clamp(40px, 7.4%, 80px);
-            height: auto;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
-        }
-
-        .logo-top .brand-text {
-            color: white;
-            font-size: clamp(16px, 2.96%, 32px);
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            white-space: nowrap;
-        }
-
-        .logo-top .brand-text span {
-            color: #98C81C;
-        }
-
-        .title-main {
-            position: absolute;
-            left: 39.5%;
-            top: 7%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: white;
-            font-size: clamp(24px, 7.4%, 80px);
-            font-weight: 700;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            z-index: 5;
-            line-height: 1.1;
-            letter-spacing: 2px;
-            width: 55.6%;
-        }
-
-        .box-customer {
-            position: absolute;
-            width: 82.1%;
-            height: 26.4%;
-            left: 8.15%;
-            top: 26.15%;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.92;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 5;
-            box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
-            border: 3px solid white;
-        }
-
-        .box-customer:hover {
-            transform: scale(1.03);
-            opacity: 1;
-            box-shadow: 0 12px 50px rgba(152, 200, 28, 0.5);
-        }
-
-        .box-customer:active {
-            transform: scale(0.97);
-        }
-
-        .box-customer .label {
-            color: white;
-            font-size: clamp(24px, 6%, 65px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-            padding: 10px;
-        }
-
-        .box-karyawan {
-            position: absolute;
-            width: 82.1%;
-            height: 26.4%;
-            left: 8.15%;
-            top: 56.9%;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.92;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 5;
-            box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
-            border: 3px solid white;
-        }
-
-        .box-karyawan:hover {
-            transform: scale(1.03);
-            opacity: 1;
-            box-shadow: 0 12px 50px rgba(152, 200, 28, 0.5);
-        }
-
-        .box-karyawan:active {
-            transform: scale(0.97);
-        }
-
-        .box-karyawan .label {
-            color: white;
-            font-size: clamp(24px, 6%, 65px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-            padding: 10px;
-        }
-
-        /* Modal Karyawan */
-        .karyawan-modal {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.75);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 20px;
-        }
-
-        .karyawan-modal.active {
-            display: flex;
-        }
-
-        .karyawan-box {
-            background: white;
-            padding: clamp(25px, 4.6%, 50px);
-            border-radius: 65px;
-            width: min(500px, 90%);
-            max-height: 95vh;
-            overflow-y: auto;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-            animation: slideUp 0.4s ease;
-            position: relative;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px) scale(0.95);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-        }
-
-        .karyawan-box .close-btn {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            background: none;
-            border: none;
-            font-size: 30px;
-            cursor: pointer;
-            color: #999;
-            transition: all 0.3s;
-            line-height: 1;
-            padding: 5px 10px;
-            z-index: 10;
-        }
-
-        .karyawan-box .close-btn:hover {
-            color: #333;
-            transform: rotate(90deg);
-        }
-
-        .karyawan-box .icon {
-            text-align: center;
-            font-size: clamp(40px, 4.6%, 50px);
-            margin-bottom: 5px;
-        }
-
-        .karyawan-box h2 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: clamp(22px, 2.6%, 28px);
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .karyawan-box .subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            font-size: clamp(12px, 1.3%, 14px);
-            margin-bottom: 20px;
-        }
-
-        .karyawan-box .error-msg {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            text-align: center;
-            display: none;
-            font-weight: 600;
-            border: 1px solid #f5c6cb;
-            font-size: clamp(12px, 1.3%, 14px);
-        }
-
-        .karyawan-box .form-group {
-            margin-bottom: 15px;
-        }
-
-        .karyawan-box .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #2c3e50;
-            font-size: clamp(12px, 1.3%, 14px);
-        }
-
-        .karyawan-box .form-group input {
-            width: 100%;
-            padding: clamp(10px, 1.1%, 12px) clamp(12px, 1.5%, 16px);
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: clamp(13px, 1.3%, 14px);
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s;
-            background: #f8f9fa;
-        }
-
-        .karyawan-box .form-group input:focus {
-            border-color: #98C81C;
-            outline: none;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(152, 200, 28, 0.1);
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: clamp(12px, 1.3%, 14px);
-            background: #98C81C;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: clamp(14px, 1.5%, 16px);
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s;
-            margin-top: 5px;
-        }
-
-        .btn-login:hover {
-            background: #7aa814;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(152, 200, 28, 0.3);
-        }
-
-        .btn-login:active {
-            transform: translateY(0);
-        }
-
-        .info-cred {
-            text-align: center;
-            margin-top: 15px;
-            font-size: clamp(10px, 1%, 11px);
-            color: #7f8c8d;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .info-cred strong {
-            color: #98C81C;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            top: 40%;
+            right: 10%;
+            pointer-events: none;
         }
 
         /* Responsive */
         @media screen and (max-width: 767px) {
-            .login-container {
+            .landing-container {
                 max-width: 100%;
                 aspect-ratio: 1080/1920;
                 border-radius: 12px;
             }
 
-            .box-customer,
-            .box-karyawan {
-                border-radius: 40px;
+            .logo-center .logo-icon {
+                font-size: 80px;
             }
 
-            .karyawan-box {
-                border-radius: 40px;
-                padding: 25px;
+            .logo-center .brand-text {
+                font-size: 32px;
             }
 
-            .btn-back {
-                padding: 4px 12px;
-                font-size: 16px;
-                top: 6%;
+            .logo-center .subtitle {
+                font-size: 12px;
+                letter-spacing: 4px;
+            }
+
+            .loading-text {
+                font-size: 10px;
             }
         }
 
         @media screen and (max-width: 480px) {
-            .login-container {
+            .landing-container {
                 border-radius: 10px;
             }
 
-            .box-customer,
-            .box-karyawan {
-                border-radius: 30px;
+            .logo-center .logo-icon {
+                font-size: 60px;
             }
 
-            .karyawan-box {
-                border-radius: 30px;
-                padding: 20px;
-                width: 95%;
-            }
-
-            .karyawan-box .close-btn {
-                right: 15px;
-                top: 15px;
+            .logo-center .brand-text {
                 font-size: 24px;
             }
 
-            .btn-back {
-                padding: 3px 10px;
-                font-size: 14px;
+            .logo-center .subtitle {
+                font-size: 10px;
+                letter-spacing: 3px;
             }
         }
 
         @media screen and (max-width: 360px) {
-            .box-customer,
-            .box-karyawan {
-                border-radius: 25px;
+            .logo-center .logo-icon {
+                font-size: 50px;
             }
 
-            .box-customer .label,
-            .box-karyawan .label {
-                font-size: 18px;
-            }
-
-            .karyawan-box {
-                border-radius: 25px;
-                padding: 15px;
-            }
-
-            .btn-back {
-                font-size: 12px;
-                padding: 2px 8px;
+            .logo-center .brand-text {
+                font-size: 20px;
             }
         }
 
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .login-container {
+            .landing-container {
                 max-width: 90vh;
                 aspect-ratio: 1080/1920;
                 border-radius: 15px;
@@ -540,143 +247,68 @@
         }
 
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .login-container {
+            .landing-container {
                 max-width: 90vh;
                 aspect-ratio: 1080/1920;
                 border-radius: 10px;
             }
 
-            .box-customer .label,
-            .box-karyawan .label {
-                font-size: 18px;
+            .logo-center .logo-icon {
+                font-size: 50px;
+                margin-bottom: 10px;
             }
 
-            .title-main {
-                font-size: 18px;
+            .logo-center .brand-text {
+                font-size: 20px;
             }
 
-            .logo-top .brand-text {
-                font-size: 14px;
+            .logo-center .subtitle {
+                font-size: 10px;
+                margin-top: 5px;
             }
 
-            .logo-top img {
-                width: 30px;
+            .loading-text {
+                font-size: 8px;
             }
 
-            .karyawan-box {
-                padding: 15px 20px;
-                border-radius: 25px;
-                max-height: 90vh;
-            }
-
-            .btn-back {
-                font-size: 12px;
-                padding: 2px 8px;
+            .spinner {
+                width: 25px;
+                height: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="landing-container" id="landingPage">
         <div class="deco-bg">
-            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/908x855/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/745x744/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/1080x769/2d2d2d/ffffff?text=Restaurant" alt="" loading="lazy" />
         </div>
 
-        <div class="overlay"></div>
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+        <div class="shape-3"></div>
 
-        <!-- Tombol Kembali -->
-        <button class="btn-back" onclick="window.location.href='index.html'">←</button>
-
-        <!-- Logo -->
-        <div class="logo-top">
-            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo RestoPOS" loading="lazy" />
+        <div class="logo-center">
+            <span class="logo-icon">🍽️</span>
             <div class="brand-text">Resto<span>POS</span></div>
+            <div class="subtitle">SISTEM PESANAN RESTORAN</div>
         </div>
 
-        <div class="title-main">
-            WILUJENG<br>SUMPING!
-        </div>
-
-        <div class="box-customer" onclick="window.location.href='customer_login.html'">
-            <div class="label">👤 CUSTOMER</div>
-        </div>
-
-        <div class="box-karyawan" onclick="openKaryawanModal()">
-            <div class="label">👨‍💼 KARYAWAN</div>
-        </div>
-
-        <!-- Modal Karyawan -->
-        <div class="karyawan-modal" id="karyawanModal">
-            <div class="karyawan-box">
-                <button class="close-btn" onclick="closeKaryawanModal()">✕</button>
-                <div class="icon">🔐</div>
-                <h2>Login Karyawan</h2>
-                <p class="subtitle">Masukkan password untuk mengakses</p>
-                
-                <div class="error-msg" id="karyawanError">⚠️ Password salah, coba lagi</div>
-                
-                <form id="karyawanForm" onsubmit="return handleKaryawanLogin(event)">
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="karyawanPassword" placeholder="Masukkan password" required autocomplete="current-password">
-                    </div>
-                    <button type="submit" class="btn-login">Login</button>
-                </form>
-                
-                <div class="info-cred">
-                    <p>🔑 Password: <strong>admin</strong></p>
-                </div>
-            </div>
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <div class="loading-text">MEMUAT...</div>
         </div>
     </div>
 
     <script>
-        const KARYAWAN_PASSWORD = 'admin';
+        // Auto redirect after 2.5 seconds
+        setTimeout(() => {
+            window.location.href = 'customer_login.html';
+        }, 2500);
 
-        function openKaryawanModal() {
-            document.getElementById('karyawanModal').classList.add('active');
-            document.getElementById('karyawanError').style.display = 'none';
-            document.getElementById('karyawanPassword').value = '';
-        }
-
-        function closeKaryawanModal() {
-            document.getElementById('karyawanModal').classList.remove('active');
-        }
-
-        function handleKaryawanLogin(e) {
-            e.preventDefault();
-            const password = document.getElementById('karyawanPassword').value;
-            
-            if (password === KARYAWAN_PASSWORD) {
-                localStorage.setItem('user_role', 'Karyawan');
-                window.location.href = 'dashboard.html';
-            } else {
-                document.getElementById('karyawanError').style.display = 'block';
-                setTimeout(() => {
-                    document.getElementById('karyawanError').style.display = 'none';
-                }, 3000);
-            }
-            return false;
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('karyawanModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeKaryawanModal();
-            }
-        });
-
-        // Enter key support
-        document.getElementById('karyawanPassword').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('karyawanForm').dispatchEvent(new Event('submit'));
-            }
+        // Bisa juga klik untuk langsung lanjut
+        document.getElementById('landingPage').addEventListener('click', function() {
+            window.location.href = 'customer_login.html';
         });
     </script>
 </body>
