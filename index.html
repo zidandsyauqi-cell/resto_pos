@@ -32,7 +32,7 @@
             cursor: pointer;
         }
 
-        /* Logo di tengah - BESAR */
+        /* Logo di tengah - SANGAT BESAR MENTOK KIRI KANAN */
         .logo-center {
             position: absolute;
             top: 50%;
@@ -40,10 +40,13 @@
             transform: translate(-50%, -50%);
             z-index: 10;
             text-align: center;
+            width: 100%;
+            padding: 0 10px;
         }
 
         .logo-center .logo-img {
-            width: clamp(300px, 50%, 550px);
+            width: 100%;
+            max-width: 100%;
             height: auto;
             display: block;
         }
@@ -90,19 +93,11 @@
                 aspect-ratio: 1080/1920;
                 border-radius: 12px;
             }
-
-            .logo-center .logo-img {
-                width: 250px;
-            }
         }
 
         @media screen and (max-width: 480px) {
             .landing-container {
                 border-radius: 10px;
-            }
-
-            .logo-center .logo-img {
-                width: 180px;
             }
 
             .spinner {
@@ -112,12 +107,6 @@
 
             .loading-text {
                 font-size: 8px;
-            }
-        }
-
-        @media screen and (max-width: 360px) {
-            .logo-center .logo-img {
-                width: 140px;
             }
         }
 
@@ -134,10 +123,6 @@
                 max-width: 90vh;
                 aspect-ratio: 1080/1920;
                 border-radius: 10px;
-            }
-
-            .logo-center .logo-img {
-                width: 150px;
             }
 
             .loading-text {
@@ -158,10 +143,10 @@
 </head>
 <body>
     <div class="landing-container" id="landingPage">
-        <!-- Logo di tengah - BESAR -->
+        <!-- Logo di tengah - SANGAT BESAR MENTOK KIRI KANAN -->
         <div class="logo-center">
             <img src="logo.png" alt="Jangkung Order" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-            <div style="display:none; font-size: clamp(150px, 25%, 300px);">🍽️</div>
+            <div style="display:none; font-size: clamp(200px, 40%, 500px);">🍽️</div>
         </div>
 
         <!-- Loading Spinner -->
