@@ -26,6 +26,16 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
+        /* Background utama dengan gambar bg.png */
+        .bg-utama {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: url('bg.png') center center / cover no-repeat;
+        }
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -34,10 +44,11 @@
             left: 0;
             pointer-events: none;
             overflow: hidden;
+            z-index: 1;
         }
         .deco-bg img {
             position: absolute;
-            opacity: 0.15;
+            opacity: 0.12;
         }
         .deco-bg img:nth-child(1) {
             width: 178%;
@@ -73,8 +84,9 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             pointer-events: none;
+            z-index: 2;
         }
         .logo-top {
             position: absolute;
@@ -358,6 +370,9 @@
 </head>
 <body>
     <div class="customer-container">
+        <!-- Background utama dengan bg.png -->
+        <div class="bg-utama"></div>
+
         <div class="deco-bg">
             <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
             <img src="https://placehold.co/995x995/2d2d2d/ffffff?text=" alt="" loading="lazy" />
@@ -372,8 +387,8 @@
         <div class="customer-name-display" id="customerNameDisplay">👤 <span id="namaCustomer">Customer</span></div>
         <div class="title-main">WILUJENG<br>SUMPING!</div>
 
-        <!-- MENU → customer_menu_detail.html -->
-        <div class="box-menu" onclick="window.location.href='customer_menu_detail.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama()) + '&id=1'">
+        <!-- MENU → customer_menu_list.html (halaman daftar menu) -->
+        <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             <div class="bg-hijau"></div>
             <div class="label-menu">📋 MENU</div>
             <div class="gambar1"><img src="https://placehold.co/530x445/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
