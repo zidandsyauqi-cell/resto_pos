@@ -88,45 +88,213 @@
             pointer-events: none;
             z-index: 2;
         }
-        .logo-top {
+
+        /* ===== HEADER: Logo Kiri + Teks Kanan ===== */
+        .header-top {
             position: absolute;
-            left: 50%;
+            left: 4.3%;
             top: 7%;
-            transform: translateX(-50%);
+            right: 4.3%;
             z-index: 10;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .logo-top img {
-            width: clamp(40px, 7.4%, 80px);
+        .header-top .logo-left {
+            width: clamp(100px, 38%, 413px);
             height: auto;
+            flex-shrink: 0;
+        }
+        .header-top .logo-left img {
+            width: 100%;
+            height: auto;
+            display: block;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
-        .logo-top .brand-text {
+        .header-top .title-right {
             color: white;
-            font-size: clamp(16px, 2.96%, 32px);
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            white-space: nowrap;
-        }
-        .logo-top .brand-text span { color: #98C81C; }
-        .title-main {
-            position: absolute;
-            left: 50%;
-            top: 7%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: white;
-            font-size: clamp(24px, 7.4%, 80px);
-            font-weight: 700;
+            font-size: clamp(28px, 9%, 100px);
+            font-weight: 600;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            z-index: 5;
             line-height: 1.1;
             letter-spacing: 2px;
-            width: 55.6%;
-            margin-top: 80px;
+            flex: 1;
         }
+
+        /* ===== BOX MENU ===== */
+        .box-menu {
+            position: absolute;
+            width: 82.2%;
+            height: 26.6%;
+            left: 8.9%;
+            top: 28.4%;
+            overflow: hidden;
+            border-radius: 65px;
+            z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .box-menu:hover { transform: scale(1.02); }
+        .box-menu:active { transform: scale(0.98); }
+        .box-menu .bg-hijau {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: #98C81C;
+            border-radius: 65px;
+            opacity: 0.92;
+            border: 3px solid white;
+        }
+        .box-menu .label-menu {
+            position: absolute;
+            left: 5%;
+            top: 15%;
+            text-align: center;
+            color: white;
+            font-size: clamp(28px, 6%, 65px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+        .box-menu .gambar1 {
+            position: absolute;
+            width: 52%;
+            height: 87%;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .box-menu .gambar1 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+        .box-menu .gambar2 {
+            position: absolute;
+            width: 47%;
+            height: 99%;
+            left: -14.5%;
+            top: 34.4%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .box-menu .gambar2 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+        .box-menu .gambar3 {
+            position: absolute;
+            width: 46%;
+            height: 100%;
+            left: 18%;
+            top: 37%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .box-menu .gambar3 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+
+        /* ===== BOX PESAN ===== */
+        .box-pesan {
+            position: absolute;
+            width: 82.2%;
+            height: 26.6%;
+            left: 8.9%;
+            top: 55%;
+            overflow: hidden;
+            border-radius: 65px;
+            z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .box-pesan:hover { transform: scale(1.02); }
+        .box-pesan:active { transform: scale(0.98); }
+        .box-pesan .bg-hijau {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: #98C81C;
+            border-radius: 65px;
+            opacity: 0.92;
+            border: 3px solid white;
+        }
+        .box-pesan .label-pesan {
+            position: absolute;
+            left: 5%;
+            top: 15%;
+            text-align: center;
+            color: white;
+            font-size: clamp(28px, 6%, 65px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+        .box-pesan .gambar4 {
+            position: absolute;
+            width: 56.4%;
+            height: 100%;
+            left: 18.4%;
+            top: 23.1%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .box-pesan .gambar4 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+        .box-pesan .gambar5 {
+            position: absolute;
+            width: 53.3%;
+            height: 93.6%;
+            left: 46.9%;
+            top: 69%;
+            transform: rotate(107deg);
+            transform-origin: top left;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .box-pesan .gambar5 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+        .box-pesan .gambar6 {
+            position: absolute;
+            width: 51.4%;
+            height: 81.8%;
+            left: 42.1%;
+            top: 52.9%;
+            transform: rotate(-10deg);
+            transform-origin: top left;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .box-pesan .gambar6 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+
+        /* ===== BOX STATUS ===== */
+        .box-status {
+            position: absolute;
+            width: 82.2%;
+            height: 8.5%;
+            left: 8.9%;
+            top: 87.7%;
+            background: #98C81C;
+            border-radius: 50px;
+            border: 3px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .box-status:hover { transform: scale(1.02); }
+        .box-status:active { transform: scale(0.98); }
+        .box-status .label-status {
+            color: white;
+            font-size: clamp(20px, 4.6%, 50px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        /* ===== MEJA & NAMA ===== */
         .meja-info {
             position: absolute;
             right: 4.3%;
@@ -159,198 +327,39 @@
             font-family: 'Poppins', sans-serif;
         }
         .customer-name-display span { color: #98C81C; }
-        .box-menu {
-            position: absolute;
-            width: 82.2%;
-            height: 28.6%;
-            left: 8.9%;
-            top: 24%;
-            overflow: hidden;
-            border-radius: 65px;
-            z-index: 5;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .box-menu:hover { transform: scale(1.02); }
-        .box-menu:active { transform: scale(0.98); }
-        .box-menu .bg-hijau {
-            position: absolute;
-            width: 99.9%;
-            height: 92.3%;
-            left: 0.1%;
-            top: 9.7%;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.92;
-            border: 3px solid white;
-        }
-        .box-menu .label-menu {
-            position: absolute;
-            left: 3.5%;
-            top: 14.2%;
-            text-align: center;
-            color: white;
-            font-size: clamp(24px, 6%, 65px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            z-index: 2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-        }
-        .box-menu .gambar1 {
-            position: absolute;
-            width: 59.7%;
-            height: 81.1%;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .box-menu .gambar1 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
-        .box-menu .gambar2 {
-            position: absolute;
-            width: 57.2%;
-            height: 92.2%;
-            left: -10.8%;
-            top: 35.3%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .box-menu .gambar2 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
-        .box-menu .gambar3 {
-            position: absolute;
-            width: 45%;
-            height: 74.9%;
-            left: 27.6%;
-            top: 44.1%;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .box-menu .gambar3 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
-        .box-pesan {
-            position: absolute;
-            width: 82.2%;
-            height: 28.6%;
-            left: 8.9%;
-            top: 55.7%;
-            overflow: hidden;
-            border-radius: 65px;
-            z-index: 5;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .box-pesan:hover { transform: scale(1.02); }
-        .box-pesan:active { transform: scale(0.98); }
-        .box-pesan .bg-hijau {
-            position: absolute;
-            width: 99.9%;
-            height: 92.3%;
-            left: 0.1%;
-            top: 9.7%;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.92;
-            border: 3px solid white;
-        }
-        .box-pesan .label-pesan {
-            position: absolute;
-            left: 3.5%;
-            top: 14.2%;
-            text-align: center;
-            color: white;
-            font-size: clamp(24px, 6%, 65px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            z-index: 2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-        }
-        .box-pesan .gambar4 {
-            position: absolute;
-            width: 56.4%;
-            height: 94.2%;
-            left: 18.4%;
-            top: 23.1%;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .box-pesan .gambar4 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
-        .box-pesan .gambar5 {
-            position: absolute;
-            width: 49.2%;
-            height: 79.1%;
-            left: 46.6%;
-            top: 60.4%;
-            transform: rotate(107deg);
-            transform-origin: top left;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .box-pesan .gambar5 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
-        .box-pesan .gambar6 {
-            position: absolute;
-            width: 61.4%;
-            height: 91.1%;
-            left: 45.4%;
-            top: 50.7%;
-            transform: rotate(-10deg);
-            transform-origin: top left;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .box-pesan .gambar6 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
-        .box-status {
-            position: absolute;
-            width: 82.2%;
-            height: 8.5%;
-            left: 8.9%;
-            top: 92.5%;
-            background: #98C81C;
-            border-radius: 65px;
-            border: 3px solid white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .box-status:hover { transform: scale(1.02); }
-        .box-status:active { transform: scale(0.98); }
-        .box-status .label-status {
-            color: white;
-            font-size: clamp(24px, 5%, 55px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-        }
+
+        /* ===== RESPONSIVE ===== */
         @media screen and (max-width: 767px) {
             .customer-container { max-width: 100%; aspect-ratio: 1080/1920; border-radius: 12px; }
             .box-menu, .box-pesan { border-radius: 40px; }
             .box-menu .bg-hijau, .box-pesan .bg-hijau { border-radius: 40px; }
-            .box-status { border-radius: 40px; height: 7%; top: 93%; }
+            .box-status { border-radius: 40px; height: 7%; top: 88.5%; }
             .box-status .label-status { font-size: 20px; }
             .meja-info { padding: 4px 12px; font-size: 12px; top: 6%; }
             .customer-name-display { padding: 4px 12px; font-size: 10px; top: 13%; }
+            .header-top .logo-left { width: 100px; }
+            .header-top .title-right { font-size: 24px; }
         }
         @media screen and (max-width: 480px) {
             .customer-container { border-radius: 10px; }
             .box-menu, .box-pesan { border-radius: 30px; }
             .box-menu .bg-hijau, .box-pesan .bg-hijau { border-radius: 30px; }
-            .box-status { border-radius: 30px; height: 6.5%; top: 93.5%; }
+            .box-status { border-radius: 30px; height: 6.5%; top: 89%; }
             .box-status .label-status { font-size: 16px; }
             .meja-info { padding: 3px 10px; font-size: 11px; }
             .customer-name-display { padding: 3px 10px; font-size: 9px; top: 13%; }
+            .header-top .logo-left { width: 70px; }
+            .header-top .title-right { font-size: 20px; }
         }
         @media screen and (max-width: 360px) {
             .box-menu, .box-pesan { border-radius: 25px; }
             .box-menu .bg-hijau, .box-pesan .bg-hijau { border-radius: 25px; }
-            .box-status { border-radius: 25px; height: 6%; top: 94%; }
+            .box-status { border-radius: 25px; height: 6%; top: 89.5%; }
             .box-status .label-status { font-size: 14px; }
             .meja-info { font-size: 10px; padding: 2px 8px; }
             .customer-name-display { font-size: 8px; padding: 2px 8px; top: 13%; }
+            .header-top .logo-left { width: 55px; }
+            .header-top .title-right { font-size: 16px; }
         }
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
             .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 15px; }
@@ -358,10 +367,9 @@
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 10px; }
             .box-menu .label-menu, .box-pesan .label-pesan { font-size: 18px; }
-            .title-main { font-size: 18px; }
-            .logo-top .brand-text { font-size: 14px; }
-            .logo-top img { width: 30px; }
-            .box-status { height: 8%; top: 92%; }
+            .header-top .title-right { font-size: 18px; }
+            .header-top .logo-left { width: 70px; }
+            .box-status { height: 8%; top: 88%; }
             .box-status .label-status { font-size: 16px; }
             .meja-info { font-size: 10px; padding: 2px 8px; }
             .customer-name-display { font-size: 8px; padding: 2px 8px; top: 13%; }
@@ -379,18 +387,23 @@
             <img src="https://placehold.co/832x832/2d2d2d/ffffff?text=" alt="" loading="lazy" />
         </div>
         <div class="overlay"></div>
-        <div class="logo-top">
-            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo Jangkung" loading="lazy" />
-            <div class="brand-text">Jangkung<span>Order</span></div>
-        </div>
-        <div class="meja-info" id="mejaInfo">🪑 Meja <span id="mejaNumber">1</span></div>
-        <div class="customer-name-display" id="customerNameDisplay">👤 <span id="namaCustomer">Customer</span></div>
-        <div class="title-main">WILUJENG<br>SUMPING!</div>
 
-        <!-- MENU → customer_menu_list.html (halaman daftar menu) -->
+        <!-- Meja & Nama -->
+        <div class="meja-info" id="mejaInfo">Meja <span id="mejaNumber">1</span></div>
+        <div class="customer-name-display" id="customerNameDisplay"><span id="namaCustomer">Customer</span></div>
+
+        <!-- HEADER: Logo Kiri + Teks Kanan -->
+        <div class="header-top">
+            <div class="logo-left">
+                <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/413x295/2d2d2d/ffffff?text=Logo'" />
+            </div>
+            <div class="title-right">WILUJENG<br>SUMPING!</div>
+        </div>
+
+        <!-- MENU → customer_menu_list.html -->
         <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             <div class="bg-hijau"></div>
-            <div class="label-menu">📋 MENU</div>
+            <div class="label-menu">MENU</div>
             <div class="gambar1"><img src="https://placehold.co/530x445/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
             <div class="gambar2"><img src="https://placehold.co/477x493/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
             <div class="gambar3"><img src="https://placehold.co/400x411/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
@@ -399,7 +412,7 @@
         <!-- PESAN → customer_order_list.html -->
         <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             <div class="bg-hijau"></div>
-            <div class="label-pesan">🛒 PESAN</div>
+            <div class="label-pesan">PESAN</div>
             <div class="gambar4"><img src="https://placehold.co/501x517/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
             <div class="gambar5"><img src="https://placehold.co/545x547/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
             <div class="gambar6"><img src="https://placehold.co/626x590/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
@@ -407,7 +420,7 @@
 
         <!-- STATUS PESANAN → customer_order_status.html -->
         <div class="box-status" onclick="window.location.href='customer_order_status.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
-            <div class="label-status">📊 STATUS PESANAN</div>
+            <div class="label-status">STATUS PESANAN</div>
         </div>
     </div>
 
