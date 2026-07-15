@@ -845,31 +845,37 @@
 
             try {
                 // Ambil semua pesanan yang sudah selesai
-                const { data, error } = await supabaseClient
+                const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
-                    .select(`
-                        id_order,
-                        no_struk,
-                        status_order,
-                        tanggal_order,
-                        waktu_order,
-                        orderdetails (
-                            nama,
-                            jumlah,
-                            harga_satuan,
-                            subtotal,
-                            note
-                        )
-                    `)
+                    .select('*')
                     .eq('status_order', 'Selesai')
                     .order('id_order', { ascending: false });
 
-                if (error) throw error;
+                if (ordersError) throw ordersError;
 
-                ordersData = data || [];
+                // Untuk setiap order, ambil detail
+                const ordersWithDetails = [];
+                for (const order of orders || []) {
+                    const { data: details, error: detailsError } = await supabaseClient
+                        .from('orderdetails')
+                        .select('*')
+                        .eq('no_struk', order.no_struk);
+
+                    if (detailsError) {
+                        console.warn('Error fetching details for', order.no_struk, detailsError);
+                    }
+
+                    ordersWithDetails.push({
+                        ...order,
+                        orderdetails: details || []
+                    });
+                }
+
+                ordersData = ordersWithDetails || [];
                 console.log('Orders loaded:', ordersData.length);
 
                 if (ordersData.length > 0) {
+                    // Tampilkan yang pertama (terbaru)
                     selectedOrder = ordersData[0];
                     renderOrder(selectedOrder);
                 } else {
@@ -909,7 +915,9 @@
                 order.orderdetails[0].nama || '-' :
                 '-';
 
-            const meja = '1'; // Default, bisa diambil dari id_table
+            // Cari nomor meja dari id_table (jika ada)
+            let meja = '1';
+            // Bisa ditambahkan query ke tabel tables jika diperlukan
 
             document.getElementById('namaDisplay').textContent = customerName;
             document.getElementById('mejaDisplay').textContent = 'Meja ' + meja;
@@ -977,13 +985,9 @@
         }
 
         function cetakStruk(noStruk) {
-            // Simulasi cetak struk
             showToast(`🖨️ Mencetak struk ${noStruk}...`);
-            
-            // Bisa juga menggunakan window.print() untuk print halaman
-            // setTimeout(() => {
-            //     window.print();
-            // }, 500);
+            // Bisa ditambahkan fungsi print
+            // setTimeout(() => { window.print(); }, 500);
         }
 
         // Cek login
