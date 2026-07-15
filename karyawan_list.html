@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jangkung Order - List Pesanan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0a0a0a;
+            padding: 10px;
+        }
+
+        .list-container {
+            width: 100%;
+            max-width: 1080px;
+            aspect-ratio: 1080/1920;
+            position: relative;
+            background: white;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+
+        .bg-utama {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: url('bg.png') center center / cover no-repeat;
+        }
+
+        .deco-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .deco-bg img {
+            position: absolute;
+            opacity: 0.15;
+        }
+
+        .deco-bg img:nth-child(1) {
+            width: 178%;
+            height: 66.7%;
+            left: -9.3%;
+            top: 99.99%;
+            transform: rotate(-90deg);
+            transform-origin: top left;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.35);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ===== HEADER ===== */
+        .header-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 12px 20px 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: white;
+            font-size: clamp(24px, 3.5%, 40px);
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn-back:hover {
+            transform: scale(1.1);
+            color: #98C81C;
+        }
+
+        .logo-header img {
+            width: clamp(40px, 7%, 70px);
+            height: auto;
+            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+        }
+
+        .brand-text {
+            color: white;
+            font-size: clamp(16px, 2.5%, 30px);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
+
+        .brand-text span {
+            color: #98C81C;
+        }
+
+        .btn-selesai {
+            background: #ED1B24;
+            border-radius: 50px;
+            border: 2px solid white;
+            padding: 6px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            font-size: clamp(14px, 2%, 26px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+        }
+
+        .btn-selesai:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        /* ===== JUDUL ===== */
+        .title-status {
+            position: absolute;
+            left: 50%;
+            top: 13%;
+            transform: translateX(-50%);
+            z-index: 5;
+            color: white;
+            font-size: clamp(28px, 7%, 85px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            text-align: center;
+            width: 80%;
+        }
+
+        /* ===== TABEL ===== */
+        .table-wrapper {
+            position: absolute;
+            top: 22%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 94%;
+            height: 72%;
+            z-index: 5;
+            border-radius: 45px;
+            border: 3px solid white;
+            padding: 15px 15px 10px 15px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .table-scroll {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .table-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .table-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .table-scroll::-webkit-scrollbar-thumb {
+            background: #98C81C;
+            border-radius: 10px;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 50px 130px 150px 100px;
+            gap: 5px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid white;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .table-header .col {
+            color: white;
+            font-size: clamp(14px, 2.5%, 28px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 50px 130px 150px 100px;
+            gap: 5px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: center;
+        }
+
+        .table-row .col {
+            color: white;
+            font-size: clamp(12px, 2%, 24px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            word-break: break-word;
+        }
+
+        .table-row .col .action-btns {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            padding: 4px 12px;
+            border-radius: 50px;
+            border: 3px solid white;
+            color: white;
+            font-size: clamp(10px, 1.2%, 14px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 50px;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-action.lihat {
+            background: #029BEE;
+        }
+
+        .btn-action.lihat:hover {
+            background: #0288d1;
+        }
+
+        .btn-action.hapus {
+            background: #e74c3c;
+        }
+
+        .btn-action.hapus:hover {
+            background: #c0392b;
+        }
+
+        .btn-action.selesai {
+            background: #2ecc71;
+        }
+
+        .btn-action.selesai:hover {
+            background: #27ae60;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 40px 0;
+            font-size: clamp(16px, 2.5%, 30px);
+            font-family: 'Schoolbell', cursive;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid #98C81C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #98C81C;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-family: 'Schoolbell', cursive;
+            font-size: clamp(12px, 1.6%, 20px);
+            z-index: 200;
+            display: none;
+            animation: slideUp 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast.error {
+            background: #e74c3c;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .list-container {
+                max-width: 100%;
+                aspect-ratio: 1080/1920;
+                border-radius: 12px;
+            }
+
+            .table-wrapper {
+                padding: 10px;
+                border-radius: 30px;
+            }
+
+            .table-header {
+                grid-template-columns: 30px 90px 100px 70px;
+                gap: 3px;
+            }
+
+            .table-row {
+                grid-template-columns: 30px 90px 100px 70px;
+                gap: 3px;
+                padding: 4px 0;
+            }
+
+            .table-header .col {
+                font-size: 11px;
+            }
+
+            .table-row .col {
+                font-size: 10px;
+            }
+
+            .btn-action {
+                padding: 2px 6px;
+                font-size: 8px;
+                min-width: 35px;
+            }
+
+            .title-status {
+                font-size: 20px;
+                top: 11%;
+            }
+
+            .btn-selesai {
+                padding: 4px 12px;
+                font-size: 11px;
+            }
+
+            .logo-header img {
+                width: 30px;
+            }
+
+            .brand-text {
+                font-size: 14px;
+            }
+
+            .btn-back {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .list-container {
+                border-radius: 10px;
+            }
+
+            .table-wrapper {
+                padding: 6px;
+                border-radius: 20px;
+                border-width: 2px;
+            }
+
+            .table-header {
+                grid-template-columns: 25px 65px 70px 55px;
+                gap: 2px;
+            }
+
+            .table-row {
+                grid-template-columns: 25px 65px 70px 55px;
+                gap: 2px;
+                padding: 3px 0;
+            }
+
+            .table-header .col {
+                font-size: 8px;
+            }
+
+            .table-row .col {
+                font-size: 8px;
+            }
+
+            .btn-action {
+                padding: 1px 4px;
+                font-size: 6px;
+                min-width: 25px;
+                border-width: 2px;
+            }
+
+            .title-status {
+                font-size: 16px;
+                top: 10%;
+            }
+
+            .btn-selesai {
+                padding: 3px 8px;
+                font-size: 9px;
+            }
+
+            .logo-header img {
+                width: 22px;
+            }
+
+            .brand-text {
+                font-size: 11px;
+            }
+
+            .btn-back {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .table-header {
+                grid-template-columns: 20px 50px 55px 40px;
+                gap: 1px;
+            }
+
+            .table-row {
+                grid-template-columns: 20px 50px 55px 40px;
+                gap: 1px;
+            }
+
+            .table-header .col {
+                font-size: 7px;
+            }
+
+            .table-row .col {
+                font-size: 7px;
+            }
+
+            .btn-action {
+                padding: 1px 3px;
+                font-size: 5px;
+                min-width: 20px;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .list-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .list-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 10px;
+            }
+
+            .table-wrapper {
+                padding: 6px 10px;
+                border-radius: 20px;
+                top: 18%;
+                height: 78%;
+            }
+
+            .table-header {
+                grid-template-columns: 30px 80px 90px 60px;
+            }
+
+            .table-row {
+                grid-template-columns: 30px 80px 90px 60px;
+                padding: 3px 0;
+            }
+
+            .table-header .col {
+                font-size: 10px;
+            }
+
+            .table-row .col {
+                font-size: 9px;
+            }
+
+            .btn-action {
+                padding: 1px 5px;
+                font-size: 7px;
+                min-width: 30px;
+            }
+
+            .title-status {
+                font-size: 18px;
+                top: 9%;
+            }
+
+            .btn-selesai {
+                padding: 3px 10px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="list-container">
+        <div class="bg-utama"></div>
+
+        <div class="deco-bg">
+            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+        </div>
+
+        <div class="overlay"></div>
+
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Memuat data...</div>
+        </div>
+
+        <!-- ===== HEADER ===== -->
+        <div class="header-top">
+            <div class="header-left">
+                <button class="btn-back" onclick="window.location.href='dashboard.html'">←</button>
+                <div class="logo-header">
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/55x55/98C81C/ffffff?text=🍽️'" />
+                </div>
+                <div class="brand-text">Jangkung<span>Order</span></div>
+            </div>
+            <button class="btn-selesai" onclick="selesaiSemua()">Selesai</button>
+        </div>
+
+        <!-- ===== JUDUL ===== -->
+        <div class="title-status">LIST PESANAN</div>
+
+        <!-- ===== TABEL ===== -->
+        <div class="table-wrapper">
+            <div class="table-header">
+                <div class="col">No</div>
+                <div class="col">Nomor Struk</div>
+                <div class="col">Nama Customer</div>
+                <div class="col">Aksi</div>
+            </div>
+            <div class="table-scroll" id="tableBody">
+                <div class="empty-state">🔄 Memuat data...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+    <script>
+        const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let ordersData = [];
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show';
+            if (isError) {
+                toast.classList.add('error');
+            }
+            setTimeout(() => {
+                toast.className = 'toast';
+            }, 3000);
+        }
+
+        async function loadOrders() {
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                // Ambil semua pesanan (termasuk yang sudah selesai)
+                const { data, error } = await supabaseClient
+                    .from('orders')
+                    .select(`
+                        id_order,
+                        no_struk,
+                        status_order,
+                        tanggal_order,
+                        waktu_order,
+                        orderdetails (
+                            nama
+                        )
+                    `)
+                    .order('id_order', { ascending: false });
+
+                if (error) throw error;
+
+                ordersData = data || [];
+                console.log('Orders loaded:', ordersData.length);
+                renderTable();
+
+            } catch (error) {
+                console.error('Error loading orders:', error);
+                showToast('⚠️ Gagal memuat data: ' + error.message, true);
+                document.getElementById('tableBody').innerHTML = `
+                    <div class="empty-state">
+                        ⚠️ Gagal memuat data<br>
+                        <span style="font-size:14px;color:rgba(255,255,255,0.3);">${error.message}</span>
+                    </div>
+                `;
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        function renderTable() {
+            const container = document.getElementById('tableBody');
+
+            if (!ordersData || ordersData.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        📋 Belum ada pesanan<br>
+                        <span style="font-size:14px;color:rgba(255,255,255,0.3);">Tunggu pesanan masuk</span>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            ordersData.forEach((order, index) => {
+                const customerName = order.orderdetails && order.orderdetails.length > 0 ?
+                    order.orderdetails[0].nama || '-' :
+                    '-';
+
+                const isSelesai = order.status_order === 'Selesai';
+
+                html += `
+                    <div class="table-row" style="${isSelesai ? 'opacity:0.5;' : ''}">
+                        <div class="col">${index + 1}</div>
+                        <div class="col">${order.no_struk || '-'}</div>
+                        <div class="col">${customerName}</div>
+                        <div class="col">
+                            <div class="action-btns">
+                                <button class="btn-action lihat" onclick="lihatDetail(${order.id_order})">👁️</button>
+                                ${!isSelesai ? `
+                                    <button class="btn-action selesai" onclick="selesaikanPesanan(${order.id_order}, '${order.no_struk}')">✔️</button>
+                                    <button class="btn-action hapus" onclick="deleteOrder(${order.id_order}, '${order.no_struk}')">🗑️</button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function lihatDetail(idOrder) {
+            // Cari order di data
+            const order = ordersData.find(o => o.id_order === idOrder);
+            if (!order) {
+                showToast('⚠️ Data tidak ditemukan', true);
+                return;
+            }
+
+            // Buat modal atau alert untuk detail
+            const customerName = order.orderdetails && order.orderdetails.length > 0 ?
+                order.orderdetails[0].nama || '-' :
+                '-';
+
+            const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
+            const dateStr = orderDate.toLocaleString('id-ID', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            alert(
+                `📋 DETAIL PESANAN\n\n` +
+                `Nomor Struk: ${order.no_struk}\n` +
+                `Customer: ${customerName}\n` +
+                `Tanggal: ${dateStr}\n` +
+                `Status: ${order.status_order}\n` +
+                `ID Order: ${order.id_order}`
+            );
+        }
+
+        async function selesaikanPesanan(idOrder, noStruk) {
+            if (!confirm(`Yakin ingin menyelesaikan pesanan ${noStruk}?`)) return;
+
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                const { error } = await supabaseClient
+                    .from('orders')
+                    .update({ status_order: 'Selesai' })
+                    .eq('id_order', idOrder);
+
+                if (error) throw error;
+
+                showToast(`✅ Pesanan ${noStruk} berhasil diselesaikan`);
+                await loadOrders();
+
+            } catch (error) {
+                console.error('Error finishing order:', error);
+                showToast('⚠️ Gagal menyelesaikan pesanan: ' + error.message, true);
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        async function deleteOrder(idOrder, noStruk) {
+            if (!confirm(`Yakin ingin menghapus pesanan ${noStruk}?`)) return;
+
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                // Hapus order details dulu
+                const { error: detailError } = await supabaseClient
+                    .from('orderdetails')
+                    .delete()
+                    .eq('id_order', idOrder);
+
+                if (detailError) throw detailError;
+
+                // Hapus order
+                const { error } = await supabaseClient
+                    .from('orders')
+                    .delete()
+                    .eq('id_order', idOrder);
+
+                if (error) throw error;
+
+                showToast(`✅ Pesanan ${noStruk} berhasil dihapus`);
+                await loadOrders();
+
+            } catch (error) {
+                console.error('Error deleting order:', error);
+                showToast('⚠️ Gagal menghapus pesanan: ' + error.message, true);
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        async function selesaiSemua() {
+            const pendingOrders = ordersData.filter(o => o.status_order !== 'Selesai');
+            if (pendingOrders.length === 0) {
+                showToast('✅ Semua pesanan sudah selesai!');
+                return;
+            }
+
+            if (!confirm(`Yakin ingin menyelesaikan semua ${pendingOrders.length} pesanan?`)) return;
+
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                let success = 0;
+                for (const order of pendingOrders) {
+                    const { error } = await supabaseClient
+                        .from('orders')
+                        .update({ status_order: 'Selesai' })
+                        .eq('id_order', order.id_order);
+
+                    if (!error) success++;
+                }
+
+                showToast(`✅ ${success} pesanan berhasil diselesaikan`);
+                await loadOrders();
+
+            } catch (error) {
+                console.error('Error finishing all orders:', error);
+                showToast('⚠️ Gagal menyelesaikan pesanan: ' + error.message, true);
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        // Cek login
+        if (localStorage.getItem('karyawan_logged_in') !== 'true') {
+            window.location.href = 'karyawan_login.html';
+        }
+
+        // Load data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOrders();
+            // Refresh setiap 15 detik
+            setInterval(loadOrders, 15000);
+        });
+    </script>
+</body>
+</html>
