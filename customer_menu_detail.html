@@ -91,19 +91,20 @@
             pointer-events: none;
         }
 
-        /* Tombol Back - Kembali ke halaman sebelumnya */
+        /* Tombol Back */
         .btn-back {
             position: absolute;
             left: 4.3%;
-            top: 5%;
+            top: 4%;
             z-index: 10;
             background: none;
             border: none;
             color: white;
-            font-size: clamp(30px, 4%, 50px);
+            font-size: clamp(28px, 4.5%, 55px);
             cursor: pointer;
             transition: all 0.3s;
             padding: 5px 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .btn-back:hover { transform: scale(1.1); color: #98C81C; }
 
@@ -111,7 +112,7 @@
         .logo-top {
             position: absolute;
             left: 50%;
-            top: 5%;
+            top: 4%;
             transform: translateX(-50%);
             z-index: 10;
             display: flex;
@@ -119,13 +120,13 @@
             gap: 10px;
         }
         .logo-top img {
-            width: clamp(35px, 6%, 70px);
+            width: clamp(40px, 7%, 70px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
         .logo-top .brand-text {
             color: white;
-            font-size: clamp(14px, 2.5%, 28px);
+            font-size: clamp(16px, 3.5%, 40px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -157,36 +158,49 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
         }
 
-        /* Nama Menu - di bawah gambar */
+        /* Nama Menu */
         .menu-name {
             position: absolute;
             left: 4%;
             top: 54.7%;
             z-index: 5;
             color: white;
-            font-size: clamp(28px, 7.9%, 85px);
+            font-size: clamp(28px, 8.5%, 85px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-shadow: 0 2px 20px rgba(0,0,0,0.3);
             line-height: 1.2;
-            max-width: 90%;
+            max-width: 92%;
         }
 
-        /* Deskripsi - di bawah nama */
+        /* Harga Menu */
+        .menu-price {
+            position: absolute;
+            left: 4%;
+            top: 62.5%;
+            z-index: 5;
+            color: #98C81C;
+            font-size: clamp(20px, 5%, 50px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Deskripsi */
         .menu-desc {
             position: absolute;
             left: 4.9%;
-            top: 61.4%;
+            top: 68%;
             width: 90.2%;
             z-index: 5;
             color: white;
-            font-size: clamp(16px, 4.6%, 50px);
+            font-size: clamp(14px, 4.2%, 45px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: justify;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             line-height: 1.5;
-            max-height: 30%;
+            max-height: 28%;
             overflow-y: auto;
             padding-right: 10px;
         }
@@ -194,33 +208,35 @@
         .menu-desc::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
         .menu-desc::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
-        /* Tombol ke PESAN - HANYA TOMBOL INI + BACK */
-        .btn-ke-pesan {
+        /* Tombol Kembali ke Menu */
+        .btn-back-menu {
             position: absolute;
             bottom: 5%;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
             width: 82.2%;
-            padding: clamp(14px, 2.5%, 28px);
+            padding: clamp(12px, 2.5%, 28px);
             background: #98C81C;
             border: 3px solid white;
             border-radius: 100px;
             color: white;
-            font-size: clamp(22px, 4.6%, 55px);
+            font-size: clamp(18px, 4.2%, 50px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
             box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
+            text-decoration: none;
+            display: inline-block;
         }
-        .btn-ke-pesan:hover {
+        .btn-back-menu:hover {
             background: #7aa814;
             transform: translateX(-50%) scale(1.02);
             box-shadow: 0 12px 40px rgba(152, 200, 28, 0.4);
         }
-        .btn-ke-pesan:active { transform: translateX(-50%) scale(0.98); }
+        .btn-back-menu:active { transform: translateX(-50%) scale(0.98); }
 
         /* Error display */
         .error-display {
@@ -260,11 +276,12 @@
         @media screen and (max-width: 767px) {
             .detail-container { max-width: 100%; aspect-ratio: 1080/1920; border-radius: 12px; }
             .menu-image { height: 50%; }
-            .menu-name { top: 52%; font-size: 28px; }
-            .menu-desc { top: 59%; font-size: 16px; max-height: 25%; }
-            .btn-ke-pesan { bottom: 3%; padding: 12px; font-size: 20px; }
-            .btn-back { padding: 4px 12px; font-size: 16px; top: 4%; }
-            .logo-top { top: 4%; }
+            .menu-name { top: 52%; font-size: 26px; }
+            .menu-price { top: 60%; font-size: 18px; }
+            .menu-desc { top: 65%; font-size: 14px; max-height: 25%; }
+            .btn-back-menu { bottom: 3%; padding: 12px; font-size: 18px; }
+            .btn-back { padding: 4px 12px; font-size: 16px; top: 3%; }
+            .logo-top { top: 3%; }
             .logo-top .brand-text { font-size: 14px; }
             .logo-top img { width: 30px; }
             .error-display { padding: 20px; }
@@ -275,11 +292,12 @@
         @media screen and (max-width: 480px) {
             .detail-container { border-radius: 10px; }
             .menu-image { height: 45%; }
-            .menu-name { top: 50%; font-size: 22px; }
-            .menu-desc { top: 57%; font-size: 14px; max-height: 25%; }
-            .btn-ke-pesan { bottom: 2%; padding: 10px; font-size: 17px; }
+            .menu-name { top: 49%; font-size: 20px; }
+            .menu-price { top: 56%; font-size: 16px; }
+            .menu-desc { top: 61%; font-size: 12px; max-height: 25%; }
+            .btn-back-menu { bottom: 2%; padding: 10px; font-size: 15px; }
             .btn-back { padding: 3px 10px; font-size: 14px; }
-            .logo-top { top: 4%; }
+            .logo-top { top: 3%; }
             .error-display { padding: 15px; }
             .error-display .error-icon { font-size: 28px; }
             .error-display .error-title { font-size: 16px; }
@@ -287,26 +305,12 @@
 
         @media screen and (max-width: 360px) {
             .menu-image { height: 40%; }
-            .menu-name { top: 48%; font-size: 18px; }
-            .menu-desc { top: 55%; font-size: 12px; max-height: 25%; }
-            .btn-ke-pesan { padding: 8px; font-size: 15px; }
+            .menu-name { top: 46%; font-size: 17px; }
+            .menu-price { top: 53%; font-size: 14px; }
+            .menu-desc { top: 58%; font-size: 11px; max-height: 25%; }
+            .btn-back-menu { padding: 8px; font-size: 13px; }
             .btn-back { font-size: 12px; padding: 2px 8px; }
             .logo-top .brand-text { font-size: 11px; }
-            .logo-top img { width: 25px; }
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .detail-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 15px; }
-        }
-
-        @media screen and (max-height: 500px) and (orientation: landscape) {
-            .detail-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 10px; }
-            .menu-image { height: 40%; }
-            .menu-name { top: 46%; font-size: 18px; }
-            .menu-desc { top: 52%; font-size: 12px; max-height: 20%; }
-            .btn-ke-pesan { bottom: 2%; padding: 6px; font-size: 13px; }
-            .btn-back { font-size: 12px; padding: 2px 8px; }
-            .logo-top .brand-text { font-size: 12px; }
             .logo-top img { width: 25px; }
         }
     </style>
@@ -325,7 +329,7 @@
         <div class="overlay"></div>
 
         <!-- Tombol Back -->
-        <button class="btn-back" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
+        <button class="btn-back" onclick="window.location.href='menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
 
         <!-- Logo -->
         <div class="logo-top">
@@ -342,20 +346,21 @@
         <!-- Nama Menu -->
         <div class="menu-name" id="menuName">-</div>
 
+        <!-- Harga Menu -->
+        <div class="menu-price" id="menuPrice">-</div>
+
         <!-- Deskripsi -->
         <div class="menu-desc" id="menuDesc">Memuat deskripsi...</div>
 
-        <!-- Tombol ke PESAN - HANYA INI -->
-        <button class="btn-ke-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
-            🛒 PESAN SEKARANG
-        </button>
+        <!-- Tombol Kembali ke Menu -->
+        <a class="btn-back-menu" href="#" id="btnBackMenu">📋 KEMBALI KE MENU</a>
 
         <!-- Error Display -->
         <div class="error-display" id="errorDisplay" style="display:none;">
             <span class="error-icon">⚠️</span>
             <div class="error-title">Menu Tidak Ditemukan</div>
             <div class="error-desc" id="errorDesc">Menu tidak tersedia. Silakan pilih menu lain.</div>
-            <a href="customer_order_list.html?meja=1" class="btn-retry">🛒 Ke Halaman Pesan</a>
+            <a href="menu_list.html?meja=1" class="btn-retry">📋 Kembali ke Menu</a>
         </div>
     </div>
 
@@ -369,40 +374,45 @@
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
             const meja = params.get('meja');
-            if (meja && !isNaN(meja) && meja > 0) { return meja; }
-            const savedMeja = localStorage.getItem('meja_number');
-            if (savedMeja) { return savedMeja; }
+            if (meja && !isNaN(meja) && meja > 0) return meja;
+            const saved = localStorage.getItem('meja_number');
+            if (saved) return saved;
             return '1';
         }
 
         function getNama() {
             const params = new URLSearchParams(window.location.search);
             const nama = params.get('nama');
-            if (nama) { return nama; }
-            const savedNama = localStorage.getItem('customer_name');
-            if (savedNama) { return savedNama; }
+            if (nama) return nama;
+            const saved = localStorage.getItem('customer_name');
+            if (saved) return saved;
             return 'Customer';
         }
 
         function getImageUrl(imagePath) {
             if (!imagePath) return null;
-            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) { return imagePath; }
+            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
             try {
                 const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath);
                 return data.publicUrl;
             } catch (error) { return null; }
         }
 
+        function formatRupiah(price) {
+            return 'Rp ' + Number(price).toLocaleString('id-ID');
+        }
+
         function showError(title, desc) {
             const errorDisplay = document.getElementById('errorDisplay');
             document.getElementById('errorDesc').textContent = desc;
             const btnRetry = errorDisplay.querySelector('.btn-retry');
-            btnRetry.href = 'customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama());
+            btnRetry.href = 'menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama());
             errorDisplay.style.display = 'block';
             document.getElementById('menuName').style.display = 'none';
+            document.getElementById('menuPrice').style.display = 'none';
             document.getElementById('menuDesc').style.display = 'none';
             document.getElementById('menuImage').style.display = 'none';
-            document.querySelector('.btn-ke-pesan').style.display = 'none';
+            document.getElementById('btnBackMenu').style.display = 'none';
         }
 
         async function loadMenuDetail() {
@@ -437,7 +447,7 @@
 
                 const { data, error } = await supabaseClient
                     .from('menu')
-                    .select('nama_menu, detail, gambar')
+                    .select('nama_menu, detail, harga, gambar')
                     .eq('id_menu', parseInt(menuId))
                     .maybeSingle();
 
@@ -449,22 +459,27 @@
                     return;
                 }
 
-                document.getElementById('menuName').textContent = data.nama_menu.toUpperCase();
+                document.getElementById('menuName').textContent = data.nama_menu ? data.nama_menu.toUpperCase() : '-';
+                document.getElementById('menuPrice').textContent = data.harga ? formatRupiah(data.harga) : '-';
                 document.getElementById('menuDesc').textContent = data.detail || 'Tidak ada deskripsi untuk menu ini.';
 
-                let imageUrl = 'https://placehold.co/1080x1080/2d2d2d/ffffff?text=' + encodeURIComponent(data.nama_menu);
+                let imageUrl = 'https://placehold.co/1080x1080/2d2d2d/ffffff?text=' + encodeURIComponent(data.nama_menu || 'Menu');
                 if (data.gambar) {
                     const url = getImageUrl(data.gambar);
-                    if (url) { imageUrl = url; }
+                    if (url) imageUrl = url;
                 }
                 document.getElementById('menuImage').src = imageUrl;
-                document.getElementById('menuImage').alt = data.nama_menu;
+                document.getElementById('menuImage').alt = data.nama_menu || 'Menu';
+
+                // Set back button link
+                document.getElementById('btnBackMenu').href = 'menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama());
 
                 document.getElementById('errorDisplay').style.display = 'none';
                 document.getElementById('menuName').style.display = 'block';
+                document.getElementById('menuPrice').style.display = 'block';
                 document.getElementById('menuDesc').style.display = 'block';
                 document.getElementById('menuImage').style.display = 'block';
-                document.querySelector('.btn-ke-pesan').style.display = 'block';
+                document.getElementById('btnBackMenu').style.display = 'inline-block';
 
             } catch (error) {
                 console.error('Error loading menu detail:', error);
@@ -474,14 +489,13 @@
             }
         }
 
-        const mejaNumber = getMeja();
-        const namaCustomer = getNama();
-        localStorage.setItem('meja_number', mejaNumber);
-        localStorage.setItem('customer_name', namaCustomer);
+        // Save to localStorage
+        const meja = getMeja();
+        const nama = getNama();
+        localStorage.setItem('meja_number', meja);
+        localStorage.setItem('customer_name', nama);
 
-        window.addEventListener('DOMContentLoaded', function() {
-            loadMenuDetail();
-        });
+        document.addEventListener('DOMContentLoaded', loadMenuDetail);
     </script>
 </body>
 </html>
