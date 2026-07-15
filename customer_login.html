@@ -140,6 +140,27 @@
             color: #98C81C;
         }
 
+        .qr-badge {
+            position: absolute;
+            left: 50%;
+            top: 18%;
+            transform: translateX(-50%);
+            z-index: 10;
+            background: rgba(152, 200, 28, 0.2);
+            padding: 8px 24px;
+            border-radius: 50px;
+            border: 2px solid rgba(152, 200, 28, 0.3);
+            color: #98C81C;
+            font-size: clamp(12px, 1.5%, 18px);
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        .qr-badge span {
+            color: white;
+        }
+
         .login-content {
             position: absolute;
             width: 100%;
@@ -216,6 +237,12 @@
             box-shadow: 0 0 0 4px rgba(152, 200, 28, 0.1);
         }
 
+        .form-group input:disabled {
+            opacity: 0.7;
+            background: #e9ecef;
+            cursor: not-allowed;
+        }
+
         .btn-login {
             width: 100%;
             padding: 16px;
@@ -260,6 +287,16 @@
             color: rgba(255,255,255,0.8);
         }
 
+        .info-meja {
+            display: inline-block;
+            background: rgba(152, 200, 28, 0.15);
+            padding: 4px 16px;
+            border-radius: 50px;
+            color: #98C81C;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
         @media screen and (max-width: 767px) {
             .login-container {
                 max-width: 100%;
@@ -279,6 +316,12 @@
 
             .login-box .icon {
                 font-size: 45px;
+            }
+
+            .qr-badge {
+                top: 16%;
+                font-size: 11px;
+                padding: 6px 16px;
             }
         }
 
@@ -312,6 +355,12 @@
                 font-size: 15px;
                 border-radius: 8px;
             }
+
+            .qr-badge {
+                top: 15%;
+                font-size: 10px;
+                padding: 4px 12px;
+            }
         }
 
         @media screen and (max-width: 360px) {
@@ -334,6 +383,61 @@
                 padding: 10px;
                 font-size: 14px;
             }
+
+            .qr-badge {
+                top: 14%;
+                font-size: 9px;
+                padding: 3px 10px;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .login-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .login-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 10px;
+            }
+
+            .login-box {
+                padding: 20px 25px;
+                max-width: 380px;
+            }
+
+            .login-box h2 {
+                font-size: 22px;
+            }
+
+            .login-box .icon {
+                font-size: 35px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+            }
+
+            .form-group input {
+                padding: 8px 14px;
+                font-size: 14px;
+            }
+
+            .btn-login {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .qr-badge {
+                top: 14%;
+                font-size: 10px;
+                padding: 4px 12px;
+            }
         }
     </style>
 </head>
@@ -349,51 +453,117 @@
 
         <button class="btn-back" onclick="window.location.href='login.html'">←</button>
 
+        <div class="logo-top">
+            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo Jangkung" loading="lazy" />
+            <div class="brand-text">Jangkung<span>Order</span></div>
+        </div>
+
+        <!-- QR Badge -->
+        <div class="qr-badge" id="qrBadge">
+            📱 Scan QR · Meja <span id="qrMeja">-</span>
+        </div>
+
         <div class="login-content">
             <div class="login-box">
                 <div class="icon">🪑</div>
                 <h2>Masuk Sebagai Customer</h2>
-                <p class="subtitle">Silakan masukkan nomor meja Anda</p>
+                <p class="subtitle">Silakan masukkan nama Anda</p>
                 
-                <div id="errorMsg" class="error">⚠️ Nomor meja tidak boleh kosong!</div>
+                <div id="errorMsg" class="error">⚠️ Nama harus diisi!</div>
                 
                 <form id="loginForm" onsubmit="return handleLogin(event)">
                     <div class="form-group">
+                        <label>Nama Anda</label>
+                        <input type="text" id="namaInput" placeholder="Masukkan nama Anda" required autofocus>
+                    </div>
+                    <div class="form-group">
                         <label>Nomor Meja</label>
-                        <input type="number" id="mejaInput" placeholder="Masukkan nomor meja" required min="1" autofocus>
+                        <input type="number" id="mejaInput" placeholder="Masukkan nomor meja" required min="1" disabled>
+                        <div style="margin-top: 6px; font-size: 12px; color: #7f8c8d;">
+                            📌 Nomor meja sudah terdeteksi dari QR Code
+                        </div>
                     </div>
                     <button type="submit" class="btn-login">Masuk</button>
                 </form>
             </div>
             
             <div class="info">
-                <p>🪑 Masukkan nomor meja yang tersedia di restoran</p>
+                <p>📱 Scan QR Code di meja Anda untuk masuk otomatis</p>
             </div>
         </div>
     </div>
 
     <script>
+        // ============ AMBIL PARAMETER DARI URL ============
+        function getMejaFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const meja = params.get('meja');
+            if (meja && !isNaN(meja) && meja > 0) {
+                return meja;
+            }
+            return null;
+        }
+
+        function getNamaFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('nama') || '';
+        }
+
+        // ============ SET MEJA DARI URL ============
+        const mejaDariQR = getMejaFromURL();
+        const mejaInput = document.getElementById('mejaInput');
+        const qrMeja = document.getElementById('qrMeja');
+
+        if (mejaDariQR) {
+            mejaInput.value = mejaDariQR;
+            qrMeja.textContent = mejaDariQR;
+            document.getElementById('qrBadge').style.display = 'block';
+        } else {
+            // Jika tidak ada parameter meja, enable input meja
+            mejaInput.disabled = false;
+            mejaInput.placeholder = 'Masukkan nomor meja';
+            document.getElementById('qrBadge').style.display = 'none';
+        }
+
+        // ============ SET NAMA DARI URL ============
+        const namaDariURL = getNamaFromURL();
+        if (namaDariURL) {
+            document.getElementById('namaInput').value = namaDariURL;
+        }
+
+        // ============ HANDLE LOGIN ============
         function handleLogin(e) {
             e.preventDefault();
+            const nama = document.getElementById('namaInput').value.trim();
             const meja = document.getElementById('mejaInput').value;
             
-            if (!meja || meja < 1) {
+            if (!nama) {
                 document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('errorMsg').textContent = '⚠️ Nama harus diisi!';
                 setTimeout(() => {
                     document.getElementById('errorMsg').style.display = 'none';
                 }, 3000);
                 return false;
             }
             
-            localStorage.setItem('meja_number', meja);
-            localStorage.setItem('customer_name', 'Customer Meja ' + meja);
+            if (!meja || meja < 1) {
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('errorMsg').textContent = '⚠️ Nomor meja tidak valid!';
+                setTimeout(() => {
+                    document.getElementById('errorMsg').style.display = 'none';
+                }, 3000);
+                return false;
+            }
             
-            // LANGSUNG ke customer_order.html TANPA PASSWORD
-            window.location.href = 'customer_order.html?meja=' + meja;
+            localStorage.setItem('customer_name', nama);
+            localStorage.setItem('meja_number', meja);
+            
+            window.location.href = 'customer_order.html?meja=' + meja + '&nama=' + encodeURIComponent(nama);
             return false;
         }
 
-        document.getElementById('mejaInput').addEventListener('keypress', function(e) {
+        // Enter key support
+        document.getElementById('namaInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 document.getElementById('loginForm').dispatchEvent(new Event('submit'));
             }
