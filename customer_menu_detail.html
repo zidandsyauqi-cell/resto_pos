@@ -59,39 +59,6 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .error-display {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 50;
-            color: white;
-            text-align: center;
-            background: rgba(0,0,0,0.85);
-            padding: 30px 40px;
-            border-radius: 20px;
-            border: 2px solid #e74c3c;
-            max-width: 85%;
-        }
-        .error-display .error-icon { font-size: 50px; display: block; margin-bottom: 10px; }
-        .error-display .error-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-        .error-display .error-desc { font-size: 16px; color: rgba(255,255,255,0.7); }
-        .error-display .btn-retry {
-            margin-top: 15px;
-            padding: 10px 30px;
-            background: #98C81C;
-            border: none;
-            border-radius: 50px;
-            color: white;
-            font-size: 16px;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .error-display .btn-retry:hover { background: #7aa814; transform: scale(1.05); }
-
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -249,6 +216,34 @@
         }
         .btn-ke-pesan:active { transform: translateX(-50%) scale(0.98); }
 
+        /* Select Menu Dropdown */
+        .menu-selector {
+            position: absolute;
+            top: 5%;
+            right: 4.3%;
+            z-index: 10;
+        }
+        .menu-selector select {
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: clamp(12px, 1.5%, 18px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+            backdrop-filter: blur(5px);
+            max-width: 150px;
+        }
+        .menu-selector select:focus { border-color: #98C81C; }
+        .menu-selector select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* Responsive */
         @media screen and (max-width: 767px) {
             .detail-container { max-width: 100%; aspect-ratio: 1080/1920; border-radius: 12px; }
             .menu-image { height: 50%; }
@@ -259,9 +254,8 @@
             .logo-top { top: 4%; }
             .logo-top .brand-text { font-size: 14px; }
             .logo-top img { width: 30px; }
-            .error-display { padding: 20px; }
-            .error-display .error-icon { font-size: 36px; }
-            .error-display .error-title { font-size: 18px; }
+            .menu-selector { top: 4%; right: 3%; }
+            .menu-selector select { padding: 4px 10px; font-size: 10px; max-width: 100px; }
         }
 
         @media screen and (max-width: 480px) {
@@ -272,9 +266,7 @@
             .btn-ke-pesan { bottom: 2%; padding: 10px; font-size: 17px; }
             .btn-back { padding: 3px 10px; font-size: 14px; }
             .logo-top { top: 4%; }
-            .error-display { padding: 15px; }
-            .error-display .error-icon { font-size: 28px; }
-            .error-display .error-title { font-size: 16px; }
+            .menu-selector select { padding: 3px 8px; font-size: 9px; max-width: 80px; }
         }
 
         @media screen and (max-width: 360px) {
@@ -285,6 +277,7 @@
             .btn-back { font-size: 12px; padding: 2px 8px; }
             .logo-top .brand-text { font-size: 11px; }
             .logo-top img { width: 25px; }
+            .menu-selector select { padding: 2px 6px; font-size: 8px; max-width: 60px; }
         }
 
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
@@ -300,6 +293,7 @@
             .btn-back { font-size: 12px; padding: 2px 8px; }
             .logo-top .brand-text { font-size: 12px; }
             .logo-top img { width: 25px; }
+            .menu-selector select { padding: 2px 6px; font-size: 8px; max-width: 60px; }
         }
     </style>
 </head>
@@ -323,6 +317,13 @@
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
 
+        <!-- Select Menu -->
+        <div class="menu-selector">
+            <select id="menuSelect" onchange="changeMenu(this.value)">
+                <option value="">Pilih Menu...</option>
+            </select>
+        </div>
+
         <div class="menu-image">
             <img src="" alt="Menu" id="menuImage" />
             <div class="image-overlay"></div>
@@ -334,14 +335,6 @@
         <button class="btn-ke-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             🛒 PESAN SEKARANG
         </button>
-
-        <!-- Error Display -->
-        <div class="error-display" id="errorDisplay" style="display:none;">
-            <span class="error-icon">⚠️</span>
-            <div class="error-title">Menu Tidak Ditemukan</div>
-            <div class="error-desc" id="errorDesc">Menu dengan ID ini tidak tersedia. Silakan pilih menu lain.</div>
-            <a href="customer_order_list.html?meja=1" class="btn-retry">🛒 Ke Halaman Pesan</a>
-        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -350,6 +343,9 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
         const STORAGE_BUCKET = 'menu-images';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let allMenus = [];
+        let currentMenuId = null;
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -378,22 +374,72 @@
             } catch (error) { return null; }
         }
 
+        function changeMenu(menuId) {
+            if (menuId) {
+                window.location.href = 'customer_menu_detail.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama()) + '&id=' + menuId;
+            }
+        }
+
+        async function loadAllMenus() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('menu')
+                    .select('id_menu, nama_menu')
+                    .eq('status_ketersediaan', 'Tersedia')
+                    .order('nama_menu');
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    allMenus = data;
+                    const select = document.getElementById('menuSelect');
+                    select.innerHTML = '<option value="">Pilih Menu...</option>';
+                    data.forEach(menu => {
+                        const option = document.createElement('option');
+                        option.value = menu.id_menu;
+                        option.textContent = menu.nama_menu;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading menus:', error);
+            }
+        }
+
         async function loadMenuDetail() {
             const loading = document.getElementById('loadingOverlay');
-            const errorDisplay = document.getElementById('errorDisplay');
             loading.classList.add('active');
 
             try {
                 const params = new URLSearchParams(window.location.search);
-                const menuId = params.get('id');
+                let menuId = params.get('id');
+
+                // Jika tidak ada ID, ambil menu pertama yang tersedia
+                if (!menuId) {
+                    const { data, error } = await supabaseClient
+                        .from('menu')
+                        .select('id_menu')
+                        .eq('status_ketersediaan', 'Tersedia')
+                        .limit(1)
+                        .single();
+
+                    if (error) throw error;
+                    if (data) {
+                        menuId = data.id_menu;
+                        // Update URL tanpa reload
+                        const newUrl = window.location.pathname + '?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama()) + '&id=' + menuId;
+                        window.history.replaceState({}, '', newUrl);
+                    }
+                }
 
                 if (!menuId) {
-                    showError('ID Menu tidak ditemukan', 'Silakan pilih menu dari halaman pesan.');
+                    document.getElementById('menuName').textContent = 'BELUM ADA MENU';
+                    document.getElementById('menuDesc').textContent = 'Silakan tambahkan menu terlebih dahulu melalui dashboard karyawan.';
                     loading.classList.remove('active');
                     return;
                 }
 
-                console.log('Loading menu with ID:', menuId);
+                currentMenuId = menuId;
 
                 const { data, error } = await supabaseClient
                     .from('menu')
@@ -401,18 +447,18 @@
                     .eq('id_menu', parseInt(menuId))
                     .maybeSingle();
 
-                if (error) {
-                    console.error('Supabase error:', error);
-                    throw error;
-                }
+                if (error) throw error;
 
                 if (!data) {
-                    showError('Menu Tidak Ditemukan', 'Menu dengan ID ' + menuId + ' tidak tersedia. Silakan pilih menu lain.');
+                    document.getElementById('menuName').textContent = 'MENU TIDAK DITEMUKAN';
+                    document.getElementById('menuDesc').textContent = 'Menu dengan ID ' + menuId + ' tidak tersedia. Silakan pilih menu lain.';
                     loading.classList.remove('active');
                     return;
                 }
 
-                console.log('Menu data:', data);
+                // Update select
+                const select = document.getElementById('menuSelect');
+                select.value = menuId;
 
                 document.getElementById('menuName').textContent = data.nama_menu.toUpperCase();
                 document.getElementById('menuDesc').textContent = data.detail || 'Tidak ada deskripsi untuk menu ini.';
@@ -425,29 +471,13 @@
                 document.getElementById('menuImage').src = imageUrl;
                 document.getElementById('menuImage').alt = data.nama_menu;
 
-                // Sembunyikan error jika tampil
-                errorDisplay.style.display = 'none';
-
             } catch (error) {
                 console.error('Error loading menu detail:', error);
-                showError('Gagal Memuat Menu', 'Terjadi kesalahan saat memuat detail menu. Silakan coba lagi.');
+                document.getElementById('menuName').textContent = '⚠️ GAGAL MEMUAT';
+                document.getElementById('menuDesc').textContent = 'Terjadi kesalahan saat memuat detail menu. Silakan coba lagi.';
             } finally {
                 loading.classList.remove('active');
             }
-        }
-
-        function showError(title, desc) {
-            const errorDisplay = document.getElementById('errorDisplay');
-            document.getElementById('errorDesc').textContent = desc;
-            // Update tombol dengan meja yang benar
-            const btnRetry = errorDisplay.querySelector('.btn-retry');
-            btnRetry.href = 'customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama());
-            errorDisplay.style.display = 'block';
-            // Sembunyikan elemen menu
-            document.getElementById('menuName').style.display = 'none';
-            document.getElementById('menuDesc').style.display = 'none';
-            document.getElementById('menuImage').style.display = 'none';
-            document.querySelector('.btn-ke-pesan').style.display = 'none';
         }
 
         const mejaNumber = getMeja();
@@ -456,6 +486,7 @@
         localStorage.setItem('customer_name', namaCustomer);
 
         window.addEventListener('DOMContentLoaded', function() {
+            loadAllMenus();
             loadMenuDetail();
         });
     </script>
