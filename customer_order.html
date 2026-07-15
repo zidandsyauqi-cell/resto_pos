@@ -6,12 +6,7 @@
     <title>Jangkung Order - Customer</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
             display: flex;
@@ -21,7 +16,6 @@
             background: #0a0a0a;
             padding: 10px;
         }
-
         .customer-container {
             width: 100%;
             max-width: 1080px;
@@ -32,7 +26,6 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
-
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -42,12 +35,10 @@
             pointer-events: none;
             overflow: hidden;
         }
-
         .deco-bg img {
             position: absolute;
             opacity: 0.15;
         }
-
         .deco-bg img:nth-child(1) {
             width: 178%;
             height: 66.7%;
@@ -56,7 +47,6 @@
             transform: rotate(-90deg);
             transform-origin: top left;
         }
-
         .deco-bg img:nth-child(2) {
             width: 92.2%;
             height: 51.8%;
@@ -67,7 +57,6 @@
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
             filter: blur(3.50px);
         }
-
         .deco-bg img:nth-child(3) {
             width: 77.1%;
             height: 43.4%;
@@ -78,7 +67,6 @@
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
             filter: blur(3.50px);
         }
-
         .overlay {
             position: absolute;
             width: 100%;
@@ -88,7 +76,6 @@
             background: rgba(0, 0, 0, 0.3);
             pointer-events: none;
         }
-
         .logo-top {
             position: absolute;
             left: 50%;
@@ -99,13 +86,11 @@
             align-items: center;
             gap: 10px;
         }
-
         .logo-top img {
             width: clamp(40px, 7.4%, 80px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
-
         .logo-top .brand-text {
             color: white;
             font-size: clamp(16px, 2.96%, 32px);
@@ -113,11 +98,7 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
         }
-
-        .logo-top .brand-text span {
-            color: #98C81C;
-        }
-
+        .logo-top .brand-text span { color: #98C81C; }
         .title-main {
             position: absolute;
             left: 50%;
@@ -134,7 +115,6 @@
             width: 55.6%;
             margin-top: 80px;
         }
-
         .meja-info {
             position: absolute;
             right: 4.3%;
@@ -150,11 +130,7 @@
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
         }
-
-        .meja-info span {
-            color: #98C81C;
-        }
-
+        .meja-info span { color: #98C81C; }
         .customer-name-display {
             position: absolute;
             right: 4.3%;
@@ -170,11 +146,7 @@
             font-weight: 500;
             font-family: 'Poppins', sans-serif;
         }
-
-        .customer-name-display span {
-            color: #98C81C;
-        }
-
+        .customer-name-display span { color: #98C81C; }
         .box-menu {
             position: absolute;
             width: 82.2%;
@@ -187,15 +159,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .box-menu:hover {
-            transform: scale(1.02);
-        }
-
-        .box-menu:active {
-            transform: scale(0.98);
-        }
-
+        .box-menu:hover { transform: scale(1.02); }
+        .box-menu:active { transform: scale(0.98); }
         .box-menu .bg-hijau {
             position: absolute;
             width: 99.9%;
@@ -207,7 +172,6 @@
             opacity: 0.92;
             border: 3px solid white;
         }
-
         .box-menu .label-menu {
             position: absolute;
             left: 3.5%;
@@ -221,7 +185,6 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             letter-spacing: 2px;
         }
-
         .box-menu .gambar1 {
             position: absolute;
             width: 59.7%;
@@ -231,14 +194,7 @@
             overflow: hidden;
             z-index: 1;
         }
-
-        .box-menu .gambar1 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
+        .box-menu .gambar1 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
         .box-menu .gambar2 {
             position: absolute;
             width: 57.2%;
@@ -248,14 +204,7 @@
             overflow: hidden;
             z-index: 0;
         }
-
-        .box-menu .gambar2 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
+        .box-menu .gambar2 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
         .box-menu .gambar3 {
             position: absolute;
             width: 45%;
@@ -265,14 +214,7 @@
             overflow: hidden;
             z-index: 1;
         }
-
-        .box-menu .gambar3 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
+        .box-menu .gambar3 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
         .box-pesan {
             position: absolute;
             width: 82.2%;
@@ -285,15 +227,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .box-pesan:hover {
-            transform: scale(1.02);
-        }
-
-        .box-pesan:active {
-            transform: scale(0.98);
-        }
-
+        .box-pesan:hover { transform: scale(1.02); }
+        .box-pesan:active { transform: scale(0.98); }
         .box-pesan .bg-hijau {
             position: absolute;
             width: 99.9%;
@@ -305,7 +240,6 @@
             opacity: 0.92;
             border: 3px solid white;
         }
-
         .box-pesan .label-pesan {
             position: absolute;
             left: 3.5%;
@@ -319,7 +253,6 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             letter-spacing: 2px;
         }
-
         .box-pesan .gambar4 {
             position: absolute;
             width: 56.4%;
@@ -329,14 +262,7 @@
             overflow: hidden;
             z-index: 1;
         }
-
-        .box-pesan .gambar4 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
+        .box-pesan .gambar4 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
         .box-pesan .gambar5 {
             position: absolute;
             width: 49.2%;
@@ -348,14 +274,7 @@
             overflow: hidden;
             z-index: 0;
         }
-
-        .box-pesan .gambar5 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
+        .box-pesan .gambar5 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
         .box-pesan .gambar6 {
             position: absolute;
             width: 61.4%;
@@ -367,14 +286,7 @@
             overflow: hidden;
             z-index: 1;
         }
-
-        .box-pesan .gambar6 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
+        .box-pesan .gambar6 img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
         .box-status {
             position: absolute;
             width: 82.2%;
@@ -391,15 +303,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .box-status:hover {
-            transform: scale(1.02);
-        }
-
-        .box-status:active {
-            transform: scale(0.98);
-        }
-
+        .box-status:hover { transform: scale(1.02); }
+        .box-status:active { transform: scale(0.98); }
         .box-status .label-status {
             color: white;
             font-size: clamp(24px, 5%, 55px);
@@ -409,189 +314,45 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             letter-spacing: 2px;
         }
-
         @media screen and (max-width: 767px) {
-            .customer-container {
-                max-width: 100%;
-                aspect-ratio: 1080/1920;
-                border-radius: 12px;
-            }
-
-            .box-menu,
-            .box-pesan {
-                border-radius: 40px;
-            }
-
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau {
-                border-radius: 40px;
-            }
-
-            .box-status {
-                border-radius: 40px;
-                height: 7%;
-                top: 93%;
-            }
-
-            .box-status .label-status {
-                font-size: 20px;
-            }
-
-            .btn-back {
-                padding: 4px 12px;
-                font-size: 16px;
-                top: 6%;
-            }
-
-            .meja-info {
-                padding: 4px 12px;
-                font-size: 12px;
-                top: 6%;
-            }
-
-            .customer-name-display {
-                padding: 4px 12px;
-                font-size: 10px;
-                top: 13%;
-            }
+            .customer-container { max-width: 100%; aspect-ratio: 1080/1920; border-radius: 12px; }
+            .box-menu, .box-pesan { border-radius: 40px; }
+            .box-menu .bg-hijau, .box-pesan .bg-hijau { border-radius: 40px; }
+            .box-status { border-radius: 40px; height: 7%; top: 93%; }
+            .box-status .label-status { font-size: 20px; }
+            .meja-info { padding: 4px 12px; font-size: 12px; top: 6%; }
+            .customer-name-display { padding: 4px 12px; font-size: 10px; top: 13%; }
         }
-
         @media screen and (max-width: 480px) {
-            .customer-container {
-                border-radius: 10px;
-            }
-
-            .box-menu,
-            .box-pesan {
-                border-radius: 30px;
-            }
-
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau {
-                border-radius: 30px;
-            }
-
-            .box-status {
-                border-radius: 30px;
-                height: 6.5%;
-                top: 93.5%;
-            }
-
-            .box-status .label-status {
-                font-size: 16px;
-            }
-
-            .btn-back {
-                padding: 3px 10px;
-                font-size: 14px;
-            }
-
-            .meja-info {
-                padding: 3px 10px;
-                font-size: 11px;
-            }
-
-            .customer-name-display {
-                padding: 3px 10px;
-                font-size: 9px;
-                top: 13%;
-            }
+            .customer-container { border-radius: 10px; }
+            .box-menu, .box-pesan { border-radius: 30px; }
+            .box-menu .bg-hijau, .box-pesan .bg-hijau { border-radius: 30px; }
+            .box-status { border-radius: 30px; height: 6.5%; top: 93.5%; }
+            .box-status .label-status { font-size: 16px; }
+            .meja-info { padding: 3px 10px; font-size: 11px; }
+            .customer-name-display { padding: 3px 10px; font-size: 9px; top: 13%; }
         }
-
         @media screen and (max-width: 360px) {
-            .box-menu,
-            .box-pesan {
-                border-radius: 25px;
-            }
-
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau {
-                border-radius: 25px;
-            }
-
-            .box-status {
-                border-radius: 25px;
-                height: 6%;
-                top: 94%;
-            }
-
-            .box-status .label-status {
-                font-size: 14px;
-            }
-
-            .btn-back {
-                font-size: 12px;
-                padding: 2px 8px;
-            }
-
-            .meja-info {
-                font-size: 10px;
-                padding: 2px 8px;
-            }
-
-            .customer-name-display {
-                font-size: 8px;
-                padding: 2px 8px;
-                top: 13%;
-            }
+            .box-menu, .box-pesan { border-radius: 25px; }
+            .box-menu .bg-hijau, .box-pesan .bg-hijau { border-radius: 25px; }
+            .box-status { border-radius: 25px; height: 6%; top: 94%; }
+            .box-status .label-status { font-size: 14px; }
+            .meja-info { font-size: 10px; padding: 2px 8px; }
+            .customer-name-display { font-size: 8px; padding: 2px 8px; top: 13%; }
         }
-
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .customer-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-            }
+            .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 15px; }
         }
-
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .customer-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 10px;
-            }
-
-            .box-menu .label-menu,
-            .box-pesan .label-pesan {
-                font-size: 18px;
-            }
-
-            .title-main {
-                font-size: 18px;
-            }
-
-            .logo-top .brand-text {
-                font-size: 14px;
-            }
-
-            .logo-top img {
-                width: 30px;
-            }
-
-            .box-status {
-                height: 8%;
-                top: 92%;
-            }
-
-            .box-status .label-status {
-                font-size: 16px;
-            }
-
-            .btn-back {
-                font-size: 12px;
-                padding: 2px 8px;
-            }
-
-            .meja-info {
-                font-size: 10px;
-                padding: 2px 8px;
-            }
-
-            .customer-name-display {
-                font-size: 8px;
-                padding: 2px 8px;
-                top: 13%;
-            }
+            .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 10px; }
+            .box-menu .label-menu, .box-pesan .label-pesan { font-size: 18px; }
+            .title-main { font-size: 18px; }
+            .logo-top .brand-text { font-size: 14px; }
+            .logo-top img { width: 30px; }
+            .box-status { height: 8%; top: 92%; }
+            .box-status .label-status { font-size: 16px; }
+            .meja-info { font-size: 10px; padding: 2px 8px; }
+            .customer-name-display { font-size: 8px; padding: 2px 8px; top: 13%; }
         }
     </style>
 </head>
@@ -602,57 +363,34 @@
             <img src="https://placehold.co/995x995/2d2d2d/ffffff?text=" alt="" loading="lazy" />
             <img src="https://placehold.co/832x832/2d2d2d/ffffff?text=" alt="" loading="lazy" />
         </div>
-
         <div class="overlay"></div>
-
         <div class="logo-top">
             <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo Jangkung" loading="lazy" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
+        <div class="meja-info" id="mejaInfo">🪑 Meja <span id="mejaNumber">1</span></div>
+        <div class="customer-name-display" id="customerNameDisplay">👤 <span id="namaCustomer">Customer</span></div>
+        <div class="title-main">WILUJENG<br>SUMPING!</div>
 
-        <div class="meja-info" id="mejaInfo">
-            🪑 Meja <span id="mejaNumber">1</span>
-        </div>
-
-        <div class="customer-name-display" id="customerNameDisplay">
-            👤 <span id="namaCustomer">Customer</span>
-        </div>
-
-        <div class="title-main">
-            WILUJENG<br>SUMPING!
-        </div>
-
-        <!-- Box MENU - ke customer_menu.html -->
-        <div class="box-menu" onclick="window.location.href='customer_menu.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
+        <!-- MENU → customer_menu_detail.html -->
+        <div class="box-menu" onclick="window.location.href='customer_menu_detail.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama()) + '&id=1'">
             <div class="bg-hijau"></div>
             <div class="label-menu">📋 MENU</div>
-            <div class="gambar1">
-                <img src="https://placehold.co/530x445/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
-            <div class="gambar2">
-                <img src="https://placehold.co/477x493/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
-            <div class="gambar3">
-                <img src="https://placehold.co/400x411/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
+            <div class="gambar1"><img src="https://placehold.co/530x445/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
+            <div class="gambar2"><img src="https://placehold.co/477x493/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
+            <div class="gambar3"><img src="https://placehold.co/400x411/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
         </div>
 
-        <!-- Box PESAN - ke customer_order_list.html (keranjang) -->
+        <!-- PESAN → customer_order_list.html -->
         <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             <div class="bg-hijau"></div>
             <div class="label-pesan">🛒 PESAN</div>
-            <div class="gambar4">
-                <img src="https://placehold.co/501x517/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
-            <div class="gambar5">
-                <img src="https://placehold.co/545x547/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
-            <div class="gambar6">
-                <img src="https://placehold.co/626x590/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
+            <div class="gambar4"><img src="https://placehold.co/501x517/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
+            <div class="gambar5"><img src="https://placehold.co/545x547/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
+            <div class="gambar6"><img src="https://placehold.co/626x590/2d2d2d/ffffff?text=Food" alt="" loading="lazy" /></div>
         </div>
 
-        <!-- Box STATUS PESANAN - ke customer_order_status.html -->
+        <!-- STATUS PESANAN → customer_order_status.html -->
         <div class="box-status" onclick="window.location.href='customer_order_status.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             <div class="label-status">📊 STATUS PESANAN</div>
         </div>
@@ -662,35 +400,23 @@
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
             const meja = params.get('meja');
-            if (meja && !isNaN(meja) && meja > 0) {
-                return meja;
-            }
+            if (meja && !isNaN(meja) && meja > 0) { return meja; }
             const savedMeja = localStorage.getItem('meja_number');
-            if (savedMeja) {
-                return savedMeja;
-            }
+            if (savedMeja) { return savedMeja; }
             return '1';
         }
-
         function getNama() {
             const params = new URLSearchParams(window.location.search);
             const nama = params.get('nama');
-            if (nama) {
-                return nama;
-            }
+            if (nama) { return nama; }
             const savedNama = localStorage.getItem('customer_name');
-            if (savedNama) {
-                return savedNama;
-            }
+            if (savedNama) { return savedNama; }
             return 'Customer';
         }
-
         const mejaNumber = getMeja();
         const namaCustomer = getNama();
-        
         document.getElementById('mejaNumber').textContent = mejaNumber;
         document.getElementById('namaCustomer').textContent = namaCustomer;
-        
         localStorage.setItem('meja_number', mejaNumber);
         localStorage.setItem('customer_name', namaCustomer);
     </script>
