@@ -654,7 +654,6 @@
                 <div class="col">Aksi</div>
             </div>
             <div class="table-scroll" id="tableBody">
-                <!-- Data akan diisi oleh JavaScript -->
                 <div class="empty-state">🔄 Memuat data...</div>
             </div>
         </div>
@@ -706,24 +705,35 @@
             loading.classList.add('active');
 
             try {
-                const { data, error } = await supabaseClient
+                // Ambil orders dengan status tidak Selesai
+                const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
-                    .select(`
-                        id_order,
-                        no_struk,
-                        status_order,
-                        tanggal_order,
-                        waktu_order,
-                        orderdetails (
-                            nama
-                        )
-                    `)
+                    .select('*')
                     .neq('status_order', 'Selesai')
                     .order('id_order', { ascending: false });
 
-                if (error) throw error;
+                if (ordersError) throw ordersError;
 
-                ordersData = data || [];
+                // Untuk setiap order, ambil detail untuk mendapatkan nama customer
+                const ordersWithDetails = [];
+                for (const order of orders || []) {
+                    const { data: details, error: detailsError } = await supabaseClient
+                        .from('orderdetails')
+                        .select('nama')
+                        .eq('no_struk', order.no_struk)
+                        .limit(1);
+
+                    if (detailsError) {
+                        console.warn('Error fetching details for', order.no_struk, detailsError);
+                    }
+
+                    ordersWithDetails.push({
+                        ...order,
+                        customer_name: details && details.length > 0 ? details[0].nama : '-'
+                    });
+                }
+
+                ordersData = ordersWithDetails || [];
                 console.log('Orders loaded:', ordersData.length);
                 renderTable();
 
@@ -756,17 +766,13 @@
 
             let html = '';
             ordersData.forEach((order, index) => {
-                const customerName = order.orderdetails && order.orderdetails.length > 0 ?
-                    order.orderdetails[0].nama || '-' :
-                    '-';
-
                 const status = order.status_order || 'Diproses';
 
                 html += `
                     <div class="table-row">
                         <div class="col">${index + 1}</div>
                         <div class="col">${order.no_struk || '-'}</div>
-                        <div class="col">${customerName}</div>
+                        <div class="col">${order.customer_name}</div>
                         <div class="col">
                             <span class="status-badge ${getStatusClass(status)}">
                                 ${getStatusLabel(status)}
@@ -775,13 +781,13 @@
                         <div class="col">
                             <div class="action-btns">
                                 ${status === 'Diproses' ? `
-                                    <button class="btn-action siapkan" onclick="updateStatus(${order.id_order}, 'Siap')">Siapkan</button>
+                                    <button class="btn-action siapkan" onclick="updateStatus('${order.no_struk}', 'Siap')">Siapkan</button>
                                 ` : ''}
                                 ${status === 'Siap' ? `
-                                    <button class="btn-action selesai" onclick="updateStatus(${order.id_order}, 'Selesai')">Selesai</button>
+                                    <button class="btn-action selesai" onclick="updateStatus('${order.no_struk}', 'Selesai')">Selesai</button>
                                 ` : ''}
                                 ${status === 'Diproses' || status === 'Siap' ? `
-                                    <button class="btn-action hapus" onclick="deleteOrder(${order.id_order}, '${order.no_struk}')">Hapus</button>
+                                    <button class="btn-action hapus" onclick="deleteOrder('${order.no_struk}')">Hapus</button>
                                 ` : ''}
                             </div>
                         </div>
@@ -792,8 +798,8 @@
             container.innerHTML = html;
         }
 
-        async function updateStatus(idOrder, newStatus) {
-            if (!confirm(`Yakin ingin mengubah status menjadi ${newStatus}?`)) return;
+        async function updateStatus(noStruk, newStatus) {
+            if (!confirm(`Yakin ingin mengubah status ${noStruk} menjadi ${newStatus}?`)) return;
 
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
@@ -802,11 +808,11 @@
                 const { error } = await supabaseClient
                     .from('orders')
                     .update({ status_order: newStatus })
-                    .eq('id_order', idOrder);
+                    .eq('no_struk', noStruk);
 
                 if (error) throw error;
 
-                showToast(`✅ Status berhasil diubah menjadi ${newStatus}`);
+                showToast(`✅ Status ${noStruk} berhasil diubah menjadi ${newStatus}`);
                 await loadOrders();
 
             } catch (error) {
@@ -817,7 +823,7 @@
             }
         }
 
-        async function deleteOrder(idOrder, noStruk) {
+        async function deleteOrder(noStruk) {
             if (!confirm(`Yakin ingin menghapus pesanan ${noStruk}?`)) return;
 
             const loading = document.getElementById('loadingOverlay');
@@ -828,7 +834,7 @@
                 const { error: detailError } = await supabaseClient
                     .from('orderdetails')
                     .delete()
-                    .eq('id_order', idOrder);
+                    .eq('no_struk', noStruk);
 
                 if (detailError) throw detailError;
 
@@ -836,7 +842,7 @@
                 const { error } = await supabaseClient
                     .from('orders')
                     .delete()
-                    .eq('id_order', idOrder);
+                    .eq('no_struk', noStruk);
 
                 if (error) throw error;
 
@@ -869,7 +875,7 @@
                     const { error } = await supabaseClient
                         .from('orders')
                         .update({ status_order: 'Selesai' })
-                        .eq('id_order', order.id_order);
+                        .eq('no_struk', order.no_struk);
 
                     if (!error) success++;
                 }
