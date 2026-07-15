@@ -58,7 +58,6 @@
             opacity: 0.2;
         }
 
-        /* Loading Spinner */
         .loading-spinner {
             position: absolute;
             bottom: 10%;
@@ -92,7 +91,6 @@
             letter-spacing: 4px;
         }
 
-        /* Logo besar di tengah */
         .logo-center {
             position: absolute;
             top: 50%;
@@ -149,7 +147,6 @@
             letter-spacing: 6px;
         }
 
-        /* Decorative shapes */
         .shape-1 {
             position: absolute;
             width: 300px;
@@ -183,7 +180,6 @@
             pointer-events: none;
         }
 
-        /* Responsive */
         @media screen and (max-width: 767px) {
             .landing-container {
                 max-width: 100%;
@@ -301,12 +297,11 @@
     </div>
 
     <script>
-        // Auto redirect after 2.5 seconds
+        // Auto redirect after 2.5 seconds ke halaman pilihan
         setTimeout(() => {
             window.location.href = 'login.html';
         }, 2500);
 
-        // Bisa juga klik untuk langsung lanjut
         document.getElementById('landingPage').addEventListener('click', function() {
             window.location.href = 'login.html';
         });
