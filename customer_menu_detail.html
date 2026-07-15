@@ -91,6 +91,7 @@
             pointer-events: none;
         }
 
+        /* Tombol Back */
         .btn-back {
             position: absolute;
             left: 4.3%;
@@ -106,6 +107,7 @@
         }
         .btn-back:hover { transform: scale(1.1); color: #98C81C; }
 
+        /* Logo di atas */
         .logo-top {
             position: absolute;
             left: 50%;
@@ -130,6 +132,7 @@
         }
         .logo-top .brand-text span { color: #98C81C; }
 
+        /* Gambar Menu - Full width di atas */
         .menu-image {
             position: absolute;
             width: 100%;
@@ -154,6 +157,7 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
         }
 
+        /* Nama Menu - di bawah gambar */
         .menu-name {
             position: absolute;
             left: 4%;
@@ -168,6 +172,7 @@
             max-width: 90%;
         }
 
+        /* Deskripsi - di bawah nama */
         .menu-desc {
             position: absolute;
             left: 4.9%;
@@ -189,6 +194,7 @@
         .menu-desc::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
         .menu-desc::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
+        /* Tombol ke PESAN - tanpa Total & Selesai */
         .btn-ke-pesan {
             position: absolute;
             bottom: 5%;
@@ -216,32 +222,39 @@
         }
         .btn-ke-pesan:active { transform: translateX(-50%) scale(0.98); }
 
-        /* Select Menu Dropdown */
-        .menu-selector {
+        /* Error display */
+        .error-display {
             position: absolute;
-            top: 5%;
-            right: 4.3%;
-            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            color: white;
+            text-align: center;
+            background: rgba(0,0,0,0.85);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 2px solid #e74c3c;
+            max-width: 85%;
         }
-        .menu-selector select {
-            padding: 8px 16px;
+        .error-display .error-icon { font-size: 50px; display: block; margin-bottom: 10px; }
+        .error-display .error-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .error-display .error-desc { font-size: 16px; color: rgba(255,255,255,0.7); }
+        .error-display .btn-retry {
+            margin-top: 15px;
+            padding: 10px 30px;
+            background: #98C81C;
+            border: none;
             border-radius: 50px;
-            border: 2px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.7);
             color: white;
-            font-size: clamp(12px, 1.5%, 18px);
+            font-size: 16px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 500;
             cursor: pointer;
-            outline: none;
-            backdrop-filter: blur(5px);
-            max-width: 150px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
         }
-        .menu-selector select:focus { border-color: #98C81C; }
-        .menu-selector select option {
-            background: #1a1a1a;
-            color: white;
-        }
+        .error-display .btn-retry:hover { background: #7aa814; transform: scale(1.05); }
 
         /* Responsive */
         @media screen and (max-width: 767px) {
@@ -254,8 +267,9 @@
             .logo-top { top: 4%; }
             .logo-top .brand-text { font-size: 14px; }
             .logo-top img { width: 30px; }
-            .menu-selector { top: 4%; right: 3%; }
-            .menu-selector select { padding: 4px 10px; font-size: 10px; max-width: 100px; }
+            .error-display { padding: 20px; }
+            .error-display .error-icon { font-size: 36px; }
+            .error-display .error-title { font-size: 18px; }
         }
 
         @media screen and (max-width: 480px) {
@@ -266,7 +280,9 @@
             .btn-ke-pesan { bottom: 2%; padding: 10px; font-size: 17px; }
             .btn-back { padding: 3px 10px; font-size: 14px; }
             .logo-top { top: 4%; }
-            .menu-selector select { padding: 3px 8px; font-size: 9px; max-width: 80px; }
+            .error-display { padding: 15px; }
+            .error-display .error-icon { font-size: 28px; }
+            .error-display .error-title { font-size: 16px; }
         }
 
         @media screen and (max-width: 360px) {
@@ -277,7 +293,6 @@
             .btn-back { font-size: 12px; padding: 2px 8px; }
             .logo-top .brand-text { font-size: 11px; }
             .logo-top img { width: 25px; }
-            .menu-selector select { padding: 2px 6px; font-size: 8px; max-width: 60px; }
         }
 
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
@@ -293,7 +308,6 @@
             .btn-back { font-size: 12px; padding: 2px 8px; }
             .logo-top .brand-text { font-size: 12px; }
             .logo-top img { width: 25px; }
-            .menu-selector select { padding: 2px 6px; font-size: 8px; max-width: 60px; }
         }
     </style>
 </head>
@@ -310,31 +324,39 @@
 
         <div class="overlay"></div>
 
+        <!-- Tombol Back -->
         <button class="btn-back" onclick="window.location.href='customer_order.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
 
+        <!-- Logo -->
         <div class="logo-top">
             <img src="https://placehold.co/70x70/98C81C/ffffff?text=🍽️" alt="Logo Jangkung" loading="lazy" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
 
-        <!-- Select Menu -->
-        <div class="menu-selector">
-            <select id="menuSelect" onchange="changeMenu(this.value)">
-                <option value="">Pilih Menu...</option>
-            </select>
-        </div>
-
+        <!-- Gambar Menu -->
         <div class="menu-image">
             <img src="" alt="Menu" id="menuImage" />
             <div class="image-overlay"></div>
         </div>
 
+        <!-- Nama Menu -->
         <div class="menu-name" id="menuName">-</div>
+
+        <!-- Deskripsi -->
         <div class="menu-desc" id="menuDesc">Memuat deskripsi...</div>
 
+        <!-- Tombol ke PESAN - tanpa Total & Selesai -->
         <button class="btn-ke-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             🛒 PESAN SEKARANG
         </button>
+
+        <!-- Error Display -->
+        <div class="error-display" id="errorDisplay" style="display:none;">
+            <span class="error-icon">⚠️</span>
+            <div class="error-title">Menu Tidak Ditemukan</div>
+            <div class="error-desc" id="errorDesc">Menu tidak tersedia. Silakan pilih menu lain.</div>
+            <a href="customer_order_list.html?meja=1" class="btn-retry">🛒 Ke Halaman Pesan</a>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -345,7 +367,6 @@
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         let allMenus = [];
-        let currentMenuId = null;
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -374,36 +395,16 @@
             } catch (error) { return null; }
         }
 
-        function changeMenu(menuId) {
-            if (menuId) {
-                window.location.href = 'customer_menu_detail.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama()) + '&id=' + menuId;
-            }
-        }
-
-        async function loadAllMenus() {
-            try {
-                const { data, error } = await supabaseClient
-                    .from('menu')
-                    .select('id_menu, nama_menu')
-                    .eq('status_ketersediaan', 'Tersedia')
-                    .order('nama_menu');
-
-                if (error) throw error;
-
-                if (data && data.length > 0) {
-                    allMenus = data;
-                    const select = document.getElementById('menuSelect');
-                    select.innerHTML = '<option value="">Pilih Menu...</option>';
-                    data.forEach(menu => {
-                        const option = document.createElement('option');
-                        option.value = menu.id_menu;
-                        option.textContent = menu.nama_menu;
-                        select.appendChild(option);
-                    });
-                }
-            } catch (error) {
-                console.error('Error loading menus:', error);
-            }
+        function showError(title, desc) {
+            const errorDisplay = document.getElementById('errorDisplay');
+            document.getElementById('errorDesc').textContent = desc;
+            const btnRetry = errorDisplay.querySelector('.btn-retry');
+            btnRetry.href = 'customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama());
+            errorDisplay.style.display = 'block';
+            document.getElementById('menuName').style.display = 'none';
+            document.getElementById('menuDesc').style.display = 'none';
+            document.getElementById('menuImage').style.display = 'none';
+            document.querySelector('.btn-ke-pesan').style.display = 'none';
         }
 
         async function loadMenuDetail() {
@@ -421,25 +422,21 @@
                         .select('id_menu')
                         .eq('status_ketersediaan', 'Tersedia')
                         .limit(1)
-                        .single();
+                        .maybeSingle();
 
                     if (error) throw error;
                     if (data) {
                         menuId = data.id_menu;
-                        // Update URL tanpa reload
                         const newUrl = window.location.pathname + '?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama()) + '&id=' + menuId;
                         window.history.replaceState({}, '', newUrl);
                     }
                 }
 
                 if (!menuId) {
-                    document.getElementById('menuName').textContent = 'BELUM ADA MENU';
-                    document.getElementById('menuDesc').textContent = 'Silakan tambahkan menu terlebih dahulu melalui dashboard karyawan.';
+                    showError('Belum Ada Menu', 'Silakan tambahkan menu terlebih dahulu melalui dashboard karyawan.');
                     loading.classList.remove('active');
                     return;
                 }
-
-                currentMenuId = menuId;
 
                 const { data, error } = await supabaseClient
                     .from('menu')
@@ -450,15 +447,10 @@
                 if (error) throw error;
 
                 if (!data) {
-                    document.getElementById('menuName').textContent = 'MENU TIDAK DITEMUKAN';
-                    document.getElementById('menuDesc').textContent = 'Menu dengan ID ' + menuId + ' tidak tersedia. Silakan pilih menu lain.';
+                    showError('Menu Tidak Ditemukan', 'Menu dengan ID ' + menuId + ' tidak tersedia. Silakan pilih menu lain.');
                     loading.classList.remove('active');
                     return;
                 }
-
-                // Update select
-                const select = document.getElementById('menuSelect');
-                select.value = menuId;
 
                 document.getElementById('menuName').textContent = data.nama_menu.toUpperCase();
                 document.getElementById('menuDesc').textContent = data.detail || 'Tidak ada deskripsi untuk menu ini.';
@@ -471,10 +463,15 @@
                 document.getElementById('menuImage').src = imageUrl;
                 document.getElementById('menuImage').alt = data.nama_menu;
 
+                document.getElementById('errorDisplay').style.display = 'none';
+                document.getElementById('menuName').style.display = 'block';
+                document.getElementById('menuDesc').style.display = 'block';
+                document.getElementById('menuImage').style.display = 'block';
+                document.querySelector('.btn-ke-pesan').style.display = 'block';
+
             } catch (error) {
                 console.error('Error loading menu detail:', error);
-                document.getElementById('menuName').textContent = '⚠️ GAGAL MEMUAT';
-                document.getElementById('menuDesc').textContent = 'Terjadi kesalahan saat memuat detail menu. Silakan coba lagi.';
+                showError('Gagal Memuat Menu', 'Terjadi kesalahan saat memuat detail menu. Silakan coba lagi.');
             } finally {
                 loading.classList.remove('active');
             }
@@ -486,7 +483,6 @@
         localStorage.setItem('customer_name', namaCustomer);
 
         window.addEventListener('DOMContentLoaded', function() {
-            loadAllMenus();
             loadMenuDetail();
         });
     </script>
