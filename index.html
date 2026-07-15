@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Jangkung Order</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +12,6 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,7 +37,7 @@
             transform: scale(0.98);
         }
 
-        /* Gambar dekoratif di bawah - PERSIS SEPERTI DESAIN */
+        /* Gambar dekoratif di bawah */
         .deco-image {
             position: absolute;
             width: 1077px;
@@ -57,7 +55,7 @@
             opacity: 0.2;
         }
 
-        /* Logo di tengah */
+        /* Logo di tengah - ONLY LOGO */
         .logo-center {
             position: absolute;
             top: 50%;
@@ -65,38 +63,13 @@
             transform: translate(-50%, -50%);
             z-index: 10;
             text-align: center;
-            width: 100%;
-            padding: 20px;
         }
 
         .logo-center .logo-img {
-            width: clamp(120px, 22%, 240px);
+            width: clamp(150px, 25%, 300px);
             height: auto;
             display: block;
-            margin: 0 auto 20px;
             filter: drop-shadow(0 10px 40px rgba(0,0,0,0.15));
-        }
-
-        .logo-center .brand-text {
-            color: white;
-            font-size: clamp(40px, 8%, 80px);
-            font-weight: 800;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            letter-spacing: 4px;
-            line-height: 1.1;
-        }
-
-        .logo-center .brand-text span {
-            color: #2d2d2d;
-        }
-
-        .logo-center .subtitle {
-            color: rgba(255,255,255,0.85);
-            font-size: clamp(12px, 2.2%, 24px);
-            margin-top: 10px;
-            font-weight: 400;
-            letter-spacing: 6px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         /* Loading Spinner */
@@ -154,16 +127,7 @@
             }
 
             .logo-center .logo-img {
-                width: 100px;
-            }
-
-            .logo-center .brand-text {
-                font-size: 32px;
-            }
-
-            .logo-center .subtitle {
-                font-size: 11px;
-                letter-spacing: 4px;
+                width: 120px;
             }
         }
 
@@ -173,19 +137,7 @@
             }
 
             .logo-center .logo-img {
-                width: 80px;
-                margin-bottom: 12px;
-            }
-
-            .logo-center .brand-text {
-                font-size: 24px;
-                letter-spacing: 2px;
-            }
-
-            .logo-center .subtitle {
-                font-size: 9px;
-                letter-spacing: 3px;
-                margin-top: 6px;
+                width: 90px;
             }
 
             .spinner {
@@ -200,15 +152,7 @@
 
         @media screen and (max-width: 360px) {
             .logo-center .logo-img {
-                width: 65px;
-            }
-
-            .logo-center .brand-text {
-                font-size: 20px;
-            }
-
-            .logo-center .subtitle {
-                font-size: 8px;
+                width: 70px;
             }
         }
 
@@ -240,18 +184,7 @@
             }
 
             .logo-center .logo-img {
-                width: 60px;
-                margin-bottom: 10px;
-            }
-
-            .logo-center .brand-text {
-                font-size: 20px;
-            }
-
-            .logo-center .subtitle {
-                font-size: 9px;
-                margin-top: 5px;
-                letter-spacing: 3px;
+                width: 70px;
             }
 
             .loading-text {
@@ -272,17 +205,15 @@
 </head>
 <body>
     <div class="landing-container" id="landingPage">
-        <!-- Gambar dekoratif di bawah - PERSIS SEPERTI DESAIN -->
+        <!-- Gambar dekoratif di bawah -->
         <div class="deco-image">
             <img src="https://placehold.co/1077x769/2d2d2d/ffffff?text=Restaurant" alt="" loading="lazy" />
         </div>
 
-        <!-- Logo di tengah -->
+        <!-- Logo di tengah - ONLY LOGO -->
         <div class="logo-center">
             <img src="logo.png" alt="Jangkung Order" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-            <div style="display:none; font-size: clamp(80px, 15%, 150px);">🍽️</div>
-            <div class="brand-text">Jangkung<span>Order</span></div>
-            <div class="subtitle">SISTEM PESANAN RESTORAN</div>
+            <div style="display:none; font-size: clamp(100px, 18%, 200px);">🍽️</div>
         </div>
 
         <!-- Loading Spinner -->
