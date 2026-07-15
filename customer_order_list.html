@@ -1210,11 +1210,34 @@
                 const nama = getNama();
                 const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
 
-                // Cari id_table dari nomor meja
-                const idTable = tableIdMap[meja.toString()];
+                // Cari id_table dari nomor meja - coba berbagai format
+                let idTable = null;
+                const mejaStr = meja.toString();
+                
+                // Coba dengan key sebagai string biasa
+                idTable = tableIdMap[mejaStr];
+                
+                // Jika tidak ditemukan, coba dengan leading zero (01, 02, dst)
                 if (!idTable) {
-                    throw new Error('Nomor meja tidak ditemukan. Silakan hubungi karyawan.');
+                    const mejaWithZero = mejaStr.padStart(2, '0');
+                    idTable = tableIdMap[mejaWithZero];
                 }
+                
+                // Jika masih tidak ditemukan, coba cari dengan looping
+                if (!idTable) {
+                    for (const [key, value] of Object.entries(tableIdMap)) {
+                        if (parseInt(key) === meja) {
+                            idTable = value;
+                            break;
+                        }
+                    }
+                }
+
+                if (!idTable) {
+                    throw new Error('Nomor meja ' + meja + ' tidak ditemukan. Silakan hubungi karyawan.');
+                }
+
+                console.log('✅ Meja:', meja, '→ ID Table:', idTable);
 
                 // Generate no_struk
                 const now = new Date();
@@ -1237,11 +1260,12 @@
                     .single();
 
                 if (orderError) {
-                    console.error('Order insert error:', orderError);
+                    console.error('❌ Order insert error:', orderError);
                     throw new Error('Gagal menyimpan pesanan: ' + orderError.message);
                 }
 
                 const idOrder = orderData.id_order;
+                console.log('✅ Order created:', idOrder);
 
                 // Insert ke orderdetails
                 const details = cart.map(item => ({
@@ -1260,9 +1284,11 @@
                     .insert(details);
 
                 if (detailError) {
-                    console.error('Detail insert error:', detailError);
+                    console.error('❌ Detail insert error:', detailError);
                     throw new Error('Gagal menyimpan detail pesanan: ' + detailError.message);
                 }
+
+                console.log('✅ Order details inserted:', details.length);
 
                 // Kosongkan cart
                 cart = [];
@@ -1276,7 +1302,7 @@
                 }, 1500);
 
             } catch (error) {
-                console.error('Error checkout:', error);
+                console.error('❌ Error checkout:', error);
                 showToast('⚠️ ' + error.message);
             } finally {
                 loading.classList.remove('active');
