@@ -91,7 +91,7 @@
             pointer-events: none;
         }
 
-        /* Tombol Back */
+        /* Tombol Back - Kembali ke halaman sebelumnya */
         .btn-back {
             position: absolute;
             left: 4.3%;
@@ -194,7 +194,7 @@
         .menu-desc::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
         .menu-desc::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
-        /* Tombol ke PESAN - tanpa Total & Selesai */
+        /* Tombol ke PESAN - HANYA TOMBOL INI + BACK */
         .btn-ke-pesan {
             position: absolute;
             bottom: 5%;
@@ -325,7 +325,7 @@
         <div class="overlay"></div>
 
         <!-- Tombol Back -->
-        <button class="btn-back" onclick="window.location.href='customer_order.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
+        <button class="btn-back" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
 
         <!-- Logo -->
         <div class="logo-top">
@@ -345,7 +345,7 @@
         <!-- Deskripsi -->
         <div class="menu-desc" id="menuDesc">Memuat deskripsi...</div>
 
-        <!-- Tombol ke PESAN - tanpa Total & Selesai -->
+        <!-- Tombol ke PESAN - HANYA INI -->
         <button class="btn-ke-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             🛒 PESAN SEKARANG
         </button>
@@ -365,8 +365,6 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
         const STORAGE_BUCKET = 'menu-images';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        let allMenus = [];
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -415,7 +413,6 @@
                 const params = new URLSearchParams(window.location.search);
                 let menuId = params.get('id');
 
-                // Jika tidak ada ID, ambil menu pertama yang tersedia
                 if (!menuId) {
                     const { data, error } = await supabaseClient
                         .from('menu')
@@ -447,7 +444,7 @@
                 if (error) throw error;
 
                 if (!data) {
-                    showError('Menu Tidak Ditemukan', 'Menu dengan ID ' + menuId + ' tidak tersedia. Silakan pilih menu lain.');
+                    showError('Menu Tidak Ditemukan', 'Menu dengan ID ' + menuId + ' tidak tersedia.');
                     loading.classList.remove('active');
                     return;
                 }
