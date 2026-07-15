@@ -32,23 +32,6 @@
             cursor: pointer;
         }
 
-        /* Gambar dekoratif di bawah */
-        .deco-image {
-            position: absolute;
-            width: 1077px;
-            height: 769px;
-            left: 0px;
-            top: 575px;
-            pointer-events: none;
-            opacity: 0.15;
-        }
-
-        .deco-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         /* Logo di tengah - BESAR */
         .logo-center {
             position: absolute;
@@ -60,7 +43,7 @@
         }
 
         .logo-center .logo-img {
-            width: clamp(200px, 35%, 400px);
+            width: clamp(300px, 50%, 550px);
             height: auto;
             display: block;
         }
@@ -108,20 +91,8 @@
                 border-radius: 12px;
             }
 
-            .deco-image {
-                width: 100%;
-                height: auto;
-                top: auto;
-                bottom: 0;
-            }
-
-            .deco-image img {
-                height: auto;
-                aspect-ratio: 1077/769;
-            }
-
             .logo-center .logo-img {
-                width: 160px;
+                width: 250px;
             }
         }
 
@@ -131,7 +102,7 @@
             }
 
             .logo-center .logo-img {
-                width: 120px;
+                width: 180px;
             }
 
             .spinner {
@@ -146,7 +117,7 @@
 
         @media screen and (max-width: 360px) {
             .logo-center .logo-img {
-                width: 90px;
+                width: 140px;
             }
         }
 
@@ -165,20 +136,8 @@
                 border-radius: 10px;
             }
 
-            .deco-image {
-                width: 100%;
-                height: auto;
-                top: auto;
-                bottom: 0;
-            }
-
-            .deco-image img {
-                height: auto;
-                aspect-ratio: 1077/769;
-            }
-
             .logo-center .logo-img {
-                width: 100px;
+                width: 150px;
             }
 
             .loading-text {
@@ -199,15 +158,10 @@
 </head>
 <body>
     <div class="landing-container" id="landingPage">
-        <!-- Gambar dekoratif di bawah -->
-        <div class="deco-image">
-            <img src="https://placehold.co/1077x769/2d2d2d/ffffff?text=Restaurant" alt="" loading="lazy" />
-        </div>
-
         <!-- Logo di tengah - BESAR -->
         <div class="logo-center">
             <img src="logo.png" alt="Jangkung Order" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-            <div style="display:none; font-size: clamp(120px, 20%, 250px);">🍽️</div>
+            <div style="display:none; font-size: clamp(150px, 25%, 300px);">🍽️</div>
         </div>
 
         <!-- Loading Spinner -->
