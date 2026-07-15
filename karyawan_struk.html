@@ -43,31 +43,6 @@
             background: url('bg.png') center center / cover no-repeat;
         }
 
-        .deco-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .deco-bg img {
-            position: absolute;
-            opacity: 0.15;
-        }
-
-        .deco-bg img:nth-child(1) {
-            width: 178%;
-            height: 66.7%;
-            left: -9.3%;
-            top: 99.99%;
-            transform: rotate(-90deg);
-            transform-origin: top left;
-        }
-
         .overlay {
             position: absolute;
             width: 100%;
@@ -89,6 +64,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(0,0,0,0.5);
         }
 
         .header-left {
@@ -282,6 +258,7 @@
         .struk-item .item-name {
             flex: 1;
             text-align: left;
+            padding-right: 10px;
         }
 
         .struk-item .item-qty {
@@ -780,11 +757,6 @@
 <body>
     <div class="struk-container">
         <div class="bg-utama"></div>
-
-        <div class="deco-bg">
-            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-        </div>
-
         <div class="overlay"></div>
 
         <div class="loading-overlay" id="loadingOverlay">
@@ -880,10 +852,8 @@
             loading.classList.add('active');
 
             try {
-                // Load menu names dulu
                 await loadMenuNames();
 
-                // Ambil semua pesanan yang sudah selesai
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
                     .select('*')
@@ -892,7 +862,6 @@
 
                 if (ordersError) throw ordersError;
 
-                // Untuk setiap order, ambil detail
                 const ordersWithDetails = [];
                 for (const order of orders || []) {
                     const { data: details, error: detailsError } = await supabaseClient
@@ -904,16 +873,14 @@
                         console.warn('Error fetching details for', order.no_struk, detailsError);
                     }
 
-                    // Tambahkan nama menu dari id_menu
                     const detailsWithMenu = (details || []).map(item => {
-                        const menuName = menuNames[item.id_menu] || item.nama || 'Menu tidak ditemukan';
+                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
                         return {
                             ...item,
                             menu_name: menuName
                         };
                     });
 
-                    // Ambil nama customer dari detail pertama
                     const customerName = detailsWithMenu.length > 0 ? 
                         detailsWithMenu[0].nama || '-' : 
                         '-';
@@ -944,7 +911,6 @@
                     document.getElementById('mejaDisplay').textContent = '-';
                 }
 
-                // Setup realtime setelah load pertama
                 if (!isRealtimeConnected) {
                     setupRealtime();
                 }
@@ -1029,7 +995,7 @@
                     }
 
                     const detailsWithMenu = (details || []).map(item => {
-                        const menuName = menuNames[item.id_menu] || item.nama || 'Menu tidak ditemukan';
+                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
                         return {
                             ...item,
                             menu_name: menuName
