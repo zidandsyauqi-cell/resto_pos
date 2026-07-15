@@ -1191,15 +1191,21 @@
                 const nama = getNama();
                 const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
 
+                // Insert order - tanpa customer_name (gunakan meja saja)
                 const { data: orderData, error: orderError } = await supabaseClient
                     .from('orders')
-                    .insert({ meja: meja, customer_name: nama, total_amount: total, status: 'pending' })
+                    .insert({ 
+                        meja: meja, 
+                        total_amount: total, 
+                        status: 'pending' 
+                    })
                     .select('no_struk')
                     .single();
 
                 if (orderError) throw orderError;
                 const noStruk = orderData.no_struk;
 
+                // Insert order details dengan nama
                 const details = cart.map(item => ({
                     no_struk: noStruk,
                     menu_id: item.id,
