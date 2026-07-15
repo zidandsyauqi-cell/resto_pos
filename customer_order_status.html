@@ -464,12 +464,16 @@
 
                 if (data && data.length > 0) {
                     data.forEach(row => {
+                        // Map both ways
                         tableIdMap[row.id_table] = row.nomor_meja;
+                        tableIdMap[row.nomor_meja] = row.id_table;
                     });
                 }
-                console.log('Table Map loaded:', tableIdMap);
+                console.log('✅ Table Map loaded:', tableIdMap);
+                return true;
             } catch (error) {
-                console.error('Error loading table map:', error);
+                console.error('❌ Error loading table map:', error);
+                return false;
             }
         }
 
@@ -484,23 +488,37 @@
                 document.getElementById('namaDisplay').textContent = nama;
                 document.getElementById('mejaDisplay').textContent = 'Meja ' + meja;
 
+                // Load table map
                 await loadTableIdMap();
 
                 // Cari id_table dari nomor meja
                 let idTable = null;
-                for (const [key, value] of Object.entries(tableIdMap)) {
-                    if (parseInt(value) === meja) {
-                        idTable = parseInt(key);
-                        break;
+                
+                // Coba berbagai format
+                const mejaStr = meja.toString();
+                if (tableIdMap[mejaStr]) {
+                    idTable = tableIdMap[mejaStr];
+                } else if (tableIdMap[mejaStr.padStart(2, '0')]) {
+                    idTable = tableIdMap[mejaStr.padStart(2, '0')];
+                } else {
+                    // Loop manual
+                    for (const [key, value] of Object.entries(tableIdMap)) {
+                        if (parseInt(key) === meja) {
+                            idTable = value;
+                            break;
+                        }
                     }
                 }
+
+                console.log('🔍 Meja:', meja, '→ ID Table:', idTable);
 
                 if (!idTable) {
                     document.getElementById('orderList').innerHTML = `
                         <div class="struk-box">
                             <div class="empty-status">
-                                ⚠️ Meja tidak ditemukan<br>
+                                ⚠️ Meja ${meja} tidak ditemukan<br>
                                 <span class="sub">Silakan hubungi karyawan</span>
+                                <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
                             </div>
                         </div>
                     `;
@@ -516,7 +534,12 @@
                     .neq('status_order', 'Selesai')
                     .order('id_order', { ascending: false });
 
-                if (error) throw error;
+                if (error) {
+                    console.error('❌ Error fetching orders:', error);
+                    throw error;
+                }
+
+                console.log('📦 Orders found:', orders ? orders.length : 0);
 
                 const container = document.getElementById('orderList');
 
@@ -542,9 +565,14 @@
                         .select('*')
                         .eq('no_struk', order.no_struk);
 
-                    if (detailError) throw detailError;
+                    if (detailError) {
+                        console.error('❌ Error fetching details:', detailError);
+                        continue;
+                    }
 
-                    const subtotal = details.reduce((s, item) => s + item.subtotal, 0);
+                    console.log('📋 Details for', order.no_struk, ':', details ? details.length : 0);
+
+                    const subtotal = details.reduce((s, item) => s + (item.subtotal || 0), 0);
                     const ppn = Math.round(subtotal * 0.1);
                     const total = subtotal + ppn;
 
@@ -568,13 +596,19 @@
                                 <span>Harga</span>
                             </div>
 
-                            ${details.map(item => `
+                            ${details && details.length > 0 ? details.map(item => `
                                 <div class="struk-item">
-                                    <span class="item-name">${item.nama || item.menu_name || 'Menu'}</span>
-                                    <span class="item-qty">${item.jumlah}</span>
-                                    <span class="item-price">${formatRupiah(item.subtotal)}</span>
+                                    <span class="item-name">${item.nama || 'Menu'}</span>
+                                    <span class="item-qty">${item.jumlah || 0}</span>
+                                    <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
                                 </div>
-                            `).join('')}
+                            `).join('') : `
+                                <div class="struk-item">
+                                    <span class="item-name" style="color:rgba(255,255,255,0.3);">Tidak ada detail</span>
+                                    <span class="item-qty">-</span>
+                                    <span class="item-price">-</span>
+                                </div>
+                            `}
 
                             <hr class="struk-divider">
 
@@ -606,7 +640,7 @@
                 container.innerHTML = html;
 
             } catch (error) {
-                console.error('Error loading orders:', error);
+                console.error('❌ Error loading orders:', error);
                 document.getElementById('orderList').innerHTML = `
                     <div class="struk-box">
                         <div class="empty-status">
