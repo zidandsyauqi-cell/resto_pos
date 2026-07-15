@@ -54,7 +54,6 @@
             z-index: 2;
         }
 
-        /* ===== HEADER ===== */
         .header-top {
             position: absolute;
             top: 0;
@@ -126,7 +125,6 @@
             transform: scale(1.05);
         }
 
-        /* ===== JUDUL ===== */
         .title-status {
             position: absolute;
             left: 50%;
@@ -142,7 +140,6 @@
             width: 80%;
         }
 
-        /* ===== TABEL ===== */
         .table-wrapper {
             position: absolute;
             top: 22%;
@@ -157,8 +154,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.15);
         }
 
         .table-scroll {
@@ -182,7 +178,7 @@
 
         .table-header {
             display: grid;
-            grid-template-columns: 50px 1.3fr 1.5fr 1fr 1.2fr;
+            grid-template-columns: 50px 1.3fr 1.5fr 1fr 0.8fr;
             gap: 5px;
             padding-bottom: 8px;
             border-bottom: 3px solid white;
@@ -202,7 +198,7 @@
 
         .table-row {
             display: grid;
-            grid-template-columns: 50px 1.3fr 1.5fr 1fr 1.2fr;
+            grid-template-columns: 50px 1.3fr 1.5fr 1fr 0.8fr;
             gap: 5px;
             padding: 6px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -238,76 +234,79 @@
         }
 
         .status-badge.diproses {
-            background: rgba(243, 156, 18, 0.3);
+            background: rgba(243, 156, 18, 0.25);
             border-color: #f39c12;
             color: #f39c12;
         }
 
         .status-badge.siap {
-            background: rgba(152, 200, 28, 0.3);
+            background: rgba(152, 200, 28, 0.25);
             border-color: #98C81C;
             color: #98C81C;
         }
 
         .status-badge.selesai {
-            background: rgba(46, 204, 113, 0.3);
+            background: rgba(46, 204, 113, 0.25);
             border-color: #2ecc71;
             color: #2ecc71;
         }
 
         .table-row .col .action-btns {
             display: flex;
-            gap: 5px;
+            gap: 6px;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
         }
 
         .btn-action {
-            padding: 4px 12px;
-            border-radius: 50px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             border: 2px solid rgba(255, 255, 255, 0.3);
             color: white;
-            font-size: clamp(9px, 1.2%, 14px);
-            font-family: 'Schoolbell', cursive;
+            font-size: 18px;
             cursor: pointer;
             transition: all 0.3s;
-            min-width: 45px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
         }
 
         .btn-action:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
             border-color: white;
         }
 
         .btn-action.siapkan {
-            background: rgba(152, 200, 28, 0.25);
             border-color: #98C81C;
             color: #98C81C;
         }
 
         .btn-action.siapkan:hover {
-            background: rgba(152, 200, 28, 0.4);
+            background: rgba(152, 200, 28, 0.2);
+            border-color: #98C81C;
         }
 
         .btn-action.selesai-status {
-            background: rgba(46, 204, 113, 0.25);
             border-color: #2ecc71;
             color: #2ecc71;
         }
 
         .btn-action.selesai-status:hover {
-            background: rgba(46, 204, 113, 0.4);
+            background: rgba(46, 204, 113, 0.2);
+            border-color: #2ecc71;
         }
 
         .btn-action.hapus {
-            background: rgba(231, 76, 60, 0.25);
             border-color: #e74c3c;
             color: #e74c3c;
         }
 
         .btn-action.hapus:hover {
-            background: rgba(231, 76, 60, 0.4);
+            background: rgba(231, 76, 60, 0.2);
+            border-color: #e74c3c;
         }
 
         .empty-state {
@@ -418,12 +417,12 @@
             }
 
             .table-header {
-                grid-template-columns: 30px 1fr 1.2fr 0.8fr 1fr;
+                grid-template-columns: 30px 1fr 1.2fr 0.8fr 0.7fr;
                 gap: 3px;
             }
 
             .table-row {
-                grid-template-columns: 30px 1fr 1.2fr 0.8fr 1fr;
+                grid-template-columns: 30px 1fr 1.2fr 0.8fr 0.7fr;
                 gap: 3px;
                 padding: 4px 0;
             }
@@ -437,9 +436,9 @@
             }
 
             .btn-action {
-                padding: 2px 6px;
-                font-size: 7px;
-                min-width: 30px;
+                width: 28px;
+                height: 28px;
+                font-size: 13px;
                 border-width: 1.5px;
             }
 
@@ -478,12 +477,12 @@
             }
 
             .table-header {
-                grid-template-columns: 20px 1fr 1fr 0.7fr 0.8fr;
+                grid-template-columns: 20px 1fr 1fr 0.7fr 0.6fr;
                 gap: 2px;
             }
 
             .table-row {
-                grid-template-columns: 20px 1fr 1fr 0.7fr 0.8fr;
+                grid-template-columns: 20px 1fr 1fr 0.7fr 0.6fr;
                 gap: 2px;
                 padding: 3px 0;
             }
@@ -504,9 +503,9 @@
             }
 
             .btn-action {
-                padding: 1px 4px;
-                font-size: 6px;
-                min-width: 20px;
+                width: 22px;
+                height: 22px;
+                font-size: 10px;
                 border-width: 1.5px;
             }
 
@@ -535,12 +534,12 @@
 
         @media screen and (max-width: 360px) {
             .table-header {
-                grid-template-columns: 18px 1fr 1fr 0.6fr 0.7fr;
+                grid-template-columns: 18px 1fr 1fr 0.6fr 0.5fr;
                 gap: 1px;
             }
 
             .table-row {
-                grid-template-columns: 18px 1fr 1fr 0.6fr 0.7fr;
+                grid-template-columns: 18px 1fr 1fr 0.6fr 0.5fr;
                 gap: 1px;
             }
 
@@ -553,9 +552,9 @@
             }
 
             .btn-action {
-                padding: 1px 3px;
-                font-size: 5px;
-                min-width: 16px;
+                width: 18px;
+                height: 18px;
+                font-size: 8px;
             }
         }
 
@@ -583,11 +582,11 @@
             }
 
             .table-header {
-                grid-template-columns: 30px 1fr 1.2fr 0.8fr 1fr;
+                grid-template-columns: 30px 1fr 1.2fr 0.8fr 0.7fr;
             }
 
             .table-row {
-                grid-template-columns: 30px 1fr 1.2fr 0.8fr 1fr;
+                grid-template-columns: 30px 1fr 1.2fr 0.8fr 0.7fr;
                 padding: 3px 0;
             }
 
@@ -600,9 +599,9 @@
             }
 
             .btn-action {
-                padding: 1px 5px;
-                font-size: 6px;
-                min-width: 25px;
+                width: 24px;
+                height: 24px;
+                font-size: 11px;
             }
 
             .title-status {
@@ -627,7 +626,6 @@
             <div class="loading-text">Memuat data...</div>
         </div>
 
-        <!-- ===== HEADER ===== -->
         <div class="header-top">
             <div class="header-left">
                 <button class="btn-back" onclick="window.location.href='dashboard.html'">←</button>
@@ -639,10 +637,8 @@
             <button class="btn-selesai" onclick="selesaiSemua()">Selesai</button>
         </div>
 
-        <!-- ===== JUDUL ===== -->
         <div class="title-status">STATUS PESANAN</div>
 
-        <!-- ===== TABEL ===== -->
         <div class="table-wrapper">
             <div class="table-header">
                 <div class="col">No</div>
@@ -859,13 +855,19 @@
                         <div class="col">
                             <div class="action-btns">
                                 ${status === 'Diproses' ? `
-                                    <button class="btn-action siapkan" onclick="updateStatus('${order.no_struk}', 'Siap')">Siapkan</button>
+                                    <button class="btn-action siapkan" onclick="updateStatus('${order.no_struk}', 'Siap')" title="Siapkan">
+                                        🕐
+                                    </button>
                                 ` : ''}
-                                ${status === 'Siap' ? `
-                                    <button class="btn-action selesai-status" onclick="updateStatus('${order.no_struk}', 'Selesai')">Selesai</button>
+                                ${status === 'Siap' || status === 'Diproses' ? `
+                                    <button class="btn-action selesai-status" onclick="updateStatus('${order.no_struk}', 'Selesai')" title="Selesai">
+                                        ✅
+                                    </button>
                                 ` : ''}
                                 ${status === 'Diproses' || status === 'Siap' ? `
-                                    <button class="btn-action hapus" onclick="deleteOrder('${order.no_struk}')">Hapus</button>
+                                    <button class="btn-action hapus" onclick="deleteOrder('${order.no_struk}')" title="Hapus">
+                                        🗑️
+                                    </button>
                                 ` : ''}
                             </div>
                         </div>
@@ -967,12 +969,10 @@
             }
         }
 
-        // Cek login
         if (localStorage.getItem('karyawan_logged_in') !== 'true') {
             window.location.href = 'karyawan_login.html';
         }
 
-        // Load data
         document.addEventListener('DOMContentLoaded', function() {
             loadOrders();
         });
