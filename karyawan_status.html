@@ -43,31 +43,6 @@
             background: url('bg.png') center center / cover no-repeat;
         }
 
-        .deco-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .deco-bg img {
-            position: absolute;
-            opacity: 0.15;
-        }
-
-        .deco-bg img:nth-child(1) {
-            width: 178%;
-            height: 66.7%;
-            left: -9.3%;
-            top: 99.99%;
-            transform: rotate(-90deg);
-            transform-origin: top left;
-        }
-
         .overlay {
             position: absolute;
             width: 100%;
@@ -90,6 +65,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .header-left {
@@ -106,7 +82,7 @@
             cursor: pointer;
             transition: all 0.3s;
             padding: 5px 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .btn-back:hover {
@@ -117,14 +93,14 @@
         .logo-header img {
             width: clamp(40px, 7%, 70px);
             height: auto;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
         }
 
         .brand-text {
             color: white;
             font-size: clamp(16px, 2.5%, 30px);
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             white-space: nowrap;
         }
 
@@ -161,7 +137,7 @@
             font-size: clamp(28px, 7%, 85px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
             width: 80%;
         }
@@ -181,6 +157,8 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
         }
 
         .table-scroll {
@@ -204,7 +182,7 @@
 
         .table-header {
             display: grid;
-            grid-template-columns: 50px 130px 150px 100px 100px;
+            grid-template-columns: 50px 1.3fr 1.5fr 1fr 1.2fr;
             gap: 5px;
             padding-bottom: 8px;
             border-bottom: 3px solid white;
@@ -213,63 +191,73 @@
         }
 
         .table-header .col {
-            color: white;
-            font-size: clamp(14px, 2.5%, 28px);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: clamp(12px, 2.2%, 24px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
         }
 
         .table-row {
             display: grid;
-            grid-template-columns: 50px 130px 150px 100px 100px;
+            grid-template-columns: 50px 1.3fr 1.5fr 1fr 1.2fr;
             gap: 5px;
             padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             align-items: center;
+            transition: background 0.2s;
+        }
+
+        .table-row:hover {
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .table-row .col {
             color: white;
-            font-size: clamp(12px, 2%, 24px);
+            font-size: clamp(12px, 2%, 22px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             word-break: break-word;
         }
 
         .table-row .col .status-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 50px;
-            border: 3px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             font-size: clamp(10px, 1.5%, 18px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             color: white;
             min-width: 70px;
+            letter-spacing: 0.5px;
         }
 
         .status-badge.diproses {
-            background: #f39c12;
+            background: rgba(243, 156, 18, 0.3);
             border-color: #f39c12;
+            color: #f39c12;
         }
 
         .status-badge.siap {
-            background: #98C81C;
+            background: rgba(152, 200, 28, 0.3);
             border-color: #98C81C;
+            color: #98C81C;
         }
 
         .status-badge.selesai {
-            background: #2ecc71;
+            background: rgba(46, 204, 113, 0.3);
             border-color: #2ecc71;
+            color: #2ecc71;
         }
 
         .table-row .col .action-btns {
             display: flex;
-            gap: 6px;
+            gap: 5px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -277,49 +265,49 @@
         .btn-action {
             padding: 4px 12px;
             border-radius: 50px;
-            border: 3px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             color: white;
-            font-size: clamp(10px, 1.2%, 14px);
+            font-size: clamp(9px, 1.2%, 14px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
-            min-width: 50px;
+            min-width: 45px;
+            text-align: center;
         }
 
         .btn-action:hover {
             transform: scale(1.05);
+            border-color: white;
         }
 
         .btn-action.siapkan {
-            background: #98C81C;
+            background: rgba(152, 200, 28, 0.25);
+            border-color: #98C81C;
+            color: #98C81C;
         }
 
         .btn-action.siapkan:hover {
-            background: #7aa814;
+            background: rgba(152, 200, 28, 0.4);
         }
 
-        .btn-action.selesai {
-            background: #2ecc71;
+        .btn-action.selesai-status {
+            background: rgba(46, 204, 113, 0.25);
+            border-color: #2ecc71;
+            color: #2ecc71;
         }
 
-        .btn-action.selesai:hover {
-            background: #27ae60;
+        .btn-action.selesai-status:hover {
+            background: rgba(46, 204, 113, 0.4);
         }
 
         .btn-action.hapus {
-            background: #e74c3c;
+            background: rgba(231, 76, 60, 0.25);
+            border-color: #e74c3c;
+            color: #e74c3c;
         }
 
         .btn-action.hapus:hover {
-            background: #c0392b;
-        }
-
-        .btn-action.lihat {
-            background: #3498db;
-        }
-
-        .btn-action.lihat:hover {
-            background: #2980b9;
+            background: rgba(231, 76, 60, 0.4);
         }
 
         .empty-state {
@@ -328,6 +316,11 @@
             padding: 40px 0;
             font-size: clamp(16px, 2.5%, 30px);
             font-family: 'Schoolbell', cursive;
+        }
+
+        .empty-state .sub {
+            font-size: clamp(12px, 1.6%, 20px);
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .loading-overlay {
@@ -421,31 +414,33 @@
             .table-wrapper {
                 padding: 10px;
                 border-radius: 30px;
+                border-width: 2px;
             }
 
             .table-header {
-                grid-template-columns: 30px 90px 100px 70px 70px;
+                grid-template-columns: 30px 1fr 1.2fr 0.8fr 1fr;
                 gap: 3px;
             }
 
             .table-row {
-                grid-template-columns: 30px 90px 100px 70px 70px;
+                grid-template-columns: 30px 1fr 1.2fr 0.8fr 1fr;
                 gap: 3px;
                 padding: 4px 0;
             }
 
             .table-header .col {
-                font-size: 11px;
+                font-size: 10px;
             }
 
             .table-row .col {
-                font-size: 10px;
+                font-size: 9px;
             }
 
             .btn-action {
                 padding: 2px 6px;
-                font-size: 8px;
-                min-width: 35px;
+                font-size: 7px;
+                min-width: 30px;
+                border-width: 1.5px;
             }
 
             .title-status {
@@ -483,29 +478,36 @@
             }
 
             .table-header {
-                grid-template-columns: 25px 65px 70px 55px 55px;
+                grid-template-columns: 20px 1fr 1fr 0.7fr 0.8fr;
                 gap: 2px;
             }
 
             .table-row {
-                grid-template-columns: 25px 65px 70px 55px 55px;
+                grid-template-columns: 20px 1fr 1fr 0.7fr 0.8fr;
                 gap: 2px;
                 padding: 3px 0;
             }
 
             .table-header .col {
-                font-size: 8px;
+                font-size: 7px;
             }
 
             .table-row .col {
-                font-size: 8px;
+                font-size: 7px;
+            }
+
+            .table-row .col .status-badge {
+                padding: 2px 8px;
+                font-size: 7px;
+                min-width: 40px;
+                border-width: 1.5px;
             }
 
             .btn-action {
                 padding: 1px 4px;
                 font-size: 6px;
-                min-width: 25px;
-                border-width: 2px;
+                min-width: 20px;
+                border-width: 1.5px;
             }
 
             .title-status {
@@ -533,27 +535,27 @@
 
         @media screen and (max-width: 360px) {
             .table-header {
-                grid-template-columns: 20px 50px 55px 40px 40px;
+                grid-template-columns: 18px 1fr 1fr 0.6fr 0.7fr;
                 gap: 1px;
             }
 
             .table-row {
-                grid-template-columns: 20px 50px 55px 40px 40px;
+                grid-template-columns: 18px 1fr 1fr 0.6fr 0.7fr;
                 gap: 1px;
             }
 
             .table-header .col {
-                font-size: 7px;
+                font-size: 6px;
             }
 
             .table-row .col {
-                font-size: 7px;
+                font-size: 6px;
             }
 
             .btn-action {
                 padding: 1px 3px;
                 font-size: 5px;
-                min-width: 20px;
+                min-width: 16px;
             }
         }
 
@@ -577,29 +579,30 @@
                 border-radius: 20px;
                 top: 18%;
                 height: 78%;
+                border-width: 2px;
             }
 
             .table-header {
-                grid-template-columns: 30px 80px 90px 60px 60px;
+                grid-template-columns: 30px 1fr 1.2fr 0.8fr 1fr;
             }
 
             .table-row {
-                grid-template-columns: 30px 80px 90px 60px 60px;
+                grid-template-columns: 30px 1fr 1.2fr 0.8fr 1fr;
                 padding: 3px 0;
             }
 
             .table-header .col {
-                font-size: 10px;
+                font-size: 9px;
             }
 
             .table-row .col {
-                font-size: 9px;
+                font-size: 8px;
             }
 
             .btn-action {
                 padding: 1px 5px;
-                font-size: 7px;
-                min-width: 30px;
+                font-size: 6px;
+                min-width: 25px;
             }
 
             .title-status {
@@ -617,11 +620,6 @@
 <body>
     <div class="status-container">
         <div class="bg-utama"></div>
-
-        <div class="deco-bg">
-            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-        </div>
-
         <div class="overlay"></div>
 
         <div class="loading-overlay" id="loadingOverlay">
@@ -654,7 +652,9 @@
                 <div class="col">Aksi</div>
             </div>
             <div class="table-scroll" id="tableBody">
-                <div class="empty-state">🔄 Memuat data...</div>
+                <div class="empty-state">
+                    🔄 Memuat data...
+                </div>
             </div>
         </div>
     </div>
@@ -669,6 +669,7 @@
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         let ordersData = [];
+        let isRealtimeConnected = false;
 
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
@@ -705,7 +706,6 @@
             loading.classList.add('active');
 
             try {
-                // Ambil orders dengan status tidak Selesai
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
                     .select('*')
@@ -714,7 +714,6 @@
 
                 if (ordersError) throw ordersError;
 
-                // Untuk setiap order, ambil detail untuk mendapatkan nama customer
                 const ordersWithDetails = [];
                 for (const order of orders || []) {
                     const { data: details, error: detailsError } = await supabaseClient
@@ -737,17 +736,96 @@
                 console.log('Orders loaded:', ordersData.length);
                 renderTable();
 
+                if (!isRealtimeConnected) {
+                    setupRealtime();
+                }
+
             } catch (error) {
                 console.error('Error loading orders:', error);
                 showToast('⚠️ Gagal memuat data: ' + error.message, true);
                 document.getElementById('tableBody').innerHTML = `
                     <div class="empty-state">
                         ⚠️ Gagal memuat data<br>
-                        <span style="font-size:14px;color:rgba(255,255,255,0.3);">${error.message}</span>
+                        <span class="sub">${error.message}</span>
                     </div>
                 `;
             } finally {
                 loading.classList.remove('active');
+            }
+        }
+
+        function setupRealtime() {
+            if (isRealtimeConnected) return;
+
+            const channel = supabaseClient
+                .channel('status-db-changes')
+                .on(
+                    'postgres_changes', {
+                        event: '*',
+                        schema: 'public',
+                        table: 'orders'
+                    },
+                    (payload) => {
+                        console.log('Realtime update orders:', payload);
+                        loadOrdersSilent();
+                    }
+                )
+                .on(
+                    'postgres_changes', {
+                        event: '*',
+                        schema: 'public',
+                        table: 'orderdetails'
+                    },
+                    (payload) => {
+                        console.log('Realtime update details:', payload);
+                        loadOrdersSilent();
+                    }
+                )
+                .subscribe((status) => {
+                    console.log('Realtime status:', status);
+                    if (status === 'SUBSCRIBED') {
+                        isRealtimeConnected = true;
+                        console.log('✅ Realtime connected!');
+                    }
+                });
+
+            window.realtimeChannel = channel;
+        }
+
+        async function loadOrdersSilent() {
+            try {
+                const { data: orders, error: ordersError } = await supabaseClient
+                    .from('orders')
+                    .select('*')
+                    .neq('status_order', 'Selesai')
+                    .order('id_order', { ascending: false });
+
+                if (ordersError) throw ordersError;
+
+                const ordersWithDetails = [];
+                for (const order of orders || []) {
+                    const { data: details, error: detailsError } = await supabaseClient
+                        .from('orderdetails')
+                        .select('nama')
+                        .eq('no_struk', order.no_struk)
+                        .limit(1);
+
+                    if (detailsError) {
+                        console.warn('Error fetching details for', order.no_struk, detailsError);
+                    }
+
+                    ordersWithDetails.push({
+                        ...order,
+                        customer_name: details && details.length > 0 ? details[0].nama : '-'
+                    });
+                }
+
+                ordersData = ordersWithDetails || [];
+                console.log('Orders refreshed (silent):', ordersData.length);
+                renderTable();
+
+            } catch (error) {
+                console.error('Error silent loading orders:', error);
             }
         }
 
@@ -757,8 +835,8 @@
             if (!ordersData || ordersData.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
-                        🍽️ Belum ada pesanan<br>
-                        <span style="font-size:14px;color:rgba(255,255,255,0.3);">Tunggu pesanan masuk</span>
+                        🍽️ Belum ada pesanan aktif<br>
+                        <span class="sub">Tunggu pesanan masuk</span>
                     </div>
                 `;
                 return;
@@ -784,7 +862,7 @@
                                     <button class="btn-action siapkan" onclick="updateStatus('${order.no_struk}', 'Siap')">Siapkan</button>
                                 ` : ''}
                                 ${status === 'Siap' ? `
-                                    <button class="btn-action selesai" onclick="updateStatus('${order.no_struk}', 'Selesai')">Selesai</button>
+                                    <button class="btn-action selesai-status" onclick="updateStatus('${order.no_struk}', 'Selesai')">Selesai</button>
                                 ` : ''}
                                 ${status === 'Diproses' || status === 'Siap' ? `
                                     <button class="btn-action hapus" onclick="deleteOrder('${order.no_struk}')">Hapus</button>
@@ -813,7 +891,7 @@
                 if (error) throw error;
 
                 showToast(`✅ Status ${noStruk} berhasil diubah menjadi ${newStatus}`);
-                await loadOrders();
+                await loadOrdersSilent();
 
             } catch (error) {
                 console.error('Error updating status:', error);
@@ -830,7 +908,6 @@
             loading.classList.add('active');
 
             try {
-                // Hapus order details dulu
                 const { error: detailError } = await supabaseClient
                     .from('orderdetails')
                     .delete()
@@ -838,7 +915,6 @@
 
                 if (detailError) throw detailError;
 
-                // Hapus order
                 const { error } = await supabaseClient
                     .from('orders')
                     .delete()
@@ -847,7 +923,7 @@
                 if (error) throw error;
 
                 showToast(`✅ Pesanan ${noStruk} berhasil dihapus`);
-                await loadOrders();
+                await loadOrdersSilent();
 
             } catch (error) {
                 console.error('Error deleting order:', error);
@@ -881,7 +957,7 @@
                 }
 
                 showToast(`✅ ${success} pesanan berhasil diselesaikan`);
-                await loadOrders();
+                await loadOrdersSilent();
 
             } catch (error) {
                 console.error('Error finishing all orders:', error);
@@ -899,8 +975,6 @@
         // Load data
         document.addEventListener('DOMContentLoaded', function() {
             loadOrders();
-            // Refresh setiap 10 detik
-            setInterval(loadOrders, 10000);
         });
     </script>
 </body>
