@@ -281,15 +281,20 @@
 
         .struk-item .item-name {
             flex: 1;
+            text-align: left;
         }
 
         .struk-item .item-qty {
             margin: 0 10px;
             color: rgba(255, 255, 255, 0.5);
+            min-width: 30px;
+            text-align: center;
         }
 
         .struk-item .item-price {
             color: #98C81C;
+            min-width: 100px;
+            text-align: right;
         }
 
         .struk-divider {
@@ -565,6 +570,9 @@
             .struk-item {
                 font-size: 13px;
             }
+            .struk-item .item-price {
+                min-width: 70px;
+            }
             .struk-total-row {
                 font-size: 14px;
             }
@@ -637,6 +645,9 @@
             .struk-item {
                 font-size: 10px;
                 padding: 2px 0;
+            }
+            .struk-item .item-price {
+                min-width: 60px;
             }
             .struk-total-row {
                 font-size: 11px;
@@ -740,6 +751,9 @@
                 font-size: 9px;
                 padding: 1px 0;
             }
+            .struk-item .item-price {
+                min-width: 50px;
+            }
             .struk-total-row {
                 font-size: 10px;
             }
@@ -818,6 +832,7 @@
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         let ordersData = [];
+        let menuNames = {};
         let selectedOrder = null;
         let isRealtimeConnected = false;
 
@@ -837,12 +852,37 @@
             return 'Rp ' + Number(price).toLocaleString('id-ID');
         }
 
+        // ===== LOAD MENU NAMES =====
+        async function loadMenuNames() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('menu')
+                    .select('id_menu, nama_menu');
+
+                if (error) throw error;
+
+                if (data) {
+                    data.forEach(item => {
+                        menuNames[item.id_menu] = item.nama_menu;
+                    });
+                }
+                console.log('Menu names loaded:', Object.keys(menuNames).length);
+                return true;
+            } catch (error) {
+                console.error('Error loading menu names:', error);
+                return false;
+            }
+        }
+
         // ===== LOAD ORDERS =====
         async function loadOrders() {
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
 
             try {
+                // Load menu names dulu
+                await loadMenuNames();
+
                 // Ambil semua pesanan yang sudah selesai
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
@@ -864,9 +904,24 @@
                         console.warn('Error fetching details for', order.no_struk, detailsError);
                     }
 
+                    // Tambahkan nama menu dari id_menu
+                    const detailsWithMenu = (details || []).map(item => {
+                        const menuName = menuNames[item.id_menu] || item.nama || 'Menu tidak ditemukan';
+                        return {
+                            ...item,
+                            menu_name: menuName
+                        };
+                    });
+
+                    // Ambil nama customer dari detail pertama
+                    const customerName = detailsWithMenu.length > 0 ? 
+                        detailsWithMenu[0].nama || '-' : 
+                        '-';
+
                     ordersWithDetails.push({
                         ...order,
-                        orderdetails: details || []
+                        orderdetails: detailsWithMenu,
+                        customer_name: customerName
                     });
                 }
 
@@ -913,32 +968,28 @@
         // ===== SETUP REALTIME =====
         function setupRealtime() {
             if (isRealtimeConnected) return;
-            
+
             const channel = supabaseClient
                 .channel('table-db-changes')
                 .on(
-                    'postgres_changes',
-                    {
+                    'postgres_changes', {
                         event: '*',
                         schema: 'public',
                         table: 'orders'
                     },
                     (payload) => {
-                        console.log('Realtime update:', payload);
-                        // Refresh data saat ada perubahan
+                        console.log('Realtime update orders:', payload);
                         loadOrdersSilent();
                     }
                 )
                 .on(
-                    'postgres_changes',
-                    {
+                    'postgres_changes', {
                         event: '*',
                         schema: 'public',
                         table: 'orderdetails'
                     },
                     (payload) => {
                         console.log('Realtime update details:', payload);
-                        // Refresh data saat ada perubahan
                         loadOrdersSilent();
                     }
                 )
@@ -950,14 +1001,14 @@
                     }
                 });
 
-            // Simpan channel untuk cleanup jika diperlukan
             window.realtimeChannel = channel;
         }
 
-        // ===== LOAD ORDERS SILENT (tanpa loading overlay) =====
+        // ===== LOAD ORDERS SILENT =====
         async function loadOrdersSilent() {
             try {
-                // Ambil semua pesanan yang sudah selesai
+                await loadMenuNames();
+
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
                     .select('*')
@@ -966,7 +1017,6 @@
 
                 if (ordersError) throw ordersError;
 
-                // Untuk setiap order, ambil detail
                 const ordersWithDetails = [];
                 for (const order of orders || []) {
                     const { data: details, error: detailsError } = await supabaseClient
@@ -978,9 +1028,22 @@
                         console.warn('Error fetching details for', order.no_struk, detailsError);
                     }
 
+                    const detailsWithMenu = (details || []).map(item => {
+                        const menuName = menuNames[item.id_menu] || item.nama || 'Menu tidak ditemukan';
+                        return {
+                            ...item,
+                            menu_name: menuName
+                        };
+                    });
+
+                    const customerName = detailsWithMenu.length > 0 ? 
+                        detailsWithMenu[0].nama || '-' : 
+                        '-';
+
                     ordersWithDetails.push({
                         ...order,
-                        orderdetails: details || []
+                        orderdetails: detailsWithMenu,
+                        customer_name: customerName
                     });
                 }
 
@@ -988,16 +1051,13 @@
                 console.log('Orders refreshed (silent):', ordersData.length);
 
                 if (ordersData.length > 0) {
-                    // Jika data berubah, update tampilan
                     const currentNoStruk = selectedOrder ? selectedOrder.no_struk : null;
                     const stillExists = ordersData.find(o => o.no_struk === currentNoStruk);
-                    
+
                     if (stillExists) {
-                        // Jika order yang dipilih masih ada, update saja
                         selectedOrder = stillExists;
                         renderOrder(selectedOrder);
                     } else {
-                        // Jika tidak ada, pilih yang pertama
                         selectedOrder = ordersData[0];
                         renderOrder(selectedOrder);
                     }
@@ -1024,11 +1084,7 @@
         function renderOrder(order) {
             if (!order) return;
 
-            const customerName = order.orderdetails && order.orderdetails.length > 0 ?
-                order.orderdetails[0].nama || '-' :
-                '-';
-
-            document.getElementById('namaDisplay').textContent = customerName;
+            document.getElementById('namaDisplay').textContent = order.customer_name || '-';
             document.getElementById('mejaDisplay').textContent = 'Meja ' + (order.id_table || '1');
 
             const details = order.orderdetails || [];
@@ -1051,7 +1107,7 @@
                         <select class="struk-select" id="strukSelect" onchange="onStrukChange(this.value)">
                             ${ordersData.map((o, i) => `
                                 <option value="${i}" ${o.no_struk === order.no_struk ? 'selected' : ''}>
-                                    ${o.no_struk} - ${o.orderdetails && o.orderdetails.length > 0 ? o.orderdetails[0].nama || '-' : '-'}
+                                    ${o.no_struk} - ${o.customer_name || '-'}
                                 </option>
                             `).join('')}
                         </select>
@@ -1068,7 +1124,7 @@
 
                     ${details && details.length > 0 ? details.map(item => `
                         <div class="struk-item">
-                            <span class="item-name">${item.nama || 'Menu'}</span>
+                            <span class="item-name">${item.menu_name}</span>
                             <span class="item-qty">${item.jumlah || 0}</span>
                             <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
                         </div>
@@ -1138,7 +1194,6 @@
                 if (error) throw error;
 
                 showToast(`✅ Pesanan ${noStruk} berhasil diselesaikan!`);
-                // Realtime akan otomatis refresh
 
             } catch (error) {
                 console.error('Error finishing order:', error);
@@ -1171,7 +1226,6 @@
                 if (error) throw error;
 
                 showToast(`🗑️ Pesanan ${noStruk} berhasil dihapus`);
-                // Realtime akan otomatis refresh
 
             } catch (error) {
                 console.error('Error deleting order:', error);
