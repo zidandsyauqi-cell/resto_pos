@@ -107,6 +107,7 @@
             color: #98C81C;
         }
 
+        /* ===== INFO NAMA & MEJA - SAMPING KIRI KANAN ===== */
         .info-wrapper {
             position: absolute;
             top: 65px;
@@ -116,42 +117,48 @@
             padding: 0 30px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             gap: 20px;
         }
 
         .info-item {
-            flex: 1;
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            align-items: center;
+            gap: 8px;
         }
 
         .info-item .label {
-            color: white;
-            font-size: clamp(18px, 3%, 35px);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: clamp(14px, 2%, 22px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            white-space: nowrap;
         }
 
         .info-item .value-box {
-            padding: 10px 18px;
+            padding: 4px 16px;
             border-radius: 50px;
-            border: 3px solid white;
-            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
             color: white;
-            font-size: clamp(16px, 2.5%, 30px);
+            font-size: clamp(14px, 2%, 22px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 180px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
+        .info-item .value-box span {
+            color: #98C81C;
+        }
+
         .struk-wrapper {
             position: absolute;
-            top: 165px;
+            top: 115px;
             left: 0;
             right: 0;
             bottom: 0;
@@ -180,7 +187,7 @@
 
         .struk-select {
             width: 100%;
-            padding: 12px 18px;
+            padding: 10px 16px;
             border-radius: 50px;
             border: 3px solid white;
             background: rgba(255, 255, 255, 0.1);
@@ -208,26 +215,26 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 50px;
             border: 3px solid white;
-            padding: 25px 30px 20px 30px;
-            min-height: 400px;
+            padding: 20px 25px 15px 25px;
+            min-height: 350px;
             margin-bottom: 15px;
         }
 
         .struk-title {
             color: white;
-            font-size: clamp(24px, 4%, 45px);
+            font-size: clamp(20px, 3.5%, 40px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .struk-no {
             color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(18px, 2.5%, 30px);
+            font-size: clamp(16px, 2.2%, 26px);
             font-family: 'Schoolbell', cursive;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .struk-no span {
@@ -238,19 +245,19 @@
             display: flex;
             justify-content: space-between;
             color: rgba(255, 255, 255, 0.5);
-            font-size: clamp(14px, 1.8%, 22px);
+            font-size: clamp(12px, 1.6%, 20px);
             font-family: 'Schoolbell', cursive;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 5px;
-            margin-bottom: 5px;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
         }
 
         .struk-item {
             display: flex;
             justify-content: space-between;
-            padding: 4px 0;
+            padding: 3px 0;
             color: white;
-            font-size: clamp(16px, 2.2%, 28px);
+            font-size: clamp(14px, 2%, 24px);
             font-family: 'Schoolbell', cursive;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
@@ -259,6 +266,9 @@
             flex: 1;
             text-align: left;
             padding-right: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .struk-item .item-qty {
@@ -270,23 +280,23 @@
 
         .struk-item .item-price {
             color: #98C81C;
-            min-width: 100px;
+            min-width: 90px;
             text-align: right;
         }
 
         .struk-divider {
             border: none;
             border-top: 2px dashed rgba(255, 255, 255, 0.2);
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .struk-total-row {
             display: flex;
             justify-content: space-between;
             color: white;
-            font-size: clamp(18px, 2.5%, 32px);
+            font-size: clamp(16px, 2.2%, 28px);
             font-family: 'Schoolbell', cursive;
-            padding: 4px 0;
+            padding: 3px 0;
         }
 
         .struk-total-row .total-amount {
@@ -297,7 +307,7 @@
             display: flex;
             justify-content: space-between;
             color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(16px, 2%, 26px);
+            font-size: clamp(14px, 1.8%, 24px);
             font-family: 'Schoolbell', cursive;
             padding: 2px 0;
         }
@@ -310,12 +320,12 @@
             display: flex;
             justify-content: space-between;
             color: white;
-            font-size: clamp(24px, 3.5%, 42px);
+            font-size: clamp(20px, 3%, 38px);
             font-family: 'Schoolbell', cursive;
             font-weight: 700;
-            padding-top: 8px;
+            padding-top: 6px;
             border-top: 2px solid rgba(255, 255, 255, 0.2);
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
         .struk-grand-total .grand-total-amount {
@@ -324,26 +334,26 @@
 
         .btn-group {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-top: 15px;
+            margin-top: 12px;
             flex-wrap: wrap;
         }
 
         .btn-cetak {
-            padding: 10px 25px;
+            padding: 8px 20px;
             background: #98C81C;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(18px, 2.5%, 30px);
+            font-size: clamp(16px, 2.2%, 26px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
             border: 3px solid white;
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
         }
 
         .btn-cetak:hover {
@@ -352,19 +362,19 @@
         }
 
         .btn-selesai-struk {
-            padding: 10px 25px;
+            padding: 8px 20px;
             background: #2ecc71;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(18px, 2.5%, 30px);
+            font-size: clamp(16px, 2.2%, 26px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
             border: 3px solid white;
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
         }
 
         .btn-selesai-struk:hover {
@@ -373,19 +383,19 @@
         }
 
         .btn-hapus-struk {
-            padding: 10px 25px;
+            padding: 8px 20px;
             background: #e74c3c;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(18px, 2.5%, 30px);
+            font-size: clamp(16px, 2.2%, 26px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
             border: 3px solid white;
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
         }
 
         .btn-hapus-struk:hover {
@@ -396,25 +406,25 @@
         .empty-state {
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
-            padding: 60px 20px;
-            font-size: clamp(20px, 3%, 35px);
+            padding: 40px 20px;
+            font-size: clamp(18px, 2.8%, 32px);
             font-family: 'Schoolbell', cursive;
         }
 
         .empty-state .sub {
-            font-size: clamp(14px, 1.8%, 22px);
+            font-size: clamp(12px, 1.6%, 20px);
             color: rgba(255, 255, 255, 0.3);
         }
 
         .btn-refresh {
             width: 100%;
-            padding: 12px;
-            margin-top: 15px;
+            padding: 10px;
+            margin-top: 12px;
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
             color: white;
-            font-size: clamp(16px, 2%, 24px);
+            font-size: clamp(14px, 1.8%, 22px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
@@ -511,64 +521,64 @@
                 border-radius: 12px;
             }
             .header-top {
-                padding: 10px 14px 6px 14px;
+                padding: 8px 14px 4px 14px;
             }
             .info-wrapper {
                 top: 55px;
                 padding: 0 14px;
                 gap: 10px;
-                flex-direction: column;
             }
             .info-item .label {
-                font-size: 14px;
-            }
-            .info-item .value-box {
-                font-size: 12px;
-                padding: 6px 12px;
-                border-width: 2px;
-            }
-            .struk-wrapper {
-                top: 145px;
-                padding: 8px 14px 15px 14px;
-            }
-            .struk-box {
-                padding: 15px 16px 12px 16px;
-                border-radius: 30px;
-            }
-            .struk-title {
-                font-size: 18px;
-            }
-            .struk-no {
-                font-size: 14px;
-            }
-            .struk-header-row {
                 font-size: 11px;
             }
-            .struk-item {
+            .info-item .value-box {
+                font-size: 11px;
+                padding: 2px 10px;
+                max-width: 120px;
+            }
+            .struk-wrapper {
+                top: 100px;
+                padding: 8px 14px 12px 14px;
+            }
+            .struk-box {
+                padding: 12px 14px 10px 14px;
+                border-radius: 30px;
+                min-height: 300px;
+            }
+            .struk-title {
+                font-size: 16px;
+            }
+            .struk-no {
                 font-size: 13px;
             }
-            .struk-item .item-price {
-                min-width: 70px;
+            .struk-header-row {
+                font-size: 10px;
             }
-            .struk-total-row {
-                font-size: 14px;
-            }
-            .struk-ppn {
+            .struk-item {
                 font-size: 12px;
             }
+            .struk-item .item-price {
+                min-width: 65px;
+            }
+            .struk-total-row {
+                font-size: 13px;
+            }
+            .struk-ppn {
+                font-size: 11px;
+            }
             .struk-grand-total {
-                font-size: 18px;
+                font-size: 16px;
             }
             .btn-cetak,
             .btn-selesai-struk,
             .btn-hapus-struk {
-                font-size: 14px;
-                padding: 8px 12px;
-                min-width: 80px;
+                font-size: 12px;
+                padding: 6px 10px;
+                min-width: 70px;
             }
             .struk-select {
-                font-size: 14px;
-                padding: 8px 14px;
+                font-size: 12px;
+                padding: 6px 12px;
             }
         }
 
@@ -577,94 +587,107 @@
                 border-radius: 10px;
             }
             .header-top {
-                padding: 6px 10px 4px 10px;
+                padding: 4px 8px 2px 8px;
             }
             .btn-back {
-                font-size: 18px;
+                font-size: 16px;
             }
             .logo-header img {
-                width: 25px;
+                width: 22px;
             }
             .brand-text {
-                font-size: 12px;
+                font-size: 11px;
             }
             .info-wrapper {
-                top: 48px;
+                top: 45px;
                 padding: 0 10px;
                 gap: 6px;
-                flex-direction: column;
+                flex-direction: row;
             }
             .info-item .label {
-                font-size: 12px;
+                font-size: 9px;
             }
             .info-item .value-box {
-                font-size: 11px;
-                padding: 4px 10px;
+                font-size: 9px;
+                padding: 2px 8px;
+                max-width: 80px;
+                border-width: 1.5px;
             }
             .struk-wrapper {
-                top: 130px;
-                padding: 6px 10px 10px 10px;
+                top: 85px;
+                padding: 4px 8px 8px 8px;
             }
             .struk-box {
-                padding: 12px 12px 10px 12px;
+                padding: 10px 10px 8px 10px;
                 border-radius: 20px;
                 border-width: 2px;
+                min-height: 250px;
             }
             .struk-title {
-                font-size: 14px;
+                font-size: 13px;
             }
             .struk-no {
-                font-size: 11px;
+                font-size: 10px;
             }
             .struk-header-row {
-                font-size: 9px;
+                font-size: 8px;
             }
             .struk-item {
                 font-size: 10px;
                 padding: 2px 0;
             }
             .struk-item .item-price {
-                min-width: 60px;
+                min-width: 50px;
             }
             .struk-total-row {
                 font-size: 11px;
             }
             .struk-ppn {
-                font-size: 10px;
+                font-size: 9px;
             }
             .struk-grand-total {
-                font-size: 14px;
+                font-size: 13px;
             }
             .btn-group {
-                flex-direction: column;
-                gap: 6px;
+                flex-direction: row;
+                gap: 4px;
             }
             .btn-cetak,
             .btn-selesai-struk,
             .btn-hapus-struk {
-                font-size: 12px;
-                padding: 6px 10px;
-                min-width: 60px;
+                font-size: 10px;
+                padding: 4px 8px;
+                min-width: 50px;
+                border-width: 2px;
             }
             .empty-state {
-                font-size: 16px;
-                padding: 30px 10px;
+                font-size: 14px;
+                padding: 20px 10px;
             }
             .struk-select {
-                font-size: 12px;
-                padding: 6px 10px;
+                font-size: 10px;
+                padding: 4px 8px;
+                border-width: 2px;
             }
         }
 
         @media screen and (max-width: 360px) {
             .info-item .value-box {
-                font-size: 9px;
+                font-size: 8px;
+                max-width: 60px;
+                padding: 1px 6px;
+            }
+            .info-item .label {
+                font-size: 8px;
             }
             .struk-item {
-                font-size: 9px;
+                font-size: 8px;
             }
             .struk-grand-total {
-                font-size: 12px;
+                font-size: 11px;
+            }
+            .struk-item .item-price {
+                min-width: 40px;
             }
         }
 
@@ -681,75 +704,80 @@
                 border-radius: 10px;
             }
             .header-top {
-                padding: 5px 10px 3px 10px;
+                padding: 4px 10px 2px 10px;
             }
             .btn-back {
-                font-size: 16px;
+                font-size: 14px;
             }
             .logo-header img {
-                width: 22px;
+                width: 20px;
             }
             .brand-text {
-                font-size: 11px;
+                font-size: 10px;
             }
             .info-wrapper {
-                top: 40px;
+                top: 38px;
                 padding: 0 10px;
-                gap: 6px;
-                flex-direction: row;
+                gap: 10px;
             }
             .info-item .label {
-                font-size: 10px;
+                font-size: 9px;
             }
             .info-item .value-box {
-                font-size: 10px;
-                padding: 3px 8px;
-                border-width: 2px;
+                font-size: 9px;
+                padding: 2px 8px;
+                max-width: 100px;
+                border-width: 1.5px;
             }
             .struk-wrapper {
-                top: 105px;
-                padding: 4px 10px 8px 10px;
+                top: 75px;
+                padding: 4px 10px 6px 10px;
             }
             .struk-box {
-                padding: 10px 12px 8px 12px;
+                padding: 8px 12px 6px 12px;
                 border-radius: 20px;
-                min-height: 200px;
+                min-height: 180px;
             }
             .struk-title {
-                font-size: 12px;
+                font-size: 11px;
             }
             .struk-no {
-                font-size: 10px;
+                font-size: 9px;
             }
             .struk-header-row {
-                font-size: 8px;
+                font-size: 7px;
             }
             .struk-item {
-                font-size: 9px;
+                font-size: 8px;
                 padding: 1px 0;
             }
             .struk-item .item-price {
-                min-width: 50px;
+                min-width: 40px;
             }
             .struk-total-row {
-                font-size: 10px;
-            }
-            .struk-ppn {
                 font-size: 9px;
             }
+            .struk-ppn {
+                font-size: 8px;
+            }
             .struk-grand-total {
-                font-size: 12px;
+                font-size: 11px;
             }
             .btn-cetak,
             .btn-selesai-struk,
             .btn-hapus-struk {
-                font-size: 10px;
-                padding: 4px 8px;
-                min-width: 50px;
+                font-size: 9px;
+                padding: 3px 8px;
+                min-width: 40px;
+                border-width: 2px;
             }
             .struk-select {
-                font-size: 10px;
-                padding: 4px 10px;
+                font-size: 9px;
+                padding: 3px 8px;
+                border-width: 2px;
+            }
+            .struk-select-wrapper {
+                margin-bottom: 8px;
             }
         }
     </style>
@@ -774,14 +802,15 @@
             </div>
         </div>
 
+        <!-- ===== INFO NAMA & MEJA - SAMPING KIRI KANAN ===== -->
         <div class="info-wrapper">
             <div class="info-item">
-                <div class="label">Nama:</div>
-                <div class="value-box" id="namaDisplay">-</div>
+                <span class="label">Nama:</span>
+                <span class="value-box" id="namaDisplay">-</span>
             </div>
             <div class="info-item">
-                <div class="label">Nomor Meja:</div>
-                <div class="value-box" id="mejaDisplay">-</div>
+                <span class="label">Meja:</span>
+                <span class="value-box" id="mejaDisplay">-</span>
             </div>
         </div>
 
@@ -1051,7 +1080,7 @@
             if (!order) return;
 
             document.getElementById('namaDisplay').textContent = order.customer_name || '-';
-            document.getElementById('mejaDisplay').textContent = 'Meja ' + (order.id_table || '1');
+            document.getElementById('mejaDisplay').textContent = order.id_table || '1';
 
             const details = order.orderdetails || [];
             const subtotal = details.reduce((s, item) => s + (item.subtotal || 0), 0);
