@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RestoPOS - Masuk</title>
+    <title>Jangkung Order - Masuk</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
         * {
@@ -388,6 +388,7 @@
             localStorage.setItem('meja_number', meja);
             localStorage.setItem('customer_name', 'Customer Meja ' + meja);
             
+            // LANGSUNG ke customer_order.html TANPA PASSWORD
             window.location.href = 'customer_order.html?meja=' + meja;
             return false;
         }
