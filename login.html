@@ -29,7 +29,7 @@
             position: relative;
             background: white;
             overflow: hidden;
-            background-image: url('https://placehold.co/1080x1920/2d2d2d/ffffff?text=Restaurant+Background');
+            background-image: url('bg.png');
             background-size: cover;
             background-position: center;
             border-radius: 20px;
@@ -144,6 +144,7 @@
             cursor: pointer;
             transition: all 0.3s;
             padding: 5px 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .btn-back:hover {
@@ -197,12 +198,29 @@
             margin-top: 80px;
         }
 
+        /* Gambar samping kiri atas - logo */
+        .img-left {
+            position: absolute;
+            left: 4.3%;
+            top: 7%;
+            z-index: 5;
+            width: clamp(80px, 38%, 413px);
+            height: auto;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .img-left img {
+            width: 100%;
+            height: auto;
+        }
+
         .box-customer {
             position: absolute;
             width: 82.1%;
             height: 26.4%;
             left: 8.15%;
-            top: 30%;
+            top: 26%;
             background: #98C81C;
             border-radius: 65px;
             opacity: 0.92;
@@ -242,7 +260,7 @@
             width: 82.1%;
             height: 26.4%;
             left: 8.15%;
-            top: 60%;
+            top: 56.9%;
             background: #98C81C;
             border-radius: 65px;
             opacity: 0.92;
@@ -293,6 +311,10 @@
             .box-karyawan .label {
                 font-size: 24px;
             }
+
+            .img-left {
+                width: 100px;
+            }
         }
 
         @media screen and (max-width: 480px) {
@@ -309,6 +331,10 @@
             .box-karyawan .label {
                 font-size: 20px;
             }
+
+            .img-left {
+                width: 70px;
+            }
         }
 
         @media screen and (max-width: 360px) {
@@ -320,6 +346,10 @@
             .box-customer .label,
             .box-karyawan .label {
                 font-size: 16px;
+            }
+
+            .img-left {
+                width: 50px;
             }
         }
 
@@ -354,11 +384,18 @@
             .logo-top img {
                 width: 30px;
             }
+
+            .img-left {
+                width: 60px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="login-container">
+        <!-- Background bg.png -->
+        <div class="bg-utama" style="position:absolute;width:100%;height:100%;top:0;left:0;z-index:0;background:url('bg.png') center center/cover no-repeat;"></div>
+
         <div class="deco-bg">
             <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
             <img src="https://placehold.co/908x855/2d2d2d/ffffff?text=" alt="" loading="lazy" />
@@ -371,23 +408,31 @@
 
         <div class="overlay"></div>
 
+        <!-- Tombol Back -->
         <button class="btn-back" onclick="window.location.href='index.html'">←</button>
 
+        <!-- Logo di kiri atas -->
+        <div class="img-left">
+            <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/413x295/2d2d2d/ffffff?text=Logo'" />
+        </div>
+
+        <!-- Logo di tengah atas -->
         <div class="logo-top">
-            <img src="https://placehold.co/80x80/98C81C/ffffff?text=🍽️" alt="Logo Jangkung" loading="lazy" />
+            <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/80x80/98C81C/ffffff?text=🍽️'" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
 
+        <!-- Title -->
         <div class="title-main">
             WILUJENG<br>SUMPING!
         </div>
 
-        <!-- CUSTOMER - ke customer_login.html (input meja) -->
+        <!-- CUSTOMER - ke customer_login.html -->
         <div class="box-customer" onclick="window.location.href='customer_login.html'">
             <div class="label">👤 CUSTOMER</div>
         </div>
 
-        <!-- KARYAWAN - ke karyawan_login.html (input password) -->
+        <!-- KARYAWAN - ke karyawan_login.html -->
         <div class="box-karyawan" onclick="window.location.href='karyawan_login.html'">
             <div class="label">👨‍💼 KARYAWAN</div>
         </div>
