@@ -651,24 +651,34 @@
             loading.classList.add('active');
 
             try {
-                // Ambil semua pesanan (termasuk yang sudah selesai)
-                const { data, error } = await supabaseClient
+                // Ambil semua pesanan
+                const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
-                    .select(`
-                        id_order,
-                        no_struk,
-                        status_order,
-                        tanggal_order,
-                        waktu_order,
-                        orderdetails (
-                            nama
-                        )
-                    `)
+                    .select('*')
                     .order('id_order', { ascending: false });
 
-                if (error) throw error;
+                if (ordersError) throw ordersError;
 
-                ordersData = data || [];
+                // Untuk setiap order, ambil detail untuk mendapatkan nama customer
+                const ordersWithDetails = [];
+                for (const order of orders || []) {
+                    const { data: details, error: detailsError } = await supabaseClient
+                        .from('orderdetails')
+                        .select('nama')
+                        .eq('no_struk', order.no_struk)
+                        .limit(1);
+
+                    if (detailsError) {
+                        console.warn('Error fetching details for', order.no_struk, detailsError);
+                    }
+
+                    ordersWithDetails.push({
+                        ...order,
+                        customer_name: details && details.length > 0 ? details[0].nama : '-'
+                    });
+                }
+
+                ordersData = ordersWithDetails || [];
                 console.log('Orders loaded:', ordersData.length);
                 renderTable();
 
@@ -701,23 +711,19 @@
 
             let html = '';
             ordersData.forEach((order, index) => {
-                const customerName = order.orderdetails && order.orderdetails.length > 0 ?
-                    order.orderdetails[0].nama || '-' :
-                    '-';
-
                 const isSelesai = order.status_order === 'Selesai';
 
                 html += `
                     <div class="table-row" style="${isSelesai ? 'opacity:0.5;' : ''}">
                         <div class="col">${index + 1}</div>
                         <div class="col">${order.no_struk || '-'}</div>
-                        <div class="col">${customerName}</div>
+                        <div class="col">${order.customer_name}</div>
                         <div class="col">
                             <div class="action-btns">
-                                <button class="btn-action lihat" onclick="lihatDetail(${order.id_order})">👁️</button>
+                                <button class="btn-action lihat" onclick="lihatDetail('${order.no_struk}')">👁️</button>
                                 ${!isSelesai ? `
-                                    <button class="btn-action selesai" onclick="selesaikanPesanan(${order.id_order}, '${order.no_struk}')">✔️</button>
-                                    <button class="btn-action hapus" onclick="deleteOrder(${order.id_order}, '${order.no_struk}')">🗑️</button>
+                                    <button class="btn-action selesai" onclick="selesaikanPesanan('${order.no_struk}')">✔️</button>
+                                    <button class="btn-action hapus" onclick="deleteOrder('${order.no_struk}')">🗑️</button>
                                 ` : ''}
                             </div>
                         </div>
@@ -728,18 +734,13 @@
             container.innerHTML = html;
         }
 
-        function lihatDetail(idOrder) {
+        function lihatDetail(noStruk) {
             // Cari order di data
-            const order = ordersData.find(o => o.id_order === idOrder);
+            const order = ordersData.find(o => o.no_struk === noStruk);
             if (!order) {
                 showToast('⚠️ Data tidak ditemukan', true);
                 return;
             }
-
-            // Buat modal atau alert untuk detail
-            const customerName = order.orderdetails && order.orderdetails.length > 0 ?
-                order.orderdetails[0].nama || '-' :
-                '-';
 
             const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
             const dateStr = orderDate.toLocaleString('id-ID', {
@@ -753,14 +754,13 @@
             alert(
                 `📋 DETAIL PESANAN\n\n` +
                 `Nomor Struk: ${order.no_struk}\n` +
-                `Customer: ${customerName}\n` +
+                `Customer: ${order.customer_name}\n` +
                 `Tanggal: ${dateStr}\n` +
-                `Status: ${order.status_order}\n` +
-                `ID Order: ${order.id_order}`
+                `Status: ${order.status_order}`
             );
         }
 
-        async function selesaikanPesanan(idOrder, noStruk) {
+        async function selesaikanPesanan(noStruk) {
             if (!confirm(`Yakin ingin menyelesaikan pesanan ${noStruk}?`)) return;
 
             const loading = document.getElementById('loadingOverlay');
@@ -770,7 +770,7 @@
                 const { error } = await supabaseClient
                     .from('orders')
                     .update({ status_order: 'Selesai' })
-                    .eq('id_order', idOrder);
+                    .eq('no_struk', noStruk);
 
                 if (error) throw error;
 
@@ -785,7 +785,7 @@
             }
         }
 
-        async function deleteOrder(idOrder, noStruk) {
+        async function deleteOrder(noStruk) {
             if (!confirm(`Yakin ingin menghapus pesanan ${noStruk}?`)) return;
 
             const loading = document.getElementById('loadingOverlay');
@@ -796,7 +796,7 @@
                 const { error: detailError } = await supabaseClient
                     .from('orderdetails')
                     .delete()
-                    .eq('id_order', idOrder);
+                    .eq('no_struk', noStruk);
 
                 if (detailError) throw detailError;
 
@@ -804,7 +804,7 @@
                 const { error } = await supabaseClient
                     .from('orders')
                     .delete()
-                    .eq('id_order', idOrder);
+                    .eq('no_struk', noStruk);
 
                 if (error) throw error;
 
@@ -837,7 +837,7 @@
                     const { error } = await supabaseClient
                         .from('orders')
                         .update({ status_order: 'Selesai' })
-                        .eq('id_order', order.id_order);
+                        .eq('no_struk', order.no_struk);
 
                     if (!error) success++;
                 }
