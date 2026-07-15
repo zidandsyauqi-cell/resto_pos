@@ -384,6 +384,170 @@
             }
         }
 
+        /* ===== DETAIL MODAL ===== */
+        .detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+        }
+
+        .detail-modal-content {
+            background: rgba(20, 20, 20, 0.95);
+            padding: 25px 30px;
+            border-radius: 30px;
+            max-width: 450px;
+            width: 90%;
+            border: 2px solid #98C81C;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .detail-modal-content::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .detail-modal-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .detail-modal-content::-webkit-scrollbar-thumb {
+            background: #98C81C;
+            border-radius: 10px;
+        }
+
+        .detail-modal-content .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .detail-modal-content .modal-header h2 {
+            color: #98C81C;
+            font-family: 'Schoolbell', cursive;
+            font-size: clamp(20px, 3%, 32px);
+            font-weight: 400;
+        }
+
+        .detail-modal-content .modal-header .close-modal {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .detail-modal-content .modal-header .close-modal:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .detail-modal-content .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .detail-modal-content .detail-row .label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: clamp(12px, 1.6%, 18px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+        }
+
+        .detail-modal-content .detail-row .value {
+            color: white;
+            font-size: clamp(12px, 1.6%, 18px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-word;
+        }
+
+        .detail-modal-content .detail-row .value.highlight {
+            color: #98C81C;
+            font-weight: 600;
+        }
+
+        .detail-modal-content .detail-divider {
+            border: none;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            margin: 8px 0;
+        }
+
+        .detail-modal-content .detail-items-title {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: clamp(11px, 1.4%, 16px);
+            font-family: 'Schoolbell', cursive;
+            text-align: center;
+            margin: 8px 0 4px 0;
+            letter-spacing: 2px;
+        }
+
+        .detail-modal-content .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .detail-modal-content .detail-item .item-name {
+            color: white;
+            font-size: clamp(11px, 1.4%, 16px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+        }
+
+        .detail-modal-content .detail-item .item-qty {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: clamp(11px, 1.4%, 16px);
+            font-family: 'Schoolbell', cursive;
+            margin: 0 8px;
+        }
+
+        .detail-modal-content .detail-item .item-price {
+            color: #98C81C;
+            font-size: clamp(11px, 1.4%, 16px);
+            font-family: 'Schoolbell', cursive;
+        }
+
+        .detail-modal-content .detail-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0 4px 0;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            margin-top: 6px;
+        }
+
+        .detail-modal-content .detail-total .total-label {
+            color: white;
+            font-size: clamp(14px, 1.8%, 22px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 600;
+        }
+
+        .detail-modal-content .detail-total .total-amount {
+            color: #98C81C;
+            font-size: clamp(14px, 1.8%, 22px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 700;
+        }
+
         @media screen and (max-width: 767px) {
             .list-container {
                 max-width: 100%;
@@ -446,6 +610,11 @@
 
             .brand-text {
                 font-size: 12px;
+            }
+
+            .detail-modal-content {
+                padding: 20px;
+                border-radius: 25px;
             }
         }
 
@@ -511,6 +680,31 @@
             .brand-text {
                 font-size: 10px;
             }
+
+            .detail-modal-content {
+                padding: 15px;
+                border-radius: 20px;
+            }
+
+            .detail-modal-content .modal-header h2 {
+                font-size: 18px;
+            }
+
+            .detail-modal-content .detail-row .label,
+            .detail-modal-content .detail-row .value {
+                font-size: 11px;
+            }
+
+            .detail-modal-content .detail-item .item-name,
+            .detail-modal-content .detail-item .item-qty,
+            .detail-modal-content .detail-item .item-price {
+                font-size: 10px;
+            }
+
+            .detail-modal-content .detail-total .total-label,
+            .detail-modal-content .detail-total .total-amount {
+                font-size: 13px;
+            }
         }
 
         @media screen and (max-width: 360px) {
@@ -536,6 +730,31 @@
                 font-size: 5px;
                 padding: 1px 4px;
                 min-width: 18px;
+            }
+
+            .detail-modal-content {
+                padding: 12px;
+                border-radius: 15px;
+            }
+
+            .detail-modal-content .modal-header h2 {
+                font-size: 15px;
+            }
+
+            .detail-modal-content .detail-row .label,
+            .detail-modal-content .detail-row .value {
+                font-size: 9px;
+            }
+
+            .detail-modal-content .detail-item .item-name,
+            .detail-modal-content .detail-item .item-qty,
+            .detail-modal-content .detail-item .item-price {
+                font-size: 9px;
+            }
+
+            .detail-modal-content .detail-total .total-label,
+            .detail-modal-content .detail-total .total-amount {
+                font-size: 11px;
             }
         }
 
@@ -595,6 +814,32 @@
                 padding: 2px 8px;
                 font-size: 9px;
             }
+
+            .detail-modal-content {
+                padding: 15px 20px;
+                border-radius: 20px;
+                max-width: 350px;
+            }
+
+            .detail-modal-content .modal-header h2 {
+                font-size: 16px;
+            }
+
+            .detail-modal-content .detail-row .label,
+            .detail-modal-content .detail-row .value {
+                font-size: 11px;
+            }
+
+            .detail-modal-content .detail-item .item-name,
+            .detail-modal-content .detail-item .item-qty,
+            .detail-modal-content .detail-item .item-price {
+                font-size: 10px;
+            }
+
+            .detail-modal-content .detail-total .total-label,
+            .detail-modal-content .detail-total .total-amount {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -646,6 +891,7 @@
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         let ordersData = [];
+        let menuNames = {};
         let isRealtimeConnected = false;
 
         function showToast(message, isError = false) {
@@ -660,11 +906,48 @@
             }, 3000);
         }
 
+        function formatRupiah(price) {
+            return 'Rp ' + Number(price).toLocaleString('id-ID');
+        }
+
+        function getStatusLabel(status) {
+            const map = {
+                'Diproses': '⏳ Diproses',
+                'Siap': '✅ Siap',
+                'Selesai': '✔️ Selesai'
+            };
+            return map[status] || status;
+        }
+
+        // ===== LOAD MENU NAMES =====
+        async function loadMenuNames() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('menu')
+                    .select('id_menu, nama_menu');
+
+                if (error) throw error;
+
+                if (data) {
+                    data.forEach(item => {
+                        menuNames[item.id_menu] = item.nama_menu;
+                    });
+                }
+                return true;
+            } catch (error) {
+                console.error('Error loading menu names:', error);
+                return false;
+            }
+        }
+
+        // ===== LOAD ORDERS =====
         async function loadOrders() {
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
 
             try {
+                await loadMenuNames();
+
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
                     .select('*')
@@ -676,17 +959,29 @@
                 for (const order of orders || []) {
                     const { data: details, error: detailsError } = await supabaseClient
                         .from('orderdetails')
-                        .select('nama')
-                        .eq('no_struk', order.no_struk)
-                        .limit(1);
+                        .select('*')
+                        .eq('no_struk', order.no_struk);
 
                     if (detailsError) {
                         console.warn('Error fetching details for', order.no_struk, detailsError);
                     }
 
+                    const detailsWithMenu = (details || []).map(item => {
+                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
+                        return {
+                            ...item,
+                            menu_name: menuName
+                        };
+                    });
+
+                    const customerName = detailsWithMenu.length > 0 ?
+                        detailsWithMenu[0].nama || '-' :
+                        '-';
+
                     ordersWithDetails.push({
                         ...order,
-                        customer_name: details && details.length > 0 ? details[0].nama : '-'
+                        orderdetails: detailsWithMenu,
+                        customer_name: customerName
                     });
                 }
 
@@ -712,6 +1007,7 @@
             }
         }
 
+        // ===== SETUP REALTIME =====
         function setupRealtime() {
             if (isRealtimeConnected) return;
 
@@ -750,8 +1046,11 @@
             window.realtimeChannel = channel;
         }
 
+        // ===== LOAD ORDERS SILENT =====
         async function loadOrdersSilent() {
             try {
+                await loadMenuNames();
+
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
                     .select('*')
@@ -763,17 +1062,29 @@
                 for (const order of orders || []) {
                     const { data: details, error: detailsError } = await supabaseClient
                         .from('orderdetails')
-                        .select('nama')
-                        .eq('no_struk', order.no_struk)
-                        .limit(1);
+                        .select('*')
+                        .eq('no_struk', order.no_struk);
 
                     if (detailsError) {
                         console.warn('Error fetching details for', order.no_struk, detailsError);
                     }
 
+                    const detailsWithMenu = (details || []).map(item => {
+                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
+                        return {
+                            ...item,
+                            menu_name: menuName
+                        };
+                    });
+
+                    const customerName = detailsWithMenu.length > 0 ?
+                        detailsWithMenu[0].nama || '-' :
+                        '-';
+
                     ordersWithDetails.push({
                         ...order,
-                        customer_name: details && details.length > 0 ? details[0].nama : '-'
+                        orderdetails: detailsWithMenu,
+                        customer_name: customerName
                     });
                 }
 
@@ -786,6 +1097,7 @@
             }
         }
 
+        // ===== RENDER TABLE =====
         function renderTable() {
             const container = document.getElementById('tableBody');
 
@@ -824,12 +1136,18 @@
             container.innerHTML = html;
         }
 
-        function lihatDetail(noStruk) {
+        // ===== LIHAT DETAIL =====
+        async function lihatDetail(noStruk) {
             const order = ordersData.find(o => o.no_struk === noStruk);
             if (!order) {
                 showToast('⚠️ Data tidak ditemukan', true);
                 return;
             }
+
+            const details = order.orderdetails || [];
+            const subtotal = details.reduce((s, item) => s + (item.subtotal || 0), 0);
+            const ppn = Math.round(subtotal * 0.1);
+            const total = subtotal + ppn;
 
             const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
             const dateStr = orderDate.toLocaleString('id-ID', {
@@ -840,15 +1158,82 @@
                 minute: '2-digit'
             });
 
-            alert(
-                `📋 DETAIL PESANAN\n\n` +
-                `Nomor Struk: ${order.no_struk}\n` +
-                `Customer: ${order.customer_name}\n` +
-                `Tanggal: ${dateStr}\n` +
-                `Status: ${order.status_order}`
-            );
+            // Buat modal
+            const modal = document.createElement('div');
+            modal.className = 'detail-modal';
+
+            let itemsHtml = '';
+            details.forEach(item => {
+                itemsHtml += `
+                    <div class="detail-item">
+                        <span class="item-name">${item.menu_name}</span>
+                        <span class="item-qty">x${item.jumlah || 0}</span>
+                        <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
+                    </div>
+                `;
+            });
+
+            modal.innerHTML = `
+                <div class="detail-modal-content">
+                    <div class="modal-header">
+                        <h2>📋 Detail Pesanan</h2>
+                        <button class="close-modal" onclick="this.closest('.detail-modal').remove()">✕</button>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="label">Nomor Struk</span>
+                        <span class="value highlight">${order.no_struk || '-'}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Customer</span>
+                        <span class="value">${order.customer_name || '-'}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Tanggal</span>
+                        <span class="value">${dateStr}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Status</span>
+                        <span class="value">${getStatusLabel(order.status_order)}</span>
+                    </div>
+
+                    <hr class="detail-divider">
+
+                    <div class="detail-items-title">🛒 Daftar Pesanan</div>
+                    ${itemsHtml}
+
+                    <hr class="detail-divider">
+
+                    <div class="detail-total">
+                        <span class="total-label">Total</span>
+                        <span class="total-amount">${formatRupiah(subtotal)}</span>
+                    </div>
+                    <div class="detail-row" style="border-bottom: none; padding-top: 0;">
+                        <span class="label">PPN 10%</span>
+                        <span class="value" style="color:rgba(255,255,255,0.5);">${formatRupiah(ppn)}</span>
+                    </div>
+                    <div class="detail-total" style="border-top-color: #98C81C;">
+                        <span class="total-label" style="color:#98C81C;">Grand Total</span>
+                        <span class="total-amount" style="font-size:clamp(18px,2.5%,28px);">${formatRupiah(total)}</span>
+                    </div>
+
+                    <button class="btn-action" style="width:100%;margin-top:12px;background:#98C81C;border-color:#98C81C;padding:8px;font-size:clamp(14px,1.8%,22px);" onclick="this.closest('.detail-modal').remove()">
+                        Tutup
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Tutup modal saat klik di luar
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.remove();
+                }
+            });
         }
 
+        // ===== SELESAIKAN PESANAN =====
         async function selesaikanPesanan(noStruk) {
             if (!confirm(`Yakin ingin menyelesaikan pesanan ${noStruk}?`)) return;
 
@@ -874,6 +1259,7 @@
             }
         }
 
+        // ===== HAPUS PESANAN =====
         async function deleteOrder(noStruk) {
             if (!confirm(`Yakin ingin menghapus pesanan ${noStruk}?`)) return;
 
@@ -906,6 +1292,7 @@
             }
         }
 
+        // ===== SELESAI SEMUA =====
         async function selesaiSemua() {
             const pendingOrders = ordersData.filter(o => o.status_order !== 'Selesai');
             if (pendingOrders.length === 0) {
