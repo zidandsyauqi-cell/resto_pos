@@ -39,42 +39,93 @@
             transform: scale(0.98);
         }
 
-        .deco-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            bottom: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .deco-bg img {
+        /* Gambar dekoratif di bawah - seperti desain yang diminta */
+        .deco-image {
             position: absolute;
             width: 100%;
             height: auto;
             bottom: 0;
             left: 0;
-            opacity: 0.2;
+            pointer-events: none;
+            z-index: 1;
         }
 
+        .deco-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.15;
+        }
+
+        /* Background pattern tambahan */
+        .bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+        }
+
+        /* Shape dekoratif */
+        .shape-1 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            top: -150px;
+            right: -150px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape-2 {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            bottom: 100px;
+            left: -80px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape-3 {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            top: 35%;
+            right: 5%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Loading Spinner */
         .loading-spinner {
             position: absolute;
-            bottom: 10%;
+            bottom: 8%;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255,255,255,0.2);
-            border-top: 4px solid white;
+            width: 35px;
+            height: 35px;
+            border: 3px solid rgba(255,255,255,0.2);
+            border-top: 3px solid white;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -85,12 +136,13 @@
         }
 
         .loading-text {
-            color: rgba(255,255,255,0.8);
-            font-size: clamp(12px, 1.5%, 18px);
+            color: rgba(255,255,255,0.7);
+            font-size: clamp(10px, 1.2%, 14px);
             font-weight: 400;
             letter-spacing: 4px;
         }
 
+        /* Logo di tengah */
         .logo-center {
             position: absolute;
             top: 50%;
@@ -114,25 +166,27 @@
             }
         }
 
-        .logo-center .logo-icon {
-            font-size: clamp(100px, 20%, 200px);
+        .logo-center .logo-img {
+            width: clamp(120px, 22%, 240px);
+            height: auto;
             display: block;
-            margin-bottom: 20px;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 10px 40px rgba(0,0,0,0.15));
             animation: bounce 2s infinite;
-            filter: drop-shadow(0 10px 40px rgba(0,0,0,0.2));
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
         }
 
         .logo-center .brand-text {
             color: white;
             font-size: clamp(40px, 8%, 80px);
             font-weight: 800;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.15);
             letter-spacing: 4px;
+            line-height: 1.1;
         }
 
         .logo-center .brand-text span {
@@ -140,46 +194,15 @@
         }
 
         .logo-center .subtitle {
-            color: rgba(255,255,255,0.8);
-            font-size: clamp(14px, 2.5%, 28px);
+            color: rgba(255,255,255,0.85);
+            font-size: clamp(12px, 2.2%, 24px);
             margin-top: 10px;
             font-weight: 400;
             letter-spacing: 6px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .shape-1 {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            top: -100px;
-            right: -100px;
-            pointer-events: none;
-        }
-
-        .shape-2 {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            bottom: -50px;
-            left: -50px;
-            pointer-events: none;
-        }
-
-        .shape-3 {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            top: 40%;
-            right: 10%;
-            pointer-events: none;
-        }
-
+        /* Responsive */
         @media screen and (max-width: 767px) {
             .landing-container {
                 max-width: 100%;
@@ -187,8 +210,8 @@
                 border-radius: 12px;
             }
 
-            .logo-center .logo-icon {
-                font-size: 80px;
+            .logo-center .logo-img {
+                width: 100px;
             }
 
             .logo-center .brand-text {
@@ -196,7 +219,7 @@
             }
 
             .logo-center .subtitle {
-                font-size: 12px;
+                font-size: 11px;
                 letter-spacing: 4px;
             }
 
@@ -210,27 +233,43 @@
                 border-radius: 10px;
             }
 
-            .logo-center .logo-icon {
-                font-size: 60px;
+            .logo-center .logo-img {
+                width: 80px;
+                margin-bottom: 12px;
             }
 
             .logo-center .brand-text {
                 font-size: 24px;
+                letter-spacing: 2px;
             }
 
             .logo-center .subtitle {
-                font-size: 10px;
+                font-size: 9px;
                 letter-spacing: 3px;
+                margin-top: 6px;
+            }
+
+            .spinner {
+                width: 25px;
+                height: 25px;
+            }
+
+            .loading-text {
+                font-size: 8px;
             }
         }
 
         @media screen and (max-width: 360px) {
-            .logo-center .logo-icon {
-                font-size: 50px;
+            .logo-center .logo-img {
+                width: 65px;
             }
 
             .logo-center .brand-text {
                 font-size: 20px;
+            }
+
+            .logo-center .subtitle {
+                font-size: 8px;
             }
         }
 
@@ -249,8 +288,8 @@
                 border-radius: 10px;
             }
 
-            .logo-center .logo-icon {
-                font-size: 50px;
+            .logo-center .logo-img {
+                width: 60px;
                 margin-bottom: 10px;
             }
 
@@ -259,8 +298,9 @@
             }
 
             .logo-center .subtitle {
-                font-size: 10px;
+                font-size: 9px;
                 margin-top: 5px;
+                letter-spacing: 3px;
             }
 
             .loading-text {
@@ -268,28 +308,42 @@
             }
 
             .spinner {
-                width: 25px;
-                height: 25px;
+                width: 20px;
+                height: 20px;
+                border-width: 2px;
+            }
+
+            .loading-spinner {
+                bottom: 5%;
             }
         }
     </style>
 </head>
 <body>
     <div class="landing-container" id="landingPage">
-        <div class="deco-bg">
-            <img src="https://placehold.co/1080x769/2d2d2d/ffffff?text=Restaurant" alt="" loading="lazy" />
-        </div>
+        <!-- Background pattern -->
+        <div class="bg-pattern"></div>
 
+        <!-- Shape dekoratif -->
         <div class="shape-1"></div>
         <div class="shape-2"></div>
         <div class="shape-3"></div>
 
+        <!-- Gambar dekoratif di bawah - seperti desain -->
+        <div class="deco-image">
+            <img src="https://placehold.co/1080x769/2d2d2d/ffffff?text=Restaurant" alt="" loading="lazy" />
+        </div>
+
+        <!-- Logo di tengah -->
         <div class="logo-center">
-            <span class="logo-icon">🍽️</span>
+            <img src="logo.png" alt="Jangkung Order" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+            <!-- Fallback jika logo.png tidak ditemukan -->
+            <div style="display:none; font-size: clamp(80px, 15%, 150px);">🍽️</div>
             <div class="brand-text">Jangkung<span>Order</span></div>
             <div class="subtitle">SISTEM PESANAN RESTORAN</div>
         </div>
 
+        <!-- Loading Spinner -->
         <div class="loading-spinner">
             <div class="spinner"></div>
             <div class="loading-text">MEMUAT...</div>
@@ -297,10 +351,12 @@
     </div>
 
     <script>
+        // Redirect ke login setelah 2.5 detik
         setTimeout(() => {
             window.location.href = 'login.html';
         }, 2500);
 
+        // Redirect saat diklik
         document.getElementById('landingPage').addEventListener('click', function() {
             window.location.href = 'login.html';
         });
