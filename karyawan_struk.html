@@ -201,6 +201,37 @@
             border-radius: 10px;
         }
 
+        /* ===== SELECT DROPDOWN ===== */
+        .struk-select-wrapper {
+            margin-bottom: 15px;
+        }
+
+        .struk-select {
+            width: 100%;
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: 3px solid white;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: clamp(14px, 2.2%, 26px);
+            font-family: 'Schoolbell', cursive;
+            outline: none;
+            cursor: pointer;
+            text-align: center;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .struk-select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .struk-select:focus {
+            border-color: #98C81C;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .struk-box {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 50px;
@@ -313,30 +344,75 @@
             color: #98C81C;
         }
 
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
         .btn-cetak {
-            display: block;
-            width: clamp(120px, 35%, 350px);
-            padding: 10px 20px;
-            margin: 15px auto 0 auto;
+            padding: 10px 25px;
             background: #98C81C;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(24px, 3.5%, 42px);
+            font-size: clamp(18px, 2.5%, 30px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
             border: 3px solid white;
+            flex: 1;
+            min-width: 120px;
         }
 
         .btn-cetak:hover {
             background: #7aa814;
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
-        .btn-cetak:active {
-            transform: scale(0.95);
+        .btn-selesai-struk {
+            padding: 10px 25px;
+            background: #2ecc71;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: clamp(18px, 2.5%, 30px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            border: 3px solid white;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn-selesai-struk:hover {
+            background: #27ae60;
+            transform: scale(1.02);
+        }
+
+        .btn-hapus-struk {
+            padding: 10px 25px;
+            background: #e74c3c;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: clamp(18px, 2.5%, 30px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            border: 3px solid white;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn-hapus-struk:hover {
+            background: #c0392b;
+            transform: scale(1.02);
         }
 
         .empty-state {
@@ -451,32 +527,6 @@
             }
         }
 
-        /* ===== SELECT DROPDOWN ===== */
-        .struk-select {
-            width: 100%;
-            padding: 12px 18px;
-            border-radius: 50px;
-            border: 3px solid white;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: clamp(16px, 2.5%, 30px);
-            font-family: 'Schoolbell', cursive;
-            outline: none;
-            margin-bottom: 15px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .struk-select option {
-            background: #1a1a1a;
-            color: white;
-        }
-
-        .struk-select:focus {
-            border-color: #98C81C;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
         @media screen and (max-width: 767px) {
             .struk-container {
                 max-width: 100%;
@@ -542,10 +592,12 @@
                 font-size: 18px;
             }
 
-            .btn-cetak {
-                font-size: 18px;
-                padding: 8px 16px;
-                width: 120px;
+            .btn-cetak,
+            .btn-selesai-struk,
+            .btn-hapus-struk {
+                font-size: 14px;
+                padding: 8px 12px;
+                min-width: 80px;
             }
 
             .struk-select {
@@ -631,10 +683,17 @@
                 font-size: 14px;
             }
 
-            .btn-cetak {
-                font-size: 14px;
-                padding: 6px 12px;
-                width: 80px;
+            .btn-group {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .btn-cetak,
+            .btn-selesai-struk,
+            .btn-hapus-struk {
+                font-size: 12px;
+                padding: 6px 10px;
+                min-width: 60px;
             }
 
             .empty-state {
@@ -748,17 +807,17 @@
                 font-size: 12px;
             }
 
-            .btn-cetak {
-                font-size: 12px;
-                padding: 4px 10px;
-                width: 60px;
-                margin-top: 8px;
+            .btn-cetak,
+            .btn-selesai-struk,
+            .btn-hapus-struk {
+                font-size: 10px;
+                padding: 4px 8px;
+                min-width: 50px;
             }
 
             .struk-select {
                 font-size: 10px;
                 padding: 4px 10px;
-                margin-bottom: 8px;
             }
         }
     </style>
@@ -839,6 +898,7 @@
             return 'Rp ' + Number(price).toLocaleString('id-ID');
         }
 
+        // ===== LOAD ORDERS =====
         async function loadOrders() {
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
@@ -875,7 +935,6 @@
                 console.log('Orders loaded:', ordersData.length);
 
                 if (ordersData.length > 0) {
-                    // Tampilkan yang pertama (terbaru)
                     selectedOrder = ordersData[0];
                     renderOrder(selectedOrder);
                 } else {
@@ -908,6 +967,7 @@
             }
         }
 
+        // ===== RENDER ORDER =====
         function renderOrder(order) {
             if (!order) return;
 
@@ -915,12 +975,8 @@
                 order.orderdetails[0].nama || '-' :
                 '-';
 
-            // Cari nomor meja dari id_table (jika ada)
-            let meja = '1';
-            // Bisa ditambahkan query ke tabel tables jika diperlukan
-
             document.getElementById('namaDisplay').textContent = customerName;
-            document.getElementById('mejaDisplay').textContent = 'Meja ' + meja;
+            document.getElementById('mejaDisplay').textContent = 'Meja ' + (order.id_table || '1');
 
             const details = order.orderdetails || [];
             const subtotal = details.reduce((s, item) => s + (item.subtotal || 0), 0);
@@ -938,6 +994,17 @@
 
             let html = `
                 <div class="struk-box">
+                    <!-- Dropdown Pilih Struk -->
+                    <div class="struk-select-wrapper">
+                        <select class="struk-select" id="strukSelect" onchange="onStrukChange(this.value)">
+                            ${ordersData.map((o, i) => `
+                                <option value="${i}" ${i === 0 ? 'selected' : ''}>
+                                    ${o.no_struk} - ${o.orderdetails && o.orderdetails.length > 0 ? o.orderdetails[0].nama || '-' : '-'}
+                                </option>
+                            `).join('')}
+                        </select>
+                    </div>
+
                     <div class="struk-title">📋 Detail Struk:</div>
                     <div class="struk-no">Nomor Struk: <span>${order.no_struk}</span> &bull; ${dateStr}</div>
 
@@ -977,17 +1044,133 @@
                         <span class="grand-total-amount">${formatRupiah(total)}</span>
                     </div>
 
-                    <button class="btn-cetak" onclick="cetakStruk('${order.no_struk}')">🖨️ Cetak Struk</button>
+                    <div class="btn-group">
+                        <button class="btn-cetak" onclick="cetakStruk('${order.no_struk}')">🖨️ Cetak</button>
+                        <button class="btn-selesai-struk" onclick="selesaikanStruk('${order.no_struk}')">✅ Selesai</button>
+                        <button class="btn-hapus-struk" onclick="hapusStruk('${order.no_struk}')">🗑️ Hapus</button>
+                    </div>
                 </div>
             `;
 
             document.getElementById('orderList').innerHTML = html;
         }
 
+        // ===== ON STRUK CHANGE =====
+        function onStrukChange(index) {
+            const idx = parseInt(index);
+            if (!isNaN(idx) && ordersData[idx]) {
+                selectedOrder = ordersData[idx];
+                renderOrder(selectedOrder);
+                // Scroll ke atas
+                document.getElementById('strukWrapper').scrollTop = 0;
+            }
+        }
+
+        // ===== CETAK STRUK =====
         function cetakStruk(noStruk) {
             showToast(`🖨️ Mencetak struk ${noStruk}...`);
             // Bisa ditambahkan fungsi print
             // setTimeout(() => { window.print(); }, 500);
+        }
+
+        // ===== SELESAIKAN STRUK =====
+        async function selesaikanStruk(noStruk) {
+            if (!confirm(`Yakin ingin menyelesaikan pesanan ${noStruk}?`)) return;
+
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                // Update status order menjadi selesai
+                const { error } = await supabaseClient
+                    .from('orders')
+                    .update({ status_order: 'Selesai' })
+                    .eq('no_struk', noStruk);
+
+                if (error) throw error;
+
+                showToast(`✅ Pesanan ${noStruk} berhasil diselesaikan!`);
+
+                // Hapus dari daftar
+                ordersData = ordersData.filter(o => o.no_struk !== noStruk);
+
+                if (ordersData.length > 0) {
+                    selectedOrder = ordersData[0];
+                    renderOrder(selectedOrder);
+                } else {
+                    document.getElementById('orderList').innerHTML = `
+                        <div class="struk-box">
+                            <div class="empty-state">
+                                🧾 Semua pesanan sudah selesai<br>
+                                <span class="sub">Tidak ada struk yang tersedia</span>
+                                <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('namaDisplay').textContent = '-';
+                    document.getElementById('mejaDisplay').textContent = '-';
+                }
+
+            } catch (error) {
+                console.error('Error finishing order:', error);
+                showToast('⚠️ Gagal menyelesaikan pesanan: ' + error.message, true);
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        // ===== HAPUS STRUK =====
+        async function hapusStruk(noStruk) {
+            if (!confirm(`Yakin ingin menghapus pesanan ${noStruk}?`)) return;
+
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                // Hapus order details dulu
+                const { error: detailError } = await supabaseClient
+                    .from('orderdetails')
+                    .delete()
+                    .eq('no_struk', noStruk);
+
+                if (detailError) throw detailError;
+
+                // Hapus order
+                const { error } = await supabaseClient
+                    .from('orders')
+                    .delete()
+                    .eq('no_struk', noStruk);
+
+                if (error) throw error;
+
+                showToast(`🗑️ Pesanan ${noStruk} berhasil dihapus`);
+
+                // Hapus dari daftar
+                ordersData = ordersData.filter(o => o.no_struk !== noStruk);
+
+                if (ordersData.length > 0) {
+                    selectedOrder = ordersData[0];
+                    renderOrder(selectedOrder);
+                } else {
+                    document.getElementById('orderList').innerHTML = `
+                        <div class="struk-box">
+                            <div class="empty-state">
+                                🧾 Tidak ada struk tersedia<br>
+                                <span class="sub">Semua pesanan sudah selesai</span>
+                                <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('namaDisplay').textContent = '-';
+                    document.getElementById('mejaDisplay').textContent = '-';
+                }
+
+            } catch (error) {
+                console.error('Error deleting order:', error);
+                showToast('⚠️ Gagal menghapus pesanan: ' + error.message, true);
+            } finally {
+                loading.classList.remove('active');
+            }
         }
 
         // Cek login
