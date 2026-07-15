@@ -6,12 +6,7 @@
     <title>Jangkung Order - Detail Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
             display: flex;
@@ -21,7 +16,6 @@
             background: #0a0a0a;
             padding: 10px;
         }
-
         .detail-container {
             width: 100%;
             max-width: 1080px;
@@ -32,7 +26,6 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
-
         .loading-overlay {
             position: absolute;
             width: 100%;
@@ -66,6 +59,39 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        .error-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            color: white;
+            text-align: center;
+            background: rgba(0,0,0,0.85);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 2px solid #e74c3c;
+            max-width: 85%;
+        }
+        .error-display .error-icon { font-size: 50px; display: block; margin-bottom: 10px; }
+        .error-display .error-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .error-display .error-desc { font-size: 16px; color: rgba(255,255,255,0.7); }
+        .error-display .btn-retry {
+            margin-top: 15px;
+            padding: 10px 30px;
+            background: #98C81C;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .error-display .btn-retry:hover { background: #7aa814; transform: scale(1.05); }
+
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -98,7 +124,6 @@
             pointer-events: none;
         }
 
-        /* Tombol Back */
         .btn-back {
             position: absolute;
             left: 4.3%;
@@ -114,7 +139,6 @@
         }
         .btn-back:hover { transform: scale(1.1); color: #98C81C; }
 
-        /* Logo di atas */
         .logo-top {
             position: absolute;
             left: 50%;
@@ -139,7 +163,6 @@
         }
         .logo-top .brand-text span { color: #98C81C; }
 
-        /* Gambar Menu - Full width di atas */
         .menu-image {
             position: absolute;
             width: 100%;
@@ -164,7 +187,6 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
         }
 
-        /* Nama Menu - di bawah gambar */
         .menu-name {
             position: absolute;
             left: 4%;
@@ -179,7 +201,6 @@
             max-width: 90%;
         }
 
-        /* Deskripsi - di bawah nama */
         .menu-desc {
             position: absolute;
             left: 4.9%;
@@ -201,7 +222,6 @@
         .menu-desc::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
         .menu-desc::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
-        /* Tombol ke PESAN */
         .btn-ke-pesan {
             position: absolute;
             bottom: 5%;
@@ -229,7 +249,6 @@
         }
         .btn-ke-pesan:active { transform: translateX(-50%) scale(0.98); }
 
-        /* Responsive */
         @media screen and (max-width: 767px) {
             .detail-container { max-width: 100%; aspect-ratio: 1080/1920; border-radius: 12px; }
             .menu-image { height: 50%; }
@@ -240,6 +259,9 @@
             .logo-top { top: 4%; }
             .logo-top .brand-text { font-size: 14px; }
             .logo-top img { width: 30px; }
+            .error-display { padding: 20px; }
+            .error-display .error-icon { font-size: 36px; }
+            .error-display .error-title { font-size: 18px; }
         }
 
         @media screen and (max-width: 480px) {
@@ -250,6 +272,9 @@
             .btn-ke-pesan { bottom: 2%; padding: 10px; font-size: 17px; }
             .btn-back { padding: 3px 10px; font-size: 14px; }
             .logo-top { top: 4%; }
+            .error-display { padding: 15px; }
+            .error-display .error-icon { font-size: 28px; }
+            .error-display .error-title { font-size: 16px; }
         }
 
         @media screen and (max-width: 360px) {
@@ -280,7 +305,6 @@
 </head>
 <body>
     <div class="detail-container">
-        <!-- Loading -->
         <div class="loading-overlay" id="loadingOverlay">
             <div class="loading-spinner"></div>
             <div class="loading-text">Memuat detail menu...</div>
@@ -292,45 +316,41 @@
 
         <div class="overlay"></div>
 
-        <!-- Tombol Back -->
         <button class="btn-back" onclick="window.location.href='customer_order.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
 
-        <!-- Logo -->
         <div class="logo-top">
             <img src="https://placehold.co/70x70/98C81C/ffffff?text=🍽️" alt="Logo Jangkung" loading="lazy" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
 
-        <!-- Gambar Menu -->
         <div class="menu-image">
             <img src="" alt="Menu" id="menuImage" />
             <div class="image-overlay"></div>
         </div>
 
-        <!-- Nama Menu -->
         <div class="menu-name" id="menuName">-</div>
-
-        <!-- Deskripsi -->
         <div class="menu-desc" id="menuDesc">Memuat deskripsi...</div>
 
-        <!-- Tombol ke PESAN -->
         <button class="btn-ke-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             🛒 PESAN SEKARANG
         </button>
+
+        <!-- Error Display -->
+        <div class="error-display" id="errorDisplay" style="display:none;">
+            <span class="error-icon">⚠️</span>
+            <div class="error-title">Menu Tidak Ditemukan</div>
+            <div class="error-desc" id="errorDesc">Menu dengan ID ini tidak tersedia. Silakan pilih menu lain.</div>
+            <a href="customer_order_list.html?meja=1" class="btn-retry">🛒 Ke Halaman Pesan</a>
+        </div>
     </div>
 
-    <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script>
-        // ============ SUPABASE CONFIG ============
         const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
         const STORAGE_BUCKET = 'menu-images';
-
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // ============ FUNGSI ============
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
             const meja = params.get('meja');
@@ -358,9 +378,9 @@
             } catch (error) { return null; }
         }
 
-        // ============ LOAD MENU DETAIL ============
         async function loadMenuDetail() {
             const loading = document.getElementById('loadingOverlay');
+            const errorDisplay = document.getElementById('errorDisplay');
             loading.classList.add('active');
 
             try {
@@ -368,34 +388,35 @@
                 const menuId = params.get('id');
 
                 if (!menuId) {
-                    document.getElementById('menuName').textContent = 'MENU TIDAK DITEMUKAN';
-                    document.getElementById('menuDesc').textContent = 'Silakan pilih menu dari halaman pesan.';
+                    showError('ID Menu tidak ditemukan', 'Silakan pilih menu dari halaman pesan.');
                     loading.classList.remove('active');
                     return;
                 }
+
+                console.log('Loading menu with ID:', menuId);
 
                 const { data, error } = await supabaseClient
                     .from('menu')
                     .select('nama_menu, detail, gambar')
                     .eq('id_menu', parseInt(menuId))
-                    .single();
+                    .maybeSingle();
 
-                if (error) throw error;
+                if (error) {
+                    console.error('Supabase error:', error);
+                    throw error;
+                }
 
                 if (!data) {
-                    document.getElementById('menuName').textContent = 'MENU TIDAK DITEMUKAN';
-                    document.getElementById('menuDesc').textContent = 'Menu dengan ID ' + menuId + ' tidak ditemukan.';
+                    showError('Menu Tidak Ditemukan', 'Menu dengan ID ' + menuId + ' tidak tersedia. Silakan pilih menu lain.');
                     loading.classList.remove('active');
                     return;
                 }
 
-                // Set nama menu
-                document.getElementById('menuName').textContent = data.nama_menu.toUpperCase();
+                console.log('Menu data:', data);
 
-                // Set deskripsi
+                document.getElementById('menuName').textContent = data.nama_menu.toUpperCase();
                 document.getElementById('menuDesc').textContent = data.detail || 'Tidak ada deskripsi untuk menu ini.';
 
-                // Set gambar
                 let imageUrl = 'https://placehold.co/1080x1080/2d2d2d/ffffff?text=' + encodeURIComponent(data.nama_menu);
                 if (data.gambar) {
                     const url = getImageUrl(data.gambar);
@@ -404,23 +425,36 @@
                 document.getElementById('menuImage').src = imageUrl;
                 document.getElementById('menuImage').alt = data.nama_menu;
 
+                // Sembunyikan error jika tampil
+                errorDisplay.style.display = 'none';
+
             } catch (error) {
                 console.error('Error loading menu detail:', error);
-                document.getElementById('menuName').textContent = '⚠️ GAGAL MEMUAT';
-                document.getElementById('menuDesc').textContent = 'Terjadi kesalahan saat memuat detail menu. Silakan coba lagi.';
+                showError('Gagal Memuat Menu', 'Terjadi kesalahan saat memuat detail menu. Silakan coba lagi.');
             } finally {
                 loading.classList.remove('active');
             }
         }
 
-        // ============ SET MEJA & NAMA ============
+        function showError(title, desc) {
+            const errorDisplay = document.getElementById('errorDisplay');
+            document.getElementById('errorDesc').textContent = desc;
+            // Update tombol dengan meja yang benar
+            const btnRetry = errorDisplay.querySelector('.btn-retry');
+            btnRetry.href = 'customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama());
+            errorDisplay.style.display = 'block';
+            // Sembunyikan elemen menu
+            document.getElementById('menuName').style.display = 'none';
+            document.getElementById('menuDesc').style.display = 'none';
+            document.getElementById('menuImage').style.display = 'none';
+            document.querySelector('.btn-ke-pesan').style.display = 'none';
+        }
+
         const mejaNumber = getMeja();
         const namaCustomer = getNama();
-
         localStorage.setItem('meja_number', mejaNumber);
         localStorage.setItem('customer_name', namaCustomer);
 
-        // ============ INIT ============
         window.addEventListener('DOMContentLoaded', function() {
             loadMenuDetail();
         });
