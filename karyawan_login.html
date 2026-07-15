@@ -33,6 +33,17 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
 
+        /* Background utama dengan bg.png */
+        .bg-utama {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: url('bg.png') center center / cover no-repeat;
+        }
+
         .deco-bg {
             position: absolute;
             width: 100%;
@@ -41,6 +52,7 @@
             left: 0;
             pointer-events: none;
             overflow: hidden;
+            z-index: 1;
         }
 
         .deco-bg img {
@@ -79,6 +91,46 @@
             filter: blur(3.50px);
         }
 
+        .deco-bg img:nth-child(4) {
+            width: 101.1%;
+            height: 56.9%;
+            left: 37.4%;
+            top: 67%;
+            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
+            filter: blur(3.50px);
+        }
+
+        .deco-bg img:nth-child(5) {
+            width: 101.1%;
+            height: 56.9%;
+            left: -63.7%;
+            top: -23.3%;
+            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
+            filter: blur(3.50px);
+        }
+
+        .deco-bg img:nth-child(6) {
+            width: 73.8%;
+            height: 41.5%;
+            left: -23.1%;
+            top: 58.2%;
+            transform: rotate(17deg);
+            transform-origin: top left;
+            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
+            filter: blur(3.50px);
+        }
+
+        .deco-bg img:nth-child(7) {
+            width: 73.8%;
+            height: 41.5%;
+            left: 72.1%;
+            top: 11.25%;
+            transform: rotate(17deg);
+            transform-origin: top left;
+            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
+            filter: blur(3.50px);
+        }
+
         .overlay {
             position: absolute;
             width: 100%;
@@ -87,6 +139,7 @@
             left: 0;
             background: rgba(0, 0, 0, 0.4);
             pointer-events: none;
+            z-index: 2;
         }
 
         .btn-back {
@@ -101,6 +154,7 @@
             cursor: pointer;
             transition: all 0.3s;
             padding: 5px 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .btn-back:hover {
@@ -137,129 +191,99 @@
             color: #98C81C;
         }
 
-        .login-content {
+        /* ===== FORM LOGIN - PERSIS DESAIN ===== */
+        .login-wrapper {
             position: absolute;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 10;
+            z-index: 5;
             padding: 40px;
         }
 
-        .login-box {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 65px;
+        .login-form {
             width: 100%;
             max-width: 500px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .login-box .icon {
-            text-align: center;
-            font-size: 60px;
-            margin-bottom: 10px;
-        }
-
-        .login-box h2 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .login-box .subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            font-size: 16px;
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #2c3e50;
-            font-size: 14px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 18px;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s;
-            background: #f8f9fa;
-        }
-
-        .form-group input:focus {
-            border-color: #98C81C;
-            outline: none;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(152, 200, 28, 0.1);
-        }
-
-        .btn-login {
-            width: 100%;
-            padding: 16px;
-            background: #98C81C;
+        .login-form .label {
             color: white;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
+            font-size: clamp(28px, 4.5%, 50px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .login-form .password-input {
+            width: 100%;
+            padding: clamp(14px, 2.5%, 28px) clamp(20px, 4%, 40px);
+            border-radius: 50px;
+            border: 3px solid white;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: clamp(18px, 3.5%, 40px);
+            font-family: 'Schoolbell', cursive;
+            outline: none;
             transition: all 0.3s;
-            margin-top: 10px;
+            text-align: center;
         }
 
-        .btn-login:hover {
-            background: #7aa814;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(152, 200, 28, 0.3);
+        .login-form .password-input::placeholder {
+            color: rgba(255,255,255,0.4);
         }
 
-        .btn-login:active {
-            transform: translateY(0);
+        .login-form .password-input:focus {
+            border-color: #98C81C;
+            background: rgba(255,255,255,0.2);
         }
 
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+        .login-form .error-msg {
+            color: #ff6b6b;
+            font-size: clamp(18px, 3.5%, 40px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-top: 15px;
             text-align: center;
             display: none;
-            font-weight: 600;
-            border: 1px solid #f5c6cb;
-            font-size: clamp(12px, 1.3%, 14px);
         }
 
-        .info {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 12px;
-            color: #7f8c8d;
+        .login-form .error-msg.show {
+            display: block;
         }
 
-        .info strong {
-            color: #98C81C;
+        .login-form .error-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: clamp(30px, 5%, 50px);
+            height: auto;
+        }
+
+        .login-form .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .login-form .input-wrapper .error-icon {
+            left: 15px;
+        }
+
+        /* Image di atas form */
+        .form-image {
+            width: clamp(200px, 60%, 773px);
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
         }
 
         @media screen and (max-width: 767px) {
@@ -269,18 +293,21 @@
                 border-radius: 12px;
             }
 
-            .login-box {
-                padding: 30px 25px;
-                border-radius: 40px;
-                max-width: 380px;
+            .login-wrapper {
+                padding: 30px;
             }
 
-            .login-box h2 {
+            .login-form .label {
                 font-size: 24px;
             }
 
-            .login-box .icon {
-                font-size: 45px;
+            .login-form .password-input {
+                font-size: 16px;
+                padding: 12px 20px;
+            }
+
+            .login-form .error-msg {
+                font-size: 16px;
             }
         }
 
@@ -289,115 +316,191 @@
                 border-radius: 10px;
             }
 
-            .login-box {
-                padding: 25px 20px;
-                border-radius: 30px;
-                max-width: 340px;
+            .login-wrapper {
+                padding: 20px;
             }
 
-            .login-box h2 {
-                font-size: 20px;
+            .login-form .label {
+                font-size: 18px;
             }
 
-            .login-box .icon {
-                font-size: 35px;
+            .login-form .password-input {
+                font-size: 14px;
+                padding: 10px 16px;
+                border-width: 2px;
             }
 
-            .form-group input {
-                padding: 10px 14px;
-                font-size: 15px;
-                border-radius: 8px;
+            .login-form .error-msg {
+                font-size: 14px;
             }
 
-            .btn-login {
-                padding: 12px;
-                font-size: 15px;
-                border-radius: 8px;
+            .form-image {
+                width: 150px;
             }
         }
 
         @media screen and (max-width: 360px) {
-            .login-box {
-                padding: 20px 15px;
-                border-radius: 25px;
-                max-width: 300px;
+            .login-form .label {
+                font-size: 16px;
             }
 
-            .login-box h2 {
-                font-size: 18px;
-            }
-
-            .form-group input {
+            .login-form .password-input {
+                font-size: 12px;
                 padding: 8px 12px;
-                font-size: 14px;
             }
 
-            .btn-login {
-                padding: 10px;
-                font-size: 14px;
+            .login-form .error-msg {
+                font-size: 12px;
+            }
+
+            .form-image {
+                width: 120px;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .karyawan-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .karyawan-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 10px;
+            }
+
+            .login-wrapper {
+                padding: 15px 30px;
+            }
+
+            .login-form .label {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+            .login-form .password-input {
+                font-size: 12px;
+                padding: 6px 14px;
+            }
+
+            .login-form .error-msg {
+                font-size: 12px;
+                margin-top: 8px;
+            }
+
+            .form-image {
+                width: 100px;
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="karyawan-container">
+        <!-- Background -->
+        <div class="bg-utama"></div>
+
+        <!-- Dekorasi -->
         <div class="deco-bg">
             <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
             <img src="https://placehold.co/908x855/2d2d2d/ffffff?text=" alt="" loading="lazy" />
             <img src="https://placehold.co/745x744/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
         </div>
 
         <div class="overlay"></div>
 
+        <!-- Tombol Back -->
         <button class="btn-back" onclick="window.location.href='login.html'">←</button>
 
-        <div class="login-content">
-            <div class="login-box">
-                <div class="icon">🔐</div>
-                <h2>Login Karyawan</h2>
-                <p class="subtitle">Masukkan password untuk mengakses dashboard</p>
-                
-                <div id="errorMsg" class="error">⚠️ Password salah, coba lagi</div>
-                
-                <form id="loginForm" onsubmit="return handleLogin(event)">
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="passwordInput" placeholder="Masukkan password" required autocomplete="current-password">
-                    </div>
-                    <button type="submit" class="btn-login">Login</button>
-                </form>
-                
-                <div class="info">
-                    <p>🔑 Password: <strong>admin</strong></p>
+        <!-- Logo -->
+        <div class="logo-top">
+            <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/80x80/98C81C/ffffff?text=🍽️'" />
+            <div class="brand-text">Jangkung<span>Order</span></div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-wrapper">
+            <div class="login-form">
+                <!-- Gambar di atas form -->
+                <img src="logo.png" alt="Logo" class="form-image" loading="lazy" onerror="this.style.display='none'" />
+
+                <!-- Label Password -->
+                <div class="label">Password</div>
+
+                <!-- Input Password -->
+                <div class="input-wrapper">
+                    <input 
+                        type="password" 
+                        id="passwordInput" 
+                        class="password-input" 
+                        placeholder="Masukkan password" 
+                        required 
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMsg" class="error-msg">
+                    ⚠️ Error: password salah, coba lagi
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Password yang benar (hardcode dulu, nanti bisa diambil dari database)
         const KARYAWAN_PASSWORD = 'admin';
 
-        function handleLogin(e) {
-            e.preventDefault();
-            const password = document.getElementById('passwordInput').value;
+        // ============ HANDLE LOGIN ============
+        function handleLogin() {
+            const password = document.getElementById('passwordInput').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (!password) {
+                errorMsg.textContent = '⚠️ Password tidak boleh kosong!';
+                errorMsg.classList.add('show');
+                setTimeout(() => {
+                    errorMsg.classList.remove('show');
+                }, 3000);
+                return false;
+            }
             
             if (password === KARYAWAN_PASSWORD) {
                 localStorage.setItem('user_role', 'Karyawan');
+                localStorage.setItem('karyawan_logged_in', 'true');
                 window.location.href = 'dashboard.html';
             } else {
-                document.getElementById('errorMsg').style.display = 'block';
+                errorMsg.textContent = '⚠️ Error: password salah, coba lagi';
+                errorMsg.classList.add('show');
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
                 setTimeout(() => {
-                    document.getElementById('errorMsg').style.display = 'none';
+                    errorMsg.classList.remove('show');
                 }, 3000);
             }
             return false;
         }
 
+        // ============ EVENT LISTENERS ============
         document.getElementById('passwordInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+                handleLogin();
             }
         });
+
+        // ============ CEK LOGIN STATUS ============
+        // Jika sudah login, redirect ke dashboard
+        if (localStorage.getItem('karyawan_logged_in') === 'true') {
+            window.location.href = 'dashboard.html';
+        }
     </script>
 </body>
 </html>
