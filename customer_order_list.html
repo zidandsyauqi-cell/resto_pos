@@ -46,7 +46,6 @@
             z-index: 2;
         }
 
-        /* ===== HEADER ===== */
         .header-top {
             position: absolute;
             top: 0;
@@ -153,7 +152,6 @@
             font-weight: 400;
         }
 
-        /* ===== SEARCH ===== */
         .search-wrapper {
             position: absolute;
             top: 65px;
@@ -190,7 +188,6 @@
         }
         .search-box input::placeholder { color: rgba(255,255,255,0.4); }
 
-        /* ===== CATEGORY TABS ===== */
         .category-tabs {
             position: absolute;
             top: 118px;
@@ -222,7 +219,6 @@
         .category-tabs .tab:hover { background: rgba(152, 200, 28, 0.2); border-color: #98C81C; color: white; }
         .category-tabs .tab.active { background: #98C81C; border-color: #98C81C; color: white; }
 
-        /* ===== CONTENT ===== */
         .content-area {
             position: absolute;
             top: 165px;
@@ -237,7 +233,131 @@
         .content-area::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
         .content-area::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
-        /* ===== MENU ITEM ===== */
+        /* ===== CART SECTION ===== */
+        .cart-section {
+            margin-top: 12px;
+            border-top: 2px solid rgba(255,255,255,0.1);
+            padding-top: 10px;
+            scroll-margin-top: 10px;
+        }
+        .cart-section .cart-title {
+            color: white;
+            font-size: clamp(14px, 1.8%, 22px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.05);
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 4px;
+            gap: 8px;
+        }
+        .cart-item .item-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+        .cart-item .item-info .item-name {
+            color: white;
+            font-size: clamp(10px, 1.2%, 15px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .cart-item .item-info .item-price {
+            color: #98C81C;
+            font-size: clamp(10px, 1.1%, 14px);
+            font-weight: 600;
+            white-space: nowrap;
+            margin-left: 6px;
+        }
+        .cart-item .item-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        .cart-item .item-actions .btn-minus {
+            width: 20px;
+            height: 20px;
+            background: #e74c3c;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .cart-item .item-actions .btn-minus:hover { transform: scale(1.1); background: #c0392b; }
+        .cart-item .item-actions .qty-display {
+            color: white;
+            font-size: clamp(11px, 1.2%, 15px);
+            font-weight: 600;
+            min-width: 18px;
+            text-align: center;
+        }
+        .cart-item .item-actions .btn-plus {
+            width: 20px;
+            height: 20px;
+            background: #98C81C;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .cart-item .item-actions .btn-plus:hover { transform: scale(1.1); background: #7aa814; }
+
+        .cart-total {
+            padding: 6px 14px;
+            background: rgba(152, 200, 28, 0.15);
+            border-radius: 10px;
+            border: 2px solid #98C81C;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .cart-total .total-label {
+            color: white;
+            font-size: clamp(12px, 1.4%, 18px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .cart-total .total-amount {
+            color: #98C81C;
+            font-size: clamp(14px, 1.8%, 24px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            padding: 8px 0;
+            font-size: 12px;
+            font-family: 'Schoolbell', cursive;
+        }
+
         .menu-section-title {
             color: white;
             font-size: clamp(28px, 6.5%, 70px);
@@ -456,7 +576,7 @@
         }
         .confirm-modal-content {
             background: rgba(20,20,20,0.95);
-            padding: 30px;
+            padding: 35px 40px;
             border-radius: 100px;
             max-width: 500px;
             width: 90%;
@@ -464,31 +584,35 @@
             text-align: center;
         }
         .confirm-modal-content .icon-big {
-            font-size: 60px;
+            font-size: 70px;
             margin-bottom: 10px;
         }
         .confirm-modal-content .title {
             color: white;
-            font-size: clamp(28px, 4%, 50px);
+            font-size: clamp(32px, 5%, 55px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         .confirm-modal-content .sub {
-            color: rgba(255,255,255,0.7);
-            font-size: clamp(14px, 1.8%, 22px);
+            color: rgba(255,255,255,0.8);
+            font-size: clamp(16px, 2%, 24px);
             font-family: 'Schoolbell', cursive;
             margin-bottom: 15px;
         }
-        .confirm-modal-content .warning {
-            color: #ff6b6b;
-            font-size: clamp(12px, 1.5%, 18px);
+        .confirm-modal-content .order-summary {
+            color: white;
             font-family: 'Schoolbell', cursive;
-            background: rgba(255,0,0,0.1);
-            padding: 10px 15px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,0,0,0.2);
+            font-size: clamp(16px, 2%, 24px);
             margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+        }
+        .confirm-modal-content .order-summary .total {
+            color: #98C81C;
+            font-weight: 700;
+            font-size: clamp(20px, 2.5%, 30px);
         }
         .confirm-modal-content .btn-group {
             display: flex;
@@ -534,7 +658,7 @@
             .menu-item .item-actions .btn-minus,
             .menu-item .item-actions .btn-plus { width: 24px; height: 24px; font-size: 13px; }
             .menu-item .item-actions .qty-input { width: 30px; font-size: 13px; }
-            .confirm-modal-content { border-radius: 60px; padding: 20px; }
+            .confirm-modal-content { border-radius: 60px; padding: 25px 20px; }
         }
         @media screen and (max-width: 480px) {
             .order-container { border-radius: 10px; }
@@ -563,10 +687,12 @@
             .btn-cart { padding: 3px 10px; }
             .btn-cart span { font-size: 9px; }
             .btn-cart .badge { font-size: 8px; min-width: 14px; padding: 0 4px; }
-            .confirm-modal-content { border-radius: 40px; padding: 15px; }
-            .confirm-modal-content .title { font-size: 22px; }
-            .confirm-modal-content .sub { font-size: 12px; }
-            .confirm-modal-content .warning { font-size: 10px; padding: 6px 10px; }
+            .confirm-modal-content { border-radius: 40px; padding: 20px 15px; }
+            .confirm-modal-content .icon-big { font-size: 50px; }
+            .confirm-modal-content .title { font-size: 24px; }
+            .confirm-modal-content .sub { font-size: 14px; }
+            .confirm-modal-content .order-summary { font-size: 14px; }
+            .confirm-modal-content .order-summary .total { font-size: 18px; }
             .confirm-modal-content .btn-group .btn-batal,
             .confirm-modal-content .btn-group .btn-yakin { padding: 6px 16px; font-size: 13px; }
         }
@@ -611,6 +737,14 @@
             .btn-cart { padding: 2px 8px; }
             .btn-cart span { font-size: 8px; }
             .btn-cart .badge { font-size: 7px; min-width: 12px; padding: 0 3px; }
+            .confirm-modal-content { padding: 15px 20px; border-radius: 40px; }
+            .confirm-modal-content .icon-big { font-size: 40px; }
+            .confirm-modal-content .title { font-size: 20px; }
+            .confirm-modal-content .sub { font-size: 12px; }
+            .confirm-modal-content .order-summary { font-size: 12px; }
+            .confirm-modal-content .order-summary .total { font-size: 16px; }
+            .confirm-modal-content .btn-group .btn-batal,
+            .confirm-modal-content .btn-group .btn-yakin { padding: 4px 12px; font-size: 11px; }
         }
     </style>
 </head>
@@ -635,7 +769,7 @@
             </div>
             <div class="header-right">
                 <span class="total-display" id="headerTotal" onclick="showTotalToast()">Rp 0</span>
-                <button class="btn-cart" onclick="showCartDetail()">
+                <button class="btn-cart" onclick="scrollToCart()">
                     <span>🛒</span>
                     <span class="badge" id="headerCartCount">0</span>
                 </button>
@@ -718,25 +852,21 @@
         function showTotalToast() {
             const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
             if (cart.length === 0) {
-                showToast('🛒 Keranjang kosong!');
+                showToast('🛒 Keranjang kosong! Yuk pesan dulu!');
             } else {
                 const count = cart.reduce((s, i) => s + i.qty, 0);
                 showToast(`💰 Total: Rp ${total.toLocaleString()} (${count} item)`);
             }
         }
 
-        function showCartDetail() {
-            if (cart.length === 0) {
-                showToast('🛒 Keranjang kosong!');
-                return;
+        function scrollToCart() {
+            const cartSection = document.getElementById('cartSection');
+            if (cartSection) {
+                cartSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            let msg = '🛒 Keranjang:\n';
-            cart.forEach(item => {
-                msg += `- ${item.name} x${item.qty} = Rp ${(item.price * item.qty).toLocaleString()}\n`;
-            });
-            const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
-            msg += `\n💰 Total: Rp ${total.toLocaleString()}`;
-            alert(msg);
+            if (cart.length === 0) {
+                showToast('🛒 Keranjang kosong! Yuk pesan dulu!');
+            }
         }
 
         function updateHeader() {
@@ -805,6 +935,7 @@
 
         function renderAll() {
             renderMenuList();
+            renderCart();
             updateHeader();
         }
 
@@ -893,7 +1024,7 @@
                     if (existing) { existing.qty = newQty; } else { cart.push({ id, name, price, qty: newQty, variant: variant }); }
                 }
                 localStorage.setItem('customer_cart', JSON.stringify(cart));
-                updateHeader();
+                renderAll();
                 if (change > 0 && newQty > 0) { showToast(`✅ ${name} x${newQty}`); }
             }
         }
@@ -907,7 +1038,7 @@
                 if (existing) { existing.qty = qty; } else { cart.push({ id, name, price, qty, variant: variant }); }
             }
             localStorage.setItem('customer_cart', JSON.stringify(cart));
-            updateHeader();
+            renderAll();
         }
 
         function openVariantModal(id) {
@@ -978,14 +1109,49 @@
             });
         }
 
-        // ============ CHECKOUT WITH CONFIRMATION ============
+        function renderCart() {
+            const container = document.getElementById('cartSection');
+            if (cart.length === 0) {
+                container.innerHTML = `<div class="cart-section" id="cartSection"><div class="cart-title">🛒 Keranjang</div><div class="empty-cart">Belum ada pesanan</div></div>`;
+                return;
+            }
+            let html = `<div class="cart-section" id="cartSection"><div class="cart-title">🛒 Keranjang (${cart.reduce((s, i) => s + i.qty, 0)} item)</div>`;
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                html += `
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-price">Rp ${(item.price * item.qty).toLocaleString()}</span>
+                        </div>
+                        <div class="item-actions">
+                            <button class="btn-minus" onclick="updateCartQty(${index}, -1)">−</button>
+                            <span class="qty-display">${item.qty}</span>
+                            <button class="btn-plus" onclick="updateCartQty(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+            html += `
+                <div class="cart-total"><span class="total-label">💰 Total</span><span class="total-amount">Rp ${total.toLocaleString()}</span></div>
+            </div>`;
+            container.innerHTML = html;
+        }
+
+        function updateCartQty(index, change) {
+            if (cart[index].qty + change <= 0) { cart.splice(index, 1); } else { cart[index].qty += change; }
+            localStorage.setItem('customer_cart', JSON.stringify(cart));
+            renderAll();
+        }
+
+        // ============ CHECKOUT ============
         function checkout() {
             if (cart.length === 0) {
                 showToast('⚠️ Belum ada pesanan!');
                 return;
             }
 
-            // Show confirmation modal
             const modal = document.createElement('div');
             modal.className = 'confirm-modal';
             const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
@@ -994,18 +1160,16 @@
             modal.innerHTML = `
                 <div class="confirm-modal-content">
                     <div class="icon-big">🍽️</div>
-                    <div class="title">Mau yang mana?</div>
-                    <div class="sub">Pesanan akan segera diproses oleh dapur</div>
-                    <div class="warning">
-                        ⚠️ Pesanan yang sudah dikirim <strong>TIDAK DAPAT DIBATALKAN</strong> atau ditarik kembali.<br>
-                        Pastikan pesanan Anda sudah benar!
-                    </div>
-                    <div style="color:white;font-family:'Schoolbell',cursive;font-size:clamp(14px,1.8%,22px);margin-bottom:15px;">
-                        Total: <strong style="color:#98C81C;">Rp ${total.toLocaleString()}</strong> (${count} item)
+                    <div class="title">Pesanan Siap Dikirim!</div>
+                    <div class="sub">Dapur akan segera memproses pesanan Anda</div>
+                    <div class="order-summary">
+                        ${cart.map(item => `${item.name} <strong>x${item.qty}</strong>`).join('<br>')}
+                        <br><br>
+                        Total: <span class="total">Rp ${total.toLocaleString()}</span> (${count} item)
                     </div>
                     <div class="btn-group">
                         <button class="btn-batal" onclick="this.closest('.confirm-modal').remove()">Batal</button>
-                        <button class="btn-yakin" onclick="proceedCheckout(this)">Yakin</button>
+                        <button class="btn-yakin" onclick="proceedCheckout(this)">Kirim Pesanan</button>
                     </div>
                 </div>
             `;
@@ -1053,14 +1217,12 @@
 
                 if (detailError) throw detailError;
 
-                // Clear cart
                 cart = [];
                 localStorage.setItem('customer_cart', JSON.stringify(cart));
                 renderAll();
 
                 showToast(`✅ Pesanan berhasil dikirim! No. Struk: ${noStruk}`);
 
-                // Redirect to status page after 1.5s
                 setTimeout(() => {
                     window.location.href = 'customer_order_status.html?meja=' + meja + '&nama=' + encodeURIComponent(nama);
                 }, 1500);
