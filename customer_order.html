@@ -47,11 +47,7 @@
             flex-direction: column;
             gap: 20px;
         }
-
-        .loading-overlay.active {
-            display: flex;
-        }
-
+        .loading-overlay.active { display: flex; }
         .loading-spinner {
             width: 60px;
             height: 60px;
@@ -60,12 +56,10 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         .loading-text {
             color: white;
             font-size: 18px;
@@ -81,12 +75,10 @@
             pointer-events: none;
             overflow: hidden;
         }
-
         .deco-bg img {
             position: absolute;
             opacity: 0.15;
         }
-
         .deco-bg img:nth-child(1) {
             width: 178%;
             height: 66.7%;
@@ -95,7 +87,6 @@
             transform: rotate(-90deg);
             transform-origin: top left;
         }
-
         .deco-bg img:nth-child(2) {
             width: 92.2%;
             height: 51.8%;
@@ -106,7 +97,6 @@
             box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
             filter: blur(3.50px);
         }
-
         .deco-bg img:nth-child(3) {
             width: 77.1%;
             height: 43.4%;
@@ -138,13 +128,11 @@
             align-items: center;
             gap: 10px;
         }
-
         .logo-top img {
             width: clamp(40px, 7.4%, 80px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
-
         .logo-top .brand-text {
             color: white;
             font-size: clamp(16px, 2.96%, 32px);
@@ -152,7 +140,6 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
         }
-
         .logo-top .brand-text span {
             color: #98C81C;
         }
@@ -189,10 +176,7 @@
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
         }
-
-        .meja-info span {
-            color: #98C81C;
-        }
+        .meja-info span { color: #98C81C; }
 
         .customer-name-display {
             position: absolute;
@@ -209,15 +193,13 @@
             font-weight: 500;
             font-family: 'Poppins', sans-serif;
         }
+        .customer-name-display span { color: #98C81C; }
 
-        .customer-name-display span {
-            color: #98C81C;
-        }
-
+        /* Box MENU */
         .box-menu {
             position: absolute;
             width: 82.2%;
-            height: 21.7%;
+            height: 28.6%;
             left: 8.9%;
             top: 24%;
             overflow: hidden;
@@ -226,15 +208,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .box-menu:hover {
-            transform: scale(1.02);
-        }
-
-        .box-menu:active {
-            transform: scale(0.98);
-        }
-
+        .box-menu:hover { transform: scale(1.02); }
+        .box-menu:active { transform: scale(0.98); }
         .box-menu .bg-hijau {
             position: absolute;
             width: 99.9%;
@@ -246,7 +221,6 @@
             opacity: 0.92;
             border: 3px solid white;
         }
-
         .box-menu .label-menu {
             position: absolute;
             left: 3.5%;
@@ -260,7 +234,6 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             letter-spacing: 2px;
         }
-
         .box-menu .gambar1 {
             position: absolute;
             width: 59.7%;
@@ -270,14 +243,12 @@
             overflow: hidden;
             z-index: 1;
         }
-
         .box-menu .gambar1 img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0.3;
         }
-
         .box-menu .gambar2 {
             position: absolute;
             width: 57.2%;
@@ -287,14 +258,12 @@
             overflow: hidden;
             z-index: 0;
         }
-
         .box-menu .gambar2 img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0.3;
         }
-
         .box-menu .gambar3 {
             position: absolute;
             width: 45%;
@@ -304,7 +273,6 @@
             overflow: hidden;
             z-index: 1;
         }
-
         .box-menu .gambar3 img {
             width: 100%;
             height: 100%;
@@ -312,27 +280,21 @@
             opacity: 0.3;
         }
 
+        /* Box PESAN */
         .box-pesan {
             position: absolute;
             width: 82.2%;
-            height: 20.9%;
+            height: 28.6%;
             left: 8.9%;
-            top: 48.5%;
+            top: 55.7%;
             overflow: hidden;
             border-radius: 65px;
             z-index: 5;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .box-pesan:hover {
-            transform: scale(1.02);
-        }
-
-        .box-pesan:active {
-            transform: scale(0.98);
-        }
-
+        .box-pesan:hover { transform: scale(1.02); }
+        .box-pesan:active { transform: scale(0.98); }
         .box-pesan .bg-hijau {
             position: absolute;
             width: 99.9%;
@@ -344,7 +306,6 @@
             opacity: 0.92;
             border: 3px solid white;
         }
-
         .box-pesan .label-pesan {
             position: absolute;
             left: 3.5%;
@@ -358,7 +319,6 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             letter-spacing: 2px;
         }
-
         .box-pesan .gambar4 {
             position: absolute;
             width: 56.4%;
@@ -368,14 +328,12 @@
             overflow: hidden;
             z-index: 1;
         }
-
         .box-pesan .gambar4 img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0.3;
         }
-
         .box-pesan .gambar5 {
             position: absolute;
             width: 49.2%;
@@ -387,14 +345,12 @@
             overflow: hidden;
             z-index: 0;
         }
-
         .box-pesan .gambar5 img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             opacity: 0.3;
         }
-
         .box-pesan .gambar6 {
             position: absolute;
             width: 61.4%;
@@ -406,7 +362,6 @@
             overflow: hidden;
             z-index: 1;
         }
-
         .box-pesan .gambar6 img {
             width: 100%;
             height: 100%;
@@ -414,112 +369,15 @@
             opacity: 0.3;
         }
 
-        .box-tambah {
-            position: absolute;
-            width: 82.2%;
-            height: 20.9%;
-            left: 8.9%;
-            top: 72%;
-            overflow: hidden;
-            border-radius: 65px;
-            z-index: 5;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .box-tambah:hover {
-            transform: scale(1.02);
-        }
-
-        .box-tambah:active {
-            transform: scale(0.98);
-        }
-
-        .box-tambah .bg-hijau {
-            position: absolute;
-            width: 99.9%;
-            height: 92.3%;
-            left: 0.1%;
-            top: 9.7%;
-            background: #98C81C;
-            border-radius: 65px;
-            opacity: 0.92;
-            border: 3px solid white;
-        }
-
-        .box-tambah .label-tambah {
-            position: absolute;
-            left: 3.5%;
-            top: 14.2%;
-            text-align: center;
-            color: white;
-            font-size: clamp(24px, 6%, 65px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            z-index: 2;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-        }
-
-        .box-tambah .gambar7 {
-            position: absolute;
-            width: 59.7%;
-            height: 81.1%;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .box-tambah .gambar7 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
-        .box-tambah .gambar8 {
-            position: absolute;
-            width: 57.2%;
-            height: 92.2%;
-            left: -10.8%;
-            top: 35.3%;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .box-tambah .gambar8 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
-        .box-tambah .gambar9 {
-            position: absolute;
-            width: 45%;
-            height: 74.9%;
-            left: 27.6%;
-            top: 44.1%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .box-tambah .gambar9 img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-
+        /* Box STATUS PESANAN */
         .box-status {
             position: absolute;
             width: 82.2%;
-            height: 5.1%;
+            height: 8.5%;
             left: 8.9%;
-            top: 95.8%;
+            top: 92.5%;
             background: #98C81C;
-            border-radius: 50px;
+            border-radius: 65px;
             border: 3px solid white;
             display: flex;
             align-items: center;
@@ -528,23 +386,16 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        .box-status:hover {
-            transform: scale(1.02);
-        }
-
-        .box-status:active {
-            transform: scale(0.98);
-        }
-
+        .box-status:hover { transform: scale(1.02); }
+        .box-status:active { transform: scale(0.98); }
         .box-status .label-status {
             color: white;
-            font-size: clamp(18px, 4%, 45px);
+            font-size: clamp(24px, 5%, 55px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-align: center;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         /* ====== HALAMAN MENU ====== */
@@ -562,24 +413,10 @@
             -webkit-backdrop-filter: blur(10px);
             padding: 10px 15px 15px 15px;
         }
-
-        .menu-page.active {
-            display: block;
-        }
-
-        .menu-page::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .menu-page::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-
-        .menu-page::-webkit-scrollbar-thumb {
-            background: #98C81C;
-            border-radius: 10px;
-        }
+        .menu-page.active { display: block; }
+        .menu-page::-webkit-scrollbar { width: 5px; }
+        .menu-page::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .menu-page::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
         .menu-page .menu-header {
             display: flex;
@@ -593,7 +430,6 @@
             z-index: 10;
             border-radius: 15px 15px 0 0;
         }
-
         .menu-page .menu-header .back-btn {
             background: none;
             border: none;
@@ -603,19 +439,13 @@
             transition: all 0.3s;
             padding: 5px 15px;
         }
-
-        .menu-page .menu-header .back-btn:hover {
-            transform: scale(1.1);
-            color: #98C81C;
-        }
-
+        .menu-page .menu-header .back-btn:hover { transform: scale(1.1); color: #98C81C; }
         .menu-page .menu-header h2 {
             color: white;
             font-size: clamp(16px, 3%, 32px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
-
         .menu-page .menu-header .cart-count {
             background: #98C81C;
             color: white;
@@ -632,7 +462,6 @@
             background: rgba(0,0,0,0.95);
             z-index: 9;
         }
-
         .menu-search-box {
             width: 100%;
             padding: 10px 18px;
@@ -644,19 +473,16 @@
             gap: 10px;
             transition: all 0.3s ease;
         }
-
         .menu-search-box:focus-within {
             border-color: #98C81C;
             background: rgba(255,255,255,0.15);
             box-shadow: 0 0 20px rgba(152, 200, 28, 0.15);
         }
-
         .menu-search-box .search-icon {
             color: rgba(255,255,255,0.6);
             font-size: clamp(18px, 2%, 24px);
             flex-shrink: 0;
         }
-
         .menu-search-box input {
             background: transparent;
             border: none;
@@ -666,11 +492,7 @@
             width: 100%;
             outline: none;
         }
-
-        .menu-search-box input::placeholder {
-            color: rgba(255,255,255,0.4);
-        }
-
+        .menu-search-box input::placeholder { color: rgba(255,255,255,0.4); }
         .menu-search-box .clear-btn {
             background: none;
             border: none;
@@ -681,15 +503,8 @@
             padding: 0 5px;
             transition: all 0.3s;
         }
-
-        .menu-search-box .clear-btn:hover {
-            color: white;
-            transform: scale(1.2);
-        }
-
-        .menu-search-box .clear-btn.show {
-            display: block;
-        }
+        .menu-search-box .clear-btn:hover { color: white; transform: scale(1.2); }
+        .menu-search-box .clear-btn.show { display: block; }
 
         .menu-selesai-btn {
             background: #ED1B24;
@@ -705,16 +520,8 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
-
-        .menu-selesai-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(237, 27, 36, 0.5);
-        }
-
-        .menu-selesai-btn:active {
-            transform: scale(0.95);
-        }
-
+        .menu-selesai-btn:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(237, 27, 36, 0.5); }
+        .menu-selesai-btn:active { transform: scale(0.95); }
         .menu-selesai-btn span {
             color: white;
             font-size: clamp(14px, 3%, 32px);
@@ -722,6 +529,7 @@
             font-weight: 400;
         }
 
+        /* Category Tabs - Urutan: Makanan, Tambahan, Minuman, Jangkung Kopi, Kopi */
         .category-tabs {
             display: flex;
             gap: 8px;
@@ -729,11 +537,7 @@
             padding: 8px 0 12px 0;
             scrollbar-width: none;
         }
-
-        .category-tabs::-webkit-scrollbar {
-            display: none;
-        }
-
+        .category-tabs::-webkit-scrollbar { display: none; }
         .category-tabs .tab {
             padding: 8px 20px;
             background: rgba(255,255,255,0.1);
@@ -747,16 +551,8 @@
             transition: all 0.3s;
             white-space: nowrap;
         }
-
-        .category-tabs .tab:hover {
-            background: rgba(152, 200, 28, 0.2);
-            border-color: #98C81C;
-        }
-
-        .category-tabs .tab.active {
-            background: #98C81C;
-            border-color: #98C81C;
-        }
+        .category-tabs .tab:hover { background: rgba(152, 200, 28, 0.2); border-color: #98C81C; }
+        .category-tabs .tab.active { background: #98C81C; border-color: #98C81C; }
 
         .menu-items {
             display: flex;
@@ -778,12 +574,7 @@
             flex-wrap: wrap;
             cursor: pointer;
         }
-
-        .menu-item-row:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(152, 200, 28, 0.3);
-        }
-
+        .menu-item-row:hover { background: rgba(255,255,255,0.1); border-color: rgba(152, 200, 28, 0.3); }
         .menu-item-row .item-info {
             flex: 1;
             min-width: 120px;
@@ -791,7 +582,6 @@
             align-items: center;
             gap: 12px;
         }
-
         .menu-item-row .item-info .item-image {
             width: 50px;
             height: 50px;
@@ -801,24 +591,18 @@
             flex-shrink: 0;
             background: #2d2d2d;
         }
-
-        .menu-item-row .item-info .item-details {
-            flex: 1;
-        }
-
+        .menu-item-row .item-info .item-details { flex: 1; }
         .menu-item-row .item-info .item-details .item-name {
             color: white;
             font-size: clamp(14px, 2%, 24px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
         }
-
         .menu-item-row .item-info .item-details .item-price {
             color: #98C81C;
             font-size: clamp(12px, 1.5%, 20px);
             font-weight: 600;
         }
-
         .menu-item-row .item-info .item-details .item-status {
             font-size: clamp(10px, 1.2%, 14px);
             padding: 2px 10px;
@@ -826,17 +610,14 @@
             display: inline-block;
             margin-top: 2px;
         }
-
         .menu-item-row .item-info .item-details .item-status.available {
             background: rgba(152, 200, 28, 0.3);
             color: #98C81C;
         }
-
         .menu-item-row .item-info .item-details .item-status.unavailable {
             background: rgba(231, 76, 60, 0.3);
             color: #e74c3c;
         }
-
         .menu-item-row .item-info .item-details .variant-badge {
             font-size: clamp(9px, 1%, 12px);
             color: #98C81C;
@@ -846,14 +627,12 @@
             display: inline-block;
             margin-top: 2px;
         }
-
         .menu-item-row .item-controls {
             display: flex;
             align-items: center;
             gap: 8px;
             flex-shrink: 0;
         }
-
         .menu-item-row .item-controls .btn-minus {
             width: 36px;
             height: 36px;
@@ -869,16 +648,8 @@
             justify-content: center;
             font-weight: 700;
         }
-
-        .menu-item-row .item-controls .btn-minus:hover {
-            transform: scale(1.1);
-            background: #c0392b;
-        }
-
-        .menu-item-row .item-controls .btn-minus:active {
-            transform: scale(0.9);
-        }
-
+        .menu-item-row .item-controls .btn-minus:hover { transform: scale(1.1); background: #c0392b; }
+        .menu-item-row .item-controls .btn-minus:active { transform: scale(0.9); }
         .menu-item-row .item-controls .qty-input {
             width: clamp(50px, 6%, 70px);
             padding: 6px 8px;
@@ -892,23 +663,10 @@
             font-weight: 600;
             transition: all 0.3s;
         }
-
-        .menu-item-row .item-controls .qty-input:focus {
-            border-color: #98C81C;
-            outline: none;
-            background: rgba(255,255,255,0.2);
-        }
-
+        .menu-item-row .item-controls .qty-input:focus { border-color: #98C81C; outline: none; background: rgba(255,255,255,0.2); }
         .menu-item-row .item-controls .qty-input::-webkit-inner-spin-button,
-        .menu-item-row .item-controls .qty-input::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .menu-item-row .item-controls .qty-input[type=number] {
-            -moz-appearance: textfield;
-        }
-
+        .menu-item-row .item-controls .qty-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        .menu-item-row .item-controls .qty-input[type=number] { -moz-appearance: textfield; }
         .menu-item-row .item-controls .btn-plus {
             width: 36px;
             height: 36px;
@@ -924,16 +682,8 @@
             justify-content: center;
             font-weight: 700;
         }
-
-        .menu-item-row .item-controls .btn-plus:hover {
-            transform: scale(1.1);
-            background: #7aa814;
-        }
-
-        .menu-item-row .item-controls .btn-plus:active {
-            transform: scale(0.9);
-        }
-
+        .menu-item-row .item-controls .btn-plus:hover { transform: scale(1.1); background: #7aa814; }
+        .menu-item-row .item-controls .btn-plus:active { transform: scale(0.9); }
         .menu-item-row .item-controls .btn-detail-add {
             padding: 6px 18px;
             background: #98C81C;
@@ -947,20 +697,9 @@
             white-space: nowrap;
             border: 2px solid white;
         }
-
-        .menu-item-row .item-controls .btn-detail-add:hover {
-            background: #7aa814;
-            transform: scale(1.05);
-        }
-
-        .menu-item-row .item-controls .btn-detail-add:active {
-            transform: scale(0.95);
-        }
-
-        .menu-item-row.disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
+        .menu-item-row .item-controls .btn-detail-add:hover { background: #7aa814; transform: scale(1.05); }
+        .menu-item-row .item-controls .btn-detail-add:active { transform: scale(0.95); }
+        .menu-item-row.disabled { opacity: 0.5; pointer-events: none; }
 
         /* ====== HALAMAN DETAIL MENU ====== */
         .detail-page {
@@ -977,24 +716,10 @@
             -webkit-backdrop-filter: blur(10px);
             padding: 15px;
         }
-
-        .detail-page.active {
-            display: block;
-        }
-
-        .detail-page::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .detail-page::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-
-        .detail-page::-webkit-scrollbar-thumb {
-            background: #98C81C;
-            border-radius: 10px;
-        }
+        .detail-page.active { display: block; }
+        .detail-page::-webkit-scrollbar { width: 5px; }
+        .detail-page::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .detail-page::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
         .detail-header {
             display: flex;
@@ -1007,7 +732,6 @@
             background: rgba(0,0,0,0.95);
             z-index: 10;
         }
-
         .detail-header .back-btn {
             background: none;
             border: none;
@@ -1017,19 +741,13 @@
             transition: all 0.3s;
             padding: 5px 15px;
         }
-
-        .detail-header .back-btn:hover {
-            transform: scale(1.1);
-            color: #98C81C;
-        }
-
+        .detail-header .back-btn:hover { transform: scale(1.1); color: #98C81C; }
         .detail-header h2 {
             color: white;
             font-size: clamp(20px, 3.5%, 40px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
-
         .detail-header .cart-count {
             background: #98C81C;
             color: white;
@@ -1047,12 +765,7 @@
             margin: 15px 0;
             background: rgba(255,255,255,0.05);
         }
-
-        .detail-image img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
+        .detail-image img { width: 100%; height: auto; object-fit: cover; }
 
         .detail-name {
             color: white;
@@ -1061,28 +774,24 @@
             font-weight: 600;
             margin: 5px 0 10px 0;
         }
-
         .detail-price {
             color: #98C81C;
             font-size: clamp(20px, 3.5%, 40px);
             font-weight: 600;
             margin-bottom: 15px;
         }
-
         .detail-variant-title {
             color: white;
             font-size: clamp(18px, 3%, 35px);
             font-family: 'Schoolbell', cursive;
             margin-bottom: 8px;
         }
-
         .detail-variants {
             display: flex;
             flex-direction: column;
             gap: 12px;
             margin: 10px 0 20px 0;
         }
-
         .variant-item {
             display: flex;
             align-items: center;
@@ -1094,32 +803,18 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
-        .variant-item:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(152, 200, 28, 0.3);
-        }
-
-        .variant-item.selected {
-            border-color: #98C81C;
-            background: rgba(152, 200, 28, 0.15);
-        }
-
-        .variant-item .variant-info {
-            flex: 1;
-        }
-
+        .variant-item:hover { background: rgba(255,255,255,0.1); border-color: rgba(152, 200, 28, 0.3); }
+        .variant-item.selected { border-color: #98C81C; background: rgba(152, 200, 28, 0.15); }
+        .variant-item .variant-info { flex: 1; }
         .variant-item .variant-info .variant-name {
             color: white;
             font-size: clamp(16px, 2.5%, 28px);
             font-family: 'Schoolbell', cursive;
         }
-
         .variant-item .variant-info .variant-price {
             color: rgba(255,255,255,0.7);
             font-size: clamp(14px, 2%, 22px);
         }
-
         .variant-item .variant-radio {
             width: 24px;
             height: 24px;
@@ -1131,11 +826,7 @@
             transition: all 0.3s;
             flex-shrink: 0;
         }
-
-        .variant-item.selected .variant-radio {
-            border-color: #98C81C;
-        }
-
+        .variant-item.selected .variant-radio { border-color: #98C81C; }
         .variant-item.selected .variant-radio::after {
             content: '';
             width: 12px;
@@ -1151,19 +842,16 @@
             gap: 20px;
             margin: 15px 0 20px 0;
         }
-
         .detail-qty-section .qty-label {
             color: white;
             font-size: clamp(18px, 2.5%, 30px);
             font-family: 'Schoolbell', cursive;
         }
-
         .detail-qty-section .qty-controls {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-
         .detail-qty-section .qty-btn {
             width: 44px;
             height: 44px;
@@ -1177,27 +865,10 @@
             justify-content: center;
             font-weight: 700;
         }
-
-        .detail-qty-section .qty-btn.minus {
-            background: #e74c3c;
-            color: white;
-        }
-
-        .detail-qty-section .qty-btn.minus:hover {
-            background: #c0392b;
-            transform: scale(1.1);
-        }
-
-        .detail-qty-section .qty-btn.plus {
-            background: #98C81C;
-            color: white;
-        }
-
-        .detail-qty-section .qty-btn.plus:hover {
-            background: #7aa814;
-            transform: scale(1.1);
-        }
-
+        .detail-qty-section .qty-btn.minus { background: #e74c3c; color: white; }
+        .detail-qty-section .qty-btn.minus:hover { background: #c0392b; transform: scale(1.1); }
+        .detail-qty-section .qty-btn.plus { background: #98C81C; color: white; }
+        .detail-qty-section .qty-btn.plus:hover { background: #7aa814; transform: scale(1.1); }
         .detail-qty-section .qty-number {
             color: white;
             font-size: clamp(24px, 3%, 36px);
@@ -1220,15 +891,8 @@
             border: 2px solid white;
             margin-top: 10px;
         }
-
-        .btn-tambah-detail:hover {
-            background: #7aa814;
-            transform: scale(1.02);
-        }
-
-        .btn-tambah-detail:active {
-            transform: scale(0.98);
-        }
+        .btn-tambah-detail:hover { background: #7aa814; transform: scale(1.02); }
+        .btn-tambah-detail:active { transform: scale(0.98); }
 
         /* ====== HALAMAN PESAN ====== */
         .pesan-page {
@@ -1245,24 +909,10 @@
             -webkit-backdrop-filter: blur(10px);
             padding: 10px 15px 15px 15px;
         }
-
-        .pesan-page.active {
-            display: block;
-        }
-
-        .pesan-page::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .pesan-page::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-
-        .pesan-page::-webkit-scrollbar-thumb {
-            background: #98C81C;
-            border-radius: 10px;
-        }
+        .pesan-page.active { display: block; }
+        .pesan-page::-webkit-scrollbar { width: 5px; }
+        .pesan-page::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .pesan-page::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
         .pesan-header {
             display: flex;
@@ -1276,7 +926,6 @@
             z-index: 10;
             border-radius: 15px 15px 0 0;
         }
-
         .pesan-header .back-btn {
             background: none;
             border: none;
@@ -1286,19 +935,13 @@
             transition: all 0.3s;
             padding: 5px 15px;
         }
-
-        .pesan-header .back-btn:hover {
-            transform: scale(1.1);
-            color: #98C81C;
-        }
-
+        .pesan-header .back-btn:hover { transform: scale(1.1); color: #98C81C; }
         .pesan-header h2 {
             color: white;
             font-size: clamp(16px, 3%, 32px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
-
         .pesan-header .cart-count {
             background: #98C81C;
             color: white;
@@ -1307,40 +950,11 @@
             font-size: clamp(12px, 1.5%, 18px);
             font-weight: 600;
         }
-
         .pesan-header .header-actions {
             display: flex;
             gap: 8px;
             align-items: center;
         }
-
-        .btn-total {
-            background: #029BEE;
-            border-radius: 50px;
-            border: 2px solid white;
-            padding: clamp(6px, 1.2%, 12px) clamp(15px, 2.5%, 30px);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(2, 155, 238, 0.3);
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .btn-total:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(2, 155, 238, 0.5);
-        }
-
-        .btn-total span {
-            color: white;
-            font-size: clamp(12px, 2.5%, 28px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-        }
-
         .btn-selesai-pesan {
             background: #ED1B24;
             border-radius: 50px;
@@ -1355,12 +969,8 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
-
-        .btn-selesai-pesan:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(237, 27, 36, 0.5);
-        }
-
+        .btn-selesai-pesan:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(237, 27, 36, 0.5); }
+        .btn-selesai-pesan:active { transform: scale(0.95); }
         .btn-selesai-pesan span {
             color: white;
             font-size: clamp(12px, 2.5%, 28px);
@@ -1374,7 +984,6 @@
             gap: 10px;
             padding: 10px 0 20px 0;
         }
-
         .order-item-row {
             display: flex;
             align-items: center;
@@ -1386,7 +995,6 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-
         .order-item-row .item-info {
             flex: 1;
             min-width: 120px;
@@ -1394,7 +1002,6 @@
             align-items: center;
             gap: 12px;
         }
-
         .order-item-row .item-info .item-image {
             width: 40px;
             height: 40px;
@@ -1404,31 +1011,24 @@
             flex-shrink: 0;
             background: #2d2d2d;
         }
-
-        .order-item-row .item-info .item-details {
-            flex: 1;
-        }
-
+        .order-item-row .item-info .item-details { flex: 1; }
         .order-item-row .item-info .item-details .item-name {
             color: white;
             font-size: clamp(14px, 1.8%, 20px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
         }
-
         .order-item-row .item-info .item-details .item-price {
             color: #98C81C;
             font-size: clamp(12px, 1.5%, 18px);
             font-weight: 600;
         }
-
         .order-item-row .item-controls {
             display: flex;
             align-items: center;
             gap: 8px;
             flex-shrink: 0;
         }
-
         .order-item-row .item-controls .btn-minus {
             width: 32px;
             height: 32px;
@@ -1444,12 +1044,7 @@
             justify-content: center;
             font-weight: 700;
         }
-
-        .order-item-row .item-controls .btn-minus:hover {
-            transform: scale(1.1);
-            background: #c0392b;
-        }
-
+        .order-item-row .item-controls .btn-minus:hover { transform: scale(1.1); background: #c0392b; }
         .order-item-row .item-controls .qty-display {
             color: white;
             font-size: clamp(16px, 1.8%, 22px);
@@ -1457,7 +1052,6 @@
             min-width: 30px;
             text-align: center;
         }
-
         .order-item-row .item-controls .btn-plus {
             width: 32px;
             height: 32px;
@@ -1473,10 +1067,15 @@
             justify-content: center;
             font-weight: 700;
         }
+        .order-item-row .item-controls .btn-plus:hover { transform: scale(1.1); background: #7aa814; }
 
-        .order-item-row .item-controls .btn-plus:hover {
-            transform: scale(1.1);
-            background: #7aa814;
+        .order-item-row .item-number {
+            color: rgba(255,255,255,0.5);
+            font-size: clamp(14px, 1.5%, 18px);
+            font-weight: 600;
+            min-width: 35px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
         }
 
         .order-total {
@@ -1489,14 +1088,12 @@
             align-items: center;
             margin-top: 10px;
         }
-
         .order-total .total-label {
             color: white;
             font-size: clamp(18px, 2.5%, 30px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
-
         .order-total .total-amount {
             color: #98C81C;
             font-size: clamp(20px, 3%, 36px);
@@ -1530,385 +1127,103 @@
             max-width: 90%;
             text-align: center;
         }
-
-        .toast.show {
-            display: block;
-        }
-
+        .toast.show { display: block; }
         @keyframes slideUp {
-            from {
-                transform: translateX(-50%) translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateX(-50%) translateY(50px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
         }
 
-        /* Responsive */
+        /* Responsive - sama seperti sebelumnya */
         @media screen and (max-width: 767px) {
-            .customer-container {
-                max-width: 100%;
-                aspect-ratio: 1080/1920;
-                border-radius: 12px;
-            }
-
-            .menu-page,
-            .pesan-page {
-                padding: 8px 12px 12px 12px;
-            }
-
-            .menu-search-wrapper {
-                padding: 5px 0 8px 0;
-                top: 60px;
-            }
-
-            .menu-search-box {
-                padding: 8px 14px;
-            }
-
-            .menu-item-row,
-            .order-item-row {
-                padding: 10px 12px;
-            }
-
-            .menu-item-row .item-info .item-image,
-            .order-item-row .item-info .item-image {
-                width: 40px;
-                height: 40px;
-            }
-
-            .menu-item-row .item-controls .btn-minus,
-            .menu-item-row .item-controls .btn-plus {
-                width: 32px;
-                height: 32px;
-                font-size: 16px;
-            }
-
-            .menu-item-row .item-controls .qty-input {
-                width: 45px;
-                padding: 4px 6px;
-                font-size: 14px;
-            }
-
-            .detail-page {
-                padding: 10px 12px;
-            }
-
-            .variant-item {
-                padding: 10px 12px;
-            }
-
-            .btn-total span,
-            .btn-selesai-pesan span {
-                font-size: 12px;
-            }
+            .customer-container { max-width: 100%; aspect-ratio: 1080/1920; border-radius: 12px; }
+            .menu-page, .pesan-page { padding: 8px 12px 12px 12px; }
+            .menu-search-wrapper { padding: 5px 0 8px 0; top: 60px; }
+            .menu-search-box { padding: 8px 14px; }
+            .menu-item-row, .order-item-row { padding: 10px 12px; }
+            .menu-item-row .item-info .item-image, .order-item-row .item-info .item-image { width: 40px; height: 40px; }
+            .menu-item-row .item-controls .btn-minus, .menu-item-row .item-controls .btn-plus { width: 32px; height: 32px; font-size: 16px; }
+            .menu-item-row .item-controls .qty-input { width: 45px; padding: 4px 6px; font-size: 14px; }
+            .detail-page { padding: 10px 12px; }
+            .variant-item { padding: 10px 12px; }
+            .btn-selesai-pesan span { font-size: 12px; }
+            .box-status { height: 7%; top: 93%; }
+            .box-status .label-status { font-size: 20px; }
         }
 
         @media screen and (max-width: 480px) {
-            .customer-container {
-                border-radius: 10px;
-            }
-
-            .menu-page,
-            .pesan-page {
-                padding: 5px 8px 10px 8px;
-            }
-
-            .menu-search-wrapper {
-                padding: 4px 0 6px 0;
-                top: 55px;
-            }
-
-            .menu-search-box {
-                padding: 6px 10px;
-                gap: 6px;
-            }
-
-            .menu-search-box input {
-                font-size: 12px;
-            }
-
-            .menu-selesai-btn {
-                padding: 4px 10px;
-            }
-
-            .menu-selesai-btn span {
-                font-size: 11px;
-            }
-
-            .btn-total {
-                padding: 4px 10px;
-            }
-
-            .btn-total span {
-                font-size: 10px;
-            }
-
-            .btn-selesai-pesan {
-                padding: 4px 10px;
-            }
-
-            .btn-selesai-pesan span {
-                font-size: 10px;
-            }
-
-            .menu-item-row,
-            .order-item-row {
-                padding: 8px 10px;
-                flex-wrap: wrap;
-            }
-
-            .menu-item-row .item-info,
-            .order-item-row .item-info {
-                min-width: 100px;
-            }
-
-            .menu-item-row .item-info .item-image,
-            .order-item-row .item-info .item-image {
-                width: 35px;
-                height: 35px;
-            }
-
-            .menu-item-row .item-controls {
-                flex: 1;
-                justify-content: flex-end;
-            }
-
-            .menu-item-row .item-controls .btn-minus,
-            .menu-item-row .item-controls .btn-plus {
-                width: 28px;
-                height: 28px;
-                font-size: 14px;
-            }
-
-            .menu-item-row .item-controls .qty-input {
-                width: 40px;
-                padding: 3px 4px;
-                font-size: 13px;
-            }
-
-            .detail-page {
-                padding: 8px 10px;
-            }
-
-            .variant-item {
-                padding: 8px 10px;
-            }
-
-            .variant-item .variant-info .variant-name {
-                font-size: 14px;
-            }
-
-            .variant-item .variant-info .variant-price {
-                font-size: 12px;
-            }
-
-            .btn-tambah-detail {
-                padding: 12px;
-                font-size: 20px;
-            }
-
-            .order-total .total-label {
-                font-size: 16px;
-            }
-
-            .order-total .total-amount {
-                font-size: 18px;
-            }
+            .customer-container { border-radius: 10px; }
+            .menu-page, .pesan-page { padding: 5px 8px 10px 8px; }
+            .menu-search-wrapper { padding: 4px 0 6px 0; top: 55px; }
+            .menu-search-box { padding: 6px 10px; gap: 6px; }
+            .menu-search-box input { font-size: 12px; }
+            .menu-selesai-btn { padding: 4px 10px; }
+            .menu-selesai-btn span { font-size: 11px; }
+            .btn-selesai-pesan { padding: 4px 10px; }
+            .btn-selesai-pesan span { font-size: 10px; }
+            .menu-item-row, .order-item-row { padding: 8px 10px; flex-wrap: wrap; }
+            .menu-item-row .item-info, .order-item-row .item-info { min-width: 100px; }
+            .menu-item-row .item-info .item-image, .order-item-row .item-info .item-image { width: 35px; height: 35px; }
+            .menu-item-row .item-controls { flex: 1; justify-content: flex-end; }
+            .menu-item-row .item-controls .btn-minus, .menu-item-row .item-controls .btn-plus { width: 28px; height: 28px; font-size: 14px; }
+            .menu-item-row .item-controls .qty-input { width: 40px; padding: 3px 4px; font-size: 13px; }
+            .detail-page { padding: 8px 10px; }
+            .variant-item { padding: 8px 10px; }
+            .variant-item .variant-info .variant-name { font-size: 14px; }
+            .variant-item .variant-info .variant-price { font-size: 12px; }
+            .btn-tambah-detail { padding: 12px; font-size: 20px; }
+            .order-total .total-label { font-size: 16px; }
+            .order-total .total-amount { font-size: 18px; }
+            .box-status { height: 6.5%; top: 93.5%; }
+            .box-status .label-status { font-size: 16px; }
         }
 
         @media screen and (max-width: 360px) {
-            .menu-search-wrapper {
-                top: 50px;
-            }
-
-            .menu-search-box input {
-                font-size: 11px;
-            }
-
-            .menu-selesai-btn {
-                padding: 3px 8px;
-            }
-
-            .menu-selesai-btn span {
-                font-size: 10px;
-            }
-
-            .btn-total {
-                padding: 3px 8px;
-            }
-
-            .btn-total span {
-                font-size: 9px;
-            }
-
-            .btn-selesai-pesan {
-                padding: 3px 8px;
-            }
-
-            .btn-selesai-pesan span {
-                font-size: 9px;
-            }
-
-            .menu-item-row .item-info .item-image,
-            .order-item-row .item-info .item-image {
-                width: 30px;
-                height: 30px;
-            }
-
-            .menu-item-row .item-controls .btn-minus,
-            .menu-item-row .item-controls .btn-plus {
-                width: 24px;
-                height: 24px;
-                font-size: 12px;
-            }
-
-            .menu-item-row .item-controls .qty-input {
-                width: 35px;
-                padding: 2px 3px;
-                font-size: 12px;
-            }
-
-            .menu-item-row .item-info .item-details .item-name {
-                font-size: 12px;
-            }
-
-            .menu-item-row .item-info .item-details .item-price {
-                font-size: 10px;
-            }
-
-            .detail-qty-section .qty-btn {
-                width: 34px;
-                height: 34px;
-                font-size: 18px;
-            }
-
-            .btn-tambah-detail {
-                padding: 10px;
-                font-size: 18px;
-            }
-
-            .order-total .total-label {
-                font-size: 14px;
-            }
-
-            .order-total .total-amount {
-                font-size: 16px;
-            }
+            .menu-search-wrapper { top: 50px; }
+            .menu-search-box input { font-size: 11px; }
+            .menu-selesai-btn { padding: 3px 8px; }
+            .menu-selesai-btn span { font-size: 10px; }
+            .btn-selesai-pesan { padding: 3px 8px; }
+            .btn-selesai-pesan span { font-size: 9px; }
+            .menu-item-row .item-info .item-image, .order-item-row .item-info .item-image { width: 30px; height: 30px; }
+            .menu-item-row .item-controls .btn-minus, .menu-item-row .item-controls .btn-plus { width: 24px; height: 24px; font-size: 12px; }
+            .menu-item-row .item-controls .qty-input { width: 35px; padding: 2px 3px; font-size: 12px; }
+            .menu-item-row .item-info .item-details .item-name { font-size: 12px; }
+            .menu-item-row .item-info .item-details .item-price { font-size: 10px; }
+            .detail-qty-section .qty-btn { width: 34px; height: 34px; font-size: 18px; }
+            .btn-tambah-detail { padding: 10px; font-size: 18px; }
+            .order-total .total-label { font-size: 14px; }
+            .order-total .total-amount { font-size: 16px; }
+            .box-status { height: 6%; top: 94%; }
+            .box-status .label-status { font-size: 14px; }
         }
 
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .customer-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-            }
-
-            .menu-search-wrapper {
-                top: 60px;
-            }
+            .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 15px; }
+            .menu-search-wrapper { top: 60px; }
         }
 
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .customer-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 10px;
-            }
-
-            .menu-page,
-            .pesan-page {
-                padding: 5px 10px 10px 10px;
-            }
-
-            .menu-search-wrapper {
-                padding: 4px 0 6px 0;
-                top: 55px;
-            }
-
-            .menu-search-box {
-                padding: 5px 10px;
-            }
-
-            .menu-search-box input {
-                font-size: 11px;
-            }
-
-            .menu-selesai-btn {
-                padding: 3px 8px;
-            }
-
-            .menu-selesai-btn span {
-                font-size: 10px;
-            }
-
-            .btn-total {
-                padding: 3px 8px;
-            }
-
-            .btn-total span {
-                font-size: 9px;
-            }
-
-            .btn-selesai-pesan {
-                padding: 3px 8px;
-            }
-
-            .btn-selesai-pesan span {
-                font-size: 9px;
-            }
-
-            .menu-item-row,
-            .order-item-row {
-                padding: 6px 10px;
-            }
-
-            .menu-item-row .item-info .item-image,
-            .order-item-row .item-info .item-image {
-                width: 30px;
-                height: 30px;
-            }
-
-            .menu-item-row .item-controls .btn-minus,
-            .menu-item-row .item-controls .btn-plus {
-                width: 24px;
-                height: 24px;
-                font-size: 12px;
-            }
-
-            .menu-item-row .item-controls .qty-input {
-                width: 35px;
-                padding: 2px 4px;
-                font-size: 12px;
-            }
-
-            .detail-page {
-                padding: 5px 10px;
-            }
-
-            .detail-image {
-                max-height: 30%;
-                margin: 10px 0;
-            }
-
-            .variant-item {
-                padding: 6px 10px;
-            }
-
-            .btn-tambah-detail {
-                padding: 8px;
-                font-size: 16px;
-            }
-
-            .order-total .total-label {
-                font-size: 14px;
-            }
-
-            .order-total .total-amount {
-                font-size: 16px;
-            }
+            .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 10px; }
+            .menu-page, .pesan-page { padding: 5px 10px 10px 10px; }
+            .menu-search-wrapper { padding: 4px 0 6px 0; top: 55px; }
+            .menu-search-box { padding: 5px 10px; }
+            .menu-search-box input { font-size: 11px; }
+            .menu-selesai-btn { padding: 3px 8px; }
+            .menu-selesai-btn span { font-size: 10px; }
+            .btn-selesai-pesan { padding: 3px 8px; }
+            .btn-selesai-pesan span { font-size: 9px; }
+            .menu-item-row, .order-item-row { padding: 6px 10px; }
+            .menu-item-row .item-info .item-image, .order-item-row .item-info .item-image { width: 30px; height: 30px; }
+            .menu-item-row .item-controls .btn-minus, .menu-item-row .item-controls .btn-plus { width: 24px; height: 24px; font-size: 12px; }
+            .menu-item-row .item-controls .qty-input { width: 35px; padding: 2px 4px; font-size: 12px; }
+            .detail-page { padding: 5px 10px; }
+            .detail-image { max-height: 30%; margin: 10px 0; }
+            .variant-item { padding: 6px 10px; }
+            .btn-tambah-detail { padding: 8px; font-size: 16px; }
+            .order-total .total-label { font-size: 14px; }
+            .order-total .total-amount { font-size: 16px; }
+            .box-status { height: 8%; top: 92%; }
+            .box-status .label-status { font-size: 16px; }
         }
     </style>
 </head>
@@ -1975,21 +1290,6 @@
             </div>
         </div>
 
-        <!-- Box TAMBAH PESANAN -->
-        <div class="box-tambah" onclick="openMenu()">
-            <div class="bg-hijau"></div>
-            <div class="label-tambah">➕ TAMBAH PESANAN</div>
-            <div class="gambar7">
-                <img src="https://placehold.co/627x448/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
-            <div class="gambar8">
-                <img src="https://placehold.co/373x335/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
-            <div class="gambar9">
-                <img src="https://placehold.co/358x370/2d2d2d/ffffff?text=Food" alt="" loading="lazy" />
-            </div>
-        </div>
-
         <!-- Box STATUS PESANAN -->
         <div class="box-status" onclick="window.location.href='customer_order_status.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
             <div class="label-status">📊 STATUS PESANAN</div>
@@ -2014,11 +1314,12 @@
                 </div>
             </div>
 
+            <!-- Urutan kategori: Makanan, Tambahan, Minuman, Jangkung Kopi, Kopi -->
             <div class="category-tabs" id="categoryTabs">
                 <button class="tab active" data-category="all" onclick="filterCategory('all')">Semua</button>
                 <button class="tab" data-category="Makanan" onclick="filterCategory('Makanan')">🍚 Makanan</button>
-                <button class="tab" data-category="Minuman" onclick="filterCategory('Minuman')">🥤 Minuman</button>
                 <button class="tab" data-category="Tambahan" onclick="filterCategory('Tambahan')">🍲 Tambahan</button>
+                <button class="tab" data-category="Minuman" onclick="filterCategory('Minuman')">🥤 Minuman</button>
                 <button class="tab" data-category="Jangkung Kopi" onclick="filterCategory('Jangkung Kopi')">☕ Jangkung Kopi</button>
                 <button class="tab" data-category="Kopi" onclick="filterCategory('Kopi')">☕ Kopi</button>
             </div>
@@ -2066,9 +1367,6 @@
                 <button class="back-btn" onclick="closePesan()">←</button>
                 <h2>🛒 Pesanan Saya</h2>
                 <div class="header-actions">
-                    <button class="btn-total" onclick="showTotal()">
-                        <span>💰 Total</span>
-                    </button>
                     <button class="btn-selesai-pesan" onclick="checkout()">
                         <span>Selesai</span>
                     </button>
@@ -2149,6 +1447,9 @@
             }
         }
 
+        // Urutan kategori untuk sorting
+        const categoryOrder = ['Makanan', 'Tambahan', 'Minuman', 'Jangkung Kopi', 'Kopi'];
+
         // ============ LOAD MENU FROM SUPABASE ============
         async function loadMenuFromSupabase() {
             const loading = document.getElementById('loadingOverlay');
@@ -2187,6 +1488,14 @@
                             variants: variants
                         };
                     });
+
+                    // Sort menu berdasarkan urutan kategori
+                    menuItems.sort((a, b) => {
+                        const indexA = categoryOrder.indexOf(a.category);
+                        const indexB = categoryOrder.indexOf(b.category);
+                        return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+                    });
+
                 } else {
                     menuItems = getDefaultMenu();
                 }
@@ -2208,7 +1517,7 @@
 
         // ============ DEFAULT MENU ============
         function getDefaultMenu() {
-            return [{
+            const defaultMenus = [{
                 id: 1,
                 name: 'Iga Bakar',
                 price: 45000,
@@ -2239,7 +1548,35 @@
                 image_url: null,
                 description: 'Air mineral 600ml',
                 variants: []
+            }, {
+                id: 4,
+                name: 'Es Teh',
+                price: 5000,
+                category: 'Minuman',
+                status: 'Tersedia',
+                image_url: null,
+                description: 'Es teh manis segar',
+                variants: []
+            }, {
+                id: 5,
+                name: 'Kopi Tubruk',
+                price: 20000,
+                category: 'Jangkung Kopi',
+                status: 'Tersedia',
+                image_url: null,
+                description: 'Kopi tubruk khas',
+                variants: []
+            }, {
+                id: 6,
+                name: 'Kopi Gula Aren',
+                price: 35000,
+                category: 'Kopi',
+                status: 'Tersedia',
+                image_url: null,
+                description: 'Kopi dengan gula aren',
+                variants: []
             }];
+            return defaultMenus;
         }
 
         // ============ SEARCH FUNCTION ============
@@ -2289,10 +1626,12 @@
             }
 
             filtered.forEach(item => {
-                const existing = orders.find(o => o.id === item.id);
+                const existing = orders.find(o => o.id === item.id && o.variant === null);
                 const qty = existing ? existing.qty : 0;
                 const isAvailable = item.status === 'Tersedia';
-                const hasVariants = item.variants && item.variants.length > 0 && !(item.variants.length === 1 && item
+
+                // Cek apakah ada varian selain "Standar"
+                const hasRealVariants = item.variants && item.variants.length > 0 && !(item.variants.length === 1 && item
                     .variants[0].name === 'Standar');
 
                 let imageUrl = 'https://placehold.co/50x50/2d2d2d/ffffff?text=Menu';
@@ -2303,20 +1642,24 @@
 
                 const row = document.createElement('div');
                 row.className = `menu-item-row ${!isAvailable ? 'disabled' : ''}`;
-                row.onclick = function() {
-                    if (isAvailable) {
-                        openDetail(item.id);
-                    }
-                };
 
                 let controlsHtml = '';
-                if (hasVariants) {
+
+                if (hasRealVariants) {
+                    // ADA VARIAN → tombol "Pilih" (harus klik untuk masuk detail)
                     controlsHtml = `
                                 <button class="btn-detail-add" onclick="event.stopPropagation(); openDetail(${item.id})">
                                     ${qty > 0 ? '🛒 ' + qty : 'Pilih'}
                                 </button>
                             `;
+                    // Klik row juga buka detail
+                    row.onclick = function() {
+                        if (isAvailable) {
+                            openDetail(item.id);
+                        }
+                    };
                 } else {
+                    // TIDAK ADA VARIAN → tombol + dan - di luar
                     controlsHtml = `
                                 <button class="btn-minus" onclick="event.stopPropagation(); updateQty(${item.id}, -1, '${item.name}', ${item.price})">−</button>
                                 <input type="number" class="qty-input" id="qty_${item.id}" 
@@ -2326,6 +1669,12 @@
                                        ${!isAvailable ? 'disabled' : ''}>
                                 <button class="btn-plus" onclick="event.stopPropagation(); updateQty(${item.id}, 1, '${item.name}', ${item.price})">+</button>
                             `;
+                    // Klik row bisa langsung tambah (optional)
+                    row.onclick = function() {
+                        if (isAvailable) {
+                            // Bisa langsung tambah atau ke detail, tapi karena ga ada varian, kita biarkan saja
+                        }
+                    };
                 }
 
                 row.innerHTML = `
@@ -2338,7 +1687,7 @@
                                     <div class="item-status ${isAvailable ? 'available' : 'unavailable'}">
                                         ${isAvailable ? '✅ Tersedia' : '❌ Tidak Tersedia'}
                                     </div>
-                                    ${hasVariants ? '<div class="variant-badge">📌 Ada Varian</div>' : ''}
+                                    ${hasRealVariants ? '<div class="variant-badge">📌 Ada Varian</div>' : ''}
                                 </div>
                             </div>
                             <div class="item-controls" onclick="event.stopPropagation();">
@@ -2349,7 +1698,7 @@
             });
         }
 
-        // ============ FUNGSI QTY ============
+        // ============ FUNGSI QTY (Tanpa Varian) ============
         function updateQty(id, change, name, price) {
             const input = document.getElementById(`qty_${id}`);
             if (!input) return;
@@ -2361,7 +1710,7 @@
 
             input.value = newQty;
 
-            const existing = orders.find(item => item.id === id && !item.variant);
+            const existing = orders.find(item => item.id === id && item.variant === null);
             if (newQty <= 0) {
                 if (existing) {
                     const index = orders.indexOf(existing);
@@ -2387,7 +1736,7 @@
         function onQtyChange(id, name, price, value) {
             const qty = parseInt(value) || 0;
 
-            const existing = orders.find(item => item.id === id && !item.variant);
+            const existing = orders.find(item => item.id === id && item.variant === null);
             if (qty <= 0) {
                 if (existing) {
                     const index = orders.indexOf(existing);
@@ -2414,8 +1763,11 @@
             currentDetailItem = item;
             detailQty = 1;
 
-            if (item.variants && item.variants.length > 0 && !(item.variants.length === 1 && item.variants[0].name ===
-                    'Standar')) {
+            // Cek varian selain "Standar"
+            const hasRealVariants = item.variants && item.variants.length > 0 && !(item.variants.length === 1 && item
+                .variants[0].name === 'Standar');
+
+            if (hasRealVariants) {
                 selectedVariant = item.variants[0];
             } else {
                 selectedVariant = null;
@@ -2438,9 +1790,6 @@
 
             const variantsContainer = document.getElementById('detailVariants');
             variantsContainer.innerHTML = '';
-
-            const hasRealVariants = item.variants && item.variants.length > 0 && !(item.variants.length === 1 && item
-                .variants[0].name === 'Standar');
 
             if (hasRealVariants) {
                 item.variants.forEach((variant, index) => {
@@ -2576,6 +1925,7 @@
 
                 html += `
                             <div class="order-item-row">
+                                <div class="item-number">#${index + 1}</div>
                                 <div class="item-info">
                                     <img class="item-image" src="${imageUrl}" alt="${item.name}" 
                                          onerror="this.src='https://placehold.co/40x40/2d2d2d/ffffff?text=Menu'">
@@ -2616,15 +1966,6 @@
             if (document.getElementById('menuPage').classList.contains('active')) {
                 renderMenu(currentCategory);
             }
-        }
-
-        function showTotal() {
-            if (orders.length === 0) {
-                showToast('⚠️ Belum ada pesanan!');
-                return;
-            }
-            const total = orders.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            showToast(`💰 Total: Rp ${total.toLocaleString()}`);
         }
 
         // ============ OPEN / CLOSE ============
@@ -2675,9 +2016,6 @@
                 message += `\n\n✅ Pesanan berhasil dikirim!`;
 
                 alert(message);
-
-                // Simpan ke Supabase (akan diimplementasikan nanti)
-                // ...
 
                 orders = [];
                 localStorage.setItem('customer_orders', JSON.stringify(orders));
