@@ -79,28 +79,28 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* ===== HEADER ===== */
         .header-top {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 15px 20px 10px 20px;
+            padding: 12px 20px 8px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(0,0,0,0.5);
         }
         .header-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         .btn-back {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(28px, 4%, 45px);
+            font-size: clamp(24px, 3.5%, 40px);
             cursor: pointer;
             transition: all 0.3s;
             padding: 5px 10px;
@@ -108,20 +108,19 @@
         }
         .btn-back:hover { transform: scale(1.1); color: #98C81C; }
         .logo-header img {
-            width: clamp(40px, 7%, 70px);
+            width: clamp(30px, 5%, 55px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
         .brand-text {
             color: white;
-            font-size: clamp(16px, 2.5%, 30px);
+            font-size: clamp(14px, 2.2%, 26px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
         }
         .brand-text span { color: #98C81C; }
 
-        /* ===== NAMA & MEJA ===== */
         .info-wrapper {
             position: absolute;
             top: 75px;
@@ -162,7 +161,6 @@
         }
         .info-item .value-box span { color: #98C81C; }
 
-        /* ===== STRUK ===== */
         .struk-wrapper {
             position: absolute;
             top: 170px;
@@ -183,6 +181,7 @@
             border: 3px solid white;
             padding: 25px 30px 20px 30px;
             min-height: 400px;
+            margin-bottom: 15px;
         }
         .struk-title {
             color: white;
@@ -308,7 +307,6 @@
         }
         .btn-refresh:hover { background: rgba(255,255,255,0.2); }
 
-        /* Responsive */
         @media screen and (max-width: 767px) {
             .status-container { max-width: 100%; border-radius: 12px; }
             .header-top { padding: 10px 14px 6px 14px; }
@@ -391,18 +389,16 @@
             <div class="loading-text">Memuat status pesanan...</div>
         </div>
 
-        <!-- ===== HEADER ===== -->
         <div class="header-top">
             <div class="header-left">
                 <button class="btn-back" onclick="window.location.href='customer_order.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
                 <div class="logo-header">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/70x70/98C81C/ffffff?text=🍽️'" />
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/55x55/98C81C/ffffff?text=🍽️'" />
                 </div>
                 <div class="brand-text">Jangkung<span>Order</span></div>
             </div>
         </div>
 
-        <!-- ===== NAMA & MEJA ===== -->
         <div class="info-wrapper">
             <div class="info-item">
                 <div class="label">Nama:</div>
@@ -414,7 +410,6 @@
             </div>
         </div>
 
-        <!-- ===== STRUK ===== -->
         <div class="struk-wrapper" id="strukWrapper">
             <div id="orderList"></div>
         </div>
@@ -426,31 +421,56 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+        let tableIdMap = {};
+
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
             const meja = params.get('meja');
-            if (meja && !isNaN(meja) && meja > 0) { return meja; }
-            const savedMeja = localStorage.getItem('meja_number');
-            if (savedMeja) { return savedMeja; }
+            if (meja && !isNaN(meja) && meja > 0) return meja;
+            const saved = localStorage.getItem('meja_number');
+            if (saved) return saved;
             return '1';
         }
 
         function getNama() {
             const params = new URLSearchParams(window.location.search);
             const nama = params.get('nama');
-            if (nama) { return nama; }
-            const savedNama = localStorage.getItem('customer_name');
-            if (savedNama) { return savedNama; }
+            if (nama) return nama;
+            const saved = localStorage.getItem('customer_name');
+            if (saved) return saved;
             return 'Customer';
         }
 
         function getStatusLabel(status) {
-            const map = { 'pending': '⏳ Menunggu', 'proses': '🔄 Diproses', 'siap': '✅ Siap Diambil', 'selesai': '✔️ Selesai' };
+            const map = { 
+                'Diproses': '⏳ Diproses', 
+                'Siap': '✅ Siap Diambil', 
+                'Selesai': '✔️ Selesai' 
+            };
             return map[status] || status;
         }
 
         function formatRupiah(price) {
             return 'Rp ' + Number(price).toLocaleString('id-ID');
+        }
+
+        async function loadTableIdMap() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('tables')
+                    .select('id_table, nomor_meja');
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    data.forEach(row => {
+                        tableIdMap[row.id_table] = row.nomor_meja;
+                    });
+                }
+                console.log('Table Map loaded:', tableIdMap);
+            } catch (error) {
+                console.error('Error loading table map:', error);
+            }
         }
 
         async function loadOrders() {
@@ -461,17 +481,40 @@
                 const meja = parseInt(getMeja());
                 const nama = getNama();
 
-                // Update nama & meja di header
                 document.getElementById('namaDisplay').textContent = nama;
                 document.getElementById('mejaDisplay').textContent = 'Meja ' + meja;
 
+                await loadTableIdMap();
+
+                // Cari id_table dari nomor meja
+                let idTable = null;
+                for (const [key, value] of Object.entries(tableIdMap)) {
+                    if (parseInt(value) === meja) {
+                        idTable = parseInt(key);
+                        break;
+                    }
+                }
+
+                if (!idTable) {
+                    document.getElementById('orderList').innerHTML = `
+                        <div class="struk-box">
+                            <div class="empty-status">
+                                ⚠️ Meja tidak ditemukan<br>
+                                <span class="sub">Silakan hubungi karyawan</span>
+                            </div>
+                        </div>
+                    `;
+                    loading.classList.remove('active');
+                    return;
+                }
+
+                // Ambil orders berdasarkan id_table
                 const { data: orders, error } = await supabaseClient
                     .from('orders')
                     .select('*')
-                    .eq('meja', meja)
-                    .eq('customer_name', nama)
-                    .neq('status', 'selesai')
-                    .order('order_date', { ascending: false });
+                    .eq('id_table', idTable)
+                    .neq('status_order', 'Selesai')
+                    .order('id_order', { ascending: false });
 
                 if (error) throw error;
 
@@ -493,8 +536,9 @@
 
                 let html = '';
                 for (const order of orders) {
+                    // Ambil detail pesanan
                     const { data: details, error: detailError } = await supabaseClient
-                        .from('order_details')
+                        .from('orderdetails')
                         .select('*')
                         .eq('no_struk', order.no_struk);
 
@@ -504,10 +548,19 @@
                     const ppn = Math.round(subtotal * 0.1);
                     const total = subtotal + ppn;
 
+                    const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
+                    const dateStr = orderDate.toLocaleString('id-ID', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
                     html += `
-                        <div class="struk-box" style="margin-bottom:15px;">
+                        <div class="struk-box">
                             <div class="struk-title">📋 Detail Struk:</div>
-                            <div class="struk-no">Nomor Struk: <span>${order.no_struk}</span></div>
+                            <div class="struk-no">Nomor Struk: <span>${order.no_struk}</span> &bull; ${dateStr}</div>
 
                             <div class="struk-header-row">
                                 <span>Pesanan</span>
@@ -517,8 +570,8 @@
 
                             ${details.map(item => `
                                 <div class="struk-item">
-                                    <span class="item-name">${item.menu_name}</span>
-                                    <span class="item-qty">${item.quantity}</span>
+                                    <span class="item-name">${item.nama || item.menu_name || 'Menu'}</span>
+                                    <span class="item-qty">${item.jumlah}</span>
                                     <span class="item-price">${formatRupiah(item.subtotal)}</span>
                                 </div>
                             `).join('')}
@@ -541,7 +594,7 @@
 
                             <div style="text-align:center;margin-top:12px;">
                                 <span style="color:rgba(255,255,255,0.5);font-family:'Schoolbell',cursive;font-size:clamp(14px,1.8%,22px);">
-                                    Status: ${getStatusLabel(order.status)}
+                                    Status: ${getStatusLabel(order.status_order)}
                                 </span>
                             </div>
 
@@ -558,7 +611,7 @@
                     <div class="struk-box">
                         <div class="empty-status">
                             ⚠️ Gagal memuat status pesanan<br>
-                            <span class="sub">Silakan refresh halaman</span>
+                            <span class="sub">${error.message}</span>
                             <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
                         </div>
                     </div>
@@ -568,7 +621,6 @@
             }
         }
 
-        // Save to localStorage
         const meja = getMeja();
         const nama = getNama();
         localStorage.setItem('meja_number', meja);
@@ -576,7 +628,6 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             loadOrders();
-            // Refresh setiap 30 detik
             setInterval(loadOrders, 30000);
         });
     </script>
