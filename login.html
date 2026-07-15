@@ -128,14 +128,14 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.35);
             pointer-events: none;
         }
 
         .btn-back {
             position: absolute;
             left: 4.3%;
-            top: 7%;
+            top: 5%;
             z-index: 10;
             background: none;
             border: none;
@@ -152,69 +152,41 @@
             color: #98C81C;
         }
 
-        .logo-top {
+        /* Header: Logo kiri + Teks kanan */
+        .header-top {
             position: absolute;
-            left: 50%;
-            top: 7%;
-            transform: translateX(-50%);
+            left: 4.3%;
+            top: 6%;
+            right: 4.3%;
             z-index: 10;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .logo-top img {
-            width: clamp(40px, 7.4%, 80px);
+        .header-top .logo-left {
+            width: clamp(120px, 35%, 413px);
             height: auto;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+            flex-shrink: 0;
         }
 
-        .logo-top .brand-text {
-            color: white;
-            font-size: clamp(16px, 2.96%, 32px);
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            white-space: nowrap;
+        .header-top .logo-left img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .logo-top .brand-text span {
-            color: #98C81C;
-        }
-
-        .title-main {
-            position: absolute;
-            left: 50%;
-            top: 7%;
-            transform: translateX(-50%);
-            text-align: center;
+        .header-top .title-right {
             color: white;
             font-size: clamp(24px, 7.4%, 80px);
             font-weight: 700;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            z-index: 5;
             line-height: 1.1;
             letter-spacing: 2px;
-            width: 55.6%;
-            margin-top: 80px;
+            flex: 1;
         }
 
-        /* Gambar samping kiri atas - logo */
-        .img-left {
-            position: absolute;
-            left: 4.3%;
-            top: 7%;
-            z-index: 5;
-            width: clamp(80px, 38%, 413px);
-            height: auto;
-            opacity: 0.8;
-            pointer-events: none;
-        }
-
-        .img-left img {
-            width: 100%;
-            height: auto;
-        }
-
+        /* Box Customer */
         .box-customer {
             position: absolute;
             width: 82.1%;
@@ -226,12 +198,13 @@
             opacity: 0.92;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 5;
             box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
             border: 3px solid white;
+            padding-left: 5%;
         }
 
         .box-customer:hover {
@@ -246,15 +219,15 @@
 
         .box-customer .label {
             color: white;
-            font-size: clamp(24px, 6%, 65px);
+            font-size: clamp(35px, 8%, 85px);
             font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
+            font-weight: 700;
+            text-align: left;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-            padding: 10px;
+            letter-spacing: 3px;
         }
 
+        /* Box Karyawan */
         .box-karyawan {
             position: absolute;
             width: 82.1%;
@@ -266,12 +239,13 @@
             opacity: 0.92;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 5;
             box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
             border: 3px solid white;
+            padding-left: 5%;
         }
 
         .box-karyawan:hover {
@@ -286,15 +260,15 @@
 
         .box-karyawan .label {
             color: white;
-            font-size: clamp(24px, 6%, 65px);
+            font-size: clamp(35px, 8%, 85px);
             font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-align: center;
+            font-weight: 700;
+            text-align: left;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 2px;
-            padding: 10px;
+            letter-spacing: 3px;
         }
 
+        /* Responsive */
         @media screen and (max-width: 767px) {
             .login-container {
                 max-width: 100%;
@@ -305,15 +279,20 @@
             .box-customer,
             .box-karyawan {
                 border-radius: 40px;
+                padding-left: 5%;
             }
 
             .box-customer .label,
             .box-karyawan .label {
-                font-size: 24px;
+                font-size: 30px;
             }
 
-            .img-left {
+            .header-top .logo-left {
                 width: 100px;
+            }
+
+            .header-top .title-right {
+                font-size: 22px;
             }
         }
 
@@ -325,15 +304,24 @@
             .box-customer,
             .box-karyawan {
                 border-radius: 30px;
+                padding-left: 5%;
             }
 
             .box-customer .label,
             .box-karyawan .label {
-                font-size: 20px;
+                font-size: 24px;
             }
 
-            .img-left {
+            .header-top .logo-left {
                 width: 70px;
+            }
+
+            .header-top .title-right {
+                font-size: 18px;
+            }
+
+            .header-top {
+                gap: 5px;
             }
         }
 
@@ -341,15 +329,21 @@
             .box-customer,
             .box-karyawan {
                 border-radius: 25px;
+                padding-left: 4%;
             }
 
             .box-customer .label,
             .box-karyawan .label {
-                font-size: 16px;
+                font-size: 18px;
+                letter-spacing: 1px;
             }
 
-            .img-left {
-                width: 50px;
+            .header-top .logo-left {
+                width: 55px;
+            }
+
+            .header-top .title-right {
+                font-size: 14px;
             }
         }
 
@@ -370,23 +364,15 @@
 
             .box-customer .label,
             .box-karyawan .label {
+                font-size: 22px;
+            }
+
+            .header-top .logo-left {
+                width: 70px;
+            }
+
+            .header-top .title-right {
                 font-size: 18px;
-            }
-
-            .title-main {
-                font-size: 18px;
-            }
-
-            .logo-top .brand-text {
-                font-size: 14px;
-            }
-
-            .logo-top img {
-                width: 30px;
-            }
-
-            .img-left {
-                width: 60px;
             }
         }
     </style>
@@ -411,30 +397,22 @@
         <!-- Tombol Back -->
         <button class="btn-back" onclick="window.location.href='index.html'">←</button>
 
-        <!-- Logo di kiri atas -->
-        <div class="img-left">
-            <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/413x295/2d2d2d/ffffff?text=Logo'" />
+        <!-- Header: Logo kiri + Teks kanan -->
+        <div class="header-top">
+            <div class="logo-left">
+                <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/413x295/2d2d2d/ffffff?text=Logo'" />
+            </div>
+            <div class="title-right">WILUJENG<br>SUMPING!</div>
         </div>
 
-        <!-- Logo di tengah atas -->
-        <div class="logo-top">
-            <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/80x80/98C81C/ffffff?text=🍽️'" />
-            <div class="brand-text">Jangkung<span>Order</span></div>
-        </div>
-
-        <!-- Title -->
-        <div class="title-main">
-            WILUJENG<br>SUMPING!
-        </div>
-
-        <!-- CUSTOMER - ke customer_login.html -->
+        <!-- CUSTOMER -->
         <div class="box-customer" onclick="window.location.href='customer_login.html'">
-            <div class="label">👤 CUSTOMER</div>
+            <div class="label">CUSTOMER</div>
         </div>
 
-        <!-- KARYAWAN - ke karyawan_login.html -->
+        <!-- KARYAWAN -->
         <div class="box-karyawan" onclick="window.location.href='karyawan_login.html'">
-            <div class="label">👨‍💼 KARYAWAN</div>
+            <div class="label">KARYAWAN</div>
         </div>
     </div>
 </body>
