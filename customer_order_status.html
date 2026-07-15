@@ -421,7 +421,8 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let tableIdMap = {};
+        // Data meja yang aktif (hanya yang statusnya Tersedia atau Sudah Diisi)
+        let activeTables = [];
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -454,27 +455,53 @@
             return 'Rp ' + Number(price).toLocaleString('id-ID');
         }
 
-        async function loadTableIdMap() {
+        async function loadActiveTables() {
             try {
+                // Ambil semua meja yang statusnya Tersedia atau Sudah Diisi
                 const { data, error } = await supabaseClient
                     .from('tables')
-                    .select('id_table, nomor_meja');
+                    .select('id_table, nomor_meja, status')
+                    .in('status', ['Tersedia', 'Sudah Diisi'])
+                    .order('id_table', { ascending: false }); // Ambil yang terbaru dulu
 
                 if (error) throw error;
 
                 if (data && data.length > 0) {
+                    // Hanya ambil satu per nomor_meja (prioritas id_table terbesar = terbaru)
+                    const uniqueMap = {};
                     data.forEach(row => {
-                        // Map both ways
-                        tableIdMap[row.id_table] = row.nomor_meja;
-                        tableIdMap[row.nomor_meja] = row.id_table;
+                        const nomor = row.nomor_meja;
+                        // Jika belum ada atau id_table lebih besar (lebih baru), timpa
+                        if (!uniqueMap[nomor] || row.id_table > uniqueMap[nomor].id_table) {
+                            uniqueMap[nomor] = row;
+                        }
                     });
+                    activeTables = Object.values(uniqueMap);
                 }
-                console.log('✅ Table Map loaded:', tableIdMap);
-                return true;
+
+                console.log('✅ Active tables (unique):', activeTables);
+                return activeTables;
             } catch (error) {
-                console.error('❌ Error loading table map:', error);
-                return false;
+                console.error('❌ Error loading tables:', error);
+                return [];
             }
+        }
+
+        function findIdTable(nomorMeja) {
+            // Cari di activeTables
+            const found = activeTables.find(t => t.nomor_meja === nomorMeja);
+            if (found) return found.id_table;
+
+            // Jika tidak ditemukan, coba dengan format string
+            const foundStr = activeTables.find(t => t.nomor_meja === nomorMeja.toString());
+            if (foundStr) return foundStr.id_table;
+
+            // Coba dengan padStart 2 digit
+            const padded = nomorMeja.toString().padStart(2, '0');
+            const foundPadded = activeTables.find(t => t.nomor_meja === padded);
+            if (foundPadded) return foundPadded.id_table;
+
+            return null;
         }
 
         async function loadOrders() {
@@ -488,27 +515,12 @@
                 document.getElementById('namaDisplay').textContent = nama;
                 document.getElementById('mejaDisplay').textContent = 'Meja ' + meja;
 
-                // Load table map
-                await loadTableIdMap();
+                // Load active tables
+                await loadActiveTables();
 
                 // Cari id_table dari nomor meja
-                let idTable = null;
-                
-                // Coba berbagai format
-                const mejaStr = meja.toString();
-                if (tableIdMap[mejaStr]) {
-                    idTable = tableIdMap[mejaStr];
-                } else if (tableIdMap[mejaStr.padStart(2, '0')]) {
-                    idTable = tableIdMap[mejaStr.padStart(2, '0')];
-                } else {
-                    // Loop manual
-                    for (const [key, value] of Object.entries(tableIdMap)) {
-                        if (parseInt(key) === meja) {
-                            idTable = value;
-                            break;
-                        }
-                    }
-                }
+                const mejaStr = meja.toString().padStart(2, '0');
+                const idTable = findIdTable(mejaStr);
 
                 console.log('🔍 Meja:', meja, '→ ID Table:', idTable);
 
@@ -517,7 +529,7 @@
                         <div class="struk-box">
                             <div class="empty-status">
                                 ⚠️ Meja ${meja} tidak ditemukan<br>
-                                <span class="sub">Silakan hubungi karyawan</span>
+                                <span class="sub">Meja yang tersedia: ${activeTables.map(t => t.nomor_meja).join(', ')}</span>
                                 <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
                             </div>
                         </div>
@@ -547,7 +559,7 @@
                     container.innerHTML = `
                         <div class="struk-box">
                             <div class="empty-status">
-                                🍽️ Belum ada pesanan aktif<br>
+                                🍽️ Belum ada pesanan aktif untuk meja ${meja}<br>
                                 <span class="sub">Silakan pesan dari menu</span>
                                 <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
                             </div>
