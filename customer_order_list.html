@@ -35,48 +35,6 @@
             z-index: 0;
             background: url('bg.png') center center / cover no-repeat;
         }
-        .deco-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .deco-bg img {
-            position: absolute;
-            opacity: 0.12;
-        }
-        .deco-bg img:nth-child(1) {
-            width: 178%;
-            height: 66.7%;
-            left: -9.3%;
-            top: 99.99%;
-            transform: rotate(-90deg);
-            transform-origin: top left;
-        }
-        .deco-bg img:nth-child(2) {
-            width: 92.2%;
-            height: 51.8%;
-            left: -53.2%;
-            top: 61.2%;
-            transform: rotate(-12deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-        .deco-bg img:nth-child(3) {
-            width: 77.1%;
-            height: 43.4%;
-            left: 71.8%;
-            top: 10.6%;
-            transform: rotate(21deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
         .overlay {
             position: absolute;
             width: 100%;
@@ -210,10 +168,42 @@
         }
         .search-box input::placeholder { color: rgba(255,255,255,0.4); }
 
+        /* ===== CATEGORY TABS ===== */
+        .category-tabs {
+            position: absolute;
+            top: 118px;
+            left: 0;
+            right: 0;
+            z-index: 8;
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 6px 20px 10px 20px;
+            background: rgba(0,0,0,0.7);
+            scrollbar-width: none;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .category-tabs::-webkit-scrollbar { display: none; }
+        .category-tabs .tab {
+            padding: 6px 18px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 50px;
+            color: rgba(255,255,255,0.7);
+            font-size: clamp(10px, 1.2%, 14px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .category-tabs .tab:hover { background: rgba(152, 200, 28, 0.2); border-color: #98C81C; color: white; }
+        .category-tabs .tab.active { background: #98C81C; border-color: #98C81C; color: white; }
+
         /* ===== CONTENT ===== */
         .content-area {
             position: absolute;
-            top: 135px;
+            top: 165px;
             left: 0;
             right: 0;
             bottom: 0;
@@ -675,7 +665,9 @@
             .search-wrapper { top: 58px; padding: 0 16px; }
             .search-box { padding: 8px 14px; }
             .search-box input { font-size: 14px; }
-            .content-area { top: 118px; padding: 8px 16px 15px 16px; }
+            .category-tabs { top: 108px; padding: 4px 14px 8px 14px; gap: 4px; }
+            .category-tabs .tab { padding: 4px 12px; font-size: 10px; }
+            .content-area { top: 148px; padding: 8px 16px 15px 16px; }
             .menu-item { padding: 8px 0; min-height: 40px; }
             .menu-item .item-actions .btn-minus,
             .menu-item .item-actions .btn-plus { width: 24px; height: 24px; font-size: 13px; }
@@ -688,7 +680,9 @@
             .search-box { padding: 6px 10px; border-width: 2px; }
             .search-box input { font-size: 12px; }
             .search-box .search-icon { font-size: 14px; }
-            .content-area { top: 100px; padding: 6px 10px 10px 10px; }
+            .category-tabs { top: 96px; padding: 4px 10px 6px 10px; }
+            .category-tabs .tab { padding: 3px 8px; font-size: 8px; }
+            .content-area { top: 132px; padding: 6px 10px 10px 10px; }
             .menu-item { padding: 6px 0; min-height: 32px; gap: 6px; }
             .menu-item .item-left .item-img { width: 35px; height: 35px; border-radius: 8px; }
             .menu-item .item-left .item-name { font-size: 12px; }
@@ -711,6 +705,9 @@
             .cart-item .item-actions .btn-plus { width: 16px; height: 16px; font-size: 9px; }
         }
         @media screen and (max-width: 360px) {
+            .category-tabs { top: 90px; }
+            .category-tabs .tab { font-size: 7px; padding: 2px 6px; }
+            .content-area { top: 125px; }
             .menu-item .item-left .item-name { font-size: 10px; }
             .menu-item .item-left .item-price { font-size: 9px; }
             .menu-item .item-left .item-img { width: 28px; height: 28px; }
@@ -731,7 +728,9 @@
             .search-wrapper { top: 42px; padding: 0 10px; }
             .search-box { padding: 4px 10px; }
             .search-box input { font-size: 11px; }
-            .content-area { top: 85px; padding: 4px 10px 8px 10px; }
+            .category-tabs { top: 84px; padding: 3px 10px 5px 10px; }
+            .category-tabs .tab { padding: 2px 8px; font-size: 8px; }
+            .content-area { top: 118px; padding: 4px 10px 8px 10px; }
             .menu-item { padding: 4px 0; min-height: 28px; }
             .menu-item .item-left .item-img { width: 28px; height: 28px; }
             .menu-item .item-left .item-name { font-size: 11px; }
@@ -756,11 +755,6 @@
 <body>
     <div class="order-container">
         <div class="bg-utama"></div>
-        <div class="deco-bg">
-            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/995x995/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/832x832/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-        </div>
         <div class="overlay"></div>
 
         <div class="loading-overlay" id="loadingOverlay">
@@ -792,6 +786,15 @@
             </div>
         </div>
 
+        <!-- ===== CATEGORY TABS ===== -->
+        <div class="category-tabs" id="categoryTabs">
+            <button class="tab active" data-category="all" onclick="filterCategory('all')">Semua</button>
+            <button class="tab" data-category="Makanan" onclick="filterCategory('Makanan')">Makanan</button>
+            <button class="tab" data-category="Tambahan" onclick="filterCategory('Tambahan')">Tambahan</button>
+            <button class="tab" data-category="Minuman" onclick="filterCategory('Minuman')">Minuman</button>
+            <button class="tab" data-category="Jangkung Kopi" onclick="filterCategory('Jangkung Kopi')">Jangkung Kopi</button>
+        </div>
+
         <!-- ===== CONTENT ===== -->
         <div class="content-area" id="contentArea">
             <div id="menuList"></div>
@@ -811,6 +814,7 @@
         let menuItems = [];
         let cart = JSON.parse(localStorage.getItem('customer_cart')) || [];
         let searchQuery = '';
+        let currentCategory = 'all';
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -902,6 +906,14 @@
             renderMenuList();
         }
 
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-tabs .tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.category === category);
+            });
+            renderMenuList();
+        }
+
         function renderAll() {
             renderMenuList();
             renderCart();
@@ -913,6 +925,10 @@
             container.innerHTML = '';
 
             let filtered = menuItems;
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(item => item.category === currentCategory);
+            }
 
             if (searchQuery) {
                 filtered = filtered.filter(item => 
@@ -927,7 +943,7 @@
             }
 
             const grouped = {};
-            const categoryOrder = ['Makanan', 'Tambahan', 'Minuman', 'Jangkung Kopi', 'Kopi', 'Lainnya'];
+            const categoryOrder = ['Makanan', 'Tambahan', 'Minuman', 'Jangkung Kopi'];
             filtered.forEach(item => {
                 const cat = item.category || 'Lainnya';
                 if (!grouped[cat]) grouped[cat] = [];
