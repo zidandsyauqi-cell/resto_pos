@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jangkung Order - List Meja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0a0a0a;
+            padding: 10px;
+        }
+
+        .meja-container {
+            width: 100%;
+            max-width: 1080px;
+            aspect-ratio: 1080/1920;
+            position: relative;
+            background: white;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+
+        .bg-utama {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            background: url('bg.png') center center / cover no-repeat;
+        }
+
+        .deco-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .deco-bg img {
+            position: absolute;
+            opacity: 0.15;
+        }
+
+        .deco-bg img:nth-child(1) {
+            width: 178%;
+            height: 66.7%;
+            left: -9.3%;
+            top: 99.99%;
+            transform: rotate(-90deg);
+            transform-origin: top left;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.35);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ===== HEADER ===== */
+        .header-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 12px 20px 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: white;
+            font-size: clamp(24px, 3.5%, 40px);
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn-back:hover {
+            transform: scale(1.1);
+            color: #98C81C;
+        }
+
+        .logo-header img {
+            width: clamp(40px, 7%, 70px);
+            height: auto;
+            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+        }
+
+        .brand-text {
+            color: white;
+            font-size: clamp(16px, 2.5%, 30px);
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
+
+        .brand-text span {
+            color: #98C81C;
+        }
+
+        /* ===== JUDUL ===== */
+        .title-meja {
+            position: absolute;
+            left: 5%;
+            top: 13%;
+            z-index: 5;
+            color: white;
+            font-size: clamp(28px, 7%, 85px);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* ===== LIST MEJA ===== */
+        .meja-wrapper {
+            position: absolute;
+            top: 22%;
+            left: 5%;
+            right: 5%;
+            bottom: 3%;
+            z-index: 5;
+            overflow-y: auto;
+        }
+
+        .meja-wrapper::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .meja-wrapper::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .meja-wrapper::-webkit-scrollbar-thumb {
+            background: #98C81C;
+            border-radius: 10px;
+        }
+
+        .meja-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .meja-item .meja-nama {
+            color: white;
+            font-size: clamp(18px, 4%, 50px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .meja-item .meja-status {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .meja-item .meja-status .status-badge {
+            padding: 6px 18px;
+            border-radius: 125px;
+            border: 2px solid white;
+            color: white;
+            font-size: clamp(10px, 1.6%, 22px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .meja-item .meja-status .status-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .status-badge.tersedia {
+            background: #98C81C;
+        }
+
+        .status-badge.tersedia:hover {
+            background: #7aa814;
+        }
+
+        .status-badge.tidak-tersedia {
+            background: #ED1B24;
+        }
+
+        .status-badge.tidak-tersedia:hover {
+            background: #c0392b;
+        }
+
+        .status-badge.direservasi {
+            background: #f39c12;
+        }
+
+        .status-badge.direservasi:hover {
+            background: #d68910;
+        }
+
+        .status-badge.sudah-diisi {
+            background: #8e44ad;
+        }
+
+        .status-badge.sudah-diisi:hover {
+            background: #6c3483;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 40px 0;
+            font-size: clamp(16px, 2.5%, 30px);
+            font-family: 'Schoolbell', cursive;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid #98C81C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #98C81C;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-family: 'Schoolbell', cursive;
+            font-size: clamp(12px, 1.6%, 20px);
+            z-index: 200;
+            display: none;
+            animation: slideUp 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast.error {
+            background: #e74c3c;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .meja-container {
+                max-width: 100%;
+                aspect-ratio: 1080/1920;
+                border-radius: 12px;
+            }
+
+            .meja-item .meja-nama {
+                font-size: 16px;
+            }
+
+            .meja-item .meja-status .status-badge {
+                font-size: 9px;
+                padding: 4px 10px;
+                min-width: 60px;
+            }
+
+            .title-meja {
+                font-size: 22px;
+                top: 11%;
+            }
+
+            .logo-header img {
+                width: 30px;
+            }
+
+            .brand-text {
+                font-size: 14px;
+            }
+
+            .btn-back {
+                font-size: 18px;
+            }
+
+            .meja-wrapper {
+                top: 20%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .meja-container {
+                border-radius: 10px;
+            }
+
+            .meja-item .meja-nama {
+                font-size: 13px;
+            }
+
+            .meja-item .meja-status .status-badge {
+                font-size: 7px;
+                padding: 3px 8px;
+                min-width: 45px;
+                border-width: 1.5px;
+            }
+
+            .title-meja {
+                font-size: 18px;
+                top: 10%;
+            }
+
+            .logo-header img {
+                width: 22px;
+            }
+
+            .brand-text {
+                font-size: 11px;
+            }
+
+            .btn-back {
+                font-size: 14px;
+            }
+
+            .meja-wrapper {
+                top: 18%;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .meja-item .meja-nama {
+                font-size: 11px;
+            }
+
+            .meja-item .meja-status .status-badge {
+                font-size: 6px;
+                padding: 2px 6px;
+                min-width: 35px;
+            }
+
+            .title-meja {
+                font-size: 15px;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .meja-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+            }
+        }
+
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .meja-container {
+                max-width: 90vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 10px;
+            }
+
+            .meja-wrapper {
+                top: 18%;
+                bottom: 2%;
+            }
+
+            .meja-item {
+                padding: 4px 0;
+            }
+
+            .meja-item .meja-nama {
+                font-size: 14px;
+            }
+
+            .meja-item .meja-status .status-badge {
+                font-size: 8px;
+                padding: 3px 10px;
+                min-width: 50px;
+            }
+
+            .title-meja {
+                font-size: 18px;
+                top: 9%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="meja-container">
+        <div class="bg-utama"></div>
+
+        <div class="deco-bg">
+            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
+        </div>
+
+        <div class="overlay"></div>
+
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Memuat data meja...</div>
+        </div>
+
+        <!-- ===== HEADER ===== -->
+        <div class="header-top">
+            <div class="header-left">
+                <button class="btn-back" onclick="window.location.href='dashboard.html'">←</button>
+                <div class="logo-header">
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/55x55/98C81C/ffffff?text=🍽️'" />
+                </div>
+                <div class="brand-text">Jangkung<span>Order</span></div>
+            </div>
+        </div>
+
+        <!-- ===== JUDUL ===== -->
+        <div class="title-meja">LIST MEJA</div>
+
+        <!-- ===== LIST MEJA ===== -->
+        <div class="meja-wrapper" id="mejaWrapper">
+            <!-- Data akan diisi oleh JavaScript -->
+            <div class="empty-state">🔄 Memuat data...</div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+    <script>
+        const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let mejaData = [];
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show';
+            if (isError) {
+                toast.classList.add('error');
+            }
+            setTimeout(() => {
+                toast.className = 'toast';
+            }, 3000);
+        }
+
+        function getStatusLabel(status) {
+            const map = {
+                'Tersedia': 'Tersedia',
+                'Tidak Tersedia': 'Tidak Tersedia',
+                'Direservasi': 'Direservasi',
+                'Sudah Diisi': 'Sudah Diisi'
+            };
+            return map[status] || status;
+        }
+
+        function getStatusClass(status) {
+            const map = {
+                'Tersedia': 'tersedia',
+                'Tidak Tersedia': 'tidak-tersedia',
+                'Direservasi': 'direservasi',
+                'Sudah Diisi': 'sudah-diisi'
+            };
+            return map[status] || 'tersedia';
+        }
+
+        function getStatusOptions() {
+            return ['Tersedia', 'Tidak Tersedia', 'Direservasi', 'Sudah Diisi'];
+        }
+
+        async function loadMeja() {
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('tables')
+                    .select('*')
+                    .order('id_table', { ascending: true });
+
+                if (error) throw error;
+
+                mejaData = data || [];
+                console.log('Meja loaded:', mejaData.length);
+                renderMeja();
+
+            } catch (error) {
+                console.error('Error loading meja:', error);
+                showToast('⚠️ Gagal memuat data meja: ' + error.message, true);
+                document.getElementById('mejaWrapper').innerHTML = `
+                    <div class="empty-state">
+                        ⚠️ Gagal memuat data<br>
+                        <span style="font-size:14px;color:rgba(255,255,255,0.3);">${error.message}</span>
+                    </div>
+                `;
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        function renderMeja() {
+            const container = document.getElementById('mejaWrapper');
+
+            if (!mejaData || mejaData.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        🪑 Belum ada data meja<br>
+                        <span style="font-size:14px;color:rgba(255,255,255,0.3);">Silakan tambahkan meja terlebih dahulu</span>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            mejaData.forEach((meja) => {
+                const status = meja.status || 'Tersedia';
+                const statusLabel = getStatusLabel(status);
+                const statusClass = getStatusClass(status);
+
+                html += `
+                    <div class="meja-item">
+                        <div class="meja-nama">Meja ${meja.nomor_meja}</div>
+                        <div class="meja-status">
+                            <button class="status-badge ${statusClass}" onclick="ubahStatus(${meja.id_table}, '${status}')">
+                                ${statusLabel}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function ubahStatus(idTable, currentStatus) {
+            const options = getStatusOptions();
+            const currentIndex = options.indexOf(currentStatus);
+            const nextIndex = (currentIndex + 1) % options.length;
+            const newStatus = options[nextIndex];
+
+            if (!confirm(`Ubah status Meja dari "${currentStatus}" menjadi "${newStatus}"?`)) return;
+
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                const { error } = await supabaseClient
+                    .from('tables')
+                    .update({ status: newStatus })
+                    .eq('id_table', idTable);
+
+                if (error) throw error;
+
+                showToast(`✅ Status meja berhasil diubah menjadi ${newStatus}`);
+                await loadMeja();
+
+            } catch (error) {
+                console.error('Error updating meja status:', error);
+                showToast('⚠️ Gagal mengubah status meja: ' + error.message, true);
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        // Cek login
+        if (localStorage.getItem('karyawan_logged_in') !== 'true') {
+            window.location.href = 'karyawan_login.html';
+        }
+
+        // Load data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMeja();
+            // Refresh setiap 15 detik
+            setInterval(loadMeja, 15000);
+        });
+    </script>
+</body>
+</html>
