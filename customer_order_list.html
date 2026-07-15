@@ -102,6 +102,7 @@
             color: #98C81C;
             font-size: clamp(11px, 1.5%, 18px);
             font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
             cursor: pointer;
             transition: all 0.3s;
@@ -639,7 +640,6 @@
         }
         .confirm-modal-content .btn-group .btn-yakin:hover { background: #7aa814; transform: scale(1.05); }
 
-        /* ===== RESPONSIVE ===== */
         @media screen and (max-width: 767px) {
             .order-container { max-width: 100%; border-radius: 12px; }
             .header-top { padding: 8px 14px 6px 14px; }
@@ -753,7 +753,6 @@
             <div class="loading-text">Memuat menu...</div>
         </div>
 
-        <!-- ===== HEADER ===== -->
         <div class="header-top">
             <div class="header-left">
                 <button class="btn-back" onclick="window.location.href='customer_order.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
@@ -772,7 +771,6 @@
             </div>
         </div>
 
-        <!-- ===== SEARCH ===== -->
         <div class="search-wrapper">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
@@ -780,7 +778,6 @@
             </div>
         </div>
 
-        <!-- ===== CATEGORY TABS ===== -->
         <div class="category-tabs" id="categoryTabs">
             <button class="tab active" data-category="all" onclick="filterCategory('all')">Semua</button>
             <button class="tab" data-category="Makanan" onclick="filterCategory('Makanan')">Makanan</button>
@@ -789,7 +786,6 @@
             <button class="tab" data-category="Jangkung Kopi" onclick="filterCategory('Jangkung Kopi')">Jangkung Kopi</button>
         </div>
 
-        <!-- ===== CONTENT ===== -->
         <div class="content-area" id="contentArea">
             <div id="menuList"></div>
             <div id="cartSection"></div>
@@ -809,8 +805,6 @@
         let cart = JSON.parse(localStorage.getItem('customer_cart')) || [];
         let searchQuery = '';
         let currentCategory = 'all';
-
-        // Untuk menyimpan id_table yang sesuai dengan nomor meja
         let tableIdMap = {};
 
         function getMeja() {
@@ -874,11 +868,10 @@
             document.getElementById('headerCartCount').textContent = count;
         }
 
-        // ===== LOAD TABLE ID MAP =====
         async function loadTableIdMap() {
             try {
                 const { data, error } = await supabaseClient
-                    .from('table')
+                    .from('tables')
                     .select('id_table, nomor_meja');
 
                 if (error) throw error;
@@ -898,12 +891,11 @@
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
             try {
-                // Load table map first
                 await loadTableIdMap();
 
                 const { data, error } = await supabaseClient
                     .from('menu')
-                    .select('id_menu, nama_menu, harga, status_ketersediaan, kategori, gambar, detail_menu, varian')
+                    .select('id_menu, nama_menu, harga, status_ketersediaan, kategori, gambar, detail, varian')
                     .eq('status_ketersediaan', 'Tersedia')
                     .order('kategori')
                     .order('nama_menu');
@@ -914,9 +906,15 @@
                     menuItems = data.map(item => {
                         let variants = [];
                         if (item.varian) {
-                            try { variants = typeof item.varian === 'string' ? JSON.parse(item.varian) : item.varian; } catch (e) { variants = []; }
+                            try { 
+                                variants = typeof item.varian === 'string' ? JSON.parse(item.varian) : item.varian; 
+                            } catch (e) { 
+                                variants = []; 
+                            }
                         }
-                        if (!variants || variants.length === 0) { variants = [{ name: 'Standar', price: 0 }]; }
+                        if (!variants || variants.length === 0) { 
+                            variants = [{ name: 'Standar', price: 0 }]; 
+                        }
                         return {
                             id: item.id_menu,
                             name: item.nama_menu,
@@ -924,7 +922,7 @@
                             category: item.kategori || 'Lainnya',
                             status: item.status_ketersediaan,
                             image_url: item.gambar || null,
-                            description: item.detail_menu || '',
+                            description: item.detail || '',
                             variants: variants
                         };
                     });
@@ -1213,23 +1211,23 @@
                 const total = cart.reduce((s, i) => s + (i.price * i.qty), 0);
 
                 // Cari id_table dari nomor meja
-                const idTable = tableIdMap[meja];
+                const idTable = tableIdMap[meja.toString()];
                 if (!idTable) {
-                    throw new Error('Nomor meja tidak ditemukan di database. Silakan hubungi karyawan.');
+                    throw new Error('Nomor meja tidak ditemukan. Silakan hubungi karyawan.');
                 }
 
-                // Generate no_struk: JKG + tanggal + urutan
+                // Generate no_struk
                 const now = new Date();
                 const tanggal = now.toISOString().slice(0,10).replace(/-/g,'');
                 const waktu = now.toTimeString().slice(0,8).replace(/:/g,'');
-                const noStruk = 'JKG' + tanggal + waktu;
+                const noStruk = 'JKG' + tanggal + waktu + Math.floor(Math.random() * 100);
 
-                // Insert ke tabel orders
+                // Insert ke orders
                 const { data: orderData, error: orderError } = await supabaseClient
                     .from('orders')
                     .insert({
                         id_table: idTable,
-                        id_user: 1, // default customer, sesuaikan
+                        id_user: 1,
                         tanggal_order: now.toISOString().slice(0,10),
                         waktu_order: now.toTimeString().slice(0,8),
                         status_order: 'Diproses',
@@ -1245,7 +1243,7 @@
 
                 const idOrder = orderData.id_order;
 
-                // Insert ke order_details
+                // Insert ke orderdetails
                 const details = cart.map(item => ({
                     id_order: idOrder,
                     id_menu: item.id,
@@ -1253,11 +1251,12 @@
                     jumlah: item.qty,
                     harga_satuan: item.price,
                     subtotal: item.price * item.qty,
-                    note: item.variant || null
+                    note: item.variant || null,
+                    no_struk: noStruk
                 }));
 
                 const { error: detailError } = await supabaseClient
-                    .from('order_details')
+                    .from('orderdetails')
                     .insert(details);
 
                 if (detailError) {
@@ -1265,6 +1264,7 @@
                     throw new Error('Gagal menyimpan detail pesanan: ' + detailError.message);
                 }
 
+                // Kosongkan cart
                 cart = [];
                 localStorage.setItem('customer_cart', JSON.stringify(cart));
                 renderAll();
