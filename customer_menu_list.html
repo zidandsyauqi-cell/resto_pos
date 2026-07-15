@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jangkung Order - Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0a0a0a;
+            padding: 10px;
+        }
+        .container {
+            width: 100%;
+            max-width: 1080px;
+            aspect-ratio: 1080/1920;
+            position: relative;
+            background: #1a1a1a;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+        .loading-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .loading-overlay.active { display: flex; }
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255,255,255,0.1);
+            border-top: 5px solid #98C81C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: white;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .list-menu {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: #1a1a1a;
+            z-index: 1;
+            overflow-y: auto;
+            padding: 20px 44px 30px;
+        }
+        .list-menu::-webkit-scrollbar { width: 3px; }
+        .list-menu::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+        .list-menu::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
+
+        /* Header */
+        .list-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 25px;
+            margin-bottom: 15px;
+            position: sticky;
+            top: 0;
+            background: #1a1a1a;
+            z-index: 10;
+            padding-bottom: 15px;
+        }
+        .list-header .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .list-header .brand-left img {
+            width: clamp(40px, 7%, 70px);
+            height: auto;
+        }
+        .list-header .brand-left .brand-text {
+            color: white;
+            font-size: clamp(18px, 5%, 50px);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .list-header .brand-left .brand-text span { color: #98C81C; }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .header-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 2px solid white;
+            color: white;
+            font-size: clamp(12px, 3.5%, 38px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            background: transparent;
+        }
+        .header-btn.total-btn { background: #029BEE; border-color: #029BEE; }
+        .header-btn.selesai-btn { background: #ED1B24; border-color: #ED1B24; }
+        .header-btn:hover { transform: scale(1.05); opacity: 0.9; }
+
+        /* Title */
+        .list-title {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        .list-title .title-main {
+            color: white;
+            font-size: clamp(35px, 9%, 75px);
+            font-weight: 600;
+        }
+        .list-title .title-sub {
+            color: white;
+            font-size: clamp(18px, 5%, 50px);
+            font-family: 'Schoolbell', cursive;
+            margin-top: -5px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            width: 100%;
+            padding: clamp(12px, 2.5%, 25px) clamp(20px, 4%, 40px);
+            border-radius: 50px;
+            border: 3px solid white;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: clamp(16px, 3.5%, 35px);
+            font-family: 'Schoolbell', cursive;
+            outline: none;
+            margin: 15px 0 20px;
+            transition: all 0.3s;
+        }
+        .search-bar::placeholder { color: rgba(255,255,255,0.5); }
+        .search-bar:focus { background: rgba(255,255,255,0.1); border-color: #98C81C; }
+
+        /* Category Section */
+        .category-section {
+            margin-top: 20px;
+        }
+        .category-title {
+            color: white;
+            font-size: clamp(28px, 7%, 65px);
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 15px;
+        }
+
+        /* Menu Item - Style seperti desain */
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.3s;
+        }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item:hover { background: rgba(255,255,255,0.03); border-radius: 12px; padding-left: 10px; padding-right: 10px; }
+
+        .menu-item .menu-img {
+            width: clamp(70px, 14%, 150px);
+            height: clamp(70px, 14%, 150px);
+            border-radius: 16px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #2d2d2d;
+        }
+
+        .menu-item .menu-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .menu-item .menu-info .menu-name {
+            color: white;
+            font-size: clamp(18px, 4.5%, 50px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .menu-item .menu-info .menu-price {
+            color: white;
+            font-size: clamp(16px, 4%, 45px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+        }
+
+        .menu-item .btn-detail {
+            padding: clamp(8px, 2%, 20px) clamp(20px, 5%, 50px);
+            background: #98C81C;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            font-size: clamp(14px, 3.5%, 38px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+        .menu-item .btn-detail:hover {
+            background: #7aa814;
+            transform: scale(1.05);
+        }
+        .menu-item .btn-detail:active { transform: scale(0.95); }
+
+        .empty-state {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            padding: 40px 20px;
+            font-size: clamp(16px, 3.5%, 35px);
+            font-family: 'Schoolbell', cursive;
+        }
+
+        /* Error */
+        .error-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            color: white;
+            text-align: center;
+            background: rgba(0,0,0,0.85);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 2px solid #e74c3c;
+            max-width: 85%;
+        }
+        .error-display .error-icon { font-size: 50px; display: block; margin-bottom: 10px; }
+        .error-display .error-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .error-display .error-desc { font-size: 16px; color: rgba(255,255,255,0.7); }
+        .error-display .btn-retry {
+            margin-top: 15px;
+            padding: 10px 30px;
+            background: #98C81C;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .error-display .btn-retry:hover { background: #7aa814; transform: scale(1.05); }
+
+        @media screen and (max-width: 767px) {
+            .container { max-width: 100%; border-radius: 12px; }
+            .list-menu { padding: 15px 20px 20px; }
+            .menu-item { gap: 14px; padding: 14px 0; }
+            .menu-item .menu-img { width: 60px; height: 60px; }
+            .list-header .brand-left img { width: 35px; }
+            .list-header .brand-left .brand-text { font-size: 16px; }
+            .search-bar { padding: 10px 18px; font-size: 14px; margin: 10px 0 15px; }
+            .header-btn { padding: 6px 14px; font-size: 12px; }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container { border-radius: 10px; }
+            .list-menu { padding: 10px 14px 15px; }
+            .menu-item { gap: 10px; padding: 10px 0; }
+            .menu-item .menu-img { width: 50px; height: 50px; border-radius: 10px; }
+            .menu-item .btn-detail { padding: 6px 16px; font-size: 13px; }
+            .list-header .brand-left img { width: 28px; }
+            .list-header .brand-left .brand-text { font-size: 14px; }
+            .search-bar { padding: 8px 14px; font-size: 12px; margin: 8px 0 10px; border-width: 2px; }
+            .list-title .title-main { font-size: 28px; }
+            .list-title .title-sub { font-size: 16px; }
+            .header-btn { padding: 4px 10px; font-size: 10px; border-width: 1.5px; }
+        }
+
+        @media screen and (max-width: 360px) {
+            .menu-item .menu-img { width: 40px; height: 40px; }
+            .menu-item .menu-info .menu-name { font-size: 14px; }
+            .menu-item .menu-info .menu-price { font-size: 12px; }
+            .menu-item .btn-detail { padding: 4px 12px; font-size: 11px; }
+            .list-header .brand-left .brand-text { font-size: 12px; }
+            .list-header .brand-left img { width: 24px; }
+            .search-bar { padding: 6px 10px; font-size: 11px; }
+            .list-title .title-main { font-size: 22px; }
+            .list-title .title-sub { font-size: 13px; }
+            .header-btn { padding: 3px 8px; font-size: 9px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Memuat menu...</div>
+        </div>
+
+        <div class="list-menu" id="listMenu">
+            <!-- Header -->
+            <div class="list-header">
+                <div class="brand-left">
+                    <img src="https://placehold.co/70x70/98C81C/ffffff?text=🍽️" alt="Logo" loading="lazy" />
+                    <div class="brand-text">Jangkung<span>Order</span></div>
+                </div>
+                <div class="header-buttons">
+                    <a href="#" class="header-btn total-btn" onclick="alert('Fitur Total sedang dalam pengembangan')">Total</a>
+                    <a href="#" class="header-btn selesai-btn" onclick="alert('Fitur Selesai sedang dalam pengembangan')">Selesai</a>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <div class="list-title">
+                <div class="title-main" id="categoryTitle">MAKANAN</div>
+                <div class="title-sub">mau pesan apa hari ini?</div>
+            </div>
+
+            <!-- Search -->
+            <input class="search-bar" id="searchInput" placeholder="🔍 Cari menu..." type="text" />
+
+            <!-- Menu Items Container -->
+            <div id="menuContainer"></div>
+        </div>
+
+        <!-- Error Display -->
+        <div class="error-display" id="errorDisplay" style="display:none;">
+            <span class="error-icon">⚠️</span>
+            <div class="error-title">Gagal Memuat Menu</div>
+            <div class="error-desc" id="errorDesc">Terjadi kesalahan saat memuat menu. Silakan coba lagi.</div>
+            <button class="btn-retry" onclick="loadMenus()">🔄 Coba Lagi</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
+        const STORAGE_BUCKET = 'menu-images';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let allMenus = [];
+        let currentCategory = '';
+
+        function getMeja() {
+            const params = new URLSearchParams(window.location.search);
+            const meja = params.get('meja');
+            if (meja && !isNaN(meja) && meja > 0) return meja;
+            const saved = localStorage.getItem('meja_number');
+            if (saved) return saved;
+            return '1';
+        }
+
+        function getNama() {
+            const params = new URLSearchParams(window.location.search);
+            const nama = params.get('nama');
+            if (nama) return nama;
+            const saved = localStorage.getItem('customer_name');
+            if (saved) return saved;
+            return 'Customer';
+        }
+
+        function getImageUrl(imagePath) {
+            if (!imagePath) return null;
+            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+            try {
+                const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath);
+                return data.publicUrl;
+            } catch (error) { return null; }
+        }
+
+        function formatRupiah(price) {
+            return 'Rp ' + Number(price).toLocaleString('id-ID');
+        }
+
+        function goToDetail(menuId) {
+            const meja = getMeja();
+            const nama = encodeURIComponent(getNama());
+            window.location.href = 'customer_menu_detail.html?meja=' + meja + '&nama=' + nama + '&id=' + menuId;
+        }
+
+        function renderMenus(menus) {
+            const container = document.getElementById('menuContainer');
+            
+            if (!menus || menus.length === 0) {
+                container.innerHTML = '<div class="empty-state">😅 Tidak ada menu yang ditemukan</div>';
+                return;
+            }
+
+            // Group by kategori
+            const grouped = {};
+            menus.forEach(menu => {
+                const kategori = menu.kategori || 'Lainnya';
+                if (!grouped[kategori]) grouped[kategori] = [];
+                grouped[kategori].push(menu);
+            });
+
+            let html = '';
+            const kategoriOrder = ['Makanan', 'Tambahan', 'Minuman', 'Jangkung Kopi', 'Lainnya'];
+            
+            for (const kat of kategoriOrder) {
+                if (grouped[kat] && grouped[kat].length > 0) {
+                    html += `<div class="category-section"><div class="category-title">${kat.toUpperCase()}</div>`;
+                    
+                    grouped[kat].forEach(menu => {
+                        let imageUrl = 'https://placehold.co/150x150/2d2d2d/ffffff?text=' + encodeURIComponent(menu.nama_menu || 'Menu');
+                        if (menu.gambar) {
+                            const url = getImageUrl(menu.gambar);
+                            if (url) imageUrl = url;
+                        }
+
+                        const price = menu.harga || 0;
+
+                        html += `
+                            <div class="menu-item" data-id="${menu.id_menu}">
+                                <img class="menu-img" src="${imageUrl}" alt="${menu.nama_menu || 'Menu'}" loading="lazy" onerror="this.src='https://placehold.co/150x150/2d2d2d/ffffff?text=Menu'" />
+                                <div class="menu-info">
+                                    <div class="menu-name">${menu.nama_menu || 'Menu'}</div>
+                                    <div class="menu-price">${formatRupiah(price)}</div>
+                                </div>
+                                <button class="btn-detail" onclick="goToDetail(${menu.id_menu})">📋 detail</button>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                }
+            }
+
+            container.innerHTML = html;
+        }
+
+        async function loadMenus() {
+            const loading = document.getElementById('loadingOverlay');
+            const errorDisplay = document.getElementById('errorDisplay');
+            loading.classList.add('active');
+            errorDisplay.style.display = 'none';
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('menu')
+                    .select('id_menu, nama_menu, harga, gambar, detail, kategori')
+                    .eq('status_ketersediaan', 'Tersedia')
+                    .order('kategori')
+                    .order('nama_menu');
+
+                if (error) throw error;
+
+                allMenus = data || [];
+                renderMenus(allMenus);
+
+            } catch (error) {
+                console.error('Error loading menus:', error);
+                document.getElementById('errorDesc').textContent = 'Gagal memuat menu: ' + (error.message || 'Unknown error');
+                errorDisplay.style.display = 'block';
+                document.getElementById('menuContainer').innerHTML = '';
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            if (!query) {
+                renderMenus(allMenus);
+                return;
+            }
+            const filtered = allMenus.filter(menu => 
+                (menu.nama_menu || '').toLowerCase().includes(query) ||
+                (menu.detail || '').toLowerCase().includes(query)
+            );
+            renderMenus(filtered);
+        });
+
+        // Save meja & nama to localStorage
+        const meja = getMeja();
+        const nama = getNama();
+        localStorage.setItem('meja_number', meja);
+        localStorage.setItem('customer_name', nama);
+
+        // Load on page ready
+        document.addEventListener('DOMContentLoaded', loadMenus);
+    </script>
+</body>
+</html>
