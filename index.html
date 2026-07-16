@@ -18,21 +18,16 @@
             justify-content: center;
             align-items: center;
             background: #0a0a0a;
-            padding: 10px;
+            padding: 0;
             overflow: hidden;
         }
 
         .landing-container {
             width: 100%;
-            max-width: 1080px;
-            height: 100vh;
-            max-height: 1920px;
-            aspect-ratio: 1080/1920;
+            height: 100%;
             position: relative;
             background: #98C81C;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -47,7 +42,7 @@
             transform: translate(-50%, -50%);
             z-index: 10;
             text-align: center;
-            width: 90%;
+            width: 70%;
             max-width: 600px;
             padding: 0 10px;
         }
@@ -95,54 +90,41 @@
             font-family: Arial, sans-serif;
         }
 
-        /* ===== FULL LANDSCAPE ===== */
-        @media screen and (orientation: landscape) {
-            html, body {
-                padding: 5px;
-            }
+        /* ===== RESPONSIVE ===== */
 
+        /* Portrait - semua HP */
+        @media screen and (orientation: portrait) {
             .landing-container {
-                width: auto;
-                height: 100vh;
-                max-height: 100vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-                max-width: none;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
             }
 
             .logo-center {
                 width: 75%;
-                max-width: 450px;
-            }
-        }
-
-        /* ===== RESPONSIVE PORTRAIT ===== */
-
-        /* Tablet & HP (portrait) */
-        @media screen and (max-width: 1024px) and (orientation: portrait) {
-            .landing-container {
-                width: 100%;
-                height: auto;
-                aspect-ratio: 1080/1920;
-                border-radius: 20px;
-                max-height: 1920px;
-            }
-
-            .logo-center {
-                width: 85%;
                 max-width: 500px;
             }
         }
 
-        /* HP kecil (portrait) */
-        @media screen and (max-width: 767px) and (orientation: portrait) {
+        /* Landscape - semua perangkat */
+        @media screen and (orientation: landscape) {
             .landing-container {
-                border-radius: 12px;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
             }
 
             .logo-center {
-                width: 80%;
-                max-width: 350px;
+                width: 50%;
+                max-width: 450px;
+            }
+        }
+
+        /* HP kecil portrait */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .logo-center {
+                width: 70%;
+                max-width: 300px;
             }
 
             .spinner {
@@ -153,29 +135,17 @@
             .loading-text {
                 font-size: 8px;
             }
-        }
-
-        /* HP sangat kecil */
-        @media screen and (max-width: 480px) and (orientation: portrait) {
-            .landing-container {
-                border-radius: 10px;
-            }
-
-            .logo-center {
-                width: 75%;
-                max-width: 280px;
-            }
-        }
-
-        /* iPhone SE */
-        @media screen and (max-width: 375px) and (orientation: portrait) {
-            .logo-center {
-                width: 70%;
-                max-width: 200px;
-            }
 
             .loading-spinner {
-                bottom: 5%;
+                bottom: 6%;
+            }
+        }
+
+        /* HP sangat kecil (iPhone SE) */
+        @media screen and (max-width: 375px) and (orientation: portrait) {
+            .logo-center {
+                width: 65%;
+                max-width: 220px;
             }
 
             .spinner {
@@ -187,52 +157,17 @@
             .loading-text {
                 font-size: 7px;
             }
-        }
-
-        /* ===== LANDSCAPE DETAIL ===== */
-
-        /* Landscape HP & Tablet */
-        @media screen and (max-width: 1024px) and (orientation: landscape) {
-            .landing-container {
-                height: 100vh;
-                max-height: 100vh;
-                border-radius: 12px;
-            }
-
-            .logo-center {
-                width: 65%;
-                max-width: 350px;
-            }
-
-            .spinner {
-                width: 25px;
-                height: 25px;
-            }
-
-            .loading-text {
-                font-size: 10px;
-            }
 
             .loading-spinner {
-                bottom: 6%;
+                bottom: 5%;
             }
         }
 
         /* Landscape HP kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .landing-container {
-                height: 100vh;
-                max-height: 100vh;
-                border-radius: 10px;
-            }
-
             .logo-center {
-                width: 55%;
-                max-width: 280px;
-            }
-
-            .loading-text {
-                font-size: 8px;
+                width: 40%;
+                max-width: 300px;
             }
 
             .spinner {
@@ -241,36 +176,36 @@
                 border-width: 2px;
             }
 
+            .loading-text {
+                font-size: 8px;
+            }
+
             .loading-spinner {
                 bottom: 5%;
             }
         }
 
-        /* ===== DESKTOP / LAPTOP ===== */
-        @media screen and (min-width: 1025px) and (orientation: landscape) {
-            .landing-container {
-                height: 90vh;
-                max-height: 90vh;
-                border-radius: 20px;
-            }
-
+        /* Tablet portrait */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
             .logo-center {
-                width: 80%;
-                max-width: 550px;
+                width: 60%;
+                max-width: 450px;
             }
         }
 
-        /* Desktop sangat lebar */
-        @media screen and (min-width: 1600px) and (orientation: landscape) {
-            .landing-container {
-                height: 85vh;
-                max-height: 85vh;
-                border-radius: 25px;
-            }
-
+        /* Tablet landscape */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
             .logo-center {
-                width: 85%;
-                max-width: 600px;
+                width: 40%;
+                max-width: 400px;
+            }
+        }
+
+        /* Desktop / Laptop */
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
+            .logo-center {
+                width: 45%;
+                max-width: 550px;
             }
 
             .spinner {
@@ -280,55 +215,33 @@
             }
 
             .loading-text {
+                font-size: 14px;
+            }
+        }
+
+        /* Desktop sangat lebar */
+        @media screen and (min-width: 1600px) and (orientation: landscape) {
+            .logo-center {
+                width: 40%;
+                max-width: 600px;
+            }
+
+            .spinner {
+                width: 45px;
+                height: 45px;
+                border-width: 4px;
+            }
+
+            .loading-text {
                 font-size: 16px;
             }
         }
 
-        /* ===== TABLET PORTRAIT (iPad) ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .landing-container {
-                width: 100%;
-                height: auto;
-                aspect-ratio: 1080/1920;
-                border-radius: 18px;
-                max-height: 1920px;
-            }
-
-            .logo-center {
-                width: 80%;
-                max-width: 450px;
-            }
-        }
-
-        /* ===== LAYAR SANGAT LEBAR (cinematic) ===== */
+        /* Layar cinematic (sangat lebar) */
         @media screen and (min-aspect-ratio: 2/1) and (orientation: landscape) {
-            .landing-container {
-                height: 80vh;
-                max-height: 80vh;
-                border-radius: 20px;
-            }
-
             .logo-center {
-                width: 70%;
-                max-width: 400px;
-            }
-        }
-
-        /* ===== FIX UNTUK ASPECT RATIO YANG BERBEDA ===== */
-        /* Untuk layar yang sangat lebar, batasi tinggi container */
-        @media screen and (min-aspect-ratio: 16/9) and (orientation: landscape) {
-            .landing-container {
-                height: 85vh;
-                max-height: 85vh;
-            }
-        }
-
-        /* Untuk layar yang sangat tinggi (seperti HP) */
-        @media screen and (max-aspect-ratio: 9/16) and (orientation: portrait) {
-            .landing-container {
-                width: 100%;
-                height: auto;
-                aspect-ratio: 1080/1920;
+                width: 35%;
+                max-width: 450px;
             }
         }
     </style>
@@ -338,7 +251,7 @@
         <!-- Logo di tengah -->
         <div class="logo-center">
             <img src="logo.png" alt="Jangkung Order" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-            <div style="display:none; font-size: clamp(80px, 20%, 300px);">🍽️</div>
+            <div style="display:none; font-size: clamp(60px, 15%, 250px);">🍽️</div>
         </div>
 
         <!-- Loading Spinner -->
