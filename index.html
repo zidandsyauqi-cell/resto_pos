@@ -11,18 +11,22 @@
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             background: #0a0a0a;
             padding: 10px;
+            overflow: hidden;
         }
 
         .landing-container {
             width: 100%;
             max-width: 1080px;
+            height: 100vh;
+            max-height: 1920px;
             aspect-ratio: 1080/1920;
             position: relative;
             background: #98C81C;
@@ -91,14 +95,37 @@
             font-family: Arial, sans-serif;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== FULL LANDSCAPE ===== */
+        @media screen and (orientation: landscape) {
+            html, body {
+                padding: 5px;
+            }
+
+            .landing-container {
+                width: auto;
+                height: 100vh;
+                max-height: 100vh;
+                aspect-ratio: 1080/1920;
+                border-radius: 15px;
+                max-width: none;
+            }
+
+            .logo-center {
+                width: 75%;
+                max-width: 450px;
+            }
+        }
+
+        /* ===== RESPONSIVE PORTRAIT ===== */
 
         /* Tablet & HP (portrait) */
         @media screen and (max-width: 1024px) and (orientation: portrait) {
             .landing-container {
-                max-width: 100%;
+                width: 100%;
+                height: auto;
                 aspect-ratio: 1080/1920;
                 border-radius: 20px;
+                max-height: 1920px;
             }
 
             .logo-center {
@@ -110,8 +137,6 @@
         /* HP kecil (portrait) */
         @media screen and (max-width: 767px) and (orientation: portrait) {
             .landing-container {
-                max-width: 100%;
-                aspect-ratio: 1080/1920;
                 border-radius: 12px;
             }
 
@@ -164,25 +189,13 @@
             }
         }
 
-        /* ===== LANDSCAPE ===== */
-        @media screen and (orientation: landscape) {
-            .landing-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-            }
-
-            .logo-center {
-                width: 75%;
-                max-width: 450px;
-            }
-        }
+        /* ===== LANDSCAPE DETAIL ===== */
 
         /* Landscape HP & Tablet */
         @media screen and (max-width: 1024px) and (orientation: landscape) {
             .landing-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
+                height: 100vh;
+                max-height: 100vh;
                 border-radius: 12px;
             }
 
@@ -208,8 +221,8 @@
         /* Landscape HP kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .landing-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
+                height: 100vh;
+                max-height: 100vh;
                 border-radius: 10px;
             }
 
@@ -236,8 +249,8 @@
         /* ===== DESKTOP / LAPTOP ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .landing-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
+                height: 90vh;
+                max-height: 90vh;
                 border-radius: 20px;
             }
 
@@ -250,8 +263,8 @@
         /* Desktop sangat lebar */
         @media screen and (min-width: 1600px) and (orientation: landscape) {
             .landing-container {
-                max-width: 80vh;
-                aspect-ratio: 1080/1920;
+                height: 85vh;
+                max-height: 85vh;
                 border-radius: 25px;
             }
 
@@ -274,9 +287,11 @@
         /* ===== TABLET PORTRAIT (iPad) ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
             .landing-container {
-                max-width: 100%;
+                width: 100%;
+                height: auto;
                 aspect-ratio: 1080/1920;
                 border-radius: 18px;
+                max-height: 1920px;
             }
 
             .logo-center {
@@ -288,14 +303,32 @@
         /* ===== LAYAR SANGAT LEBAR (cinematic) ===== */
         @media screen and (min-aspect-ratio: 2/1) and (orientation: landscape) {
             .landing-container {
-                max-width: 70vh;
-                aspect-ratio: 1080/1920;
+                height: 80vh;
+                max-height: 80vh;
                 border-radius: 20px;
             }
 
             .logo-center {
                 width: 70%;
                 max-width: 400px;
+            }
+        }
+
+        /* ===== FIX UNTUK ASPECT RATIO YANG BERBEDA ===== */
+        /* Untuk layar yang sangat lebar, batasi tinggi container */
+        @media screen and (min-aspect-ratio: 16/9) and (orientation: landscape) {
+            .landing-container {
+                height: 85vh;
+                max-height: 85vh;
+            }
+        }
+
+        /* Untuk layar yang sangat tinggi (seperti HP) */
+        @media screen and (max-aspect-ratio: 9/16) and (orientation: portrait) {
+            .landing-container {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1080/1920;
             }
         }
     </style>
