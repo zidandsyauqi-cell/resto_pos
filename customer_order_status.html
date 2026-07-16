@@ -41,7 +41,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             pointer-events: none;
             z-index: 2;
         }
@@ -108,13 +108,13 @@
         }
         .btn-back:hover { transform: scale(1.1); color: #98C81C; }
         .logo-header img {
-            width: clamp(30px, 5%, 55px);
+            width: clamp(40px, 7%, 70px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
         .brand-text {
             color: white;
-            font-size: clamp(14px, 2.2%, 26px);
+            font-size: clamp(16px, 2.5%, 30px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -123,7 +123,7 @@
 
         .info-wrapper {
             position: absolute;
-            top: 75px;
+            top: 65px;
             left: 0;
             right: 0;
             z-index: 10;
@@ -163,7 +163,7 @@
 
         .struk-wrapper {
             position: absolute;
-            top: 170px;
+            top: 165px;
             left: 0;
             right: 0;
             bottom: 0;
@@ -180,7 +180,7 @@
             border-radius: 50px;
             border: 3px solid white;
             padding: 25px 30px 20px 30px;
-            min-height: 400px;
+            min-height: 350px;
             margin-bottom: 15px;
         }
         .struk-title {
@@ -219,9 +219,9 @@
             font-family: 'Schoolbell', cursive;
             border-bottom: 1px solid rgba(255,255,255,0.03);
         }
-        .struk-item .item-name { flex: 1; }
-        .struk-item .item-qty { margin: 0 10px; color: rgba(255,255,255,0.5); }
-        .struk-item .item-price { color: #98C81C; }
+        .struk-item .item-name { flex: 1; text-align: left; }
+        .struk-item .item-qty { margin: 0 10px; color: rgba(255,255,255,0.5); min-width: 30px; text-align: center; }
+        .struk-item .item-price { color: #98C81C; min-width: 100px; text-align: right; }
 
         .struk-divider {
             border: none;
@@ -291,7 +291,6 @@
             font-size: clamp(14px, 1.8%, 22px);
             color: rgba(255,255,255,0.3);
         }
-
         .btn-refresh {
             width: 100%;
             padding: 12px;
@@ -310,15 +309,16 @@
         @media screen and (max-width: 767px) {
             .status-container { max-width: 100%; border-radius: 12px; }
             .header-top { padding: 10px 14px 6px 14px; }
-            .info-wrapper { top: 65px; padding: 0 14px; gap: 10px; }
+            .info-wrapper { top: 55px; padding: 0 14px; gap: 10px; flex-direction: column; }
             .info-item .label { font-size: 14px; }
             .info-item .value-box { font-size: 12px; padding: 6px 12px; border-width: 2px; }
-            .struk-wrapper { top: 140px; padding: 8px 14px 15px 14px; }
+            .struk-wrapper { top: 145px; padding: 8px 14px 15px 14px; }
             .struk-box { padding: 15px 16px 12px 16px; border-radius: 30px; }
             .struk-title { font-size: 18px; }
             .struk-no { font-size: 14px; }
             .struk-header-row { font-size: 11px; }
             .struk-item { font-size: 13px; }
+            .struk-item .item-price { min-width: 70px; }
             .struk-total-row { font-size: 14px; }
             .struk-ppn { font-size: 12px; }
             .struk-grand-total { font-size: 18px; }
@@ -331,15 +331,16 @@
             .btn-back { font-size: 18px; }
             .logo-header img { width: 25px; }
             .brand-text { font-size: 12px; }
-            .info-wrapper { top: 55px; padding: 0 10px; gap: 6px; flex-direction: column; }
+            .info-wrapper { top: 48px; padding: 0 10px; gap: 6px; flex-direction: column; }
             .info-item .label { font-size: 12px; }
             .info-item .value-box { font-size: 11px; padding: 4px 10px; }
-            .struk-wrapper { top: 155px; padding: 6px 10px 10px 10px; }
+            .struk-wrapper { top: 130px; padding: 6px 10px 10px 10px; }
             .struk-box { padding: 12px 12px 10px 12px; border-radius: 20px; border-width: 2px; }
             .struk-title { font-size: 14px; }
             .struk-no { font-size: 11px; }
             .struk-header-row { font-size: 9px; }
             .struk-item { font-size: 10px; padding: 2px 0; }
+            .struk-item .item-price { min-width: 60px; }
             .struk-total-row { font-size: 11px; }
             .struk-ppn { font-size: 10px; }
             .struk-grand-total { font-size: 14px; }
@@ -363,15 +364,16 @@
             .btn-back { font-size: 16px; }
             .logo-header img { width: 22px; }
             .brand-text { font-size: 11px; }
-            .info-wrapper { top: 45px; padding: 0 10px; gap: 6px; flex-direction: row; }
+            .info-wrapper { top: 40px; padding: 0 10px; gap: 6px; flex-direction: row; }
             .info-item .label { font-size: 10px; }
             .info-item .value-box { font-size: 10px; padding: 3px 8px; border-width: 2px; }
-            .struk-wrapper { top: 110px; padding: 4px 10px 8px 10px; }
+            .struk-wrapper { top: 105px; padding: 4px 10px 8px 10px; }
             .struk-box { padding: 10px 12px 8px 12px; border-radius: 20px; min-height: 200px; }
             .struk-title { font-size: 12px; }
             .struk-no { font-size: 10px; }
             .struk-header-row { font-size: 8px; }
             .struk-item { font-size: 9px; padding: 1px 0; }
+            .struk-item .item-price { min-width: 50px; }
             .struk-total-row { font-size: 10px; }
             .struk-ppn { font-size: 9px; }
             .struk-grand-total { font-size: 12px; }
@@ -421,8 +423,8 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // Data meja yang aktif (hanya yang statusnya Tersedia atau Sudah Diisi)
-        let activeTables = [];
+        let tableIdMap = {};
+        let menuNames = {};
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -455,53 +457,46 @@
             return 'Rp ' + Number(price).toLocaleString('id-ID');
         }
 
-        async function loadActiveTables() {
+        // ===== LOAD MENU NAMES =====
+        async function loadMenuNames() {
             try {
-                // Ambil semua meja yang statusnya Tersedia atau Sudah Diisi
+                const { data, error } = await supabaseClient
+                    .from('menu')
+                    .select('id_menu, nama_menu');
+
+                if (error) throw error;
+
+                if (data) {
+                    data.forEach(item => {
+                        menuNames[item.id_menu] = item.nama_menu;
+                    });
+                }
+                console.log('Menu names loaded:', Object.keys(menuNames).length);
+                return true;
+            } catch (error) {
+                console.error('Error loading menu names:', error);
+                return false;
+            }
+        }
+
+        async function loadTableIdMap() {
+            try {
                 const { data, error } = await supabaseClient
                     .from('tables')
-                    .select('id_table, nomor_meja, status')
-                    .in('status', ['Tersedia', 'Sudah Diisi'])
-                    .order('id_table', { ascending: false }); // Ambil yang terbaru dulu
+                    .select('id_table, nomor_meja');
 
                 if (error) throw error;
 
                 if (data && data.length > 0) {
-                    // Hanya ambil satu per nomor_meja (prioritas id_table terbesar = terbaru)
-                    const uniqueMap = {};
                     data.forEach(row => {
-                        const nomor = row.nomor_meja;
-                        // Jika belum ada atau id_table lebih besar (lebih baru), timpa
-                        if (!uniqueMap[nomor] || row.id_table > uniqueMap[nomor].id_table) {
-                            uniqueMap[nomor] = row;
-                        }
+                        tableIdMap[row.id_table] = row.nomor_meja;
+                        tableIdMap[row.nomor_meja] = row.id_table;
                     });
-                    activeTables = Object.values(uniqueMap);
                 }
-
-                console.log('✅ Active tables (unique):', activeTables);
-                return activeTables;
+                console.log('Table Map loaded:', tableIdMap);
             } catch (error) {
-                console.error('❌ Error loading tables:', error);
-                return [];
+                console.error('Error loading table map:', error);
             }
-        }
-
-        function findIdTable(nomorMeja) {
-            // Cari di activeTables
-            const found = activeTables.find(t => t.nomor_meja === nomorMeja);
-            if (found) return found.id_table;
-
-            // Jika tidak ditemukan, coba dengan format string
-            const foundStr = activeTables.find(t => t.nomor_meja === nomorMeja.toString());
-            if (foundStr) return foundStr.id_table;
-
-            // Coba dengan padStart 2 digit
-            const padded = nomorMeja.toString().padStart(2, '0');
-            const foundPadded = activeTables.find(t => t.nomor_meja === padded);
-            if (foundPadded) return foundPadded.id_table;
-
-            return null;
         }
 
         async function loadOrders() {
@@ -515,12 +510,25 @@
                 document.getElementById('namaDisplay').textContent = nama;
                 document.getElementById('mejaDisplay').textContent = 'Meja ' + meja;
 
-                // Load active tables
-                await loadActiveTables();
+                await loadTableIdMap();
+                await loadMenuNames();
 
                 // Cari id_table dari nomor meja
-                const mejaStr = meja.toString().padStart(2, '0');
-                const idTable = findIdTable(mejaStr);
+                let idTable = null;
+                const mejaStr = meja.toString();
+                
+                if (tableIdMap[mejaStr]) {
+                    idTable = tableIdMap[mejaStr];
+                } else if (tableIdMap[mejaStr.padStart(2, '0')]) {
+                    idTable = tableIdMap[mejaStr.padStart(2, '0')];
+                } else {
+                    for (const [key, value] of Object.entries(tableIdMap)) {
+                        if (parseInt(key) === meja) {
+                            idTable = value;
+                            break;
+                        }
+                    }
+                }
 
                 console.log('🔍 Meja:', meja, '→ ID Table:', idTable);
 
@@ -529,7 +537,7 @@
                         <div class="struk-box">
                             <div class="empty-status">
                                 ⚠️ Meja ${meja} tidak ditemukan<br>
-                                <span class="sub">Meja yang tersedia: ${activeTables.map(t => t.nomor_meja).join(', ')}</span>
+                                <span class="sub">Silakan hubungi karyawan</span>
                                 <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
                             </div>
                         </div>
@@ -546,10 +554,7 @@
                     .neq('status_order', 'Selesai')
                     .order('id_order', { ascending: false });
 
-                if (error) {
-                    console.error('❌ Error fetching orders:', error);
-                    throw error;
-                }
+                if (error) throw error;
 
                 console.log('📦 Orders found:', orders ? orders.length : 0);
 
@@ -559,7 +564,7 @@
                     container.innerHTML = `
                         <div class="struk-box">
                             <div class="empty-status">
-                                🍽️ Belum ada pesanan aktif untuk meja ${meja}<br>
+                                🍽️ Belum ada pesanan aktif<br>
                                 <span class="sub">Silakan pesan dari menu</span>
                                 <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
                             </div>
@@ -582,9 +587,18 @@
                         continue;
                     }
 
-                    console.log('📋 Details for', order.no_struk, ':', details ? details.length : 0);
+                    // Tambahkan nama menu dari id_menu
+                    const detailsWithMenu = (details || []).map(item => {
+                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
+                        return {
+                            ...item,
+                            menu_name: menuName
+                        };
+                    });
 
-                    const subtotal = details.reduce((s, item) => s + (item.subtotal || 0), 0);
+                    console.log('📋 Details for', order.no_struk, ':', detailsWithMenu.length);
+
+                    const subtotal = detailsWithMenu.reduce((s, item) => s + (item.subtotal || 0), 0);
                     const ppn = Math.round(subtotal * 0.1);
                     const total = subtotal + ppn;
 
@@ -608,9 +622,9 @@
                                 <span>Harga</span>
                             </div>
 
-                            ${details && details.length > 0 ? details.map(item => `
+                            ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => `
                                 <div class="struk-item">
-                                    <span class="item-name">${item.nama || 'Menu'}</span>
+                                    <span class="item-name">${item.menu_name}</span>
                                     <span class="item-qty">${item.jumlah || 0}</span>
                                     <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
                                 </div>
@@ -674,7 +688,8 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             loadOrders();
-            setInterval(loadOrders, 30000);
+            // Refresh setiap 10 detik
+            setInterval(loadOrders, 10000);
         });
     </script>
 </body>
