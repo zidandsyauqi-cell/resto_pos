@@ -7,24 +7,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
+        html, body {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             background: #0a0a0a;
-            padding: 10px;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
         }
         .status-container {
-            width: 100%;
-            max-width: 1080px;
-            aspect-ratio: 1080/1920;
+            width: 100vw;
+            height: 100vh;
             position: relative;
             background: white;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border-radius: 0;
+            box-shadow: none;
         }
         .bg-utama {
             position: absolute;
@@ -62,10 +66,10 @@
         }
         .loading-overlay.active { display: flex; }
         .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255,255,255,0.1);
-            border-top: 5px solid #98C81C;
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid #98C81C;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -75,7 +79,7 @@
         }
         .loading-text {
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -85,7 +89,7 @@
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 12px 20px 8px 20px;
+            padding: 10px 16px 6px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -94,27 +98,34 @@
         .header-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .btn-back {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(24px, 3.5%, 40px);
+            font-size: clamp(22px, 3%, 36px);
             cursor: pointer;
             transition: all 0.3s;
-            padding: 5px 10px;
+            padding: 4px 8px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .btn-back:hover { transform: scale(1.1); color: #98C81C; }
+        
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
         .logo-header img {
-            width: clamp(40px, 7%, 70px);
+            width: clamp(28px, 4%, 50px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
         .brand-text {
             color: white;
-            font-size: clamp(16px, 2.5%, 30px);
+            font-size: clamp(13px, 2%, 24px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -123,261 +134,270 @@
 
         .info-wrapper {
             position: absolute;
-            top: 65px;
+            top: 55px;
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 0 30px;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
-            gap: 20px;
+            gap: 10px;
         }
         .info-item {
             flex: 1;
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            align-items: center;
+            gap: 6px;
         }
         .info-item .label {
-            color: white;
-            font-size: clamp(18px, 3%, 35px);
+            color: rgba(255,255,255,0.7);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            white-space: nowrap;
         }
         .info-item .value-box {
-            padding: 10px 18px;
+            padding: 4px 12px;
             border-radius: 50px;
-            border: 3px solid white;
-            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
             color: white;
-            font-size: clamp(16px, 2.5%, 30px);
+            font-size: clamp(11px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            max-width: 150px;
         }
-        .info-item .value-box span { color: #98C81C; }
 
         .struk-wrapper {
             position: absolute;
-            top: 165px;
+            top: 110px;
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 10px 30px 20px 30px;
+            padding: 8px 16px 15px 16px;
             overflow-y: auto;
             z-index: 5;
         }
-        .struk-wrapper::-webkit-scrollbar { width: 4px; }
+        .struk-wrapper::-webkit-scrollbar { width: 3px; }
         .struk-wrapper::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
         .struk-wrapper::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
         .struk-box {
             background: rgba(255,255,255,0.05);
-            border-radius: 50px;
-            border: 3px solid white;
-            padding: 25px 30px 20px 30px;
-            min-height: 350px;
-            margin-bottom: 15px;
+            border-radius: 40px;
+            border: 2px solid rgba(255,255,255,0.2);
+            padding: 16px 20px 14px 20px;
+            min-height: 300px;
+            margin-bottom: 12px;
         }
         .struk-title {
             color: white;
-            font-size: clamp(24px, 4%, 45px);
+            font-size: clamp(18px, 2.8%, 32px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
         .struk-no {
-            color: rgba(255,255,255,0.7);
-            font-size: clamp(18px, 2.5%, 30px);
+            color: rgba(255,255,255,0.6);
+            font-size: clamp(14px, 2%, 22px);
             font-family: 'Schoolbell', cursive;
-            margin-bottom: 15px;
-            border-bottom: 2px dashed rgba(255,255,255,0.1);
-            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+            padding-bottom: 6px;
         }
         .struk-no span { color: white; }
 
         .struk-header-row {
             display: flex;
             justify-content: space-between;
-            color: rgba(255,255,255,0.5);
-            font-size: clamp(14px, 1.8%, 22px);
+            color: rgba(255,255,255,0.4);
+            font-size: clamp(11px, 1.5%, 16px);
             font-family: 'Schoolbell', cursive;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 5px;
-            margin-bottom: 5px;
+            padding-bottom: 3px;
+            margin-bottom: 3px;
         }
         .struk-item {
             display: flex;
             justify-content: space-between;
-            padding: 4px 0;
+            padding: 3px 0;
             color: white;
-            font-size: clamp(16px, 2.2%, 28px);
+            font-size: clamp(13px, 1.8%, 20px);
             font-family: 'Schoolbell', cursive;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.02);
         }
-        .struk-item .item-name { flex: 1; text-align: left; }
-        .struk-item .item-qty { margin: 0 10px; color: rgba(255,255,255,0.5); min-width: 30px; text-align: center; }
-        .struk-item .item-price { color: #98C81C; min-width: 100px; text-align: right; }
+        .struk-item .item-name { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 8px; }
+        .struk-item .item-qty { margin: 0 6px; color: rgba(255,255,255,0.4); min-width: 24px; text-align: center; }
+        .struk-item .item-price { color: #98C81C; min-width: 70px; text-align: right; }
 
         .struk-divider {
             border: none;
-            border-top: 2px dashed rgba(255,255,255,0.2);
-            margin: 10px 0;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+            margin: 6px 0;
         }
 
         .struk-total-row {
             display: flex;
             justify-content: space-between;
             color: white;
-            font-size: clamp(18px, 2.5%, 32px);
+            font-size: clamp(14px, 2%, 24px);
             font-family: 'Schoolbell', cursive;
-            padding: 4px 0;
+            padding: 3px 0;
         }
         .struk-total-row .total-amount { color: #98C81C; }
 
         .struk-ppn {
             display: flex;
             justify-content: space-between;
-            color: rgba(255,255,255,0.7);
-            font-size: clamp(16px, 2%, 26px);
+            color: rgba(255,255,255,0.5);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             padding: 2px 0;
         }
-        .struk-ppn .ppn-amount { color: rgba(255,255,255,0.7); }
+        .struk-ppn .ppn-amount { color: rgba(255,255,255,0.5); }
 
         .struk-grand-total {
             display: flex;
             justify-content: space-between;
             color: white;
-            font-size: clamp(24px, 3.5%, 42px);
+            font-size: clamp(18px, 2.8%, 32px);
             font-family: 'Schoolbell', cursive;
             font-weight: 700;
-            padding-top: 8px;
-            border-top: 2px solid rgba(255,255,255,0.2);
-            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 2px solid rgba(255,255,255,0.15);
+            margin-top: 6px;
         }
         .struk-grand-total .grand-total-amount { color: #98C81C; }
 
         .btn-ok {
             display: block;
-            width: clamp(120px, 30%, 350px);
-            padding: 10px 20px;
-            margin: 15px auto 0 auto;
+            width: clamp(80px, 25%, 280px);
+            padding: 8px 16px;
+            margin: 12px auto 0 auto;
             background: #98C81C;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(24px, 3.5%, 42px);
+            font-size: clamp(18px, 2.8%, 32px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
-            border: 3px solid white;
+            border: 2px solid white;
         }
-        .btn-ok:hover { background: #7aa814; transform: scale(1.05); }
+        .btn-ok:hover { background: #7aa814; transform: scale(1.03); }
 
         .empty-status {
             text-align: center;
             color: rgba(255,255,255,0.5);
-            padding: 60px 20px;
-            font-size: clamp(20px, 3%, 35px);
+            padding: 40px 20px;
+            font-size: clamp(16px, 2.5%, 28px);
             font-family: 'Schoolbell', cursive;
         }
         .empty-status .sub {
-            font-size: clamp(14px, 1.8%, 22px);
+            font-size: clamp(12px, 1.6%, 18px);
             color: rgba(255,255,255,0.3);
         }
         .btn-refresh {
             width: 100%;
-            padding: 12px;
-            margin-top: 15px;
+            padding: 10px;
+            margin-top: 12px;
             background: rgba(255,255,255,0.1);
             border: 2px solid rgba(255,255,255,0.2);
             border-radius: 50px;
             color: white;
-            font-size: clamp(16px, 2%, 24px);
+            font-size: clamp(14px, 1.8%, 20px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
         }
         .btn-refresh:hover { background: rgba(255,255,255,0.2); }
 
-        @media screen and (max-width: 767px) {
-            .status-container { max-width: 100%; border-radius: 12px; }
-            .header-top { padding: 10px 14px 6px 14px; }
-            .info-wrapper { top: 55px; padding: 0 14px; gap: 10px; flex-direction: column; }
-            .info-item .label { font-size: 14px; }
-            .info-item .value-box { font-size: 12px; padding: 6px 12px; border-width: 2px; }
-            .struk-wrapper { top: 145px; padding: 8px 14px 15px 14px; }
-            .struk-box { padding: 15px 16px 12px 16px; border-radius: 30px; }
-            .struk-title { font-size: 18px; }
-            .struk-no { font-size: 14px; }
-            .struk-header-row { font-size: 11px; }
-            .struk-item { font-size: 13px; }
-            .struk-item .item-price { min-width: 70px; }
-            .struk-total-row { font-size: 14px; }
-            .struk-ppn { font-size: 12px; }
-            .struk-grand-total { font-size: 18px; }
-            .btn-ok { font-size: 18px; padding: 8px 16px; width: 120px; }
+        /* ===== RESPONSIVE ===== */
+        @media screen and (orientation: portrait) {
+            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
         }
 
-        @media screen and (max-width: 480px) {
-            .status-container { border-radius: 10px; }
-            .header-top { padding: 6px 10px 4px 10px; }
-            .btn-back { font-size: 18px; }
-            .logo-header img { width: 25px; }
-            .brand-text { font-size: 12px; }
-            .info-wrapper { top: 48px; padding: 0 10px; gap: 6px; flex-direction: column; }
-            .info-item .label { font-size: 12px; }
-            .info-item .value-box { font-size: 11px; padding: 4px 10px; }
-            .struk-wrapper { top: 130px; padding: 6px 10px 10px 10px; }
-            .struk-box { padding: 12px 12px 10px 12px; border-radius: 20px; border-width: 2px; }
-            .struk-title { font-size: 14px; }
-            .struk-no { font-size: 11px; }
-            .struk-header-row { font-size: 9px; }
-            .struk-item { font-size: 10px; padding: 2px 0; }
-            .struk-item .item-price { min-width: 60px; }
-            .struk-total-row { font-size: 11px; }
-            .struk-ppn { font-size: 10px; }
-            .struk-grand-total { font-size: 14px; }
-            .btn-ok { font-size: 14px; padding: 6px 12px; width: 80px; }
-            .empty-status { font-size: 16px; padding: 30px 10px; }
-        }
-
-        @media screen and (max-width: 360px) {
-            .info-item .value-box { font-size: 9px; }
-            .struk-item { font-size: 9px; }
-            .struk-grand-total { font-size: 12px; }
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .status-container { max-width: 90vh; border-radius: 15px; }
+        @media screen and (orientation: landscape) {
+            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .info-wrapper { top: 48px; padding: 0 20px; }
+            .struk-wrapper { top: 95px; padding: 6px 20px 12px 20px; }
+            .struk-box { padding: 12px 16px 10px 16px; min-height: 200px; border-radius: 30px; }
+            .header-top { padding: 6px 16px 4px 16px; }
+            .btn-ok { padding: 6px 14px; font-size: 16px; }
         }
 
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .status-container { max-width: 90vh; border-radius: 10px; }
-            .header-top { padding: 5px 10px 3px 10px; }
+            .info-wrapper { top: 40px; padding: 0 16px; }
+            .info-item .label { font-size: 10px; }
+            .info-item .value-box { font-size: 9px; padding: 2px 8px; max-width: 100px; }
+            .struk-wrapper { top: 80px; padding: 4px 14px 8px 14px; }
+            .struk-box { padding: 8px 12px 6px 12px; min-height: 150px; border-radius: 20px; }
+            .struk-title { font-size: 14px; }
+            .struk-no { font-size: 11px; }
+            .struk-item { font-size: 10px; padding: 2px 0; }
+            .struk-item .item-price { min-width: 50px; }
+            .struk-total-row { font-size: 12px; }
+            .struk-ppn { font-size: 10px; }
+            .struk-grand-total { font-size: 14px; }
+            .btn-ok { padding: 4px 12px; font-size: 13px; width: 70px; margin-top: 8px; }
+            .header-top { padding: 4px 12px 2px 12px; }
             .btn-back { font-size: 16px; }
             .logo-header img { width: 22px; }
             .brand-text { font-size: 11px; }
-            .info-wrapper { top: 40px; padding: 0 10px; gap: 6px; flex-direction: row; }
-            .info-item .label { font-size: 10px; }
-            .info-item .value-box { font-size: 10px; padding: 3px 8px; border-width: 2px; }
-            .struk-wrapper { top: 105px; padding: 4px 10px 8px 10px; }
-            .struk-box { padding: 10px 12px 8px 12px; border-radius: 20px; min-height: 200px; }
-            .struk-title { font-size: 12px; }
-            .struk-no { font-size: 10px; }
-            .struk-header-row { font-size: 8px; }
-            .struk-item { font-size: 9px; padding: 1px 0; }
-            .struk-item .item-price { min-width: 50px; }
-            .struk-total-row { font-size: 10px; }
-            .struk-ppn { font-size: 9px; }
-            .struk-grand-total { font-size: 12px; }
-            .btn-ok { font-size: 12px; padding: 4px 10px; width: 60px; margin-top: 8px; }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .info-wrapper { top: 60px; padding: 0 30px; }
+            .info-item .label { font-size: 18px; }
+            .info-item .value-box { font-size: 18px; padding: 8px 18px; max-width: 250px; }
+            .struk-wrapper { top: 130px; padding: 10px 30px 20px 30px; }
+            .struk-box { padding: 20px 25px 16px 25px; border-radius: 45px; min-height: 400px; }
+            .struk-title { font-size: 28px; }
+            .struk-no { font-size: 22px; }
+            .struk-item { font-size: 18px; padding: 5px 0; }
+            .struk-item .item-price { min-width: 100px; }
+            .struk-total-row { font-size: 22px; }
+            .struk-ppn { font-size: 18px; }
+            .struk-grand-total { font-size: 28px; }
+            .btn-ok { font-size: 24px; padding: 10px 24px; width: 200px; }
+            .header-top { padding: 14px 24px 10px 24px; }
+            .logo-header img { width: 45px; }
+            .brand-text { font-size: 22px; }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .info-wrapper { top: 50px; padding: 0 25px; }
+            .struk-wrapper { top: 100px; padding: 8px 25px 15px 25px; }
+            .struk-box { padding: 14px 18px 12px 18px; border-radius: 35px; min-height: 250px; }
+            .struk-title { font-size: 20px; }
+            .struk-no { font-size: 16px; }
+            .struk-item { font-size: 14px; }
+            .struk-item .item-price { min-width: 70px; }
+            .struk-total-row { font-size: 16px; }
+            .struk-ppn { font-size: 14px; }
+            .struk-grand-total { font-size: 20px; }
+            .btn-ok { font-size: 18px; padding: 6px 18px; width: 140px; }
+        }
+
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
+            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .struk-wrapper { padding: 10px 35px 20px 35px; max-width: 900px; margin: 0 auto; left: 0; right: 0; }
+            .info-wrapper { padding: 0 35px; max-width: 900px; left: 0; right: 0; margin: 0 auto; }
+            .struk-box { padding: 20px 25px 16px 25px; border-radius: 45px; min-height: 350px; }
+            .struk-title { font-size: 26px; }
+            .struk-no { font-size: 20px; }
+            .struk-item { font-size: 16px; }
+            .struk-item .item-price { min-width: 100px; }
+            .struk-total-row { font-size: 20px; }
+            .struk-ppn { font-size: 16px; }
+            .struk-grand-total { font-size: 26px; }
+            .btn-ok { font-size: 22px; padding: 8px 24px; width: 180px; }
         }
     </style>
 </head>
@@ -393,22 +413,22 @@
 
         <div class="header-top">
             <div class="header-left">
-                <button class="btn-back" onclick="window.location.href='customer_order.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">←</button>
-                <div class="logo-header">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/55x55/98C81C/ffffff?text=🍽️'" />
+                <button class="btn-back" onclick="goBack()">←</button>
+                <div class="logo-header" onclick="goToDashboard()">
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/50x50/98C81C/ffffff?text=🍽️'" />
+                    <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
-                <div class="brand-text">Jangkung<span>Order</span></div>
             </div>
         </div>
 
         <div class="info-wrapper">
             <div class="info-item">
-                <div class="label">Nama:</div>
-                <div class="value-box" id="namaDisplay">-</div>
+                <span class="label">Nama:</span>
+                <span class="value-box" id="namaDisplay">-</span>
             </div>
             <div class="info-item">
-                <div class="label">Nomor Meja:</div>
-                <div class="value-box" id="mejaDisplay">-</div>
+                <span class="label">Meja:</span>
+                <span class="value-box" id="mejaDisplay">-</span>
             </div>
         </div>
 
@@ -425,6 +445,7 @@
 
         let tableIdMap = {};
         let menuNames = {};
+        let isRealtimeConnected = false;
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -444,6 +465,16 @@
             return 'Customer';
         }
 
+        function goToDashboard() {
+            const meja = getMeja();
+            const nama = encodeURIComponent(getNama());
+            window.location.href = 'customer_order.html?meja=' + meja + '&nama=' + nama;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
         function getStatusLabel(status) {
             const map = { 
                 'Diproses': '⏳ Diproses', 
@@ -457,7 +488,6 @@
             return 'Rp ' + Number(price).toLocaleString('id-ID');
         }
 
-        // ===== LOAD MENU NAMES =====
         async function loadMenuNames() {
             try {
                 const { data, error } = await supabaseClient
@@ -500,6 +530,86 @@
             }
         }
 
+        function setupRealtime() {
+            if (isRealtimeConnected) return;
+
+            const channel = supabaseClient
+                .channel('status-db-changes')
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, (payload) => {
+                    console.log('Realtime update orders:', payload);
+                    loadOrdersSilent();
+                })
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'orderdetails' }, (payload) => {
+                    console.log('Realtime update details:', payload);
+                    loadOrdersSilent();
+                })
+                .subscribe((status) => {
+                    console.log('Realtime status:', status);
+                    if (status === 'SUBSCRIBED') {
+                        isRealtimeConnected = true;
+                        console.log('✅ Realtime connected!');
+                    }
+                });
+
+            window.realtimeChannel = channel;
+        }
+
+        async function loadOrdersSilent() {
+            try {
+                await loadMenuNames();
+                await loadTableIdMap();
+
+                const meja = getMeja();
+                const mejaStr = meja.toString().trim();
+                
+                let idTable = null;
+                if (tableIdMap[mejaStr]) {
+                    idTable = tableIdMap[mejaStr];
+                } else if (tableIdMap[mejaStr.padStart(2, '0')]) {
+                    idTable = tableIdMap[mejaStr.padStart(2, '0')];
+                } else {
+                    for (const [key, value] of Object.entries(tableIdMap)) {
+                        if (parseInt(key) === parseInt(mejaStr)) {
+                            idTable = value;
+                            break;
+                        }
+                    }
+                }
+
+                let orders = [];
+                if (idTable) {
+                    const result = await supabaseClient
+                        .from('orders')
+                        .select('*')
+                        .eq('id_table', idTable)
+                        .neq('status_order', 'Selesai')
+                        .order('id_order', { ascending: false });
+                    
+                    if (!result.error) {
+                        orders = result.data || [];
+                    }
+                }
+
+                if (!orders || orders.length === 0) {
+                    const result = await supabaseClient
+                        .from('orders')
+                        .select('*')
+                        .neq('status_order', 'Selesai')
+                        .order('id_order', { ascending: false });
+                    
+                    if (!result.error) {
+                        orders = result.data || [];
+                    }
+                }
+
+                console.log('📦 Final orders (silent):', orders ? orders.length : 0);
+                renderOrders(orders);
+
+            } catch (error) {
+                console.error('Error silent loading orders:', error);
+            }
+        }
+
         async function loadOrders() {
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
@@ -514,20 +624,13 @@
                 await loadMenuNames();
                 await loadTableIdMap();
 
-                // Cari id_table dari nomor meja - coba berbagai format
-                let idTable = null;
                 const mejaStr = meja.toString().trim();
-                
-                // Coba langsung
+                let idTable = null;
                 if (tableIdMap[mejaStr]) {
                     idTable = tableIdMap[mejaStr];
-                } 
-                // Coba dengan leading zero
-                else if (tableIdMap[mejaStr.padStart(2, '0')]) {
+                } else if (tableIdMap[mejaStr.padStart(2, '0')]) {
                     idTable = tableIdMap[mejaStr.padStart(2, '0')];
-                } 
-                // Coba dengan parseInt
-                else {
+                } else {
                     for (const [key, value] of Object.entries(tableIdMap)) {
                         if (parseInt(key) === parseInt(mejaStr)) {
                             idTable = value;
@@ -538,12 +641,8 @@
 
                 console.log('🔍 Meja:', meja, '→ ID Table:', idTable);
 
-                // Jika masih tidak ditemukan, coba ambil semua orders tanpa filter id_table
                 let orders = [];
-                let error = null;
-
                 if (idTable) {
-                    // Ambil orders berdasarkan id_table
                     const result = await supabaseClient
                         .from('orders')
                         .select('*')
@@ -551,53 +650,12 @@
                         .neq('status_order', 'Selesai')
                         .order('id_order', { ascending: false });
                     
-                    if (result.error) {
-                        console.error('❌ Error fetching orders with id_table:', result.error);
-                        error = result.error;
-                    } else {
+                    if (!result.error) {
                         orders = result.data || [];
-                    }
-                } else {
-                    // Fallback: ambil semua orders, lalu filter manual
-                    console.log('⚠️ ID Table not found, fetching all orders...');
-                    const result = await supabaseClient
-                        .from('orders')
-                        .select('*')
-                        .neq('status_order', 'Selesai')
-                        .order('id_order', { ascending: false });
-                    
-                    if (result.error) {
-                        console.error('❌ Error fetching all orders:', result.error);
-                        error = result.error;
-                    } else {
-                        // Filter manual berdasarkan nomor meja dari tabel tables
-                        const allOrders = result.data || [];
-                        const tableIds = Object.values(tableIdMap);
-                        
-                        // Cari orders yang id_table-nya ada di tableIdMap (atau semua)
-                        orders = allOrders.filter(o => {
-                            // Jika ada id_table di orders, cari matching
-                            if (o.id_table) {
-                                // Cari nomor meja dari id_table
-                                for (const [key, value] of Object.entries(tableIdMap)) {
-                                    if (value === o.id_table && parseInt(key) === parseInt(mejaStr)) {
-                                        return true;
-                                    }
-                                }
-                                // Jika tidak cocok dengan meja ini, skip
-                                return false;
-                            }
-                            // Jika tidak ada id_table, ambil semua (fallback)
-                            return true;
-                        });
-                        
-                        console.log('📦 Orders after manual filter:', orders.length);
                     }
                 }
 
-                // Jika masih kosong, coba ambil semua orders tanpa filter (debug)
                 if (!orders || orders.length === 0) {
-                    console.log('⚠️ No orders found, trying to get all orders...');
                     const result = await supabaseClient
                         .from('orders')
                         .select('*')
@@ -606,118 +664,15 @@
                     
                     if (!result.error) {
                         orders = result.data || [];
-                        console.log('📦 All orders (no filter):', orders.length);
                     }
                 }
 
                 console.log('📦 Final orders:', orders ? orders.length : 0);
+                renderOrders(orders);
 
-                const container = document.getElementById('orderList');
-
-                if (!orders || orders.length === 0) {
-                    container.innerHTML = `
-                        <div class="struk-box">
-                            <div class="empty-status">
-                                🍽️ Belum ada pesanan aktif untuk meja ${meja}<br>
-                                <span class="sub">Silakan pesan dari menu</span>
-                                <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
-                            </div>
-                        </div>
-                    `;
-                    loading.classList.remove('active');
-                    return;
+                if (!isRealtimeConnected) {
+                    setupRealtime();
                 }
-
-                let html = '';
-                for (const order of orders) {
-                    // Ambil detail pesanan
-                    const { data: details, error: detailError } = await supabaseClient
-                        .from('orderdetails')
-                        .select('*')
-                        .eq('no_struk', order.no_struk);
-
-                    if (detailError) {
-                        console.error('❌ Error fetching details:', detailError);
-                        continue;
-                    }
-
-                    // Tambahkan nama menu dari id_menu
-                    const detailsWithMenu = (details || []).map(item => {
-                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
-                        return {
-                            ...item,
-                            menu_name: menuName
-                        };
-                    });
-
-                    console.log('📋 Details for', order.no_struk, ':', detailsWithMenu.length);
-
-                    const subtotal = detailsWithMenu.reduce((s, item) => s + (item.subtotal || 0), 0);
-                    const ppn = Math.round(subtotal * 0.1);
-                    const total = subtotal + ppn;
-
-                    const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
-                    const dateStr = orderDate.toLocaleString('id-ID', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    });
-
-                    html += `
-                        <div class="struk-box">
-                            <div class="struk-title">📋 Detail Struk:</div>
-                            <div class="struk-no">Nomor Struk: <span>${order.no_struk}</span> &bull; ${dateStr}</div>
-
-                            <div class="struk-header-row">
-                                <span>Pesanan</span>
-                                <span>Jumlah</span>
-                                <span>Harga</span>
-                            </div>
-
-                            ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => `
-                                <div class="struk-item">
-                                    <span class="item-name">${item.menu_name}</span>
-                                    <span class="item-qty">${item.jumlah || 0}</span>
-                                    <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
-                                </div>
-                            `).join('') : `
-                                <div class="struk-item">
-                                    <span class="item-name" style="color:rgba(255,255,255,0.3);">Tidak ada detail</span>
-                                    <span class="item-qty">-</span>
-                                    <span class="item-price">-</span>
-                                </div>
-                            `}
-
-                            <hr class="struk-divider">
-
-                            <div class="struk-total-row">
-                                <span>Total</span>
-                                <span class="total-amount">${formatRupiah(subtotal)}</span>
-                            </div>
-                            <div class="struk-ppn">
-                                <span>PPN 10%</span>
-                                <span class="ppn-amount">${formatRupiah(ppn)}</span>
-                            </div>
-
-                            <div class="struk-grand-total">
-                                <span>Total</span>
-                                <span class="grand-total-amount">${formatRupiah(total)}</span>
-                            </div>
-
-                            <div style="text-align:center;margin-top:12px;">
-                                <span style="color:rgba(255,255,255,0.5);font-family:'Schoolbell',cursive;font-size:clamp(14px,1.8%,22px);">
-                                    Status: ${getStatusLabel(order.status_order)}
-                                </span>
-                            </div>
-
-                            <button class="btn-ok" onclick="window.location.href='customer_order.html?meja=${getMeja()}&nama=${encodeURIComponent(getNama())}'">OK</button>
-                        </div>
-                    `;
-                }
-
-                container.innerHTML = html;
 
             } catch (error) {
                 console.error('❌ Error loading orders:', error);
@@ -735,6 +690,108 @@
             }
         }
 
+        function renderOrders(orders) {
+            const container = document.getElementById('orderList');
+
+            if (!orders || orders.length === 0) {
+                container.innerHTML = `
+                    <div class="struk-box">
+                        <div class="empty-status">
+                            🍽️ Belum ada pesanan aktif<br>
+                            <span class="sub">Silakan pesan dari menu</span>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            for (const order of orders) {
+                const { data: details, error: detailError } = await supabaseClient
+                    .from('orderdetails')
+                    .select('*')
+                    .eq('no_struk', order.no_struk);
+
+                if (detailError) {
+                    console.error('❌ Error fetching details:', detailError);
+                    continue;
+                }
+
+                const detailsWithMenu = (details || []).map(item => {
+                    const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
+                    return { ...item, menu_name: menuName };
+                });
+
+                console.log('📋 Details for', order.no_struk, ':', detailsWithMenu.length);
+
+                const subtotal = detailsWithMenu.reduce((s, item) => s + (item.subtotal || 0), 0);
+                const ppn = Math.round(subtotal * 0.1);
+                const total = subtotal + ppn;
+
+                const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
+                const dateStr = orderDate.toLocaleString('id-ID', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                html += `
+                    <div class="struk-box">
+                        <div class="struk-title">📋 Detail Struk:</div>
+                        <div class="struk-no">Nomor Struk: <span>${order.no_struk}</span> &bull; ${dateStr}</div>
+
+                        <div class="struk-header-row">
+                            <span>Pesanan</span>
+                            <span>Jumlah</span>
+                            <span>Harga</span>
+                        </div>
+
+                        ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => `
+                            <div class="struk-item">
+                                <span class="item-name">${item.menu_name}</span>
+                                <span class="item-qty">${item.jumlah || 0}</span>
+                                <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
+                            </div>
+                        `).join('') : `
+                            <div class="struk-item">
+                                <span class="item-name" style="color:rgba(255,255,255,0.3);">Tidak ada detail</span>
+                                <span class="item-qty">-</span>
+                                <span class="item-price">-</span>
+                            </div>
+                        `}
+
+                        <hr class="struk-divider">
+
+                        <div class="struk-total-row">
+                            <span>Total</span>
+                            <span class="total-amount">${formatRupiah(subtotal)}</span>
+                        </div>
+                        <div class="struk-ppn">
+                            <span>PPN 10%</span>
+                            <span class="ppn-amount">${formatRupiah(ppn)}</span>
+                        </div>
+
+                        <div class="struk-grand-total">
+                            <span>Total</span>
+                            <span class="grand-total-amount">${formatRupiah(total)}</span>
+                        </div>
+
+                        <div style="text-align:center;margin-top:8px;">
+                            <span style="color:rgba(255,255,255,0.5);font-family:'Schoolbell',cursive;font-size:clamp(12px,1.6%,18px);">
+                                Status: ${getStatusLabel(order.status_order)}
+                            </span>
+                        </div>
+
+                        <button class="btn-ok" onclick="window.location.href='customer_order.html?meja=${getMeja()}&nama=${encodeURIComponent(getNama())}'">OK</button>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
         const meja = getMeja();
         const nama = getNama();
         localStorage.setItem('meja_number', meja);
@@ -742,8 +799,6 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             loadOrders();
-            // Refresh setiap 10 detik
-            setInterval(loadOrders, 10000);
         });
     </script>
 </body>
