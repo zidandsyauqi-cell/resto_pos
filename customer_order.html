@@ -81,23 +81,35 @@
             flex: 1;
         }
 
+        /* ===== WRAPPER KONTEN TENGAH ===== */
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            padding: 0 5%;
+        }
+
         /* ===== BOX MENU ===== */
         .box-menu {
-            position: absolute;
-            width: 82%;
+            width: 100%;
             max-width: 600px;
-            height: 24%;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 28%;
+            height: 22%;
+            margin-bottom: 2.5%;
             overflow: hidden;
             border-radius: 65px;
-            z-index: 5;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
-        .box-menu:hover { transform: translateX(-50%) scale(1.02); }
-        .box-menu:active { transform: translateX(-50%) scale(0.98); }
+        .box-menu:hover { transform: scale(1.02); }
+        .box-menu:active { transform: scale(0.98); }
         .box-menu .bg-hijau {
             position: absolute;
             width: 100%;
@@ -126,21 +138,18 @@
 
         /* ===== BOX PESAN ===== */
         .box-pesan {
-            position: absolute;
-            width: 82%;
+            width: 100%;
             max-width: 600px;
-            height: 24%;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 54%;
+            height: 22%;
+            margin-bottom: 2.5%;
             overflow: hidden;
             border-radius: 65px;
-            z-index: 5;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
-        .box-pesan:hover { transform: translateX(-50%) scale(1.02); }
-        .box-pesan:active { transform: translateX(-50%) scale(0.98); }
+        .box-pesan:hover { transform: scale(1.02); }
+        .box-pesan:active { transform: scale(0.98); }
         .box-pesan .bg-hijau {
             position: absolute;
             width: 100%;
@@ -169,25 +178,21 @@
 
         /* ===== BOX STATUS ===== */
         .box-status {
-            position: absolute;
-            width: 82%;
+            width: 100%;
             max-width: 600px;
-            height: 24%;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 72.5%;
+            height: 22%;
             background: #98C81C;
             border-radius: 65px;
             border: 3px solid white;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 5;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
-        .box-status:hover { transform: translateX(-50%) scale(1.02); }
-        .box-status:active { transform: translateX(-50%) scale(0.98); }
+        .box-status:hover { transform: scale(1.02); }
+        .box-status:active { transform: scale(0.98); }
         .box-status .label-status {
             color: white;
             font-size: clamp(24px, 5.5%, 60px);
@@ -202,7 +207,7 @@
         .meja-info {
             position: absolute;
             right: 4%;
-            top: 6%;
+            top: 4%;
             z-index: 10;
             background: rgba(255,255,255,0.15);
             backdrop-filter: blur(5px);
@@ -218,7 +223,7 @@
         .customer-name-display {
             position: absolute;
             right: 4%;
-            top: 12%;
+            top: 10%;
             z-index: 10;
             background: rgba(255,255,255,0.15);
             backdrop-filter: blur(5px);
@@ -241,12 +246,15 @@
                 height: 100%;
                 border-radius: 0;
             }
-            .box-menu, .box-pesan, .box-status { 
-                border-radius: 65px;
-                max-width: none;
-                width: 82%;
-            }
+            .box-menu, .box-pesan, .box-status { border-radius: 65px; }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 65px; }
+            .box-menu { height: 22%; }
+            .box-pesan { height: 22%; }
+            .box-status { height: 22%; }
+            .content-wrapper {
+                padding: 0 5%;
+                gap: 0;
+            }
         }
 
         /* ===== LANDSCAPE ===== */
@@ -257,55 +265,49 @@
                 border-radius: 0;
             }
             
-            /* Header lebih kecil di landscape */
+            /* Header lebih kecil */
             .header-top {
-                top: 3%;
-                gap: 8px;
+                top: 2%;
+                gap: 6px;
             }
             .header-top .logo-left {
-                width: clamp(50px, 15%, 180px);
+                width: clamp(40px, 10%, 140px);
             }
             .header-top .title-right {
-                font-size: clamp(16px, 4%, 45px);
+                font-size: clamp(14px, 3%, 35px);
             }
             
-            /* Tombol di tengah dengan max-width */
+            /* Content wrapper full */
+            .content-wrapper {
+                padding: 0 10%;
+                justify-content: center;
+            }
+            
+            /* Tombol lebih kecil dan rapat */
             .box-menu, .box-pesan, .box-status {
-                width: 65%;
                 max-width: 450px;
-                height: 18%;
-                border-radius: 40px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .box-menu:hover, .box-pesan:hover, .box-status:hover {
-                transform: translateX(-50%) scale(1.02);
-            }
-            .box-menu:active, .box-pesan:active, .box-status:active {
-                transform: translateX(-50%) scale(0.98);
+                height: 16%;
+                border-radius: 35px;
+                margin-bottom: 1.8%;
             }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
-                border-radius: 40px;
+                border-radius: 35px;
             }
-            .box-menu { top: 32%; }
-            .box-pesan { top: 52%; }
-            .box-status { top: 72%; }
-            
             .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status {
-                font-size: clamp(16px, 3.5%, 40px);
+                font-size: clamp(14px, 2.8%, 32px);
             }
             
             /* Meja & Nama lebih kecil */
             .meja-info {
-                padding: 3px 12px;
-                font-size: clamp(10px, 1.2%, 14px);
-                top: 3%;
+                padding: 2px 10px;
+                font-size: clamp(9px, 1%, 13px);
+                top: 2%;
                 right: 3%;
             }
             .customer-name-display {
-                padding: 2px 10px;
-                font-size: clamp(8px, 1%, 12px);
-                top: 8.5%;
+                padding: 2px 8px;
+                font-size: clamp(7px, 0.8%, 11px);
+                top: 7.5%;
                 right: 3%;
             }
         }
@@ -315,16 +317,16 @@
             .customer-container { max-width: 100%; aspect-ratio: 1080/1920; border-radius: 12px; }
             .box-menu, .box-pesan, .box-status { border-radius: 40px; }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 40px; }
-            .box-menu { top: 28%; height: 24%; }
-            .box-pesan { top: 54%; height: 24%; }
-            .box-status { top: 72.5%; height: 24%; }
             .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { 
                 font-size: clamp(20px, 5%, 45px); 
             }
-            .meja-info { padding: 4px 12px; font-size: 12px; top: 6%; }
-            .customer-name-display { padding: 4px 12px; font-size: 10px; top: 13%; }
+            .meja-info { padding: 4px 12px; font-size: 12px; top: 4%; }
+            .customer-name-display { padding: 4px 12px; font-size: 10px; top: 10%; }
             .header-top .logo-left { width: 100px; }
             .header-top .title-right { font-size: 24px; }
+            .box-menu { height: 22%; }
+            .box-pesan { height: 22%; }
+            .box-status { height: 22%; }
         }
 
         /* ===== HP KECIL PORTRAIT ===== */
@@ -332,129 +334,94 @@
             .customer-container { border-radius: 10px; }
             .box-menu, .box-pesan, .box-status { border-radius: 30px; }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 30px; }
-            .box-menu { top: 28%; height: 22%; }
-            .box-pesan { top: 52%; height: 22%; }
-            .box-status { top: 73%; height: 22%; }
             .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { 
                 font-size: clamp(16px, 4%, 35px); 
             }
             .meja-info { padding: 3px 10px; font-size: 11px; }
-            .customer-name-display { padding: 3px 10px; font-size: 9px; top: 13%; }
+            .customer-name-display { padding: 3px 10px; font-size: 9px; top: 10%; }
             .header-top .logo-left { width: 70px; }
             .header-top .title-right { font-size: 20px; }
+            .box-menu { height: 20%; }
+            .box-pesan { height: 20%; }
+            .box-status { height: 20%; }
         }
 
         /* ===== HP SANGAT KECIL ===== */
         @media screen and (max-width: 360px) and (orientation: portrait) {
             .box-menu, .box-pesan, .box-status { border-radius: 25px; }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 25px; }
-            .box-menu { top: 28%; height: 21%; }
-            .box-pesan { top: 51%; height: 21%; }
-            .box-status { top: 73%; height: 21%; }
             .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { font-size: 14px; }
             .meja-info { font-size: 10px; padding: 2px 8px; }
-            .customer-name-display { font-size: 8px; padding: 2px 8px; top: 13%; }
+            .customer-name-display { font-size: 8px; padding: 2px 8px; top: 10%; }
             .header-top .logo-left { width: 55px; }
             .header-top .title-right { font-size: 16px; }
+            .box-menu { height: 18%; }
+            .box-pesan { height: 18%; }
+            .box-status { height: 18%; }
         }
 
         /* ===== LANDSCAPE HP KECIL ===== */
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .customer-container { max-width: 100%; border-radius: 0; }
+            
             .box-menu, .box-pesan, .box-status {
-                width: 55%;
-                max-width: 350px;
-                height: 16%;
+                max-width: 320px;
+                height: 14%;
                 border-radius: 25px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .box-menu:hover, .box-pesan:hover, .box-status:hover {
-                transform: translateX(-50%) scale(1.02);
-            }
-            .box-menu:active, .box-pesan:active, .box-status:active {
-                transform: translateX(-50%) scale(0.98);
+                margin-bottom: 1.5%;
             }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
                 border-radius: 25px;
             }
-            .box-menu { top: 34%; }
-            .box-pesan { top: 52%; }
-            .box-status { top: 70%; }
-            
             .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status {
-                font-size: clamp(12px, 2.5%, 28px);
+                font-size: clamp(11px, 2%, 24px);
             }
             
-            .header-top .logo-left { width: 50px; }
-            .header-top .title-right { font-size: 14px; }
-            .header-top { top: 2%; }
+            .header-top .logo-left { width: 40px; }
+            .header-top .title-right { font-size: 12px; }
+            .header-top { top: 1.5%; gap: 4px; }
             
-            .meja-info { font-size: 9px; padding: 2px 8px; top: 2%; }
-            .customer-name-display { font-size: 7px; padding: 2px 8px; top: 7%; }
+            .meja-info { font-size: 8px; padding: 2px 6px; top: 1.5%; right: 2%; }
+            .customer-name-display { font-size: 6px; padding: 1px 6px; top: 6%; right: 2%; }
+            
+            .content-wrapper { padding: 0 5%; }
         }
 
         /* ===== TABLET LANDSCAPE ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
             .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 15px; }
             .box-menu, .box-pesan, .box-status {
-                width: 60%;
-                max-width: 420px;
-                height: 20%;
-                border-radius: 45px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .box-menu:hover, .box-pesan:hover, .box-status:hover {
-                transform: translateX(-50%) scale(1.02);
-            }
-            .box-menu:active, .box-pesan:active, .box-status:active {
-                transform: translateX(-50%) scale(0.98);
+                max-width: 380px;
+                height: 18%;
+                border-radius: 40px;
+                margin-bottom: 2%;
             }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
-                border-radius: 45px;
+                border-radius: 40px;
             }
-            .box-menu { top: 30%; }
-            .box-pesan { top: 52%; }
-            .box-status { top: 74%; }
-            
             .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status {
-                font-size: clamp(18px, 4%, 45px);
+                font-size: clamp(16px, 3.5%, 40px);
             }
-            
-            .header-top .logo-left { width: clamp(70px, 20%, 200px); }
-            .header-top .title-right { font-size: clamp(18px, 5%, 50px); }
+            .header-top .logo-left { width: clamp(60px, 18%, 180px); }
+            .header-top .title-right { font-size: clamp(16px, 4.5%, 45px); }
         }
 
         /* ===== DESKTOP LANDSCAPE ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .box-menu, .box-pesan, .box-status {
-                width: 50%;
-                max-width: 500px;
-                height: 18%;
+                max-width: 450px;
+                height: 17%;
                 border-radius: 45px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .box-menu:hover, .box-pesan:hover, .box-status:hover {
-                transform: translateX(-50%) scale(1.02);
-            }
-            .box-menu:active, .box-pesan:active, .box-status:active {
-                transform: translateX(-50%) scale(0.98);
+                margin-bottom: 1.8%;
             }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
                 border-radius: 45px;
             }
-            .box-menu { top: 30%; }
-            .box-pesan { top: 50%; }
-            .box-status { top: 70%; }
-            
             .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status {
-                font-size: clamp(20px, 4%, 50px);
+                font-size: clamp(18px, 3.5%, 45px);
             }
-            
-            .header-top .logo-left { width: clamp(80px, 22%, 250px); }
-            .header-top .title-right { font-size: clamp(20px, 5.5%, 65px); }
+            .header-top .logo-left { width: clamp(80px, 20%, 220px); }
+            .header-top .title-right { font-size: clamp(18px, 5%, 55px); }
         }
     </style>
 </head>
@@ -476,21 +443,24 @@
             <div class="title-right">WILUJENG<br>SUMPING!</div>
         </div>
 
-        <!-- MENU -->
-        <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
-            <div class="bg-hijau"></div>
-            <div class="label-menu">MENU</div>
-        </div>
+        <!-- CONTENT WRAPPER - SEMUA KONTEN DI TENGAH -->
+        <div class="content-wrapper">
+            <!-- MENU -->
+            <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
+                <div class="bg-hijau"></div>
+                <div class="label-menu">MENU</div>
+            </div>
 
-        <!-- PESAN -->
-        <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
-            <div class="bg-hijau"></div>
-            <div class="label-pesan">PESAN</div>
-        </div>
+            <!-- PESAN -->
+            <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
+                <div class="bg-hijau"></div>
+                <div class="label-pesan">PESAN</div>
+            </div>
 
-        <!-- STATUS PESANAN -->
-        <div class="box-status" onclick="window.location.href='customer_order_status.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
-            <div class="label-status">STATUS PESANAN</div>
+            <!-- STATUS PESANAN -->
+            <div class="box-status" onclick="window.location.href='customer_order_status.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
+                <div class="label-status">STATUS PESANAN</div>
+            </div>
         </div>
     </div>
 
