@@ -30,9 +30,12 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Logo di tengah - SANGAT BESAR MENTOK KIRI KANAN */
+        /* Logo di tengah */
         .logo-center {
             position: absolute;
             top: 50%;
@@ -40,7 +43,8 @@
             transform: translate(-50%, -50%);
             z-index: 10;
             text-align: center;
-            width: 100%;
+            width: 90%;
+            max-width: 600px;
             padding: 0 10px;
         }
 
@@ -49,6 +53,7 @@
             max-width: 100%;
             height: auto;
             display: block;
+            margin: 0 auto;
         }
 
         /* Loading Spinner */
@@ -86,7 +91,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* ===== RESPONSIVE UNTUK SEMUA PERANGKAT ===== */
+        /* ===== RESPONSIVE ===== */
 
         /* Tablet & HP (portrait) */
         @media screen and (max-width: 1024px) and (orientation: portrait) {
@@ -94,6 +99,11 @@
                 max-width: 100%;
                 aspect-ratio: 1080/1920;
                 border-radius: 20px;
+            }
+
+            .logo-center {
+                width: 85%;
+                max-width: 500px;
             }
         }
 
@@ -103,6 +113,11 @@
                 max-width: 100%;
                 aspect-ratio: 1080/1920;
                 border-radius: 12px;
+            }
+
+            .logo-center {
+                width: 80%;
+                max-width: 350px;
             }
 
             .spinner {
@@ -120,9 +135,36 @@
             .landing-container {
                 border-radius: 10px;
             }
+
+            .logo-center {
+                width: 75%;
+                max-width: 280px;
+            }
         }
 
-        /* ===== LAPTOP / DESKTOP / LANDSCAPE ===== */
+        /* iPhone SE */
+        @media screen and (max-width: 375px) and (orientation: portrait) {
+            .logo-center {
+                width: 70%;
+                max-width: 200px;
+            }
+
+            .loading-spinner {
+                bottom: 5%;
+            }
+
+            .spinner {
+                width: 20px;
+                height: 20px;
+                border-width: 2px;
+            }
+
+            .loading-text {
+                font-size: 7px;
+            }
+        }
+
+        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .landing-container {
                 max-width: 90vh;
@@ -130,13 +172,13 @@
                 border-radius: 15px;
             }
 
-            .logo-center .logo-img {
-                width: 80%;
-                max-width: 80%;
+            .logo-center {
+                width: 75%;
+                max-width: 450px;
             }
         }
 
-        /* Landscape untuk HP & Tablet */
+        /* Landscape HP & Tablet */
         @media screen and (max-width: 1024px) and (orientation: landscape) {
             .landing-container {
                 max-width: 90vh;
@@ -144,9 +186,9 @@
                 border-radius: 12px;
             }
 
-            .logo-center .logo-img {
-                width: 70%;
-                max-width: 70%;
+            .logo-center {
+                width: 65%;
+                max-width: 350px;
             }
 
             .spinner {
@@ -171,9 +213,9 @@
                 border-radius: 10px;
             }
 
-            .logo-center .logo-img {
-                width: 60%;
-                max-width: 60%;
+            .logo-center {
+                width: 55%;
+                max-width: 280px;
             }
 
             .loading-text {
@@ -191,7 +233,7 @@
             }
         }
 
-        /* ===== DESKTOP / LAPTOP LEBAR ===== */
+        /* ===== DESKTOP / LAPTOP ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .landing-container {
                 max-width: 90vh;
@@ -199,9 +241,9 @@
                 border-radius: 20px;
             }
 
-            .logo-center .logo-img {
-                width: 85%;
-                max-width: 85%;
+            .logo-center {
+                width: 80%;
+                max-width: 550px;
             }
         }
 
@@ -213,9 +255,9 @@
                 border-radius: 25px;
             }
 
-            .logo-center .logo-img {
-                width: 90%;
-                max-width: 90%;
+            .logo-center {
+                width: 85%;
+                max-width: 600px;
             }
 
             .spinner {
@@ -237,62 +279,33 @@
                 border-radius: 18px;
             }
 
-            .logo-center .logo-img {
-                width: 95%;
-                max-width: 95%;
+            .logo-center {
+                width: 80%;
+                max-width: 450px;
             }
         }
 
-        /* ===== FIX UNTUK TAMPILAN HP YANG KEPOTONG ===== */
-        @media screen and (max-width: 480px) and (orientation: portrait) {
-            .logo-center .logo-img {
-                width: 100%;
-                max-width: 100%;
-            }
-
-            .loading-spinner {
-                bottom: 6%;
-            }
-        }
-
-        /* Fix untuk iPhone SE dan sejenisnya */
-        @media screen and (max-width: 375px) and (orientation: portrait) {
-            .logo-center .logo-img {
-                width: 100%;
-                max-width: 100%;
-            }
-
-            .loading-spinner {
-                bottom: 4%;
-            }
-
-            .spinner {
-                width: 20px;
-                height: 20px;
-                border-width: 2px;
-            }
-
-            .loading-text {
-                font-size: 7px;
-            }
-        }
-
-        /* Fix untuk layar sangat lebar (cinematic) */
+        /* ===== LAYAR SANGAT LEBAR (cinematic) ===== */
         @media screen and (min-aspect-ratio: 2/1) and (orientation: landscape) {
             .landing-container {
                 max-width: 70vh;
                 aspect-ratio: 1080/1920;
                 border-radius: 20px;
             }
+
+            .logo-center {
+                width: 70%;
+                max-width: 400px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="landing-container" id="landingPage">
-        <!-- Logo di tengah - SANGAT BESAR MENTOK KIRI KANAN -->
+        <!-- Logo di tengah -->
         <div class="logo-center">
             <img src="logo.png" alt="Jangkung Order" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-            <div style="display:none; font-size: clamp(120px, 30%, 450px);">🍽️</div>
+            <div style="display:none; font-size: clamp(80px, 20%, 300px);">🍽️</div>
         </div>
 
         <!-- Loading Spinner -->
