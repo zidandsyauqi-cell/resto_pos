@@ -66,7 +66,7 @@
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 10px 16px 6px 16px;
+            padding: 8px 16px 5px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -76,17 +76,17 @@
         .header-left {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .btn-back {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(22px, 3.2%, 36px);
+            font-size: clamp(18px, 2.8%, 32px);
             cursor: pointer;
             transition: all 0.3s;
-            padding: 4px 8px;
+            padding: 3px 6px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
@@ -98,18 +98,18 @@
         .logo-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             cursor: pointer;
         }
         .logo-header img {
-            width: clamp(28px, 4.5%, 50px);
+            width: clamp(22px, 3.5%, 45px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
         .brand-text {
             color: white;
-            font-size: clamp(13px, 2%, 24px);
+            font-size: clamp(11px, 1.6%, 20px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -129,17 +129,17 @@
             background: transparent;
             border-radius: 50px;
             border: 2px solid #98C81C;
-            padding: 4px 14px;
+            padding: 3px 12px;
             cursor: pointer;
             transition: all 0.3s;
             color: white;
-            font-size: clamp(10px, 1.4%, 16px);
+            font-size: clamp(9px, 1.2%, 14px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
         .btn-logout:hover {
@@ -148,7 +148,7 @@
         }
 
         .btn-logout .logout-icon {
-            font-size: clamp(14px, 1.8%, 20px);
+            font-size: clamp(12px, 1.5%, 16px);
         }
 
         /* ===== KONTEN ===== */
@@ -163,22 +163,24 @@
             justify-content: center;
             align-items: center;
             z-index: 5;
-            padding: 15px 12px;
+            padding: 12px 10px;
         }
 
         .header-content {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
+            gap: 10px;
+            margin-bottom: 15px;
             width: 100%;
-            max-width: 800px;
+            max-width: 700px;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .header-content .logo-besar {
-            width: clamp(60px, 18%, 200px);
+            width: clamp(50px, 15%, 160px);
             height: auto;
+            flex-shrink: 0;
         }
 
         .header-content .logo-besar img {
@@ -190,7 +192,7 @@
 
         .header-content .title {
             color: white;
-            font-size: clamp(22px, 5.5%, 60px);
+            font-size: clamp(18px, 4.5%, 50px);
             font-weight: 600;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
             line-height: 1.1;
@@ -200,16 +202,17 @@
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
-            max-width: 800px;
+            max-width: 700px;
+            flex-shrink: 0;
         }
 
         .menu-card {
             background: #98C81C;
-            border-radius: 40px;
+            border-radius: 35px;
             border: 3px solid white;
-            aspect-ratio: 1.2/1;
+            aspect-ratio: 1.3/1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -217,8 +220,8 @@
             transition: all 0.3s ease;
             box-shadow: 0 8px 30px rgba(152, 200, 28, 0.2);
             text-align: center;
-            padding: 12px;
-            min-height: 80px;
+            padding: 10px;
+            min-height: 60px;
         }
 
         .menu-card:hover {
@@ -232,7 +235,7 @@
 
         .menu-card .card-label {
             color: white;
-            font-size: clamp(14px, 3.5%, 40px);
+            font-size: clamp(12px, 2.8%, 32px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -246,112 +249,114 @@
         /* Portrait */
         @media screen and (orientation: portrait) {
             .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .header-content .logo-besar { width: clamp(80px, 22%, 220px); }
-            .header-content .title { font-size: clamp(26px, 6.5%, 65px); }
-            .menu-card { border-radius: 45px; min-height: 100px; }
-            .menu-card .card-label { font-size: clamp(18px, 4.5%, 48px); }
-            .menu-grid { gap: 14px; max-width: 700px; }
+            .content-area { padding: 16px 14px; }
+            .header-content { margin-bottom: 20px; gap: 14px; max-width: 600px; }
+            .header-content .logo-besar { width: clamp(70px, 20%, 200px); }
+            .header-content .title { font-size: clamp(24px, 6%, 60px); }
+            .menu-grid { gap: 14px; max-width: 600px; }
+            .menu-card { border-radius: 45px; min-height: 90px; }
+            .menu-card .card-label { font-size: clamp(16px, 4%, 42px); }
         }
 
         /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 10px 25px; }
-            .header-content { margin-bottom: 12px; gap: 10px; max-width: 750px; }
-            .header-content .logo-besar { width: clamp(55px, 15%, 160px); }
-            .header-content .title { font-size: clamp(18px, 4.5%, 45px); }
-            .menu-grid { gap: 10px; max-width: 750px; }
-            .menu-card { border-radius: 35px; min-height: 70px; padding: 10px; }
-            .menu-card .card-label { font-size: clamp(13px, 3.2%, 32px); }
-            .header-top { padding: 6px 16px 4px 16px; }
-            .btn-logout { padding: 3px 12px; font-size: 10px; }
-            .btn-back { font-size: 20px; }
-            .logo-header img { width: 30px; }
-            .brand-text { font-size: 14px; }
+            .content-area { padding: 8px 20px; }
+            .header-content { margin-bottom: 10px; gap: 10px; max-width: 650px; }
+            .header-content .logo-besar { width: clamp(45px, 12%, 130px); }
+            .header-content .title { font-size: clamp(16px, 3.5%, 36px); }
+            .menu-grid { gap: 8px; max-width: 650px; }
+            .menu-card { border-radius: 28px; min-height: 55px; padding: 8px; border-width: 2px; }
+            .menu-card .card-label { font-size: clamp(11px, 2.5%, 26px); }
+            .header-top { padding: 4px 16px 3px 16px; }
+            .btn-logout { padding: 2px 10px; font-size: 9px; border-width: 1.5px; }
+            .btn-back { font-size: 18px; }
+            .logo-header img { width: 22px; }
+            .brand-text { font-size: 12px; }
         }
 
         /* Landscape HP kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .content-area { padding: 5px 16px; }
-            .header-content { margin-bottom: 6px; gap: 6px; max-width: 650px; }
-            .header-content .logo-besar { width: 40px; }
-            .header-content .title { font-size: 14px; }
-            .menu-grid { gap: 6px; max-width: 650px; }
-            .menu-card { border-radius: 25px; min-height: 50px; padding: 6px; border-width: 2px; }
-            .menu-card .card-label { font-size: 10px; }
-            .btn-logout { padding: 2px 8px; font-size: 8px; border-width: 1.5px; }
-            .header-top { padding: 3px 12px 2px 12px; }
-            .btn-back { font-size: 16px; }
-            .logo-header img { width: 20px; }
-            .brand-text { font-size: 10px; }
+            .content-area { padding: 4px 14px; }
+            .header-content { margin-bottom: 5px; gap: 6px; max-width: 550px; }
+            .header-content .logo-besar { width: 35px; }
+            .header-content .title { font-size: 13px; }
+            .menu-grid { gap: 5px; max-width: 550px; }
+            .menu-card { border-radius: 18px; min-height: 40px; padding: 5px; border-width: 2px; }
+            .menu-card .card-label { font-size: 9px; }
+            .btn-logout { padding: 2px 8px; font-size: 7px; border-width: 1.5px; }
+            .header-top { padding: 2px 10px 2px 10px; }
+            .btn-back { font-size: 14px; }
+            .logo-header img { width: 18px; }
+            .brand-text { font-size: 9px; }
         }
 
         /* HP portrait kecil */
         @media screen and (max-width: 480px) and (orientation: portrait) {
             .dashboard-container { border-radius: 0; }
             .content-area { padding: 10px 8px; }
-            .header-content { gap: 8px; margin-bottom: 12px; }
-            .header-content .logo-besar { width: 50px; }
-            .header-content .title { font-size: 18px; }
-            .menu-grid { gap: 8px; max-width: 500px; }
-            .menu-card { border-radius: 28px; min-height: 70px; padding: 8px; border-width: 2px; }
-            .menu-card .card-label { font-size: 13px; }
+            .header-content { gap: 8px; margin-bottom: 12px; max-width: 400px; }
+            .header-content .logo-besar { width: 45px; }
+            .header-content .title { font-size: 16px; }
+            .menu-grid { gap: 8px; max-width: 400px; }
+            .menu-card { border-radius: 25px; min-height: 60px; padding: 6px; border-width: 2px; }
+            .menu-card .card-label { font-size: 11px; }
             .btn-logout { padding: 2px 8px; font-size: 8px; }
-            .logo-header img { width: 20px; }
-            .brand-text { font-size: 10px; }
-            .btn-back { font-size: 16px; }
+            .logo-header img { width: 18px; }
+            .brand-text { font-size: 9px; }
+            .btn-back { font-size: 14px; }
         }
 
         /* HP sangat kecil */
         @media screen and (max-width: 360px) and (orientation: portrait) {
-            .header-content .logo-besar { width: 40px; }
-            .header-content .title { font-size: 14px; }
-            .menu-card { border-radius: 20px; min-height: 55px; padding: 5px; border-width: 2px; }
-            .menu-card .card-label { font-size: 10px; }
-            .brand-text { font-size: 9px; }
-            .logo-header img { width: 18px; }
-            .btn-back { font-size: 14px; }
+            .header-content .logo-besar { width: 35px; }
+            .header-content .title { font-size: 13px; }
+            .menu-card { border-radius: 18px; min-height: 45px; padding: 4px; }
+            .menu-card .card-label { font-size: 9px; }
+            .brand-text { font-size: 8px; }
+            .logo-header img { width: 16px; }
+            .btn-back { font-size: 12px; }
             .btn-logout { padding: 2px 6px; font-size: 7px; }
         }
 
         /* Tablet portrait */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .content-area { padding: 18px 30px; }
-            .header-content .logo-besar { width: clamp(100px, 22%, 220px); }
-            .header-content .title { font-size: clamp(30px, 6.5%, 60px); }
-            .menu-card { border-radius: 45px; min-height: 120px; }
-            .menu-card .card-label { font-size: clamp(20px, 4.5%, 45px); }
+            .content-area { padding: 20px 30px; }
+            .header-content .logo-besar { width: clamp(90px, 20%, 200px); }
+            .header-content .title { font-size: clamp(28px, 6%, 55px); }
+            .menu-card { border-radius: 40px; min-height: 110px; }
+            .menu-card .card-label { font-size: clamp(18px, 4%, 40px); }
             .header-top { padding: 10px 20px 8px 20px; }
-            .logo-header img { width: 40px; }
-            .brand-text { font-size: 20px; }
+            .logo-header img { width: 35px; }
+            .brand-text { font-size: 18px; }
             .btn-logout { padding: 5px 16px; font-size: 13px; }
-            .btn-back { font-size: 28px; }
+            .btn-back { font-size: 26px; }
         }
 
         /* Tablet landscape */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .content-area { padding: 12px 25px; }
-            .header-content .logo-besar { width: clamp(70px, 18%, 160px); }
-            .header-content .title { font-size: clamp(20px, 4.5%, 42px); }
-            .menu-card { border-radius: 35px; min-height: 85px; }
-            .menu-card .card-label { font-size: clamp(15px, 3.5%, 35px); }
+            .content-area { padding: 10px 25px; }
+            .header-content .logo-besar { width: clamp(60px, 15%, 140px); }
+            .header-content .title { font-size: clamp(18px, 4%, 38px); }
+            .menu-card { border-radius: 30px; min-height: 70px; }
+            .menu-card .card-label { font-size: clamp(14px, 3%, 30px); }
             .btn-logout { padding: 4px 12px; font-size: 11px; }
-            .header-top { padding: 8px 18px 6px 18px; }
+            .header-top { padding: 6px 18px 4px 18px; }
         }
 
         /* Desktop */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 15px 35px; }
-            .header-content .logo-besar { width: clamp(80px, 18%, 200px); }
-            .header-content .title { font-size: clamp(24px, 5.5%, 55px); }
-            .menu-card { border-radius: 40px; min-height: 100px; }
-            .menu-card .card-label { font-size: clamp(18px, 4%, 42px); }
+            .content-area { padding: 15px 30px; }
+            .header-content .logo-besar { width: clamp(70px, 16%, 180px); }
+            .header-content .title { font-size: clamp(22px, 5%, 48px); }
+            .menu-card { border-radius: 35px; min-height: 80px; }
+            .menu-card .card-label { font-size: clamp(16px, 3.5%, 36px); }
             .btn-logout { padding: 5px 16px; font-size: 13px; }
-            .header-top { padding: 10px 20px 8px 20px; }
-            .logo-header img { width: 40px; }
-            .brand-text { font-size: 20px; }
-            .btn-back { font-size: 28px; }
+            .header-top { padding: 8px 20px 6px 20px; }
+            .logo-header img { width: 35px; }
+            .brand-text { font-size: 18px; }
+            .btn-back { font-size: 26px; }
         }
     </style>
 </head>
@@ -365,7 +370,7 @@
             <div class="header-left">
                 <button class="btn-back" onclick="goBack()">←</button>
                 <div class="logo-header" onclick="goToDashboard()">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/50x50/98C81C/ffffff?text=🍽️'" />
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/45x45/98C81C/ffffff?text=🍽️'" />
                     <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
             </div>
