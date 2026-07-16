@@ -66,27 +66,27 @@
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 8px 16px 5px 16px;
+            padding: 12px 20px 8px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.6);
+            background: transparent;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
         }
 
         .btn-back {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(20px, 2.8%, 32px);
+            font-size: clamp(24px, 3.5%, 40px);
             cursor: pointer;
             transition: all 0.3s;
-            padding: 3px 8px;
+            padding: 5px 10px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
@@ -98,18 +98,18 @@
         .logo-header {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
             cursor: pointer;
         }
         .logo-header img {
-            width: clamp(24px, 3.5%, 40px);
+            width: clamp(40px, 7%, 70px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
         .brand-text {
             color: white;
-            font-size: clamp(12px, 1.8%, 22px);
+            font-size: clamp(16px, 2.5%, 30px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -122,18 +122,18 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .btn-logout {
             background: #ED1B24;
             border-radius: 50px;
             border: 2px solid white;
-            padding: 4px 14px;
+            padding: 6px 18px;
             cursor: pointer;
             transition: all 0.3s;
             color: white;
-            font-size: clamp(10px, 1.3%, 15px);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             white-space: nowrap;
@@ -160,47 +160,32 @@
         }
 
         .header-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
+            margin-bottom: 30px;
             width: 100%;
-            max-width: 700px;
-            justify-content: center;
-        }
-
-        .header-content .logo-besar {
-            width: clamp(60px, 18%, 180px);
-            height: auto;
-        }
-
-        .header-content .logo-besar img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+            max-width: 900px;
+            text-align: center;
         }
 
         .header-content .title {
             color: white;
-            font-size: clamp(18px, 4.5%, 50px);
+            font-size: clamp(32px, 8%, 85px);
             font-weight: 600;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
             line-height: 1.1;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 16px;
             width: 100%;
-            max-width: 700px;
+            max-width: 900px;
         }
 
         .menu-card {
             background: #98C81C;
-            border-radius: 40px;
+            border-radius: 55px;
             border: 3px solid white;
             aspect-ratio: 1/1;
             display: flex;
@@ -210,8 +195,8 @@
             transition: all 0.3s ease;
             box-shadow: 0 8px 30px rgba(152, 200, 28, 0.2);
             text-align: center;
-            padding: 12px;
-            min-height: 100px;
+            padding: 15px;
+            min-height: 140px;
         }
 
         .menu-card:hover {
@@ -225,11 +210,11 @@
 
         .menu-card .card-label {
             color: white;
-            font-size: clamp(14px, 3.5%, 38px);
+            font-size: clamp(18px, 5%, 55px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             word-wrap: break-word;
             line-height: 1.2;
         }
@@ -239,111 +224,103 @@
         /* Portrait */
         @media screen and (orientation: portrait) {
             .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .header-content .logo-besar { width: clamp(80px, 25%, 220px); }
-            .header-content .title { font-size: clamp(24px, 6%, 65px); }
-            .menu-card { border-radius: 50px; min-height: 130px; }
-            .menu-card .card-label { font-size: clamp(18px, 4.5%, 50px); }
+            .menu-card { border-radius: 55px; min-height: 140px; }
+            .header-content .title { font-size: clamp(35px, 8%, 85px); }
+            .menu-card .card-label { font-size: clamp(22px, 5.5%, 60px); }
         }
 
         /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 12px 20px; }
-            .header-content { margin-bottom: 12px; gap: 10px; max-width: 600px; }
-            .header-content .logo-besar { width: clamp(50px, 14%, 140px); }
-            .header-content .title { font-size: clamp(16px, 3.5%, 38px); }
-            .menu-grid { gap: 10px; max-width: 600px; }
-            .menu-card { border-radius: 30px; min-height: 80px; padding: 10px; }
-            .menu-card .card-label { font-size: clamp(12px, 2.8%, 30px); }
-            .header-top { padding: 5px 16px 3px 16px; }
-            .btn-logout { padding: 3px 12px; font-size: 10px; }
-            .btn-back { font-size: 18px; }
-            .logo-header img { width: 22px; }
-            .brand-text { font-size: 12px; }
+            .content-area { padding: 15px 30px; }
+            .header-content { margin-bottom: 20px; max-width: 800px; }
+            .header-content .title { font-size: clamp(24px, 6%, 60px); }
+            .menu-grid { gap: 12px; max-width: 800px; }
+            .menu-card { border-radius: 40px; min-height: 110px; padding: 12px; }
+            .menu-card .card-label { font-size: clamp(16px, 4%, 40px); }
+            .header-top { padding: 8px 20px 6px 20px; }
+            .btn-logout { padding: 4px 14px; font-size: 12px; }
+            .btn-back { font-size: 24px; }
+            .logo-header img { width: 35px; }
+            .brand-text { font-size: 16px; }
         }
 
         /* Landscape HP kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .content-area { padding: 6px 16px; }
-            .header-content { margin-bottom: 6px; gap: 6px; max-width: 500px; }
-            .header-content .logo-besar { width: 40px; }
-            .header-content .title { font-size: 14px; }
-            .menu-grid { gap: 6px; max-width: 500px; }
-            .menu-card { border-radius: 20px; min-height: 60px; padding: 6px; border-width: 2px; }
-            .menu-card .card-label { font-size: 10px; }
-            .btn-logout { padding: 2px 8px; font-size: 8px; border-width: 1.5px; }
-            .header-top { padding: 3px 12px 2px 12px; }
-            .btn-back { font-size: 14px; }
-            .logo-header img { width: 18px; }
-            .brand-text { font-size: 10px; }
+            .content-area { padding: 8px 20px; }
+            .header-content { margin-bottom: 12px; max-width: 700px; }
+            .header-content .title { font-size: 18px; }
+            .menu-grid { gap: 8px; max-width: 700px; }
+            .menu-card { border-radius: 30px; min-height: 75px; padding: 8px; border-width: 2px; }
+            .menu-card .card-label { font-size: 12px; }
+            .btn-logout { padding: 3px 10px; font-size: 9px; border-width: 1.5px; }
+            .header-top { padding: 4px 16px 3px 16px; }
+            .btn-back { font-size: 18px; }
+            .logo-header img { width: 25px; }
+            .brand-text { font-size: 12px; }
         }
 
         /* HP portrait kecil */
         @media screen and (max-width: 480px) and (orientation: portrait) {
             .dashboard-container { border-radius: 0; }
             .content-area { padding: 12px 10px; }
-            .header-content { gap: 8px; margin-bottom: 12px; }
-            .header-content .logo-besar { width: 50px; }
-            .header-content .title { font-size: 16px; }
-            .menu-grid { gap: 6px; }
-            .menu-card { border-radius: 25px; min-height: 70px; padding: 8px; border-width: 2px; }
-            .menu-card .card-label { font-size: 12px; }
-            .btn-logout { padding: 2px 8px; font-size: 8px; }
-            .logo-header img { width: 20px; }
-            .brand-text { font-size: 10px; }
-            .btn-back { font-size: 14px; }
+            .header-content { margin-bottom: 18px; }
+            .header-content .title { font-size: 22px; }
+            .menu-grid { gap: 8px; }
+            .menu-card { border-radius: 30px; min-height: 85px; padding: 10px; }
+            .menu-card .card-label { font-size: 14px; }
+            .btn-logout { padding: 3px 10px; font-size: 9px; }
+            .logo-header img { width: 25px; }
+            .brand-text { font-size: 12px; }
+            .btn-back { font-size: 16px; }
         }
 
         /* HP sangat kecil */
         @media screen and (max-width: 360px) and (orientation: portrait) {
-            .header-content .logo-besar { width: 40px; }
-            .header-content .title { font-size: 13px; }
-            .menu-card { border-radius: 18px; min-height: 55px; padding: 5px; }
-            .menu-card .card-label { font-size: 10px; }
-            .brand-text { font-size: 9px; }
-            .logo-header img { width: 16px; }
-            .btn-back { font-size: 12px; }
-            .btn-logout { padding: 2px 6px; font-size: 7px; }
+            .header-content .title { font-size: 18px; }
+            .menu-card { border-radius: 22px; min-height: 65px; padding: 6px; }
+            .menu-card .card-label { font-size: 11px; }
+            .brand-text { font-size: 10px; }
+            .logo-header img { width: 20px; }
+            .btn-back { font-size: 14px; }
+            .btn-logout { padding: 2px 8px; font-size: 8px; }
         }
 
         /* Tablet portrait */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .content-area { padding: 20px 30px; }
-            .header-content .logo-besar { width: clamp(100px, 25%, 220px); }
-            .header-content .title { font-size: clamp(24px, 5.5%, 55px); }
-            .menu-card { border-radius: 45px; min-height: 140px; }
-            .menu-card .card-label { font-size: clamp(18px, 4.5%, 45px); }
-            .header-top { padding: 10px 20px 8px 20px; }
-            .logo-header img { width: 35px; }
-            .brand-text { font-size: 18px; }
-            .btn-logout { padding: 5px 16px; font-size: 13px; }
-            .btn-back { font-size: 26px; }
+            .content-area { padding: 20px 35px; }
+            .header-content .title { font-size: clamp(40px, 7%, 75px); }
+            .menu-card { border-radius: 50px; min-height: 160px; }
+            .menu-card .card-label { font-size: clamp(24px, 5%, 50px); }
+            .header-top { padding: 12px 24px 10px 24px; }
+            .logo-header img { width: 50px; }
+            .brand-text { font-size: 22px; }
+            .btn-logout { padding: 6px 18px; font-size: 14px; }
+            .btn-back { font-size: 30px; }
         }
 
         /* Tablet landscape */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .content-area { padding: 12px 25px; }
-            .header-content .logo-besar { width: clamp(60px, 16%, 150px); }
-            .header-content .title { font-size: clamp(18px, 4%, 40px); }
-            .menu-card { border-radius: 35px; min-height: 90px; }
-            .menu-card .card-label { font-size: clamp(14px, 3%, 32px); }
-            .btn-logout { padding: 4px 12px; font-size: 11px; }
-            .header-top { padding: 6px 18px 4px 18px; }
+            .content-area { padding: 15px 30px; }
+            .header-content .title { font-size: clamp(26px, 5.5%, 55px); }
+            .menu-card { border-radius: 40px; min-height: 120px; }
+            .menu-card .card-label { font-size: clamp(18px, 3.8%, 38px); }
+            .btn-logout { padding: 5px 14px; font-size: 12px; }
+            .header-top { padding: 10px 22px 8px 22px; }
         }
 
         /* Desktop */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 15px 30px; }
-            .header-content .logo-besar { width: clamp(80px, 18%, 200px); }
-            .header-content .title { font-size: clamp(22px, 4.5%, 50px); }
-            .menu-card { border-radius: 40px; min-height: 110px; }
-            .menu-card .card-label { font-size: clamp(16px, 3.5%, 40px); }
-            .btn-logout { padding: 5px 16px; font-size: 13px; }
-            .header-top { padding: 8px 20px 6px 20px; }
-            .logo-header img { width: 35px; }
-            .brand-text { font-size: 18px; }
-            .btn-back { font-size: 26px; }
+            .content-area { padding: 20px 40px; }
+            .header-content .title { font-size: clamp(32px, 6.5%, 70px); }
+            .menu-card { border-radius: 50px; min-height: 150px; }
+            .menu-card .card-label { font-size: clamp(22px, 4.5%, 50px); }
+            .btn-logout { padding: 6px 20px; font-size: 15px; }
+            .header-top { padding: 12px 24px 10px 24px; }
+            .logo-header img { width: 50px; }
+            .brand-text { font-size: 24px; }
+            .btn-back { font-size: 32px; }
         }
     </style>
 </head>
@@ -357,7 +334,7 @@
             <div class="header-left">
                 <button class="btn-back" onclick="goBack()">←</button>
                 <div class="logo-header" onclick="goToDashboard()">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/40x40/98C81C/ffffff?text=🍽️'" />
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/70x70/98C81C/ffffff?text=🍽️'" />
                     <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
             </div>
@@ -369,9 +346,6 @@
         <!-- Content -->
         <div class="content-area">
             <div class="header-content">
-                <div class="logo-besar">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.style.display='none'" />
-                </div>
                 <div class="title">WILUJENG<br>SUMPING!</div>
             </div>
 
