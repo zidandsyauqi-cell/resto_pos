@@ -12,25 +12,30 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
+        html, body {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             background: #0a0a0a;
-            padding: 10px;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
         }
 
         .karyawan-container {
-            width: 100%;
-            max-width: 1080px;
-            aspect-ratio: 1080/1920;
+            width: 100vw;
+            height: 100vh;
             position: relative;
             background: white;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border-radius: 0;
+            box-shadow: none;
         }
 
         /* Background utama dengan bg.png */
@@ -44,93 +49,6 @@
             background: url('bg.png') center center / cover no-repeat;
         }
 
-        .deco-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .deco-bg img {
-            position: absolute;
-            opacity: 0.15;
-        }
-
-        .deco-bg img:nth-child(1) {
-            width: 178%;
-            height: 66.7%;
-            left: -9.3%;
-            top: 99.99%;
-            transform: rotate(-90deg);
-            transform-origin: top left;
-        }
-
-        .deco-bg img:nth-child(2) {
-            width: 84%;
-            height: 44.5%;
-            left: 39.5%;
-            top: 41.6%;
-            transform: rotate(-53deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(3) {
-            width: 69%;
-            height: 38.8%;
-            left: 0.86%;
-            top: 75.7%;
-            transform: rotate(46deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(4) {
-            width: 101.1%;
-            height: 56.9%;
-            left: 37.4%;
-            top: 67%;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(5) {
-            width: 101.1%;
-            height: 56.9%;
-            left: -63.7%;
-            top: -23.3%;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(6) {
-            width: 73.8%;
-            height: 41.5%;
-            left: -23.1%;
-            top: 58.2%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(7) {
-            width: 73.8%;
-            height: 41.5%;
-            left: 72.1%;
-            top: 11.25%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
         .overlay {
             position: absolute;
             width: 100%;
@@ -139,18 +57,18 @@
             left: 0;
             background: rgba(0, 0, 0, 0.4);
             pointer-events: none;
-            z-index: 2;
+            z-index: 1;
         }
 
         .btn-back {
             position: absolute;
-            left: 4.3%;
-            top: 7%;
+            left: 3%;
+            top: 3%;
             z-index: 10;
             background: none;
             border: none;
             color: white;
-            font-size: clamp(30px, 4%, 50px);
+            font-size: clamp(28px, 3.5%, 45px);
             cursor: pointer;
             transition: all 0.3s;
             padding: 5px 15px;
@@ -165,7 +83,7 @@
         .logo-top {
             position: absolute;
             left: 50%;
-            top: 7%;
+            top: 5%;
             transform: translateX(-50%);
             z-index: 10;
             display: flex;
@@ -174,14 +92,14 @@
         }
 
         .logo-top img {
-            width: clamp(40px, 7.4%, 80px);
+            width: clamp(35px, 5%, 70px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
         .logo-top .brand-text {
             color: white;
-            font-size: clamp(16px, 2.96%, 32px);
+            font-size: clamp(14px, 2.2%, 30px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -191,7 +109,7 @@
             color: #98C81C;
         }
 
-        /* ===== FORM LOGIN - PERSIS DESAIN ===== */
+        /* ===== FORM LOGIN ===== */
         .login-wrapper {
             position: absolute;
             top: 0;
@@ -203,32 +121,45 @@
             justify-content: center;
             align-items: center;
             z-index: 5;
-            padding: 40px;
+            padding: 20px;
         }
 
         .login-form {
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
+        }
+
+        .login-form .form-image {
+            width: clamp(80px, 20%, 200px);
+            height: auto;
+            display: block;
+            margin: 0 auto 15px;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
         }
 
         .login-form .label {
             color: white;
-            font-size: clamp(28px, 4.5%, 50px);
+            font-size: clamp(22px, 3.5%, 42px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-align: center;
+        }
+
+        .login-form .input-wrapper {
+            position: relative;
+            width: 100%;
         }
 
         .login-form .password-input {
             width: 100%;
-            padding: clamp(14px, 2.5%, 28px) clamp(20px, 4%, 40px);
+            padding: clamp(12px, 2%, 22px) clamp(16px, 3%, 32px);
             border-radius: 50px;
-            border: 3px solid white;
-            background: rgba(255,255,255,0.1);
+            border: 3px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.08);
             color: white;
-            font-size: clamp(18px, 3.5%, 40px);
+            font-size: clamp(16px, 2.8%, 32px);
             font-family: 'Schoolbell', cursive;
             outline: none;
             transition: all 0.3s;
@@ -241,16 +172,16 @@
 
         .login-form .password-input:focus {
             border-color: #98C81C;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
         }
 
         .login-form .error-msg {
             color: #ff6b6b;
-            font-size: clamp(18px, 3.5%, 40px);
+            font-size: clamp(14px, 2.5%, 30px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            margin-top: 15px;
+            margin-top: 12px;
             text-align: center;
             display: none;
         }
@@ -259,143 +190,99 @@
             display: block;
         }
 
-        .login-form .error-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: clamp(30px, 5%, 50px);
-            height: auto;
+        /* ===== RESPONSIVE ===== */
+
+        /* Portrait */
+        @media screen and (orientation: portrait) {
+            .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .login-form { max-width: 420px; }
         }
 
-        .login-form .input-wrapper {
-            position: relative;
-            width: 100%;
+        /* Landscape */
+        @media screen and (orientation: landscape) {
+            .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .login-form { max-width: 380px; }
+            .login-form .form-image { width: 70px; margin-bottom: 10px; }
+            .login-form .label { font-size: 20px; margin-bottom: 8px; }
+            .login-form .password-input { padding: 8px 16px; font-size: 14px; border-width: 2px; }
+            .login-form .error-msg { font-size: 12px; margin-top: 8px; }
+            .logo-top { top: 3%; }
+            .logo-top img { width: 30px; }
+            .logo-top .brand-text { font-size: 14px; }
+            .btn-back { font-size: 24px; left: 2%; top: 2%; }
+            .login-wrapper { padding: 10px; }
         }
 
-        .login-form .input-wrapper .error-icon {
-            left: 15px;
+        /* HP portrait */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .login-form { max-width: 340px; }
+            .login-form .form-image { width: 100px; }
+            .login-form .label { font-size: 18px; }
+            .login-form .password-input { font-size: 14px; padding: 10px 16px; border-width: 2px; }
+            .login-form .error-msg { font-size: 14px; }
+            .logo-top img { width: 30px; }
+            .logo-top .brand-text { font-size: 14px; }
+            .btn-back { font-size: 22px; }
         }
 
-        /* Image di atas form */
-        .form-image {
-            width: clamp(200px, 60%, 773px);
-            height: auto;
-            display: block;
-            margin: 0 auto 20px;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+        /* HP sangat kecil */
+        @media screen and (max-width: 360px) and (orientation: portrait) {
+            .login-form { max-width: 300px; }
+            .login-form .form-image { width: 80px; }
+            .login-form .label { font-size: 16px; }
+            .login-form .password-input { font-size: 12px; padding: 8px 12px; }
+            .login-form .error-msg { font-size: 12px; }
+            .logo-top img { width: 25px; }
+            .logo-top .brand-text { font-size: 12px; }
+            .btn-back { font-size: 18px; }
         }
 
-        @media screen and (max-width: 767px) {
-            .karyawan-container {
-                max-width: 100%;
-                aspect-ratio: 1080/1920;
-                border-radius: 12px;
-            }
-
-            .login-wrapper {
-                padding: 30px;
-            }
-
-            .login-form .label {
-                font-size: 24px;
-            }
-
-            .login-form .password-input {
-                font-size: 16px;
-                padding: 12px 20px;
-            }
-
-            .login-form .error-msg {
-                font-size: 16px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .karyawan-container {
-                border-radius: 10px;
-            }
-
-            .login-wrapper {
-                padding: 20px;
-            }
-
-            .login-form .label {
-                font-size: 18px;
-            }
-
-            .login-form .password-input {
-                font-size: 14px;
-                padding: 10px 16px;
-                border-width: 2px;
-            }
-
-            .login-form .error-msg {
-                font-size: 14px;
-            }
-
-            .form-image {
-                width: 150px;
-            }
-        }
-
-        @media screen and (max-width: 360px) {
-            .login-form .label {
-                font-size: 16px;
-            }
-
-            .login-form .password-input {
-                font-size: 12px;
-                padding: 8px 12px;
-            }
-
-            .login-form .error-msg {
-                font-size: 12px;
-            }
-
-            .form-image {
-                width: 120px;
-            }
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .karyawan-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-            }
-        }
-
+        /* Landscape HP kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .karyawan-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 10px;
-            }
+            .login-form { max-width: 320px; }
+            .login-form .form-image { width: 55px; margin-bottom: 6px; }
+            .login-form .label { font-size: 16px; margin-bottom: 6px; }
+            .login-form .password-input { padding: 6px 12px; font-size: 12px; border-width: 2px; }
+            .login-form .error-msg { font-size: 11px; margin-top: 6px; }
+            .logo-top { top: 2%; }
+            .logo-top img { width: 25px; }
+            .logo-top .brand-text { font-size: 11px; }
+            .btn-back { font-size: 18px; left: 1.5%; top: 1.5%; }
+            .login-wrapper { padding: 6px; }
+        }
 
-            .login-wrapper {
-                padding: 15px 30px;
-            }
+        /* Tablet portrait */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .login-form { max-width: 500px; }
+            .login-form .form-image { width: 160px; }
+            .login-form .label { font-size: 32px; }
+            .login-form .password-input { font-size: 24px; padding: 16px 24px; }
+            .logo-top img { width: 55px; }
+            .logo-top .brand-text { font-size: 26px; }
+            .btn-back { font-size: 36px; }
+        }
 
-            .login-form .label {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
+        /* Tablet landscape */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .login-form { max-width: 400px; }
+            .login-form .form-image { width: 90px; }
+            .login-form .label { font-size: 22px; }
+            .login-form .password-input { font-size: 16px; padding: 10px 18px; }
+            .logo-top img { width: 40px; }
+            .logo-top .brand-text { font-size: 18px; }
+            .btn-back { font-size: 28px; }
+        }
 
-            .login-form .password-input {
-                font-size: 12px;
-                padding: 6px 14px;
-            }
-
-            .login-form .error-msg {
-                font-size: 12px;
-                margin-top: 8px;
-            }
-
-            .form-image {
-                width: 100px;
-                margin-bottom: 10px;
-            }
+        /* Desktop */
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
+            .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .login-form { max-width: 450px; }
+            .login-form .form-image { width: 150px; }
+            .login-form .label { font-size: 32px; }
+            .login-form .password-input { font-size: 22px; padding: 14px 24px; }
+            .logo-top img { width: 55px; }
+            .logo-top .brand-text { font-size: 24px; }
+            .btn-back { font-size: 32px; }
         }
     </style>
 </head>
@@ -404,25 +291,14 @@
         <!-- Background -->
         <div class="bg-utama"></div>
 
-        <!-- Dekorasi -->
-        <div class="deco-bg">
-            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/908x855/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/745x744/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-        </div>
-
         <div class="overlay"></div>
 
         <!-- Tombol Back -->
-        <button class="btn-back" onclick="window.location.href='login.html'">←</button>
+        <button class="btn-back" onclick="goBack()">←</button>
 
         <!-- Logo -->
         <div class="logo-top">
-            <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/80x80/98C81C/ffffff?text=🍽️'" />
+            <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/70x70/98C81C/ffffff?text=🍽️'" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
 
@@ -456,8 +332,12 @@
     </div>
 
     <script>
-        // Password yang benar (hardcode dulu, nanti bisa diambil dari database)
+        // Password yang benar
         const KARYAWAN_PASSWORD = 'admin';
+
+        function goBack() {
+            window.history.back();
+        }
 
         // ============ HANDLE LOGIN ============
         function handleLogin() {
@@ -497,7 +377,6 @@
         });
 
         // ============ CEK LOGIN STATUS ============
-        // Jika sudah login, redirect ke dashboard
         if (localStorage.getItem('karyawan_logged_in') === 'true') {
             window.location.href = 'dashboard.html';
         }
