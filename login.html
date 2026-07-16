@@ -29,98 +29,19 @@
             position: relative;
             background: white;
             overflow: hidden;
-            background-image: url('bg.png');
-            background-size: cover;
-            background-position: center;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
 
-        /* .deco-bg {
+        .bg-utama {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            pointer-events: none;
-            overflow: hidden;
+            z-index: 0;
+            background: url('bg.png') center center / cover no-repeat;
         }
-
-        .deco-bg img {
-            position: absolute;
-            opacity: 0.15;
-        }
-
-        .deco-bg img:nth-child(1) {
-            width: 178%;
-            height: 66.7%;
-            left: -9.3%;
-            top: 99.99%;
-            transform: rotate(-90deg);
-            transform-origin: top left;
-        }
-
-        .deco-bg img:nth-child(2) {
-            width: 84%;
-            height: 44.5%;
-            left: 39.5%;
-            top: 41.6%;
-            transform: rotate(-53deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(3) {
-            width: 69%;
-            height: 38.8%;
-            left: 0.86%;
-            top: 75.7%;
-            transform: rotate(46deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(4) {
-            width: 101.1%;
-            height: 56.9%;
-            left: 37.4%;
-            top: 67%;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(5) {
-            width: 101.1%;
-            height: 56.9%;
-            left: -63.7%;
-            top: -23.3%;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(6) {
-            width: 73.8%;
-            height: 41.5%;
-            left: -23.1%;
-            top: 58.2%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        }
-
-        .deco-bg img:nth-child(7) {
-            width: 73.8%;
-            height: 41.5%;
-            left: 72.1%;
-            top: 11.25%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            box-shadow: 7px 7px 7px rgba(0,0,0,0.2);
-            filter: blur(3.50px);
-        } */
 
         .overlay {
             position: absolute;
@@ -130,6 +51,7 @@
             left: 0;
             background: rgba(0, 0, 0, 0.35);
             pointer-events: none;
+            z-index: 1;
         }
 
         .btn-back {
@@ -380,18 +302,9 @@
 <body>
     <div class="login-container">
         <!-- Background bg.png -->
-        <div class="bg-utama" style="position:absolute;width:100%;height:100%;top:0;left:0;z-index:0;background:url('bg.png') center center/cover no-repeat;"></div>
+        <div class="bg-utama"></div>
 
-        <!-- <div class="deco-bg">
-            <img src="https://placehold.co/1922x1281/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/908x855/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/745x744/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/1092x1092/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-            <img src="https://placehold.co/797x797/2d2d2d/ffffff?text=" alt="" loading="lazy" />
-        </div> -->
-
+        <!-- Overlay gelap -->
         <div class="overlay"></div>
 
         <!-- Tombol Back -->
