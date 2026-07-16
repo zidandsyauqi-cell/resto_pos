@@ -603,7 +603,7 @@
                 }
 
                 console.log('📦 Final orders (silent):', orders ? orders.length : 0);
-                renderOrders(orders);
+                await renderOrders(orders);
 
             } catch (error) {
                 console.error('Error silent loading orders:', error);
@@ -668,7 +668,7 @@
                 }
 
                 console.log('📦 Final orders:', orders ? orders.length : 0);
-                renderOrders(orders);
+                await renderOrders(orders);
 
                 if (!isRealtimeConnected) {
                     setupRealtime();
@@ -690,7 +690,7 @@
             }
         }
 
-        function renderOrders(orders) {
+        async function renderOrders(orders) {
             const container = document.getElementById('orderList');
 
             if (!orders || orders.length === 0) {
