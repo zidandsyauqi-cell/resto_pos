@@ -85,8 +85,10 @@
         .box-menu {
             position: absolute;
             width: 82%;
+            max-width: 600px;
             height: 24%;
-            left: 9%;
+            left: 50%;
+            transform: translateX(-50%);
             top: 28%;
             overflow: hidden;
             border-radius: 65px;
@@ -94,8 +96,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .box-menu:hover { transform: scale(1.02); }
-        .box-menu:active { transform: scale(0.98); }
+        .box-menu:hover { transform: translateX(-50%) scale(1.02); }
+        .box-menu:active { transform: translateX(-50%) scale(0.98); }
         .box-menu .bg-hijau {
             position: absolute;
             width: 100%;
@@ -126,8 +128,10 @@
         .box-pesan {
             position: absolute;
             width: 82%;
+            max-width: 600px;
             height: 24%;
-            left: 9%;
+            left: 50%;
+            transform: translateX(-50%);
             top: 54%;
             overflow: hidden;
             border-radius: 65px;
@@ -135,8 +139,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .box-pesan:hover { transform: scale(1.02); }
-        .box-pesan:active { transform: scale(0.98); }
+        .box-pesan:hover { transform: translateX(-50%) scale(1.02); }
+        .box-pesan:active { transform: translateX(-50%) scale(0.98); }
         .box-pesan .bg-hijau {
             position: absolute;
             width: 100%;
@@ -167,8 +171,10 @@
         .box-status {
             position: absolute;
             width: 82%;
+            max-width: 600px;
             height: 24%;
-            left: 9%;
+            left: 50%;
+            transform: translateX(-50%);
             top: 72.5%;
             background: #98C81C;
             border-radius: 65px;
@@ -180,8 +186,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .box-status:hover { transform: scale(1.02); }
-        .box-status:active { transform: scale(0.98); }
+        .box-status:hover { transform: translateX(-50%) scale(1.02); }
+        .box-status:active { transform: translateX(-50%) scale(0.98); }
         .box-status .label-status {
             color: white;
             font-size: clamp(24px, 5.5%, 60px);
@@ -228,14 +234,18 @@
 
         /* ===== RESPONSIVE ===== */
         
-        /* Portrait - HP & Tablet */
+        /* Portrait */
         @media screen and (orientation: portrait) {
             .customer-container {
                 width: 100%;
                 height: 100%;
                 border-radius: 0;
             }
-            .box-menu, .box-pesan, .box-status { border-radius: 65px; }
+            .box-menu, .box-pesan, .box-status { 
+                border-radius: 65px;
+                max-width: none;
+                width: 82%;
+            }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 65px; }
         }
 
@@ -259,12 +269,20 @@
                 font-size: clamp(16px, 4%, 45px);
             }
             
-            /* Tombol lebih kecil dan rapat */
+            /* Tombol di tengah dengan max-width */
             .box-menu, .box-pesan, .box-status {
-                width: 75%;
-                left: 12.5%;
+                width: 65%;
+                max-width: 450px;
                 height: 18%;
                 border-radius: 40px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .box-menu:hover, .box-pesan:hover, .box-status:hover {
+                transform: translateX(-50%) scale(1.02);
+            }
+            .box-menu:active, .box-pesan:active, .box-status:active {
+                transform: translateX(-50%) scale(0.98);
             }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
                 border-radius: 40px;
@@ -344,10 +362,18 @@
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .customer-container { max-width: 100%; border-radius: 0; }
             .box-menu, .box-pesan, .box-status {
-                width: 70%;
-                left: 15%;
+                width: 55%;
+                max-width: 350px;
                 height: 16%;
                 border-radius: 25px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .box-menu:hover, .box-pesan:hover, .box-status:hover {
+                transform: translateX(-50%) scale(1.02);
+            }
+            .box-menu:active, .box-pesan:active, .box-status:active {
+                transform: translateX(-50%) scale(0.98);
             }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
                 border-radius: 25px;
@@ -372,10 +398,18 @@
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
             .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 15px; }
             .box-menu, .box-pesan, .box-status {
-                width: 78%;
-                left: 11%;
+                width: 60%;
+                max-width: 420px;
                 height: 20%;
                 border-radius: 45px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .box-menu:hover, .box-pesan:hover, .box-status:hover {
+                transform: translateX(-50%) scale(1.02);
+            }
+            .box-menu:active, .box-pesan:active, .box-status:active {
+                transform: translateX(-50%) scale(0.98);
             }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
                 border-radius: 45px;
@@ -395,10 +429,18 @@
         /* ===== DESKTOP LANDSCAPE ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .box-menu, .box-pesan, .box-status {
-                width: 70%;
-                left: 15%;
+                width: 50%;
+                max-width: 500px;
                 height: 18%;
                 border-radius: 45px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .box-menu:hover, .box-pesan:hover, .box-status:hover {
+                transform: translateX(-50%) scale(1.02);
+            }
+            .box-menu:active, .box-pesan:active, .box-status:active {
+                transform: translateX(-50%) scale(0.98);
             }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
                 border-radius: 45px;
