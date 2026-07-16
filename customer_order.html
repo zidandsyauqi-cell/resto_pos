@@ -228,7 +228,7 @@
 
         /* ===== RESPONSIVE ===== */
         
-        /* Portrait */
+        /* Portrait - HP & Tablet */
         @media screen and (orientation: portrait) {
             .customer-container {
                 width: 100%;
@@ -239,27 +239,60 @@
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 65px; }
         }
 
-        /* Landscape */
+        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .customer-container {
                 width: 100%;
                 height: 100%;
                 border-radius: 0;
             }
-            .box-menu, .box-pesan, .box-status { border-radius: 45px; height: 22%; }
-            .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 45px; }
-            .box-menu { top: 28%; }
-            .box-pesan { top: 52%; }
-            .box-status { top: 76%; }
-            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { 
-                font-size: clamp(20px, 5%, 50px); 
+            
+            /* Header lebih kecil di landscape */
+            .header-top {
+                top: 3%;
+                gap: 8px;
             }
-            .header-top .title-right { font-size: clamp(20px, 6%, 70px); }
-            .header-top .logo-left { width: clamp(70px, 25%, 280px); }
-            .meja-info { padding: 4px 12px; font-size: 12px; top: 5%; }
-            .customer-name-display { padding: 3px 10px; font-size: 10px; top: 11%; }
+            .header-top .logo-left {
+                width: clamp(50px, 15%, 180px);
+            }
+            .header-top .title-right {
+                font-size: clamp(16px, 4%, 45px);
+            }
+            
+            /* Tombol lebih kecil dan rapat */
+            .box-menu, .box-pesan, .box-status {
+                width: 75%;
+                left: 12.5%;
+                height: 18%;
+                border-radius: 40px;
+            }
+            .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
+                border-radius: 40px;
+            }
+            .box-menu { top: 32%; }
+            .box-pesan { top: 52%; }
+            .box-status { top: 72%; }
+            
+            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status {
+                font-size: clamp(16px, 3.5%, 40px);
+            }
+            
+            /* Meja & Nama lebih kecil */
+            .meja-info {
+                padding: 3px 12px;
+                font-size: clamp(10px, 1.2%, 14px);
+                top: 3%;
+                right: 3%;
+            }
+            .customer-name-display {
+                padding: 2px 10px;
+                font-size: clamp(8px, 1%, 12px);
+                top: 8.5%;
+                right: 3%;
+            }
         }
 
+        /* ===== HP PORTRAIT ===== */
         @media screen and (max-width: 767px) and (orientation: portrait) {
             .customer-container { max-width: 100%; aspect-ratio: 1080/1920; border-radius: 12px; }
             .box-menu, .box-pesan, .box-status { border-radius: 40px; }
@@ -267,13 +300,16 @@
             .box-menu { top: 28%; height: 24%; }
             .box-pesan { top: 54%; height: 24%; }
             .box-status { top: 72.5%; height: 24%; }
-            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { font-size: clamp(20px, 5%, 45px); }
+            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { 
+                font-size: clamp(20px, 5%, 45px); 
+            }
             .meja-info { padding: 4px 12px; font-size: 12px; top: 6%; }
             .customer-name-display { padding: 4px 12px; font-size: 10px; top: 13%; }
             .header-top .logo-left { width: 100px; }
             .header-top .title-right { font-size: 24px; }
         }
 
+        /* ===== HP KECIL PORTRAIT ===== */
         @media screen and (max-width: 480px) and (orientation: portrait) {
             .customer-container { border-radius: 10px; }
             .box-menu, .box-pesan, .box-status { border-radius: 30px; }
@@ -281,13 +317,16 @@
             .box-menu { top: 28%; height: 22%; }
             .box-pesan { top: 52%; height: 22%; }
             .box-status { top: 73%; height: 22%; }
-            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { font-size: clamp(16px, 4%, 35px); }
+            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { 
+                font-size: clamp(16px, 4%, 35px); 
+            }
             .meja-info { padding: 3px 10px; font-size: 11px; }
             .customer-name-display { padding: 3px 10px; font-size: 9px; top: 13%; }
             .header-top .logo-left { width: 70px; }
             .header-top .title-right { font-size: 20px; }
         }
 
+        /* ===== HP SANGAT KECIL ===== */
         @media screen and (max-width: 360px) and (orientation: portrait) {
             .box-menu, .box-pesan, .box-status { border-radius: 25px; }
             .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 25px; }
@@ -301,39 +340,79 @@
             .header-top .title-right { font-size: 16px; }
         }
 
-        /* Landscape HP kecil */
+        /* ===== LANDSCAPE HP KECIL ===== */
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .customer-container { max-width: 100%; border-radius: 0; }
-            .box-menu, .box-pesan, .box-status { border-radius: 30px; height: 20%; }
-            .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau { border-radius: 30px; }
+            .box-menu, .box-pesan, .box-status {
+                width: 70%;
+                left: 15%;
+                height: 16%;
+                border-radius: 25px;
+            }
+            .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
+                border-radius: 25px;
+            }
+            .box-menu { top: 34%; }
+            .box-pesan { top: 52%; }
+            .box-status { top: 70%; }
+            
+            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status {
+                font-size: clamp(12px, 2.5%, 28px);
+            }
+            
+            .header-top .logo-left { width: 50px; }
+            .header-top .title-right { font-size: 14px; }
+            .header-top { top: 2%; }
+            
+            .meja-info { font-size: 9px; padding: 2px 8px; top: 2%; }
+            .customer-name-display { font-size: 7px; padding: 2px 8px; top: 7%; }
+        }
+
+        /* ===== TABLET LANDSCAPE ===== */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 15px; }
+            .box-menu, .box-pesan, .box-status {
+                width: 78%;
+                left: 11%;
+                height: 20%;
+                border-radius: 45px;
+            }
+            .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
+                border-radius: 45px;
+            }
             .box-menu { top: 30%; }
             .box-pesan { top: 52%; }
             .box-status { top: 74%; }
-            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { font-size: 16px; }
-            .header-top .title-right { font-size: 16px; }
-            .header-top .logo-left { width: 60px; }
-            .meja-info { font-size: 10px; padding: 2px 8px; top: 4%; }
-            .customer-name-display { font-size: 8px; padding: 2px 8px; top: 10%; }
-        }
-
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .customer-container { max-width: 90vh; aspect-ratio: 1080/1920; border-radius: 15px; }
-            .box-menu, .box-pesan, .box-status { border-radius: 50px; height: 22%; }
-            .box-menu { top: 28%; }
-            .box-pesan { top: 52%; }
-            .box-status { top: 76%; }
-        }
-
-        @media screen and (min-width: 1025px) and (orientation: landscape) {
-            .box-menu, .box-pesan, .box-status { border-radius: 55px; height: 21%; }
-            .box-menu { top: 28%; }
-            .box-pesan { top: 51%; }
-            .box-status { top: 74%; }
-            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status { 
-                font-size: clamp(24px, 5%, 55px); 
+            
+            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status {
+                font-size: clamp(18px, 4%, 45px);
             }
-            .header-top .title-right { font-size: clamp(24px, 6.5%, 75px); }
-            .header-top .logo-left { width: clamp(100px, 28%, 320px); }
+            
+            .header-top .logo-left { width: clamp(70px, 20%, 200px); }
+            .header-top .title-right { font-size: clamp(18px, 5%, 50px); }
+        }
+
+        /* ===== DESKTOP LANDSCAPE ===== */
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
+            .box-menu, .box-pesan, .box-status {
+                width: 70%;
+                left: 15%;
+                height: 18%;
+                border-radius: 45px;
+            }
+            .box-menu .bg-hijau, .box-pesan .bg-hijau, .box-status .bg-hijau {
+                border-radius: 45px;
+            }
+            .box-menu { top: 30%; }
+            .box-pesan { top: 50%; }
+            .box-status { top: 70%; }
+            
+            .box-menu .label-menu, .box-pesan .label-pesan, .box-status .label-status {
+                font-size: clamp(20px, 4%, 50px);
+            }
+            
+            .header-top .logo-left { width: clamp(80px, 22%, 250px); }
+            .header-top .title-right { font-size: clamp(20px, 5.5%, 65px); }
         }
     </style>
 </head>
