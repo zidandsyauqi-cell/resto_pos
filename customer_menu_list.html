@@ -86,11 +86,11 @@
         .list-menu::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
         .list-menu::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
 
-        /* Header - Logo + Back */
+        /* Header - Back di ujung kiri, Logo di sampingnya */
         .list-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 8px;
             padding-top: 6px;
             margin-bottom: 6px;
             position: sticky;
@@ -99,6 +99,19 @@
             z-index: 10;
             padding-bottom: 6px;
         }
+        .list-header .btn-back-dashboard {
+            background: none;
+            border: none;
+            color: white;
+            font-size: clamp(18px, 2.8%, 32px);
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 2px 6px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+        }
+        .list-header .btn-back-dashboard:hover { transform: scale(1.1); color: #98C81C; }
+
         .list-header .brand-left {
             display: flex;
             align-items: center;
@@ -118,18 +131,6 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .list-header .brand-left .brand-text span { color: #98C81C; }
-
-        .btn-back-dashboard {
-            background: none;
-            border: none;
-            color: white;
-            font-size: clamp(18px, 2.8%, 32px);
-            cursor: pointer;
-            transition: all 0.3s;
-            padding: 2px 6px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        .btn-back-dashboard:hover { transform: scale(1.1); color: #98C81C; }
 
         /* Search Bar */
         .search-bar {
@@ -279,7 +280,7 @@
             .search-bar { padding: 4px 8px; font-size: 9px; margin: 3px 0 5px; border-width: 1.5px; }
             .list-header .brand-left img { width: 20px; }
             .list-header .brand-left .brand-text { font-size: 11px; }
-            .btn-back-dashboard { font-size: 13px; padding: 2px 4px; }
+            .list-header .btn-back-dashboard { font-size: 13px; padding: 2px 4px; }
         }
 
         /* HP kecil portrait */
@@ -292,7 +293,7 @@
             .search-bar { font-size: 8px; padding: 3px 6px; }
             .list-header .brand-left .brand-text { font-size: 9px; }
             .list-header .brand-left img { width: 16px; }
-            .btn-back-dashboard { font-size: 11px; }
+            .list-header .btn-back-dashboard { font-size: 11px; }
         }
 
         /* ===== LANDSCAPE - SEMUA PERANGKAT ===== */
@@ -309,7 +310,7 @@
             .list-header { padding-top: 4px; padding-bottom: 4px; }
             .list-header .brand-left img { width: 20px; }
             .list-header .brand-left .brand-text { font-size: 11px; }
-            .btn-back-dashboard { font-size: 14px; padding: 2px 4px; }
+            .list-header .btn-back-dashboard { font-size: 14px; padding: 2px 4px; }
         }
 
         /* ===== 1440x530 LANDSCAPE ===== */
@@ -325,7 +326,7 @@
             .list-header { padding-top: 4px; padding-bottom: 4px; }
             .list-header .brand-left img { width: 24px; }
             .list-header .brand-left .brand-text { font-size: 13px; }
-            .btn-back-dashboard { font-size: 16px; padding: 2px 6px; }
+            .list-header .btn-back-dashboard { font-size: 16px; padding: 2px 6px; }
             .loading-text { font-size: 11px; }
             .loading-spinner { width: 25px; height: 25px; border-width: 2px; }
         }
@@ -343,7 +344,7 @@
             .list-header { padding-top: 3px; padding-bottom: 3px; }
             .list-header .brand-left img { width: 18px; }
             .list-header .brand-left .brand-text { font-size: 10px; }
-            .btn-back-dashboard { font-size: 14px; padding: 2px 4px; }
+            .list-header .btn-back-dashboard { font-size: 14px; padding: 2px 4px; }
         }
 
         /* ===== TABLET PORTRAIT ===== */
@@ -358,7 +359,7 @@
             .search-bar { font-size: 14px; padding: 8px 18px; }
             .list-header .brand-left img { width: 35px; }
             .list-header .brand-left .brand-text { font-size: 20px; }
-            .btn-back-dashboard { font-size: 22px; }
+            .list-header .btn-back-dashboard { font-size: 22px; }
         }
 
         /* ===== TABLET LANDSCAPE ===== */
@@ -373,7 +374,7 @@
             .search-bar { font-size: 12px; padding: 6px 14px; }
             .list-header .brand-left img { width: 28px; }
             .list-header .brand-left .brand-text { font-size: 16px; }
-            .btn-back-dashboard { font-size: 18px; }
+            .list-header .btn-back-dashboard { font-size: 18px; }
         }
 
         /* ===== DESKTOP ===== */
@@ -389,7 +390,7 @@
             .search-bar { font-size: 14px; padding: 8px 18px; }
             .list-header .brand-left img { width: 35px; }
             .list-header .brand-left .brand-text { font-size: 20px; }
-            .btn-back-dashboard { font-size: 22px; }
+            .list-header .btn-back-dashboard { font-size: 22px; }
         }
 
         /* Desktop Lebar */
@@ -415,13 +416,13 @@
         </div>
 
         <div class="list-menu" id="listMenu">
-            <!-- Header - Logo + Back -->
+            <!-- Header - Back di ujung kiri, Logo di sampingnya -->
             <div class="list-header">
+                <button class="btn-back-dashboard" onclick="goBack()">←</button>
                 <div class="brand-left" onclick="goToDashboard()">
                     <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/45x45/98C81C/ffffff?text=🍽️'" />
                     <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
-                <button class="btn-back-dashboard" onclick="goBack()">←</button>
             </div>
 
             <!-- Search -->
