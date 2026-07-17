@@ -64,14 +64,14 @@
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 12px 12px 8px 12px;
+            padding: 16px 12px 10px 12px;
             /* tambahan padding atas */
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: rgba(0, 0, 0, 0.6);
-            min-height: 56px;
-            /* sedikit lebih tinggi */
+            min-height: 64px;
+            /* lebih tinggi */
             height: auto;
         }
         .header-left {
@@ -86,14 +86,14 @@
             background: none;
             border: none;
             color: white;
-            font-size: 26px;
-            /* sedikit lebih besar */
+            font-size: 28px;
+            /* lebih besar */
             cursor: pointer;
             transition: all 0.3s;
             padding: 6px 8px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            min-width: 40px;
-            min-height: 40px;
+            min-width: 44px;
+            min-height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -115,15 +115,15 @@
             overflow: hidden;
         }
         .logo-header img {
-            width: 32px;
-            /* sedikit lebih besar */
+            width: 36px;
+            /* lebih besar */
             height: auto;
             flex-shrink: 0;
             filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
         }
         .brand-text {
             color: white;
-            font-size: 16px;
+            font-size: 18px;
             /* lebih besar */
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -141,18 +141,17 @@
         }
         .total-display {
             background: rgba(255, 255, 255, 0.15);
-            padding: 6px 12px;
-            /* lebih besar */
+            padding: 6px 14px;
             border-radius: 50px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             color: #98C81C;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             white-space: nowrap;
             cursor: pointer;
             transition: all 0.3s;
-            min-height: 32px;
+            min-height: 36px;
             display: flex;
             align-items: center;
         }
@@ -163,13 +162,13 @@
             background: #98C81C;
             border-radius: 50px;
             border: 2px solid white;
-            padding: 6px 12px;
+            padding: 6px 14px;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 6px;
-            min-height: 32px;
+            min-height: 36px;
             -webkit-tap-highlight-color: transparent;
         }
         .btn-cart:active {
@@ -177,7 +176,7 @@
         }
         .btn-cart span {
             color: white;
-            font-size: 13px;
+            font-size: 14px;
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
         }
@@ -186,19 +185,19 @@
             color: #98C81C;
             border-radius: 50%;
             padding: 0 6px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
-            min-width: 20px;
+            min-width: 22px;
             text-align: center;
         }
         .btn-selesai {
             background: #ED1B24;
             border-radius: 50px;
             border: 2px solid white;
-            padding: 6px 14px;
+            padding: 6px 16px;
             cursor: pointer;
             transition: all 0.3s;
-            min-height: 32px;
+            min-height: 36px;
             display: flex;
             align-items: center;
             -webkit-tap-highlight-color: transparent;
@@ -208,7 +207,7 @@
         }
         .btn-selesai span {
             color: white;
-            font-size: 13px;
+            font-size: 14px;
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
         }
@@ -216,8 +215,8 @@
         /* ===== SEARCH ===== */
         .search-wrapper {
             position: absolute;
-            top: 64px;
-            /* turun dari 50px agar tidak kepotong */
+            top: 76px;
+            /* turun lebih jauh */
             left: 0;
             right: 0;
             z-index: 9;
@@ -225,7 +224,7 @@
         }
         .search-box {
             width: 100%;
-            padding: 8px 14px;
+            padding: 10px 16px;
             border-radius: 50px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.08);
@@ -240,19 +239,19 @@
         }
         .search-box .search-icon {
             color: rgba(255, 255, 255, 0.5);
-            font-size: 18px;
+            font-size: 20px;
             flex-shrink: 0;
         }
         .search-box input {
             background: transparent;
             border: none;
             color: white;
-            font-size: 15px;
+            font-size: 16px;
             font-family: 'Schoolbell', cursive;
             width: 100%;
             outline: none;
             -webkit-appearance: none;
-            min-height: 32px;
+            min-height: 36px;
         }
         .search-box input::placeholder {
             color: rgba(255, 255, 255, 0.4);
@@ -261,15 +260,15 @@
         /* ===== CATEGORY TABS ===== */
         .category-tabs {
             position: absolute;
-            top: 112px;
-            /* turun dari 92px */
+            top: 126px;
+            /* turun lebih jauh */
             left: 0;
             right: 0;
             z-index: 8;
             display: flex;
             gap: 6px;
             overflow-x: auto;
-            padding: 6px 12px 8px 12px;
+            padding: 8px 12px 10px 12px;
             background: rgba(0, 0, 0, 0.7);
             scrollbar-width: none;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -279,19 +278,19 @@
             display: none;
         }
         .category-tabs .tab {
-            padding: 6px 14px;
+            padding: 8px 16px;
             background: rgba(255, 255, 255, 0.08);
             border: 2px solid rgba(255, 255, 255, 0.15);
             border-radius: 50px;
             color: rgba(255, 255, 255, 0.7);
-            font-size: 12px;
+            font-size: 13px;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             white-space: nowrap;
             -webkit-tap-highlight-color: transparent;
-            min-height: 32px;
+            min-height: 36px;
             display: flex;
             align-items: center;
         }
@@ -307,12 +306,12 @@
         /* ===== CONTENT ===== */
         .content-area {
             position: absolute;
-            top: 152px;
-            /* turun dari 128px */
+            top: 170px;
+            /* turun lebih jauh */
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 8px 12px 12px 12px;
+            padding: 10px 12px 12px 12px;
             overflow-y: auto;
             z-index: 5;
             -webkit-overflow-scrolling: touch;
@@ -934,61 +933,61 @@
         @media screen and (orientation: landscape) and (max-height: 600px) {
             .header-top {
                 padding: 8px 12px 6px 12px;
-                min-height: 44px;
+                min-height: 48px;
             }
             .btn-back {
                 font-size: 22px;
                 padding: 4px 6px;
-                min-width: 34px;
-                min-height: 34px;
+                min-width: 36px;
+                min-height: 36px;
             }
             .logo-header img {
-                width: 26px;
+                width: 28px;
             }
             .brand-text {
-                font-size: 14px;
+                font-size: 15px;
             }
             .total-display {
-                font-size: 11px;
+                font-size: 12px;
                 padding: 4px 10px;
-                min-height: 28px;
+                min-height: 30px;
             }
             .btn-cart {
                 padding: 4px 10px;
-                min-height: 28px;
+                min-height: 30px;
             }
             .btn-cart span {
-                font-size: 11px;
+                font-size: 12px;
             }
             .btn-selesai {
-                padding: 4px 10px;
-                min-height: 28px;
+                padding: 4px 12px;
+                min-height: 30px;
             }
             .btn-selesai span {
-                font-size: 11px;
+                font-size: 12px;
             }
             .search-wrapper {
-                top: 52px;
+                top: 56px;
                 padding: 0 12px;
             }
             .search-box {
                 padding: 6px 12px;
             }
             .search-box input {
-                font-size: 13px;
-                min-height: 28px;
+                font-size: 14px;
+                min-height: 30px;
             }
             .category-tabs {
-                top: 94px;
+                top: 100px;
                 padding: 4px 10px 6px 10px;
             }
             .category-tabs .tab {
-                font-size: 10px;
-                padding: 4px 10px;
-                min-height: 26px;
+                font-size: 11px;
+                padding: 4px 12px;
+                min-height: 28px;
             }
             .content-area {
-                top: 130px;
+                top: 140px;
                 padding: 6px 10px 10px 10px;
             }
             .menu-item {
