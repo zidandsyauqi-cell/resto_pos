@@ -12,25 +12,30 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
+        html, body {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             background: #0a0a0a;
-            padding: 10px;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
         }
 
         .list-container {
-            width: 100%;
-            max-width: 1080px;
-            aspect-ratio: 1080/1920;
+            width: 100vw;
+            height: 100vh;
             position: relative;
             background: white;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .bg-utama {
@@ -60,7 +65,7 @@
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 10px 16px 6px 16px;
+            padding: 6px 14px 4px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -70,17 +75,17 @@
         .header-left {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .btn-back {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(22px, 3%, 36px);
+            font-size: clamp(18px, 2.5%, 30px);
             cursor: pointer;
             transition: all 0.3s;
-            padding: 4px 8px;
+            padding: 3px 6px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
@@ -89,15 +94,21 @@
             color: #98C81C;
         }
 
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
         .logo-header img {
-            width: clamp(32px, 5%, 55px);
+            width: clamp(22px, 3.5%, 40px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
         }
 
         .brand-text {
             color: white;
-            font-size: clamp(14px, 2%, 24px);
+            font-size: clamp(11px, 1.6%, 20px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             white-space: nowrap;
@@ -111,11 +122,11 @@
             background: #ED1B24;
             border-radius: 50px;
             border: 2px solid white;
-            padding: 5px 16px;
+            padding: 3px 12px;
             cursor: pointer;
             transition: all 0.3s;
             color: white;
-            font-size: clamp(12px, 1.6%, 20px);
+            font-size: clamp(9px, 1.3%, 15px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             white-space: nowrap;
@@ -129,11 +140,11 @@
         .title-status {
             position: absolute;
             left: 50%;
-            top: 11%;
+            top: 9%;
             transform: translateX(-50%);
             z-index: 5;
             color: white;
-            font-size: clamp(28px, 6.5%, 75px);
+            font-size: clamp(22px, 5%, 55px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -144,15 +155,15 @@
 
         .table-wrapper {
             position: absolute;
-            top: 19%;
+            top: 16%;
             left: 50%;
             transform: translateX(-50%);
-            width: 95%;
-            height: 77%;
+            width: 94%;
+            height: 80%;
             z-index: 5;
-            border-radius: 35px;
+            border-radius: 25px;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 10px 12px 8px 12px;
+            padding: 8px 10px 6px 10px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -166,7 +177,7 @@
         }
 
         .table-scroll::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
 
         .table-scroll::-webkit-scrollbar-track {
@@ -181,17 +192,17 @@
 
         .table-header {
             display: grid;
-            grid-template-columns: 35px 1.4fr 1.6fr 1.2fr;
-            gap: 4px;
-            padding-bottom: 6px;
+            grid-template-columns: 30px 1.3fr 1.6fr 1.2fr;
+            gap: 3px;
+            padding-bottom: 4px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             flex-shrink: 0;
         }
 
         .table-header .col {
             color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(11px, 1.8%, 22px);
+            font-size: clamp(9px, 1.5%, 18px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: center;
@@ -201,13 +212,13 @@
 
         .table-row {
             display: grid;
-            grid-template-columns: 35px 1.4fr 1.6fr 1.2fr;
-            gap: 4px;
-            padding: 6px 0;
+            grid-template-columns: 30px 1.3fr 1.6fr 1.2fr;
+            gap: 3px;
+            padding: 4px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             align-items: center;
             transition: background 0.15s;
-            min-height: 44px;
+            min-height: 32px;
         }
 
         .table-row:hover {
@@ -216,7 +227,7 @@
 
         .table-row .col {
             color: white;
-            font-size: clamp(12px, 1.8%, 22px);
+            font-size: clamp(10px, 1.5%, 18px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: center;
@@ -227,27 +238,27 @@
 
         .table-row .col .action-btns {
             display: flex;
-            gap: 5px;
+            gap: 4px;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .btn-action {
-            padding: 4px 12px;
+            padding: 3px 8px;
             border-radius: 50px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             color: white;
-            font-size: clamp(10px, 1.4%, 18px);
+            font-size: clamp(8px, 1.1%, 13px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.25s;
-            min-width: 44px;
+            min-width: 36px;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 3px;
             white-space: nowrap;
         }
 
@@ -293,13 +304,13 @@
         .empty-state {
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
-            padding: 30px 0;
-            font-size: clamp(16px, 2.5%, 30px);
+            padding: 20px 0;
+            font-size: clamp(14px, 2%, 24px);
             font-family: 'Schoolbell', cursive;
         }
 
         .empty-state .sub {
-            font-size: clamp(12px, 1.6%, 20px);
+            font-size: clamp(10px, 1.4%, 16px);
             color: rgba(255, 255, 255, 0.3);
         }
 
@@ -323,10 +334,10 @@
         }
 
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #98C81C;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #98C81C;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -342,7 +353,7 @@
 
         .loading-text {
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -353,10 +364,10 @@
             transform: translateX(-50%);
             background: #98C81C;
             color: white;
-            padding: 10px 24px;
+            padding: 8px 20px;
             border-radius: 50px;
             font-family: 'Schoolbell', cursive;
-            font-size: clamp(12px, 1.6%, 20px);
+            font-size: clamp(10px, 1.4%, 16px);
             z-index: 200;
             display: none;
             animation: slideUp 0.5s ease;
@@ -402,9 +413,9 @@
 
         .detail-modal-content {
             background: rgba(20, 20, 20, 0.95);
-            padding: 25px 30px;
-            border-radius: 30px;
-            max-width: 450px;
+            padding: 20px 25px;
+            border-radius: 25px;
+            max-width: 400px;
             width: 90%;
             border: 2px solid #98C81C;
             max-height: 85vh;
@@ -429,15 +440,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .detail-modal-content .modal-header h2 {
             color: #98C81C;
             font-family: 'Schoolbell', cursive;
-            font-size: clamp(20px, 3%, 32px);
+            font-size: clamp(18px, 2.8%, 28px);
             font-weight: 400;
         }
 
@@ -445,7 +456,7 @@
             background: none;
             border: none;
             color: rgba(255, 255, 255, 0.5);
-            font-size: 28px;
+            font-size: 24px;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -458,20 +469,20 @@
         .detail-modal-content .detail-row {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
+            padding: 4px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .detail-modal-content .detail-row .label {
             color: rgba(255, 255, 255, 0.5);
-            font-size: clamp(12px, 1.6%, 18px);
+            font-size: clamp(10px, 1.4%, 15px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
         }
 
         .detail-modal-content .detail-row .value {
             color: white;
-            font-size: clamp(12px, 1.6%, 18px);
+            font-size: clamp(10px, 1.4%, 15px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: right;
@@ -487,359 +498,238 @@
         .detail-modal-content .detail-divider {
             border: none;
             border-top: 1px dashed rgba(255, 255, 255, 0.1);
-            margin: 8px 0;
+            margin: 6px 0;
         }
 
         .detail-modal-content .detail-items-title {
             color: rgba(255, 255, 255, 0.5);
-            font-size: clamp(11px, 1.4%, 16px);
+            font-size: clamp(10px, 1.2%, 14px);
             font-family: 'Schoolbell', cursive;
             text-align: center;
-            margin: 8px 0 4px 0;
+            margin: 6px 0 4px 0;
             letter-spacing: 2px;
         }
 
         .detail-modal-content .detail-item {
             display: flex;
             justify-content: space-between;
-            padding: 3px 0;
+            padding: 2px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .detail-modal-content .detail-item .item-name {
             color: white;
-            font-size: clamp(11px, 1.4%, 16px);
+            font-size: clamp(10px, 1.2%, 14px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
         }
 
         .detail-modal-content .detail-item .item-qty {
             color: rgba(255, 255, 255, 0.4);
-            font-size: clamp(11px, 1.4%, 16px);
+            font-size: clamp(10px, 1.2%, 14px);
             font-family: 'Schoolbell', cursive;
-            margin: 0 8px;
+            margin: 0 6px;
         }
 
         .detail-modal-content .detail-item .item-price {
             color: #98C81C;
-            font-size: clamp(11px, 1.4%, 16px);
+            font-size: clamp(10px, 1.2%, 14px);
             font-family: 'Schoolbell', cursive;
         }
 
         .detail-modal-content .detail-total {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0 4px 0;
+            padding: 6px 0 4px 0;
             border-top: 2px solid rgba(255, 255, 255, 0.1);
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .detail-modal-content .detail-total .total-label {
             color: white;
-            font-size: clamp(14px, 1.8%, 22px);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             font-weight: 600;
         }
 
         .detail-modal-content .detail-total .total-amount {
             color: #98C81C;
-            font-size: clamp(14px, 1.8%, 22px);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             font-weight: 700;
         }
 
-        @media screen and (max-width: 767px) {
-            .list-container {
-                max-width: 100%;
-                aspect-ratio: 1080/1920;
-                border-radius: 12px;
-            }
+        /* ===== RESPONSIVE ===== */
 
-            .table-wrapper {
-                padding: 6px 8px;
-                border-radius: 25px;
-                border-width: 2px;
-                top: 18%;
-                height: 79%;
-            }
-
-            .table-header {
-                grid-template-columns: 25px 1.2fr 1.3fr 1fr;
-                gap: 3px;
-            }
-
-            .table-row {
-                grid-template-columns: 25px 1.2fr 1.3fr 1fr;
-                gap: 3px;
-                padding: 4px 0;
-                min-height: 36px;
-            }
-
-            .table-header .col {
-                font-size: 10px;
-            }
-
-            .table-row .col {
-                font-size: 10px;
-            }
-
-            .btn-action {
-                font-size: 8px;
-                padding: 3px 8px;
-                min-width: 35px;
-                border-width: 1.5px;
-            }
-
-            .title-status {
-                font-size: 20px;
-                top: 10%;
-            }
-
-            .btn-selesai {
-                padding: 3px 10px;
-                font-size: 10px;
-            }
-
-            .btn-back {
-                font-size: 16px;
-            }
-
-            .logo-header img {
-                width: 25px;
-            }
-
-            .brand-text {
-                font-size: 12px;
-            }
-
-            .detail-modal-content {
-                padding: 20px;
-                border-radius: 25px;
-            }
+        /* HP Portrait */
+        @media screen and (max-width: 767px) and (orientation: portrait) {
+            .list-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .table-wrapper { padding: 5px 6px; border-radius: 18px; top: 15%; height: 82%; }
+            .table-header { grid-template-columns: 20px 1.1fr 1.2fr 1fr; gap: 2px; }
+            .table-row { grid-template-columns: 20px 1.1fr 1.2fr 1fr; gap: 2px; padding: 3px 0; min-height: 28px; }
+            .table-header .col { font-size: 8px; }
+            .table-row .col { font-size: 8px; }
+            .btn-action { font-size: 6px; padding: 2px 5px; min-width: 22px; border-width: 1.5px; gap: 2px; }
+            .title-status { font-size: 16px; top: 8%; }
+            .btn-selesai { padding: 2px 8px; font-size: 8px; }
+            .btn-back { font-size: 14px; }
+            .logo-header img { width: 18px; }
+            .brand-text { font-size: 9px; }
+            .detail-modal-content { padding: 15px 18px; border-radius: 20px; max-width: 340px; }
         }
 
-        @media screen and (max-width: 480px) {
-            .list-container {
-                border-radius: 10px;
-            }
-
-            .table-wrapper {
-                padding: 4px 5px;
-                border-radius: 18px;
-                border-width: 1.5px;
-                top: 17%;
-                height: 80%;
-            }
-
-            .table-header {
-                grid-template-columns: 18px 1fr 1fr 0.7fr;
-                gap: 2px;
-            }
-
-            .table-row {
-                grid-template-columns: 18px 1fr 1fr 0.7fr;
-                gap: 2px;
-                padding: 3px 0;
-                min-height: 30px;
-            }
-
-            .table-header .col {
-                font-size: 7px;
-            }
-
-            .table-row .col {
-                font-size: 7px;
-            }
-
-            .btn-action {
-                font-size: 6px;
-                padding: 2px 5px;
-                min-width: 24px;
-                border-width: 1.5px;
-                gap: 2px;
-            }
-
-            .title-status {
-                font-size: 16px;
-                top: 9%;
-            }
-
-            .btn-selesai {
-                padding: 2px 6px;
-                font-size: 8px;
-            }
-
-            .btn-back {
-                font-size: 14px;
-            }
-
-            .logo-header img {
-                width: 20px;
-            }
-
-            .brand-text {
-                font-size: 10px;
-            }
-
-            .detail-modal-content {
-                padding: 15px;
-                border-radius: 20px;
-            }
-
-            .detail-modal-content .modal-header h2 {
-                font-size: 18px;
-            }
-
+        /* HP Portrait Kecil */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .table-wrapper { padding: 4px 4px; border-radius: 14px; top: 14%; height: 83%; }
+            .table-header { grid-template-columns: 15px 1fr 1fr 0.7fr; gap: 1px; }
+            .table-row { grid-template-columns: 15px 1fr 1fr 0.7fr; gap: 1px; padding: 2px 0; min-height: 24px; }
+            .table-header .col { font-size: 6px; }
+            .table-row .col { font-size: 6px; }
+            .btn-action { font-size: 5px; padding: 1px 4px; min-width: 16px; border-width: 1px; }
+            .title-status { font-size: 14px; top: 7%; }
+            .btn-selesai { padding: 2px 6px; font-size: 7px; }
+            .btn-back { font-size: 12px; }
+            .logo-header img { width: 16px; }
+            .brand-text { font-size: 8px; }
+            .detail-modal-content { padding: 12px 14px; border-radius: 16px; max-width: 300px; }
+            .detail-modal-content .modal-header h2 { font-size: 15px; }
             .detail-modal-content .detail-row .label,
-            .detail-modal-content .detail-row .value {
-                font-size: 11px;
-            }
-
+            .detail-modal-content .detail-row .value { font-size: 9px; }
             .detail-modal-content .detail-item .item-name,
             .detail-modal-content .detail-item .item-qty,
-            .detail-modal-content .detail-item .item-price {
-                font-size: 10px;
-            }
-
+            .detail-modal-content .detail-item .item-price { font-size: 9px; }
             .detail-modal-content .detail-total .total-label,
-            .detail-modal-content .detail-total .total-amount {
-                font-size: 13px;
-            }
+            .detail-modal-content .detail-total .total-amount { font-size: 11px; }
         }
 
-        @media screen and (max-width: 360px) {
-            .table-header {
-                grid-template-columns: 15px 1fr 1fr 0.6fr;
-                gap: 1px;
-            }
-
-            .table-row {
-                grid-template-columns: 15px 1fr 1fr 0.6fr;
-                gap: 1px;
-            }
-
-            .table-header .col {
-                font-size: 6px;
-            }
-
-            .table-row .col {
-                font-size: 6px;
-            }
-
-            .btn-action {
-                font-size: 5px;
-                padding: 1px 4px;
-                min-width: 18px;
-            }
-
-            .detail-modal-content {
-                padding: 12px;
-                border-radius: 15px;
-            }
-
-            .detail-modal-content .modal-header h2 {
-                font-size: 15px;
-            }
-
-            .detail-modal-content .detail-row .label,
-            .detail-modal-content .detail-row .value {
-                font-size: 9px;
-            }
-
-            .detail-modal-content .detail-item .item-name,
-            .detail-modal-content .detail-item .item-qty,
-            .detail-modal-content .detail-item .item-price {
-                font-size: 9px;
-            }
-
-            .detail-modal-content .detail-total .total-label,
-            .detail-modal-content .detail-total .total-amount {
-                font-size: 11px;
-            }
+        /* ===== LANDSCAPE ===== */
+        @media screen and (orientation: landscape) {
+            .list-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .table-wrapper { padding: 5px 12px; border-radius: 20px; top: 14%; height: 83%; }
+            .table-header { grid-template-columns: 25px 1.2fr 1.3fr 1fr; gap: 3px; }
+            .table-row { grid-template-columns: 25px 1.2fr 1.3fr 1fr; gap: 3px; padding: 3px 0; min-height: 28px; }
+            .table-header .col { font-size: 9px; }
+            .table-row .col { font-size: 9px; }
+            .btn-action { font-size: 7px; padding: 2px 6px; min-width: 28px; border-width: 1.5px; }
+            .title-status { font-size: 16px; top: 7%; }
+            .btn-selesai { padding: 2px 8px; font-size: 8px; }
+            .btn-back { font-size: 16px; }
+            .logo-header img { width: 20px; }
+            .brand-text { font-size: 10px; }
+            .header-top { padding: 4px 12px 3px 12px; }
+            .detail-modal-content { padding: 15px 18px; border-radius: 20px; max-width: 340px; }
         }
 
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .list-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 15px;
-            }
-        }
-
+        /* Landscape HP Kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .list-container {
-                max-width: 90vh;
-                aspect-ratio: 1080/1920;
-                border-radius: 10px;
-            }
-
-            .table-wrapper {
-                padding: 4px 8px;
-                border-radius: 18px;
-                top: 16%;
-                height: 81%;
-                border-width: 2px;
-            }
-
-            .table-header {
-                grid-template-columns: 25px 1.2fr 1.3fr 1fr;
-            }
-
-            .table-row {
-                grid-template-columns: 25px 1.2fr 1.3fr 1fr;
-                padding: 3px 0;
-                min-height: 28px;
-            }
-
-            .table-header .col {
-                font-size: 9px;
-            }
-
-            .table-row .col {
-                font-size: 9px;
-            }
-
-            .btn-action {
-                font-size: 7px;
-                padding: 2px 6px;
-                min-width: 28px;
-            }
-
-            .title-status {
-                font-size: 16px;
-                top: 8%;
-            }
-
-            .btn-selesai {
-                padding: 2px 8px;
-                font-size: 9px;
-            }
-
-            .detail-modal-content {
-                padding: 15px 20px;
-                border-radius: 20px;
-                max-width: 350px;
-            }
-
-            .detail-modal-content .modal-header h2 {
-                font-size: 16px;
-            }
-
+            .table-wrapper { padding: 3px 8px; border-radius: 14px; top: 13%; height: 84%; }
+            .table-header { grid-template-columns: 18px 1.1fr 1.2fr 0.9fr; gap: 2px; }
+            .table-row { grid-template-columns: 18px 1.1fr 1.2fr 0.9fr; gap: 2px; padding: 2px 0; min-height: 22px; }
+            .table-header .col { font-size: 7px; }
+            .table-row .col { font-size: 7px; }
+            .btn-action { font-size: 6px; padding: 1px 4px; min-width: 18px; border-width: 1px; }
+            .title-status { font-size: 13px; top: 6%; }
+            .btn-selesai { padding: 1px 6px; font-size: 7px; }
+            .btn-back { font-size: 12px; }
+            .logo-header img { width: 16px; }
+            .brand-text { font-size: 8px; }
+            .detail-modal-content { padding: 10px 14px; border-radius: 16px; max-width: 280px; }
+            .detail-modal-content .modal-header h2 { font-size: 14px; }
             .detail-modal-content .detail-row .label,
-            .detail-modal-content .detail-row .value {
-                font-size: 11px;
-            }
-
+            .detail-modal-content .detail-row .value { font-size: 9px; }
             .detail-modal-content .detail-item .item-name,
             .detail-modal-content .detail-item .item-qty,
-            .detail-modal-content .detail-item .item-price {
-                font-size: 10px;
-            }
-
+            .detail-modal-content .detail-item .item-price { font-size: 8px; }
             .detail-modal-content .detail-total .total-label,
-            .detail-modal-content .detail-total .total-amount {
-                font-size: 12px;
-            }
+            .detail-modal-content .detail-total .total-amount { font-size: 10px; }
+        }
+
+        /* ===== TABLET PORTRAIT ===== */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .list-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .table-wrapper { padding: 8px 15px; border-radius: 25px; top: 15%; height: 82%; }
+            .table-header { grid-template-columns: 30px 1.3fr 1.5fr 1.1fr; gap: 4px; }
+            .table-row { grid-template-columns: 30px 1.3fr 1.5fr 1.1fr; gap: 4px; padding: 5px 0; min-height: 38px; }
+            .table-header .col { font-size: 12px; }
+            .table-row .col { font-size: 12px; }
+            .btn-action { font-size: 10px; padding: 3px 10px; min-width: 40px; border-width: 2px; }
+            .title-status { font-size: 24px; top: 8%; }
+            .btn-selesai { padding: 4px 14px; font-size: 12px; }
+            .btn-back { font-size: 20px; }
+            .logo-header img { width: 30px; }
+            .brand-text { font-size: 16px; }
+            .header-top { padding: 8px 18px 5px 18px; }
+            .detail-modal-content { padding: 20px 25px; border-radius: 25px; max-width: 400px; }
+            .detail-modal-content .modal-header h2 { font-size: 22px; }
+            .detail-modal-content .detail-row .label,
+            .detail-modal-content .detail-row .value { font-size: 14px; }
+            .detail-modal-content .detail-item .item-name,
+            .detail-modal-content .detail-item .item-qty,
+            .detail-modal-content .detail-item .item-price { font-size: 13px; }
+            .detail-modal-content .detail-total .total-label,
+            .detail-modal-content .detail-total .total-amount { font-size: 16px; }
+        }
+
+        /* ===== TABLET LANDSCAPE ===== */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .list-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .table-wrapper { padding: 6px 15px; border-radius: 22px; top: 14%; height: 83%; }
+            .table-header { grid-template-columns: 28px 1.2fr 1.4fr 1fr; gap: 4px; }
+            .table-row { grid-template-columns: 28px 1.2fr 1.4fr 1fr; gap: 4px; padding: 4px 0; min-height: 32px; }
+            .table-header .col { font-size: 11px; }
+            .table-row .col { font-size: 11px; }
+            .btn-action { font-size: 9px; padding: 2px 8px; min-width: 34px; border-width: 2px; }
+            .title-status { font-size: 20px; top: 7%; }
+            .btn-selesai { padding: 3px 12px; font-size: 11px; }
+            .btn-back { font-size: 18px; }
+            .logo-header img { width: 25px; }
+            .brand-text { font-size: 14px; }
+            .header-top { padding: 6px 16px 4px 16px; }
+            .detail-modal-content { padding: 18px 22px; border-radius: 22px; max-width: 360px; }
+            .detail-modal-content .modal-header h2 { font-size: 18px; }
+            .detail-modal-content .detail-row .label,
+            .detail-modal-content .detail-row .value { font-size: 12px; }
+            .detail-modal-content .detail-item .item-name,
+            .detail-modal-content .detail-item .item-qty,
+            .detail-modal-content .detail-item .item-price { font-size: 11px; }
+            .detail-modal-content .detail-total .total-label,
+            .detail-modal-content .detail-total .total-amount { font-size: 14px; }
+        }
+
+        /* ===== DESKTOP ===== */
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
+            .list-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .table-wrapper { padding: 8px 20px; border-radius: 28px; top: 14%; height: 83%; max-width: 900px; left: 50%; transform: translateX(-50%); }
+            .table-header { grid-template-columns: 30px 1.3fr 1.5fr 1.1fr; gap: 4px; }
+            .table-row { grid-template-columns: 30px 1.3fr 1.5fr 1.1fr; gap: 4px; padding: 5px 0; min-height: 38px; }
+            .table-header .col { font-size: 13px; }
+            .table-row .col { font-size: 13px; }
+            .btn-action { font-size: 11px; padding: 3px 12px; min-width: 44px; border-width: 2px; }
+            .title-status { font-size: 26px; top: 7%; }
+            .btn-selesai { padding: 4px 16px; font-size: 13px; }
+            .btn-back { font-size: 22px; }
+            .logo-header img { width: 32px; }
+            .brand-text { font-size: 18px; }
+            .header-top { padding: 8px 20px 5px 20px; }
+            .detail-modal-content { padding: 22px 28px; border-radius: 28px; max-width: 420px; }
+            .detail-modal-content .modal-header h2 { font-size: 24px; }
+            .detail-modal-content .detail-row .label,
+            .detail-modal-content .detail-row .value { font-size: 15px; }
+            .detail-modal-content .detail-item .item-name,
+            .detail-modal-content .detail-item .item-qty,
+            .detail-modal-content .detail-item .item-price { font-size: 14px; }
+            .detail-modal-content .detail-total .total-label,
+            .detail-modal-content .detail-total .total-amount { font-size: 18px; }
+        }
+
+        /* Desktop Lebar */
+        @media screen and (min-width: 1600px) and (orientation: landscape) {
+            .table-wrapper { max-width: 1000px; padding: 10px 25px; border-radius: 32px; }
+            .table-header .col { font-size: 15px; }
+            .table-row .col { font-size: 15px; }
+            .btn-action { font-size: 13px; padding: 4px 14px; min-width: 50px; }
+            .title-status { font-size: 30px; }
+            .detail-modal-content { padding: 25px 30px; border-radius: 30px; max-width: 460px; }
         }
     </style>
 </head>
@@ -855,11 +745,11 @@
 
         <div class="header-top">
             <div class="header-left">
-                <button class="btn-back" onclick="window.location.href='dashboard.html'">←</button>
-                <div class="logo-header">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/55x55/98C81C/ffffff?text=🍽️'" />
+                <button class="btn-back" onclick="goBack()">←</button>
+                <div class="logo-header" onclick="goToDashboard()">
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/40x40/98C81C/ffffff?text=🍽️'" />
+                    <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
-                <div class="brand-text">Jangkung<span>Order</span></div>
             </div>
             <button class="btn-selesai" onclick="selesaiSemua()">Selesai</button>
         </div>
@@ -894,6 +784,14 @@
         let menuNames = {};
         let isRealtimeConnected = false;
 
+        function goBack() {
+            window.history.back();
+        }
+
+        function goToDashboard() {
+            window.location.href = 'dashboard.html';
+        }
+
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -919,7 +817,6 @@
             return map[status] || status;
         }
 
-        // ===== LOAD MENU NAMES =====
         async function loadMenuNames() {
             try {
                 const { data, error } = await supabaseClient
@@ -940,7 +837,6 @@
             }
         }
 
-        // ===== LOAD ORDERS =====
         async function loadOrders() {
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
@@ -1007,7 +903,6 @@
             }
         }
 
-        // ===== SETUP REALTIME =====
         function setupRealtime() {
             if (isRealtimeConnected) return;
 
@@ -1046,7 +941,6 @@
             window.realtimeChannel = channel;
         }
 
-        // ===== LOAD ORDERS SILENT =====
         async function loadOrdersSilent() {
             try {
                 await loadMenuNames();
@@ -1097,7 +991,6 @@
             }
         }
 
-        // ===== RENDER TABLE =====
         function renderTable() {
             const container = document.getElementById('tableBody');
 
@@ -1136,7 +1029,6 @@
             container.innerHTML = html;
         }
 
-        // ===== LIHAT DETAIL =====
         async function lihatDetail(noStruk) {
             const order = ordersData.find(o => o.no_struk === noStruk);
             if (!order) {
@@ -1158,7 +1050,6 @@
                 minute: '2-digit'
             });
 
-            // Buat modal
             const modal = document.createElement('div');
             modal.className = 'detail-modal';
 
@@ -1214,10 +1105,10 @@
                     </div>
                     <div class="detail-total" style="border-top-color: #98C81C;">
                         <span class="total-label" style="color:#98C81C;">Grand Total</span>
-                        <span class="total-amount" style="font-size:clamp(18px,2.5%,28px);">${formatRupiah(total)}</span>
+                        <span class="total-amount" style="font-size:clamp(16px,2.2%,24px);">${formatRupiah(total)}</span>
                     </div>
 
-                    <button class="btn-action" style="width:100%;margin-top:12px;background:#98C81C;border-color:#98C81C;padding:8px;font-size:clamp(14px,1.8%,22px);" onclick="this.closest('.detail-modal').remove()">
+                    <button class="btn-action" style="width:100%;margin-top:10px;background:#98C81C;border-color:#98C81C;padding:6px;font-size:clamp(12px,1.6%,18px);" onclick="this.closest('.detail-modal').remove()">
                         Tutup
                     </button>
                 </div>
@@ -1225,7 +1116,6 @@
 
             document.body.appendChild(modal);
 
-            // Tutup modal saat klik di luar
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
                     this.remove();
@@ -1233,7 +1123,6 @@
             });
         }
 
-        // ===== SELESAIKAN PESANAN =====
         async function selesaikanPesanan(noStruk) {
             if (!confirm(`Yakin ingin menyelesaikan pesanan ${noStruk}?`)) return;
 
@@ -1259,7 +1148,6 @@
             }
         }
 
-        // ===== HAPUS PESANAN =====
         async function deleteOrder(noStruk) {
             if (!confirm(`Yakin ingin menghapus pesanan ${noStruk}?`)) return;
 
@@ -1292,7 +1180,6 @@
             }
         }
 
-        // ===== SELESAI SEMUA =====
         async function selesaiSemua() {
             const pendingOrders = ordersData.filter(o => o.status_order !== 'Selesai');
             if (pendingOrders.length === 0) {
