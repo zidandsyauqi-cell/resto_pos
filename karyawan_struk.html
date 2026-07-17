@@ -12,25 +12,30 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
+        html, body {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             background: #0a0a0a;
-            padding: 10px;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
         }
 
         .struk-container {
-            width: 100%;
-            max-width: 1080px;
-            aspect-ratio: 1080/1920;
+            width: 100vw;
+            height: 100vh;
             position: relative;
             background: white;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .bg-utama {
@@ -60,28 +65,28 @@
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 12px 20px 8px 20px;
+            padding: 6px 14px 4px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
         }
 
         .btn-back {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(24px, 3.5%, 40px);
+            font-size: clamp(18px, 2.5%, 30px);
             cursor: pointer;
             transition: all 0.3s;
-            padding: 5px 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            padding: 3px 6px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .btn-back:hover {
@@ -89,17 +94,23 @@
             color: #98C81C;
         }
 
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
         .logo-header img {
-            width: clamp(40px, 7%, 70px);
+            width: clamp(22px, 3.5%, 40px);
             height: auto;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
         }
 
         .brand-text {
             color: white;
-            font-size: clamp(16px, 2.5%, 30px);
+            font-size: clamp(11px, 1.6%, 20px);
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             white-space: nowrap;
         }
 
@@ -107,46 +118,46 @@
             color: #98C81C;
         }
 
-        /* ===== INFO NAMA & MEJA - SAMPING KIRI KANAN ===== */
+        /* ===== INFO NAMA & MEJA ===== */
         .info-wrapper {
             position: absolute;
-            top: 65px;
+            top: 48px;
             left: 0;
             right: 0;
             z-index: 10;
-            padding: 0 30px;
+            padding: 0 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
         }
 
         .info-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .info-item .label {
             color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(14px, 2%, 22px);
+            font-size: clamp(10px, 1.4%, 16px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             white-space: nowrap;
         }
 
         .info-item .value-box {
-            padding: 4px 16px;
+            padding: 3px 12px;
             border-radius: 50px;
             border: 2px solid rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.08);
             color: white;
-            font-size: clamp(14px, 2%, 22px);
+            font-size: clamp(10px, 1.4%, 16px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            max-width: 180px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            max-width: 140px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -154,17 +165,17 @@
 
         .struk-wrapper {
             position: absolute;
-            top: 115px;
+            top: 85px;
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 10px 30px 20px 30px;
+            padding: 6px 12px 12px 12px;
             overflow-y: auto;
             z-index: 5;
         }
 
         .struk-wrapper::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
 
         .struk-wrapper::-webkit-scrollbar-track {
@@ -177,33 +188,33 @@
             border-radius: 10px;
         }
 
-        /* ===== SELECT STRUK - DIPERJELAS ===== */
+        /* ===== SELECT STRUK ===== */
         .struk-select-wrapper {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 50px;
-            padding: 4px;
+            border-radius: 40px;
+            padding: 3px;
             border: 2px solid rgba(255, 255, 255, 0.15);
         }
 
         .struk-select-label {
             color: rgba(255, 255, 255, 0.5);
-            font-size: clamp(11px, 1.4%, 16px);
+            font-size: clamp(9px, 1.1%, 13px);
             font-family: 'Schoolbell', cursive;
             display: block;
             text-align: center;
-            padding: 2px 0 0 0;
-            letter-spacing: 2px;
+            padding: 1px 0 0 0;
+            letter-spacing: 1px;
         }
 
         .struk-select {
             width: 100%;
-            padding: 10px 16px;
-            border-radius: 50px;
+            padding: 6px 12px;
+            border-radius: 40px;
             border: none;
             background: rgba(255, 255, 255, 0.05);
             color: white;
-            font-size: clamp(14px, 2.2%, 26px);
+            font-size: clamp(11px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             outline: none;
             cursor: pointer;
@@ -227,44 +238,34 @@
             padding: 10px;
         }
 
-        .struk-select-wrapper .arrow {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 18px;
-            pointer-events: none;
-        }
-
         .struk-select-wrapper {
             position: relative;
         }
 
         .struk-box {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 50px;
-            border: 3px solid white;
-            padding: 20px 25px 15px 25px;
-            min-height: 350px;
-            margin-bottom: 15px;
+            border-radius: 35px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 14px 16px 12px 16px;
+            min-height: 280px;
+            margin-bottom: 12px;
         }
 
         .struk-title {
             color: white;
-            font-size: clamp(20px, 3.5%, 40px);
+            font-size: clamp(16px, 2.5%, 28px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .struk-no {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(16px, 2.2%, 26px);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: clamp(12px, 1.8%, 20px);
             font-family: 'Schoolbell', cursive;
-            margin-bottom: 12px;
-            border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
-            padding-bottom: 8px;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 6px;
         }
 
         .struk-no span {
@@ -274,59 +275,59 @@
         .struk-header-row {
             display: flex;
             justify-content: space-between;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: clamp(12px, 1.6%, 20px);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: clamp(10px, 1.3%, 15px);
             font-family: 'Schoolbell', cursive;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 4px;
-            margin-bottom: 4px;
+            padding-bottom: 3px;
+            margin-bottom: 3px;
         }
 
         .struk-item {
             display: flex;
             justify-content: space-between;
-            padding: 3px 0;
+            padding: 2px 0;
             color: white;
-            font-size: clamp(14px, 2%, 24px);
+            font-size: clamp(11px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
         }
 
         .struk-item .item-name {
             flex: 1;
             text-align: left;
-            padding-right: 10px;
+            padding-right: 8px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
 
         .struk-item .item-qty {
-            margin: 0 10px;
-            color: rgba(255, 255, 255, 0.5);
-            min-width: 30px;
+            margin: 0 6px;
+            color: rgba(255, 255, 255, 0.4);
+            min-width: 24px;
             text-align: center;
         }
 
         .struk-item .item-price {
             color: #98C81C;
-            min-width: 90px;
+            min-width: 70px;
             text-align: right;
         }
 
         .struk-divider {
             border: none;
-            border-top: 2px dashed rgba(255, 255, 255, 0.2);
-            margin: 8px 0;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+            margin: 6px 0;
         }
 
         .struk-total-row {
             display: flex;
             justify-content: space-between;
             color: white;
-            font-size: clamp(16px, 2.2%, 28px);
+            font-size: clamp(13px, 1.8%, 20px);
             font-family: 'Schoolbell', cursive;
-            padding: 3px 0;
+            padding: 2px 0;
         }
 
         .struk-total-row .total-amount {
@@ -336,26 +337,26 @@
         .struk-ppn {
             display: flex;
             justify-content: space-between;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(14px, 1.8%, 24px);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: clamp(11px, 1.5%, 17px);
             font-family: 'Schoolbell', cursive;
             padding: 2px 0;
         }
 
         .struk-ppn .ppn-amount {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .struk-grand-total {
             display: flex;
             justify-content: space-between;
             color: white;
-            font-size: clamp(20px, 3%, 38px);
+            font-size: clamp(16px, 2.5%, 28px);
             font-family: 'Schoolbell', cursive;
             font-weight: 700;
-            padding-top: 6px;
-            border-top: 2px solid rgba(255, 255, 255, 0.2);
-            margin-top: 6px;
+            padding-top: 4px;
+            border-top: 2px solid rgba(255, 255, 255, 0.15);
+            margin-top: 4px;
         }
 
         .struk-grand-total .grand-total-amount {
@@ -364,26 +365,26 @@
 
         .btn-group {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             justify-content: center;
-            margin-top: 12px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
 
         .btn-cetak {
-            padding: 8px 20px;
+            padding: 5px 14px;
             background: #98C81C;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(16px, 2.2%, 26px);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
-            border: 3px solid white;
+            border: 2px solid white;
             flex: 1;
-            min-width: 100px;
+            min-width: 70px;
         }
 
         .btn-cetak:hover {
@@ -392,19 +393,19 @@
         }
 
         .btn-selesai-struk {
-            padding: 8px 20px;
+            padding: 5px 14px;
             background: #2ecc71;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(16px, 2.2%, 26px);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
-            border: 3px solid white;
+            border: 2px solid white;
             flex: 1;
-            min-width: 100px;
+            min-width: 70px;
         }
 
         .btn-selesai-struk:hover {
@@ -413,19 +414,19 @@
         }
 
         .btn-hapus-struk {
-            padding: 8px 20px;
+            padding: 5px 14px;
             background: #e74c3c;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(16px, 2.2%, 26px);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
-            border: 3px solid white;
+            border: 2px solid white;
             flex: 1;
-            min-width: 100px;
+            min-width: 70px;
         }
 
         .btn-hapus-struk:hover {
@@ -436,25 +437,25 @@
         .empty-state {
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
-            padding: 40px 20px;
-            font-size: clamp(18px, 2.8%, 32px);
+            padding: 30px 15px;
+            font-size: clamp(14px, 2.2%, 24px);
             font-family: 'Schoolbell', cursive;
         }
 
         .empty-state .sub {
-            font-size: clamp(12px, 1.6%, 20px);
+            font-size: clamp(10px, 1.4%, 16px);
             color: rgba(255, 255, 255, 0.3);
         }
 
         .btn-refresh {
             width: 100%;
-            padding: 10px;
-            margin-top: 12px;
+            padding: 8px;
+            margin-top: 10px;
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
             color: white;
-            font-size: clamp(14px, 1.8%, 22px);
+            font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
@@ -484,10 +485,10 @@
         }
 
         .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            border-top: 5px solid #98C81C;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #98C81C;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -503,7 +504,7 @@
 
         .loading-text {
             color: white;
-            font-size: 18px;
+            font-size: 14px;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -514,10 +515,10 @@
             transform: translateX(-50%);
             background: #98C81C;
             color: white;
-            padding: 10px 24px;
+            padding: 8px 20px;
             border-radius: 50px;
             font-family: 'Schoolbell', cursive;
-            font-size: clamp(12px, 1.6%, 20px);
+            font-size: clamp(10px, 1.4%, 16px);
             z-index: 200;
             display: none;
             animation: slideUp 0.5s ease;
@@ -545,286 +546,182 @@
             }
         }
 
-        @media screen and (max-width: 767px) {
-            .struk-container {
-                max-width: 100%;
-                border-radius: 12px;
-            }
-            .header-top {
-                padding: 8px 14px 4px 14px;
-            }
-            .info-wrapper {
-                top: 55px;
-                padding: 0 14px;
-                gap: 10px;
-            }
-            .info-item .label {
-                font-size: 11px;
-            }
-            .info-item .value-box {
-                font-size: 11px;
-                padding: 2px 10px;
-                max-width: 120px;
-            }
-            .struk-wrapper {
-                top: 100px;
-                padding: 8px 14px 12px 14px;
-            }
-            .struk-box {
-                padding: 12px 14px 10px 14px;
-                border-radius: 30px;
-                min-height: 300px;
-            }
-            .struk-title {
-                font-size: 16px;
-            }
-            .struk-no {
-                font-size: 13px;
-            }
-            .struk-header-row {
-                font-size: 10px;
-            }
-            .struk-item {
-                font-size: 12px;
-            }
-            .struk-item .item-price {
-                min-width: 65px;
-            }
-            .struk-total-row {
-                font-size: 13px;
-            }
-            .struk-ppn {
-                font-size: 11px;
-            }
-            .struk-grand-total {
-                font-size: 16px;
-            }
-            .btn-cetak,
-            .btn-selesai-struk,
-            .btn-hapus-struk {
-                font-size: 12px;
-                padding: 6px 10px;
-                min-width: 70px;
-            }
-            .struk-select {
-                font-size: 13px;
-                padding: 8px 12px;
-            }
-            .struk-select-label {
-                font-size: 10px;
-            }
+        /* ===== RESPONSIVE ===== */
+
+        /* HP Portrait */
+        @media screen and (max-width: 767px) and (orientation: portrait) {
+            .struk-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .info-wrapper { top: 42px; padding: 0 12px; }
+            .info-item .label { font-size: 9px; }
+            .info-item .value-box { font-size: 9px; padding: 2px 8px; max-width: 100px; border-width: 1.5px; }
+            .struk-wrapper { top: 75px; padding: 4px 10px 10px 10px; }
+            .struk-box { padding: 10px 12px 8px 12px; border-radius: 25px; min-height: 220px; }
+            .struk-title { font-size: 13px; }
+            .struk-no { font-size: 11px; }
+            .struk-item { font-size: 10px; padding: 1px 0; }
+            .struk-item .item-price { min-width: 55px; }
+            .struk-total-row { font-size: 11px; }
+            .struk-ppn { font-size: 10px; }
+            .struk-grand-total { font-size: 14px; }
+            .btn-cetak, .btn-selesai-struk, .btn-hapus-struk { font-size: 9px; padding: 4px 8px; min-width: 50px; border-width: 1.5px; }
+            .struk-select { font-size: 10px; padding: 4px 8px; }
+            .struk-select-label { font-size: 8px; }
+            .btn-back { font-size: 14px; }
+            .logo-header img { width: 18px; }
+            .brand-text { font-size: 9px; }
+            .header-top { padding: 4px 10px 3px 10px; }
         }
 
-        @media screen and (max-width: 480px) {
-            .struk-container {
-                border-radius: 10px;
-            }
-            .header-top {
-                padding: 4px 8px 2px 8px;
-            }
-            .btn-back {
-                font-size: 16px;
-            }
-            .logo-header img {
-                width: 22px;
-            }
-            .brand-text {
-                font-size: 11px;
-            }
-            .info-wrapper {
-                top: 45px;
-                padding: 0 10px;
-                gap: 6px;
-                flex-direction: row;
-            }
-            .info-item .label {
-                font-size: 9px;
-            }
-            .info-item .value-box {
-                font-size: 9px;
-                padding: 2px 8px;
-                max-width: 80px;
-                border-width: 1.5px;
-            }
-            .struk-wrapper {
-                top: 85px;
-                padding: 4px 8px 8px 8px;
-            }
-            .struk-box {
-                padding: 10px 10px 8px 10px;
-                border-radius: 20px;
-                border-width: 2px;
-                min-height: 250px;
-            }
-            .struk-title {
-                font-size: 13px;
-            }
-            .struk-no {
-                font-size: 10px;
-            }
-            .struk-header-row {
-                font-size: 8px;
-            }
-            .struk-item {
-                font-size: 10px;
-                padding: 2px 0;
-            }
-            .struk-item .item-price {
-                min-width: 50px;
-            }
-            .struk-total-row {
-                font-size: 11px;
-            }
-            .struk-ppn {
-                font-size: 9px;
-            }
-            .struk-grand-total {
-                font-size: 13px;
-            }
-            .btn-group {
-                flex-direction: row;
-                gap: 4px;
-            }
-            .btn-cetak,
-            .btn-selesai-struk,
-            .btn-hapus-struk {
-                font-size: 10px;
-                padding: 4px 8px;
-                min-width: 50px;
-                border-width: 2px;
-            }
-            .empty-state {
-                font-size: 14px;
-                padding: 20px 10px;
-            }
-            .struk-select {
-                font-size: 11px;
-                padding: 6px 10px;
-            }
-            .struk-select-label {
-                font-size: 8px;
-            }
-            .struk-select-wrapper {
-                border-width: 1.5px;
-                padding: 3px;
-            }
+        /* HP Portrait Kecil */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .info-wrapper { top: 38px; padding: 0 8px; }
+            .info-item .label { font-size: 8px; }
+            .info-item .value-box { font-size: 8px; padding: 1px 6px; max-width: 70px; border-width: 1.5px; }
+            .struk-wrapper { top: 68px; padding: 3px 6px 8px 6px; }
+            .struk-box { padding: 8px 8px 6px 8px; border-radius: 18px; min-height: 180px; border-width: 1.5px; }
+            .struk-title { font-size: 11px; }
+            .struk-no { font-size: 9px; }
+            .struk-item { font-size: 8px; padding: 1px 0; }
+            .struk-item .item-price { min-width: 45px; }
+            .struk-total-row { font-size: 9px; }
+            .struk-ppn { font-size: 8px; }
+            .struk-grand-total { font-size: 11px; }
+            .btn-cetak, .btn-selesai-struk, .btn-hapus-struk { font-size: 8px; padding: 3px 6px; min-width: 35px; border-width: 1.5px; }
+            .struk-select { font-size: 9px; padding: 3px 6px; }
         }
 
-        @media screen and (max-width: 360px) {
-            .info-item .value-box {
-                font-size: 8px;
-                max-width: 60px;
-                padding: 1px 6px;
-            }
-            .info-item .label {
-                font-size: 8px;
-            }
-            .struk-item {
-                font-size: 8px;
-            }
-            .struk-grand-total {
-                font-size: 11px;
-            }
-            .struk-item .item-price {
-                min-width: 40px;
-            }
-            .struk-select {
-                font-size: 10px;
-                padding: 4px 8px;
-            }
+        /* ===== LANDSCAPE ===== */
+        @media screen and (orientation: landscape) {
+            .struk-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .info-wrapper { top: 40px; padding: 0 18px; }
+            .info-item .label { font-size: 10px; }
+            .info-item .value-box { font-size: 10px; padding: 2px 10px; max-width: 120px; border-width: 1.5px; }
+            .struk-wrapper { top: 75px; padding: 4px 16px 10px 16px; }
+            .struk-box { padding: 10px 14px 8px 14px; border-radius: 25px; min-height: 200px; }
+            .struk-title { font-size: 14px; }
+            .struk-no { font-size: 12px; }
+            .struk-item { font-size: 11px; }
+            .struk-item .item-price { min-width: 60px; }
+            .struk-total-row { font-size: 12px; }
+            .struk-ppn { font-size: 11px; }
+            .struk-grand-total { font-size: 15px; }
+            .btn-cetak, .btn-selesai-struk, .btn-hapus-struk { font-size: 10px; padding: 4px 10px; min-width: 60px; border-width: 1.5px; }
+            .struk-select { font-size: 11px; padding: 4px 10px; }
+            .struk-select-label { font-size: 8px; }
+            .btn-back { font-size: 16px; }
+            .logo-header img { width: 20px; }
+            .brand-text { font-size: 10px; }
+            .header-top { padding: 4px 12px 3px 12px; }
         }
 
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .struk-container {
-                max-width: 90vh;
-                border-radius: 15px;
-            }
-        }
-
+        /* Landscape HP Kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .struk-container {
-                max-width: 90vh;
-                border-radius: 10px;
-            }
-            .header-top {
-                padding: 4px 10px 2px 10px;
-            }
-            .btn-back {
-                font-size: 14px;
-            }
-            .logo-header img {
-                width: 20px;
-            }
-            .brand-text {
-                font-size: 10px;
-            }
-            .info-wrapper {
-                top: 38px;
-                padding: 0 10px;
-                gap: 10px;
-            }
-            .info-item .label {
-                font-size: 9px;
-            }
-            .info-item .value-box {
-                font-size: 9px;
-                padding: 2px 8px;
-                max-width: 100px;
-                border-width: 1.5px;
-            }
-            .struk-wrapper {
-                top: 75px;
-                padding: 4px 10px 6px 10px;
-            }
-            .struk-box {
-                padding: 8px 12px 6px 12px;
-                border-radius: 20px;
-                min-height: 180px;
-            }
-            .struk-title {
-                font-size: 11px;
-            }
-            .struk-no {
-                font-size: 9px;
-            }
-            .struk-header-row {
-                font-size: 7px;
-            }
-            .struk-item {
-                font-size: 8px;
-                padding: 1px 0;
-            }
-            .struk-item .item-price {
-                min-width: 40px;
-            }
-            .struk-total-row {
-                font-size: 9px;
-            }
-            .struk-ppn {
-                font-size: 8px;
-            }
-            .struk-grand-total {
-                font-size: 11px;
-            }
-            .btn-cetak,
-            .btn-selesai-struk,
-            .btn-hapus-struk {
-                font-size: 9px;
-                padding: 3px 8px;
-                min-width: 40px;
-                border-width: 2px;
-            }
-            .struk-select {
-                font-size: 10px;
-                padding: 4px 8px;
-            }
-            .struk-select-label {
-                font-size: 7px;
-            }
-            .struk-select-wrapper {
-                padding: 2px;
-                margin-bottom: 8px;
-            }
+            .info-wrapper { top: 32px; padding: 0 14px; }
+            .info-item .label { font-size: 8px; }
+            .info-item .value-box { font-size: 8px; padding: 1px 8px; max-width: 90px; border-width: 1.5px; }
+            .struk-wrapper { top: 62px; padding: 3px 12px 6px 12px; }
+            .struk-box { padding: 8px 10px 6px 10px; border-radius: 18px; min-height: 150px; }
+            .struk-title { font-size: 11px; }
+            .struk-no { font-size: 10px; }
+            .struk-item { font-size: 9px; padding: 1px 0; }
+            .struk-item .item-price { min-width: 45px; }
+            .struk-total-row { font-size: 10px; }
+            .struk-ppn { font-size: 9px; }
+            .struk-grand-total { font-size: 12px; }
+            .btn-cetak, .btn-selesai-struk, .btn-hapus-struk { font-size: 8px; padding: 3px 6px; min-width: 40px; border-width: 1.5px; }
+            .struk-select { font-size: 9px; padding: 3px 8px; }
+            .struk-select-label { font-size: 7px; }
+            .btn-back { font-size: 14px; }
+            .logo-header img { width: 16px; }
+            .brand-text { font-size: 8px; }
+            .header-top { padding: 3px 10px 2px 10px; }
+        }
+
+        /* ===== TABLET PORTRAIT ===== */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .struk-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .info-wrapper { top: 55px; padding: 0 25px; }
+            .info-item .label { font-size: 14px; }
+            .info-item .value-box { font-size: 14px; padding: 5px 16px; max-width: 200px; }
+            .struk-wrapper { top: 105px; padding: 8px 25px 15px 25px; }
+            .struk-box { padding: 16px 20px 12px 20px; border-radius: 35px; min-height: 320px; }
+            .struk-title { font-size: 20px; }
+            .struk-no { font-size: 16px; }
+            .struk-item { font-size: 14px; padding: 3px 0; }
+            .struk-item .item-price { min-width: 80px; }
+            .struk-total-row { font-size: 16px; }
+            .struk-ppn { font-size: 14px; }
+            .struk-grand-total { font-size: 20px; }
+            .btn-cetak, .btn-selesai-struk, .btn-hapus-struk { font-size: 14px; padding: 6px 16px; min-width: 80px; border-width: 2px; }
+            .struk-select { font-size: 14px; padding: 6px 14px; }
+            .btn-back { font-size: 20px; }
+            .logo-header img { width: 30px; }
+            .brand-text { font-size: 16px; }
+            .header-top { padding: 8px 18px 5px 18px; }
+        }
+
+        /* ===== TABLET LANDSCAPE ===== */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .struk-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .info-wrapper { top: 45px; padding: 0 22px; }
+            .info-item .label { font-size: 12px; }
+            .info-item .value-box { font-size: 12px; padding: 4px 14px; max-width: 160px; border-width: 2px; }
+            .struk-wrapper { top: 90px; padding: 6px 22px 12px 22px; }
+            .struk-box { padding: 12px 16px 10px 16px; border-radius: 30px; min-height: 250px; }
+            .struk-title { font-size: 16px; }
+            .struk-no { font-size: 14px; }
+            .struk-item { font-size: 12px; padding: 2px 0; }
+            .struk-item .item-price { min-width: 70px; }
+            .struk-total-row { font-size: 14px; }
+            .struk-ppn { font-size: 12px; }
+            .struk-grand-total { font-size: 16px; }
+            .btn-cetak, .btn-selesai-struk, .btn-hapus-struk { font-size: 11px; padding: 5px 12px; min-width: 60px; border-width: 2px; }
+            .struk-select { font-size: 12px; padding: 4px 12px; }
+            .btn-back { font-size: 18px; }
+            .logo-header img { width: 24px; }
+            .brand-text { font-size: 14px; }
+            .header-top { padding: 6px 16px 4px 16px; }
+        }
+
+        /* ===== DESKTOP ===== */
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
+            .struk-container { width: 100vw; height: 100vh; border-radius: 0; }
+            .info-wrapper { top: 50px; padding: 0 30px; max-width: 900px; left: 0; right: 0; margin: 0 auto; }
+            .info-item .label { font-size: 14px; }
+            .info-item .value-box { font-size: 14px; padding: 5px 16px; max-width: 200px; }
+            .struk-wrapper { padding: 8px 30px 15px 30px; max-width: 900px; left: 0; right: 0; margin: 0 auto; top: 100px; }
+            .struk-box { padding: 16px 22px 12px 22px; border-radius: 35px; min-height: 300px; }
+            .struk-title { font-size: 20px; }
+            .struk-no { font-size: 16px; }
+            .struk-item { font-size: 14px; padding: 3px 0; }
+            .struk-item .item-price { min-width: 80px; }
+            .struk-total-row { font-size: 16px; }
+            .struk-ppn { font-size: 14px; }
+            .struk-grand-total { font-size: 20px; }
+            .btn-cetak, .btn-selesai-struk, .btn-hapus-struk { font-size: 13px; padding: 6px 16px; min-width: 80px; border-width: 2px; }
+            .struk-select { font-size: 14px; padding: 6px 14px; }
+            .btn-back { font-size: 22px; }
+            .logo-header img { width: 32px; }
+            .brand-text { font-size: 18px; }
+            .header-top { padding: 8px 20px 5px 20px; }
+        }
+
+        /* Desktop Lebar */
+        @media screen and (min-width: 1600px) and (orientation: landscape) {
+            .info-wrapper { max-width: 1000px; }
+            .struk-wrapper { max-width: 1000px; }
+            .info-item .label { font-size: 16px; }
+            .info-item .value-box { font-size: 16px; padding: 6px 20px; max-width: 250px; }
+            .struk-box { padding: 20px 28px 15px 28px; border-radius: 40px; min-height: 350px; }
+            .struk-title { font-size: 24px; }
+            .struk-no { font-size: 18px; }
+            .struk-item { font-size: 16px; }
+            .struk-item .item-price { min-width: 100px; }
+            .struk-total-row { font-size: 18px; }
+            .struk-ppn { font-size: 16px; }
+            .struk-grand-total { font-size: 24px; }
+            .btn-cetak, .btn-selesai-struk, .btn-hapus-struk { font-size: 15px; padding: 8px 20px; min-width: 100px; }
+            .struk-select { font-size: 16px; padding: 8px 16px; }
         }
     </style>
 </head>
@@ -840,15 +737,15 @@
 
         <div class="header-top">
             <div class="header-left">
-                <button class="btn-back" onclick="window.location.href='dashboard.html'">←</button>
-                <div class="logo-header">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/55x55/98C81C/ffffff?text=🍽️'" />
+                <button class="btn-back" onclick="goBack()">←</button>
+                <div class="logo-header" onclick="goToDashboard()">
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/40x40/98C81C/ffffff?text=🍽️'" />
+                    <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
-                <div class="brand-text">Jangkung<span>Order</span></div>
             </div>
         </div>
 
-        <!-- ===== INFO NAMA & MEJA - SAMPING KIRI KANAN ===== -->
+        <!-- ===== INFO NAMA & MEJA ===== -->
         <div class="info-wrapper">
             <div class="info-item">
                 <span class="label">Nama:</span>
@@ -883,6 +780,14 @@
         let selectedOrder = null;
         let isRealtimeConnected = false;
 
+        function goBack() {
+            window.history.back();
+        }
+
+        function goToDashboard() {
+            window.location.href = 'dashboard.html';
+        }
+
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -899,7 +804,6 @@
             return 'Rp ' + Number(price).toLocaleString('id-ID');
         }
 
-        // ===== LOAD MENU NAMES =====
         async function loadMenuNames() {
             try {
                 const { data, error } = await supabaseClient
@@ -921,7 +825,6 @@
             }
         }
 
-        // ===== LOAD ORDERS =====
         async function loadOrders() {
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
@@ -1006,7 +909,6 @@
             }
         }
 
-        // ===== SETUP REALTIME =====
         function setupRealtime() {
             if (isRealtimeConnected) return;
 
@@ -1045,7 +947,6 @@
             window.realtimeChannel = channel;
         }
 
-        // ===== LOAD ORDERS SILENT =====
         async function loadOrdersSilent() {
             try {
                 await loadMenuNames();
@@ -1121,7 +1022,6 @@
             }
         }
 
-        // ===== RENDER ORDER =====
         function renderOrder(order) {
             if (!order) return;
 
@@ -1144,7 +1044,6 @@
 
             let html = `
                 <div class="struk-box">
-                    <!-- SELECT STRUK - DIPERJELAS -->
                     <div class="struk-select-wrapper">
                         <span class="struk-select-label">📋 Pilih Struk</span>
                         <select class="struk-select" id="strukSelect" onchange="onStrukChange(this.value)">
@@ -1206,7 +1105,6 @@
             document.getElementById('orderList').innerHTML = html;
         }
 
-        // ===== ON STRUK CHANGE =====
         function onStrukChange(index) {
             const idx = parseInt(index);
             if (!isNaN(idx) && ordersData[idx]) {
@@ -1216,12 +1114,10 @@
             }
         }
 
-        // ===== CETAK STRUK =====
         function cetakStruk(noStruk) {
             showToast(`🖨️ Mencetak struk ${noStruk}...`);
         }
 
-        // ===== SELESAIKAN STRUK =====
         async function selesaikanStruk(noStruk) {
             if (!confirm(`Yakin ingin menyelesaikan pesanan ${noStruk}?`)) return;
 
@@ -1246,7 +1142,6 @@
             }
         }
 
-        // ===== HAPUS STRUK =====
         async function hapusStruk(noStruk) {
             if (!confirm(`Yakin ingin menghapus pesanan ${noStruk}?`)) return;
 
@@ -1278,12 +1173,10 @@
             }
         }
 
-        // Cek login
         if (localStorage.getItem('karyawan_logged_in') !== 'true') {
             window.location.href = 'karyawan_login.html';
         }
 
-        // Load data
         document.addEventListener('DOMContentLoaded', function() {
             loadOrders();
         });
