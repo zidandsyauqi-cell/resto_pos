@@ -944,25 +944,53 @@
         // MAPPING NAMA MENU KE FILE GAMBAR
         // ============================================
         const menuImageMap = {
-            // Makanan
+            // Makanan - Iga
             'Iga Bakar': 'igabakar.png',
             'Iga Bakar Jumbo': 'igabakarjumbo.png',
+            
+            // Makanan - Sate
             'Sate Potong': 'satepotong.png',
+            'Sate Potong Sapi': 'satepotong.png',
+            'Sate Potong Kambing': 'satepotong.png',
+            'Sate Potong Ayam': 'satepotong.png',
+            
+            // Makanan - Gule/Babat
             'Babat/Gule Goreng': 'gulegoreng.png',
+            
+            // Makanan - Nasi Goreng
             'Nasi Goreng': 'nasigoreng.png',
+            'Nasi Goreng Sapi': 'nasigoreng.png',
+            'Nasi Goreng Kambing': 'nasigoreng.png',
+            'Nasi Goreng Ayam': 'nasigoreng.png',
+            
+            // Makanan - Tongseng
             'Tongseng': 'tongseng.png',
             'Tongseng Sapi': 'tongseng.png',
             'Tongseng Kambing': 'tongseng.png',
+            'Tongseng Ayam': 'tongseng.png',
+            
+            // Makanan - Krengsengan
             'Krengsengan': 'krengsengan.png',
+            'Krengsengan Sapi': 'krengsengan.png',
+            'Krengsengan Kambing': 'krengsengan.png',
+            'Krengsengan Ayam': 'krengsengan.png',
+            
+            // Makanan - Tengkleng
             'Tengkleng': 'tengkleng.png',
             'Tengkleng Sapi': 'tengkleng.png',
             'Tengkleng Kambing': 'tengkleng.png',
+            
+            // Makanan - Sop Bakar
             'Sop Bakar': 'sopbakar.png',
             'Sop Bakar Sapi': 'sopbakar.png',
             'Sop Bakar Kambing': 'sopbakar.png',
+            'Sop Bakar Ayam': 'sopbakar.png',
+            
             // Tambahan
             'Nasi Putih': 'nasi.png',
-            'Kerupuk/Emping': 'kerupuk.png'
+            'Kerupuk/Emping': 'kerupuk.png',
+            'Kerupuk': 'kerupuk.png',
+            'Emping': 'kerupuk.png'
         };
 
         function getMeja() {
@@ -997,9 +1025,22 @@
             // Cari nama file dari mapping
             let fileName = menuImageMap[menuName];
             
-            // Jika tidak ditemukan, buat dari nama menu (fallback)
+            // Jika tidak ditemukan, coba dari database (kolom gambar)
             if (!fileName) {
-                fileName = menuName.toLowerCase().replace(/\s+/g, '').replace(/\//g, '').replace(/&/g, '') + '.png';
+                // Cari menu di database
+                const menu = allMenus.find(m => m.nama_menu === menuName);
+                if (menu && menu.gambar) {
+                    return getImageUrl(menu.gambar);
+                }
+                
+                // Fallback: buat dari nama menu (lowercase, tanpa spasi, tanpa karakter khusus)
+                fileName = menuName.toLowerCase()
+                    .replace(/\s+/g, '')
+                    .replace(/\//g, '')
+                    .replace(/&/g, '')
+                    .replace(/\(/g, '')
+                    .replace(/\)/g, '')
+                    + '.png';
             }
             
             try {
@@ -1007,6 +1048,18 @@
                 return data.publicUrl;
             } catch (error) {
                 console.warn('Error getting image for:', menuName, error);
+                return null;
+            }
+        }
+
+        function getImageUrl(imagePath) {
+            if (!imagePath) return null;
+            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+            
+            try {
+                const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath);
+                return data.publicUrl;
+            } catch (error) {
                 return null;
             }
         }
@@ -1044,10 +1097,11 @@
                     html += `<div class="category-section"><div class="category-title">${kat.toUpperCase()}</div>`;
 
                     grouped[kat].forEach(menu => {
-                        // Ambil gambar dari mapping berdasarkan nama menu
+                        // Ambil gambar dari mapping
                         let imageUrl = 'https://placehold.co/150x150/2d2d2d/ffffff?text=' + encodeURIComponent(
                             menu.nama_menu || 'Menu');
                         
+                        // Coba dari mapping
                         const imgUrl = getMenuImageUrl(menu.nama_menu);
                         if (imgUrl) {
                             imageUrl = imgUrl;
