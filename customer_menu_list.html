@@ -93,7 +93,7 @@
             padding-top: env(safe-area-inset-top, 8px);
             flex-shrink: 0;
             min-height: 48px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
         }
         .list-header .btn-back-dashboard {
             background: none;
@@ -102,7 +102,7 @@
             font-size: clamp(18px, 2.8%, 32px);
             cursor: pointer;
             transition: all 0.3s;
-            padding: 2px 6px;
+            padding: 4px 8px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             flex-shrink: 0;
             min-width: 36px;
@@ -110,6 +110,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            -webkit-tap-highlight-color: transparent;
         }
         .list-header .btn-back-dashboard:active {
             transform: scale(0.92);
@@ -128,6 +129,7 @@
             width: clamp(24px, 3.5%, 45px);
             height: auto;
             flex-shrink: 0;
+            filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
         }
         .list-header .brand-left .brand-text {
             color: white;
@@ -209,28 +211,30 @@
         .menu-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.3s;
+            min-height: 60px;
         }
         .menu-item:last-child {
             border-bottom: none;
         }
         .menu-item:active {
             background: rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            padding-left: 4px;
-            padding-right: 4px;
+            border-radius: 10px;
+            padding-left: 6px;
+            padding-right: 6px;
         }
 
         .menu-item .menu-img {
-            width: clamp(35px, 6%, 70px);
-            height: clamp(35px, 6%, 70px);
-            border-radius: 8px;
+            width: clamp(50px, 8%, 80px);
+            height: clamp(50px, 8%, 80px);
+            border-radius: 12px;
             object-fit: cover;
             flex-shrink: 0;
             background: #2d2d2d;
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .menu-item .menu-info {
@@ -239,7 +243,7 @@
         }
         .menu-item .menu-info .menu-name {
             color: white;
-            font-size: clamp(11px, 2.2%, 26px);
+            font-size: clamp(14px, 2.5%, 28px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             white-space: nowrap;
@@ -249,25 +253,35 @@
         }
         .menu-item .menu-info .menu-price {
             color: #98C81C;
-            font-size: clamp(10px, 2%, 22px);
+            font-size: clamp(13px, 2.2%, 24px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
+        .menu-item .menu-info .menu-desc {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: clamp(10px, 1.4%, 16px);
+            font-family: 'Schoolbell', cursive;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 1px;
+        }
 
         .menu-item .btn-detail {
-            padding: clamp(3px, 1%, 8px) clamp(8px, 2%, 24px);
+            padding: clamp(4px, 1.2%, 10px) clamp(12px, 2.5%, 28px);
             background: #98C81C;
             border: 2px solid white;
             border-radius: 50px;
             color: white;
-            font-size: clamp(9px, 1.8%, 20px);
+            font-size: clamp(11px, 1.8%, 20px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
             flex-shrink: 0;
             white-space: nowrap;
             -webkit-tap-highlight-color: transparent;
+            font-weight: 600;
         }
         .menu-item .btn-detail:active {
             background: #7aa814;
@@ -277,8 +291,8 @@
         .empty-state {
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
-            padding: 20px 10px;
-            font-size: clamp(12px, 2.5%, 24px);
+            padding: 30px 10px;
+            font-size: clamp(14px, 2.5%, 26px);
             font-family: 'Schoolbell', cursive;
         }
 
@@ -292,36 +306,37 @@
             color: white;
             text-align: center;
             background: rgba(0, 0, 0, 0.85);
-            padding: 20px 25px;
-            border-radius: 16px;
+            padding: 24px 30px;
+            border-radius: 20px;
             border: 2px solid #e74c3c;
             max-width: 85%;
         }
         .error-display .error-icon {
-            font-size: 35px;
+            font-size: 40px;
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .error-display .error-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         .error-display .error-desc {
-            font-size: 13px;
+            font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
         }
         .error-display .btn-retry {
-            margin-top: 10px;
-            padding: 6px 20px;
+            margin-top: 12px;
+            padding: 8px 24px;
             background: #98C81C;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: 13px;
+            font-size: 14px;
             font-family: 'Poppins', sans-serif;
             cursor: pointer;
             transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
         }
         .error-display .btn-retry:active {
             background: #7aa814;
@@ -349,8 +364,57 @@
                 padding: 2px 10px 4px 10px;
             }
             .menu-item {
-                padding: 5px 0;
-                gap: 6px;
+                padding: 6px 0;
+                gap: 10px;
+                min-height: 50px;
+            }
+            .menu-item .menu-img {
+                width: 45px;
+                height: 45px;
+                border-radius: 8px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 13px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 11px;
+            }
+            .menu-item .menu-info .menu-desc {
+                font-size: 9px;
+            }
+            .menu-item .btn-detail {
+                font-size: 10px;
+                padding: 3px 10px;
+                border-width: 1.5px;
+            }
+            .category-title {
+                font-size: 15px;
+            }
+            .search-bar {
+                padding: 4px 10px;
+                font-size: 10px;
+                border-width: 1.5px;
+            }
+            .list-header .brand-left img {
+                width: 22px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 12px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 15px;
+                padding: 2px 4px;
+                min-width: 30px;
+                min-height: 30px;
+            }
+        }
+
+        /* HP kecil portrait */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .menu-item {
+                padding: 4px 0;
+                gap: 8px;
+                min-height: 40px;
             }
             .menu-item .menu-img {
                 width: 35px;
@@ -363,6 +427,9 @@
             .menu-item .menu-info .menu-price {
                 font-size: 9px;
             }
+            .menu-item .menu-info .menu-desc {
+                font-size: 7px;
+            }
             .menu-item .btn-detail {
                 font-size: 8px;
                 padding: 2px 8px;
@@ -372,57 +439,19 @@
                 font-size: 13px;
             }
             .search-bar {
-                padding: 4px 8px;
                 font-size: 9px;
-                border-width: 1.5px;
-            }
-            .list-header .brand-left img {
-                width: 20px;
+                padding: 3px 8px;
             }
             .list-header .brand-left .brand-text {
-                font-size: 11px;
+                font-size: 10px;
+            }
+            .list-header .brand-left img {
+                width: 18px;
             }
             .list-header .btn-back-dashboard {
                 font-size: 13px;
-                padding: 2px 4px;
-                min-width: 30px;
-                min-height: 30px;
-            }
-        }
-
-        /* HP kecil portrait */
-        @media screen and (max-width: 480px) and (orientation: portrait) {
-            .menu-item .menu-img {
-                width: 28px;
-                height: 28px;
-            }
-            .menu-item .menu-info .menu-name {
-                font-size: 9px;
-            }
-            .menu-item .menu-info .menu-price {
-                font-size: 8px;
-            }
-            .menu-item .btn-detail {
-                font-size: 7px;
-                padding: 2px 6px;
-            }
-            .category-title {
-                font-size: 11px;
-            }
-            .search-bar {
-                font-size: 8px;
-                padding: 3px 6px;
-            }
-            .list-header .brand-left .brand-text {
-                font-size: 9px;
-            }
-            .list-header .brand-left img {
-                width: 16px;
-            }
-            .list-header .btn-back-dashboard {
-                font-size: 11px;
-                min-width: 26px;
-                min-height: 26px;
+                min-width: 28px;
+                min-height: 28px;
             }
         }
 
@@ -446,46 +475,50 @@
                 padding-bottom: env(safe-area-inset-bottom, 8px);
             }
             .menu-item {
-                padding: 4px 0;
-                gap: 8px;
+                padding: 5px 0;
+                gap: 10px;
+                min-height: 44px;
             }
             .menu-item .menu-img {
-                width: 38px;
-                height: 38px;
-                border-radius: 6px;
+                width: 48px;
+                height: 48px;
+                border-radius: 8px;
             }
             .menu-item .menu-info .menu-name {
-                font-size: 12px;
+                font-size: 14px;
             }
             .menu-item .menu-info .menu-price {
+                font-size: 12px;
+            }
+            .menu-item .menu-info .menu-desc {
                 font-size: 10px;
             }
             .menu-item .btn-detail {
-                font-size: 9px;
-                padding: 3px 10px;
+                font-size: 10px;
+                padding: 4px 12px;
                 border-width: 1.5px;
             }
             .category-title {
-                font-size: 14px;
+                font-size: 16px;
                 padding-bottom: 2px;
                 margin-bottom: 3px;
             }
             .search-bar {
-                padding: 4px 10px;
-                font-size: 10px;
+                padding: 4px 12px;
+                font-size: 11px;
                 border-width: 1.5px;
             }
             .list-header .brand-left img {
-                width: 20px;
+                width: 22px;
             }
             .list-header .brand-left .brand-text {
-                font-size: 11px;
+                font-size: 12px;
             }
             .list-header .btn-back-dashboard {
-                font-size: 14px;
+                font-size: 16px;
                 padding: 2px 4px;
-                min-width: 30px;
-                min-height: 30px;
+                min-width: 32px;
+                min-height: 32px;
             }
         }
 
@@ -506,17 +539,21 @@
             .menu-item {
                 padding: 3px 0;
                 gap: 10px;
+                min-height: 36px;
             }
             .menu-item .menu-img {
                 width: 42px;
                 height: 42px;
-                border-radius: 6px;
+                border-radius: 8px;
             }
             .menu-item .menu-info .menu-name {
                 font-size: 13px;
             }
             .menu-item .menu-info .menu-price {
                 font-size: 11px;
+            }
+            .menu-item .menu-info .menu-desc {
+                font-size: 9px;
             }
             .menu-item .btn-detail {
                 font-size: 10px;
@@ -572,17 +609,21 @@
             .menu-item {
                 padding: 2px 0;
                 gap: 8px;
+                min-height: 30px;
             }
             .menu-item .menu-img {
                 width: 32px;
                 height: 32px;
-                border-radius: 5px;
+                border-radius: 6px;
             }
             .menu-item .menu-info .menu-name {
                 font-size: 11px;
             }
             .menu-item .menu-info .menu-price {
                 font-size: 9px;
+            }
+            .menu-item .menu-info .menu-desc {
+                font-size: 8px;
             }
             .menu-item .btn-detail {
                 font-size: 8px;
@@ -630,6 +671,7 @@
             .menu-item {
                 padding: 10px 0;
                 gap: 14px;
+                min-height: 70px;
             }
             .menu-item .menu-img {
                 width: 60px;
@@ -641,6 +683,9 @@
             }
             .menu-item .menu-info .menu-price {
                 font-size: 16px;
+            }
+            .menu-item .menu-info .menu-desc {
+                font-size: 13px;
             }
             .menu-item .btn-detail {
                 font-size: 14px;
@@ -682,22 +727,26 @@
             }
             .menu-item {
                 padding: 6px 0;
-                gap: 10px;
+                gap: 12px;
+                min-height: 50px;
             }
             .menu-item .menu-img {
-                width: 45px;
-                height: 45px;
+                width: 50px;
+                height: 50px;
                 border-radius: 8px;
             }
             .menu-item .menu-info .menu-name {
-                font-size: 15px;
+                font-size: 16px;
             }
             .menu-item .menu-info .menu-price {
                 font-size: 13px;
             }
+            .menu-item .menu-info .menu-desc {
+                font-size: 11px;
+            }
             .menu-item .btn-detail {
                 font-size: 11px;
-                padding: 4px 12px;
+                padding: 4px 14px;
             }
             .category-title {
                 font-size: 18px;
@@ -739,26 +788,30 @@
                 padding-bottom: env(safe-area-inset-bottom, 12px);
             }
             .menu-item {
-                padding: 8px 0;
-                gap: 14px;
+                padding: 10px 0;
+                gap: 16px;
+                min-height: 70px;
             }
             .menu-item .menu-img {
-                width: 60px;
-                height: 60px;
-                border-radius: 10px;
+                width: 70px;
+                height: 70px;
+                border-radius: 12px;
             }
             .menu-item .menu-info .menu-name {
-                font-size: 18px;
+                font-size: 20px;
             }
             .menu-item .menu-info .menu-price {
-                font-size: 15px;
+                font-size: 16px;
+            }
+            .menu-item .menu-info .menu-desc {
+                font-size: 13px;
             }
             .menu-item .btn-detail {
-                font-size: 13px;
-                padding: 5px 16px;
+                font-size: 14px;
+                padding: 6px 18px;
             }
             .category-title {
-                font-size: 22px;
+                font-size: 24px;
             }
             .search-bar {
                 font-size: 14px;
@@ -792,18 +845,21 @@
                 padding-bottom: env(safe-area-inset-bottom, 16px);
             }
             .menu-item .menu-img {
-                width: 70px;
-                height: 70px;
+                width: 80px;
+                height: 80px;
             }
             .menu-item .menu-info .menu-name {
-                font-size: 22px;
+                font-size: 24px;
             }
             .menu-item .menu-info .menu-price {
-                font-size: 18px;
+                font-size: 20px;
+            }
+            .menu-item .menu-info .menu-desc {
+                font-size: 15px;
             }
             .menu-item .btn-detail {
                 font-size: 16px;
-                padding: 6px 20px;
+                padding: 8px 24px;
             }
             .category-title {
                 font-size: 28px;
@@ -884,6 +940,31 @@
 
         let allMenus = [];
 
+        // ============================================
+        // MAPPING NAMA MENU KE FILE GAMBAR
+        // ============================================
+        const menuImageMap = {
+            // Makanan
+            'Iga Bakar': 'igabakar.png',
+            'Iga Bakar Jumbo': 'igabakarjumbo.png',
+            'Sate Potong': 'satepotong.png',
+            'Babat/Gule Goreng': 'gulegoreng.png',
+            'Nasi Goreng': 'nasigoreng.png',
+            'Tongseng': 'tongseng.png',
+            'Tongseng Sapi': 'tongseng.png',
+            'Tongseng Kambing': 'tongseng.png',
+            'Krengsengan': 'krengsengan.png',
+            'Tengkleng': 'tengkleng.png',
+            'Tengkleng Sapi': 'tengkleng.png',
+            'Tengkleng Kambing': 'tengkleng.png',
+            'Sop Bakar': 'sopbakar.png',
+            'Sop Bakar Sapi': 'sopbakar.png',
+            'Sop Bakar Kambing': 'sopbakar.png',
+            // Tambahan
+            'Nasi Putih': 'nasi.png',
+            'Kerupuk/Emping': 'kerupuk.png'
+        };
+
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
             const meja = params.get('meja');
@@ -912,13 +993,22 @@
             window.history.back();
         }
 
-        function getImageUrl(imagePath) {
-            if (!imagePath) return null;
-            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+        function getMenuImageUrl(menuName) {
+            // Cari nama file dari mapping
+            let fileName = menuImageMap[menuName];
+            
+            // Jika tidak ditemukan, buat dari nama menu (fallback)
+            if (!fileName) {
+                fileName = menuName.toLowerCase().replace(/\s+/g, '').replace(/\//g, '').replace(/&/g, '') + '.png';
+            }
+            
             try {
-                const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath);
+                const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(fileName);
                 return data.publicUrl;
-            } catch (error) { return null; }
+            } catch (error) {
+                console.warn('Error getting image for:', menuName, error);
+                return null;
+            }
         }
 
         function formatRupiah(price) {
@@ -954,21 +1044,25 @@
                     html += `<div class="category-section"><div class="category-title">${kat.toUpperCase()}</div>`;
 
                     grouped[kat].forEach(menu => {
+                        // Ambil gambar dari mapping berdasarkan nama menu
                         let imageUrl = 'https://placehold.co/150x150/2d2d2d/ffffff?text=' + encodeURIComponent(
                             menu.nama_menu || 'Menu');
-                        if (menu.gambar) {
-                            const url = getImageUrl(menu.gambar);
-                            if (url) imageUrl = url;
+                        
+                        const imgUrl = getMenuImageUrl(menu.nama_menu);
+                        if (imgUrl) {
+                            imageUrl = imgUrl;
                         }
 
                         const price = menu.harga || 0;
+                        const desc = menu.detail || '';
 
                         html += `
                             <div class="menu-item" data-id="${menu.id_menu}">
-                                <img class="menu-img" src="${imageUrl}" alt="${menu.nama_menu || 'Menu'}" loading="lazy" onerror="this.src='https://placehold.co/150x150/2d2d2d/ffffff?text=Menu'" />
+                                <img class="menu-img" src="${imageUrl}" alt="${menu.nama_menu || 'Menu'}" loading="lazy" onerror="this.src='https://placehold.co/150x150/2d2d2d/ffffff?text=${encodeURIComponent(menu.nama_menu || 'Menu')}'" />
                                 <div class="menu-info">
                                     <div class="menu-name">${menu.nama_menu || 'Menu'}</div>
                                     <div class="menu-price">${formatRupiah(price)}</div>
+                                    ${desc ? `<div class="menu-desc">${desc}</div>` : ''}
                                 </div>
                                 <button class="btn-detail" onclick="goToDetail(${menu.id_menu})">📋 detail</button>
                             </div>
