@@ -222,28 +222,8 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 24px;
             border: 2px solid rgba(255, 255, 255, 0.15);
-            padding: 16px 18px 14px 18px;
+            padding: 14px 16px 12px 16px;
             margin-bottom: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-        .status-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            border-radius: 4px 0 0 4px;
-        }
-        .status-card.status-diproses::before {
-            background: #f39c12;
-        }
-        .status-card.status-siap::before {
-            background: #98C81C;
-        }
-        .status-card.status-selesai::before {
-            background: #2ecc71;
         }
 
         .status-card .card-header {
@@ -251,6 +231,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
         .status-card .card-header .order-id {
             color: rgba(255, 255, 255, 0.5);
@@ -266,66 +248,72 @@
             font-family: 'Schoolbell', cursive;
         }
 
-        .status-card .card-status {
+        /* ===== ITEM STATUS ===== */
+        .status-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-            padding: 4px 0;
+            gap: 10px;
+            padding: 6px 8px;
+            margin: 4px 0;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #555;
+            transition: all 0.3s;
         }
-        .status-card .card-status .status-icon {
-            font-size: clamp(20px, 3%, 32px);
+        .status-item.item-diproses {
+            border-left-color: #f39c12;
         }
-        .status-card .card-status .status-text {
-            font-size: clamp(16px, 2.5%, 28px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 600;
+        .status-item.item-siap {
+            border-left-color: #98C81C;
         }
-        .status-card .card-status .status-text.diproses {
-            color: #f39c12;
-        }
-        .status-card .card-status .status-text.siap {
-            color: #98C81C;
-        }
-        .status-card .card-status .status-text.selesai {
-            color: #2ecc71;
+        .status-item.item-selesai {
+            border-left-color: #2ecc71;
         }
 
-        .status-card .card-items {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            padding: 6px 10px;
-            margin-top: 4px;
-        }
-        .status-card .card-items .item-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 3px 0;
-            color: white;
-            font-size: clamp(12px, 1.6%, 18px);
-            font-family: 'Schoolbell', cursive;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        .status-card .card-items .item-row:last-child {
-            border-bottom: none;
-        }
-        .status-card .card-items .item-row .item-name {
+        .status-item .item-info {
             flex: 1;
+            min-width: 0;
+        }
+        .status-item .item-info .item-name {
+            color: white;
+            font-size: clamp(13px, 1.8%, 20px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
-            padding-right: 8px;
         }
-        .status-card .card-items .item-row .item-qty {
-            color: rgba(255, 255, 255, 0.4);
-            margin: 0 6px;
-            min-width: 20px;
-            text-align: center;
+        .status-item .item-info .item-qty-price {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: clamp(10px, 1.2%, 14px);
+            font-family: 'Schoolbell', cursive;
         }
-        .status-card .card-items .item-row .item-price {
+        .status-item .item-info .item-qty-price span {
             color: #98C81C;
-            min-width: 55px;
-            text-align: right;
+        }
+
+        .status-item .item-status {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+            font-family: 'Schoolbell', cursive;
+            font-size: clamp(10px, 1.3%, 15px);
+        }
+        .status-item .item-status .status-icon {
+            font-size: clamp(14px, 1.8%, 20px);
+        }
+        .status-item .item-status .status-label {
+            font-weight: 600;
+        }
+        .status-item .item-status .status-label.diproses {
+            color: #f39c12;
+        }
+        .status-item .item-status .status-label.siap {
+            color: #98C81C;
+        }
+        .status-item .item-status .status-label.selesai {
+            color: #2ecc71;
         }
 
         .status-card .card-total {
@@ -450,18 +438,24 @@
                 padding-bottom: env(safe-area-inset-bottom, 8px);
             }
             .status-card {
-                padding: 12px 12px 10px 12px;
+                padding: 10px 10px 8px 10px;
                 border-radius: 18px;
             }
-            .status-card .card-status .status-text {
-                font-size: 14px;
+            .status-item {
+                padding: 4px 6px;
+                gap: 6px;
             }
-            .status-card .card-items .item-row {
-                font-size: 10px;
-                padding: 2px 0;
+            .status-item .item-info .item-name {
+                font-size: 11px;
             }
-            .status-card .card-items .item-row .item-price {
-                min-width: 45px;
+            .status-item .item-info .item-qty-price {
+                font-size: 9px;
+            }
+            .status-item .item-status {
+                font-size: 9px;
+            }
+            .status-item .item-status .status-icon {
+                font-size: 12px;
             }
             .status-card .card-total {
                 font-size: 12px;
@@ -511,7 +505,7 @@
                 padding-bottom: env(safe-area-inset-bottom, 6px);
             }
             .status-card {
-                padding: 8px 8px 6px 8px;
+                padding: 6px 6px 5px 6px;
                 border-radius: 14px;
                 border-width: 1.5px;
             }
@@ -521,25 +515,23 @@
             .status-card .card-header .order-time {
                 font-size: 7px;
             }
-            .status-card .card-status .status-icon {
-                font-size: 16px;
+            .status-item {
+                padding: 3px 4px;
+                gap: 4px;
+                border-left-width: 2px;
             }
-            .status-card .card-status .status-text {
-                font-size: 12px;
+            .status-item .item-info .item-name {
+                font-size: 9px;
             }
-            .status-card .card-items {
-                padding: 4px 6px;
+            .status-item .item-info .item-qty-price {
+                font-size: 7px;
             }
-            .status-card .card-items .item-row {
-                font-size: 8px;
-                padding: 1px 0;
+            .status-item .item-status {
+                font-size: 7px;
+                gap: 2px;
             }
-            .status-card .card-items .item-row .item-qty {
-                min-width: 12px;
-                margin: 0 3px;
-            }
-            .status-card .card-items .item-row .item-price {
-                min-width: 35px;
+            .status-item .item-status .status-icon {
+                font-size: 10px;
             }
             .status-card .card-total {
                 font-size: 10px;
@@ -562,14 +554,6 @@
             .btn-refresh {
                 font-size: 10px;
                 padding: 6px;
-            }
-            .loading-spinner {
-                width: 30px;
-                height: 30px;
-                border-width: 2px;
-            }
-            .loading-text {
-                font-size: 12px;
             }
         }
 
@@ -606,17 +590,14 @@
                 padding-bottom: env(safe-area-inset-bottom, 8px);
             }
             .status-card {
-                padding: 12px 14px 10px 14px;
+                padding: 10px 14px 8px 14px;
                 border-radius: 20px;
                 max-width: 650px;
                 margin-left: auto;
                 margin-right: auto;
             }
-            .status-card .card-status .status-text {
-                font-size: 16px;
-            }
-            .status-card .card-items .item-row {
-                font-size: 12px;
+            .status-item .item-info .item-name {
+                font-size: 13px;
             }
             .status-card .card-total {
                 font-size: 14px;
@@ -662,7 +643,7 @@
                 padding-bottom: env(safe-area-inset-bottom, 4px);
             }
             .status-card {
-                padding: 6px 10px 5px 10px;
+                padding: 5px 8px 4px 8px;
                 border-radius: 14px;
                 border-width: 1.5px;
                 max-width: 550px;
@@ -673,21 +654,22 @@
             .status-card .card-header .order-time {
                 font-size: 8px;
             }
-            .status-card .card-status .status-icon {
-                font-size: 14px;
+            .status-item {
+                padding: 2px 4px;
+                gap: 4px;
+                border-left-width: 2px;
             }
-            .status-card .card-status .status-text {
-                font-size: 12px;
+            .status-item .item-info .item-name {
+                font-size: 10px;
             }
-            .status-card .card-items {
-                padding: 3px 6px;
+            .status-item .item-info .item-qty-price {
+                font-size: 8px;
             }
-            .status-card .card-items .item-row {
-                font-size: 9px;
-                padding: 1px 0;
+            .status-item .item-status {
+                font-size: 8px;
             }
-            .status-card .card-items .item-row .item-price {
-                min-width: 40px;
+            .status-item .item-status .status-icon {
+                font-size: 10px;
             }
             .status-card .card-total {
                 font-size: 11px;
@@ -738,18 +720,14 @@
                 padding-bottom: env(safe-area-inset-bottom, 16px);
             }
             .status-card {
-                padding: 18px 20px 14px 20px;
+                padding: 16px 20px 12px 20px;
                 border-radius: 28px;
                 max-width: 700px;
                 margin-left: auto;
                 margin-right: auto;
             }
-            .status-card .card-status .status-text {
-                font-size: 22px;
-            }
-            .status-card .card-items .item-row {
-                font-size: 16px;
-                padding: 4px 0;
+            .status-item .item-info .item-name {
+                font-size: 18px;
             }
             .status-card .card-total {
                 font-size: 18px;
@@ -799,15 +777,11 @@
                 width: 100%;
             }
             .status-card {
-                padding: 20px 24px 16px 24px;
+                padding: 18px 24px 14px 24px;
                 border-radius: 32px;
             }
-            .status-card .card-status .status-text {
-                font-size: 24px;
-            }
-            .status-card .card-items .item-row {
-                font-size: 16px;
-                padding: 4px 0;
+            .status-item .item-info .item-name {
+                font-size: 18px;
             }
             .status-card .card-total {
                 font-size: 20px;
@@ -909,7 +883,7 @@
         function getStatusInfo(status) {
             const map = {
                 'Diproses': { label: 'Diproses', icon: '⏳', class: 'diproses' },
-                'Siap': { label: 'Siap Diambil', icon: '✅', class: 'siap' },
+                'Siap': { label: 'Siap', icon: '✅', class: 'siap' },
                 'Selesai': { label: 'Selesai', icon: '✔️', class: 'selesai' }
             };
             return map[status] || { label: status, icon: '📋', class: 'diproses' };
@@ -1138,9 +1112,6 @@
                 const ppn = Math.round(subtotal * 0.1);
                 const total = subtotal + ppn;
 
-                const status = order.status_order || 'Diproses';
-                const statusInfo = getStatusInfo(status);
-
                 const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
                 const timeStr = orderDate.toLocaleTimeString('id-ID', {
                     hour: '2-digit',
@@ -1148,32 +1119,38 @@
                 });
 
                 html += `
-                    <div class="status-card status-${statusInfo.class}">
+                    <div class="status-card">
                         <div class="card-header">
                             <span class="order-id"># <span>${order.no_struk}</span></span>
                             <span class="order-time">${timeStr}</span>
                         </div>
 
-                        <div class="card-status">
-                            <span class="status-icon">${statusInfo.icon}</span>
-                            <span class="status-text ${statusInfo.class}">${statusInfo.label}</span>
-                        </div>
-
-                        <div class="card-items">
-                            ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => `
-                                <div class="item-row">
-                                    <span class="item-name">${item.menu_name}</span>
-                                    <span class="item-qty">×${item.jumlah || 0}</span>
-                                    <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
+                        ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => {
+                            const status = item.status || 'Diproses';
+                            const statusInfo = getStatusInfo(status);
+                            return `
+                                <div class="status-item item-${statusInfo.class}">
+                                    <div class="item-info">
+                                        <div class="item-name">${item.menu_name}</div>
+                                        <div class="item-qty-price">${item.jumlah || 0} porsi · <span>${formatRupiah(item.subtotal || 0)}</span></div>
+                                    </div>
+                                    <div class="item-status">
+                                        <span class="status-icon">${statusInfo.icon}</span>
+                                        <span class="status-label ${statusInfo.class}">${statusInfo.label}</span>
+                                    </div>
                                 </div>
-                            `).join('') : `
-                                <div class="item-row">
-                                    <span class="item-name" style="color:rgba(255,255,255,0.3);">Tidak ada detail</span>
-                                    <span class="item-qty">-</span>
-                                    <span class="item-price">-</span>
+                            `;
+                        }).join('') : `
+                            <div class="status-item item-diproses">
+                                <div class="item-info">
+                                    <div class="item-name" style="color:rgba(255,255,255,0.3);">Tidak ada detail</div>
                                 </div>
-                            `}
-                        </div>
+                                <div class="item-status">
+                                    <span class="status-icon">📋</span>
+                                    <span class="status-label diproses">Diproses</span>
+                                </div>
+                            </div>
+                        `}
 
                         <div class="card-total">
                             <span>Total</span>
