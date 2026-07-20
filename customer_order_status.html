@@ -194,7 +194,7 @@
             max-width: 150px;
         }
 
-        /* ===== STRUK WRAPPER ===== */
+        /* ===== CONTENT ===== */
         .struk-wrapper {
             flex: 1;
             position: relative;
@@ -217,152 +217,170 @@
             border-radius: 10px;
         }
 
-        .struk-box {
+        /* ===== STATUS CARD ===== */
+        .status-card {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            padding: 14px 16px 12px 16px;
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            padding: 16px 18px 14px 18px;
             margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
         }
-        .struk-title {
-            color: white;
-            font-size: clamp(16px, 2.5%, 28px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            margin-bottom: 4px;
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 4px 0 0 4px;
         }
-        .struk-no {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: clamp(12px, 1.8%, 20px);
-            font-family: 'Schoolbell', cursive;
-            margin-bottom: 8px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-            padding-bottom: 4px;
+        .status-card.status-diproses::before {
+            background: #f39c12;
         }
-        .struk-no span {
-            color: white;
+        .status-card.status-siap::before {
+            background: #98C81C;
+        }
+        .status-card.status-selesai::before {
+            background: #2ecc71;
         }
 
-        .struk-header-row {
+        .status-card .card-header {
             display: flex;
             justify-content: space-between;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: clamp(10px, 1.3%, 14px);
-            font-family: 'Schoolbell', cursive;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 3px;
-            margin-bottom: 3px;
+            align-items: center;
+            margin-bottom: 6px;
         }
-        .struk-item {
+        .status-card .card-header .order-id {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: clamp(10px, 1.2%, 14px);
+            font-family: 'Schoolbell', cursive;
+        }
+        .status-card .card-header .order-id span {
+            color: white;
+        }
+        .status-card .card-header .order-time {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: clamp(9px, 1.1%, 13px);
+            font-family: 'Schoolbell', cursive;
+        }
+
+        .status-card .card-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            padding: 4px 0;
+        }
+        .status-card .card-status .status-icon {
+            font-size: clamp(20px, 3%, 32px);
+        }
+        .status-card .card-status .status-text {
+            font-size: clamp(16px, 2.5%, 28px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 600;
+        }
+        .status-card .card-status .status-text.diproses {
+            color: #f39c12;
+        }
+        .status-card .card-status .status-text.siap {
+            color: #98C81C;
+        }
+        .status-card .card-status .status-text.selesai {
+            color: #2ecc71;
+        }
+
+        .status-card .card-items {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 6px 10px;
+            margin-top: 4px;
+        }
+        .status-card .card-items .item-row {
             display: flex;
             justify-content: space-between;
             padding: 3px 0;
             color: white;
             font-size: clamp(12px, 1.6%, 18px);
             font-family: 'Schoolbell', cursive;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .struk-item .item-name {
+        .status-card .card-items .item-row:last-child {
+            border-bottom: none;
+        }
+        .status-card .card-items .item-row .item-name {
             flex: 1;
-            text-align: left;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             padding-right: 8px;
         }
-        .struk-item .item-qty {
-            margin: 0 6px;
+        .status-card .card-items .item-row .item-qty {
             color: rgba(255, 255, 255, 0.4);
+            margin: 0 6px;
             min-width: 20px;
             text-align: center;
         }
-        .struk-item .item-price {
+        .status-card .card-items .item-row .item-price {
             color: #98C81C;
-            min-width: 60px;
+            min-width: 55px;
             text-align: right;
         }
 
-        .struk-divider {
-            border: none;
-            border-top: 1px dashed rgba(255, 255, 255, 0.15);
-            margin: 4px 0;
-        }
-
-        .struk-total-row {
+        .status-card .card-total {
             display: flex;
             justify-content: space-between;
-            color: white;
-            font-size: clamp(13px, 1.8%, 22px);
-            font-family: 'Schoolbell', cursive;
-            padding: 3px 0;
-        }
-        .struk-total-row .total-amount {
-            color: #98C81C;
-        }
-
-        .struk-ppn {
-            display: flex;
-            justify-content: space-between;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: clamp(11px, 1.4%, 16px);
-            font-family: 'Schoolbell', cursive;
-            padding: 2px 0;
-        }
-        .struk-ppn .ppn-amount {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .struk-grand-total {
-            display: flex;
-            justify-content: space-between;
-            color: white;
-            font-size: clamp(16px, 2.5%, 30px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 700;
-            padding-top: 4px;
-            border-top: 2px solid rgba(255, 255, 255, 0.15);
+            padding-top: 6px;
             margin-top: 4px;
-        }
-        .struk-grand-total .grand-total-amount {
-            color: #98C81C;
-        }
-
-        .struk-status {
-            text-align: center;
-            margin-top: 6px;
-            padding: 4px 0;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: clamp(14px, 2%, 22px);
             font-family: 'Schoolbell', cursive;
-            font-size: clamp(11px, 1.5%, 16px);
         }
-        .struk-status .status-diproses {
-            color: #f39c12;
-        }
-        .struk-status .status-siap {
+        .status-card .card-total .total-amount {
             color: #98C81C;
-        }
-        .struk-status .status-selesai {
-            color: #2ecc71;
+            font-weight: 600;
         }
 
+        .status-card .card-actions {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
         .btn-ok {
-            display: block;
-            width: clamp(70px, 20%, 200px);
-            padding: 6px 14px;
-            margin: 8px auto 0 auto;
+            padding: 6px 20px;
             background: #98C81C;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(16px, 2.5%, 28px);
+            font-size: clamp(14px, 2%, 20px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.3s;
-            text-align: center;
             border: 2px solid white;
             -webkit-tap-highlight-color: transparent;
         }
         .btn-ok:active {
             background: #7aa814;
+            transform: scale(0.95);
+        }
+
+        .btn-refresh-small {
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-size: clamp(12px, 1.6%, 18px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-refresh-small:active {
+            background: rgba(255, 255, 255, 0.2);
             transform: scale(0.95);
         }
 
@@ -397,8 +415,6 @@
         }
 
         /* ===== RESPONSIVE ===== */
-
-        /* HP Portrait */
         @media screen and (max-width: 767px) and (orientation: portrait) {
             .header-top {
                 padding: 4px 10px;
@@ -433,43 +449,33 @@
                 padding: 4px 8px 8px 8px;
                 padding-bottom: env(safe-area-inset-bottom, 8px);
             }
-            .struk-box {
-                padding: 10px 12px 8px 12px;
-                border-radius: 20px;
+            .status-card {
+                padding: 12px 12px 10px 12px;
+                border-radius: 18px;
             }
-            .struk-title {
+            .status-card .card-status .status-text {
                 font-size: 14px;
             }
-            .struk-no {
-                font-size: 10px;
-            }
-            .struk-item {
+            .status-card .card-items .item-row {
                 font-size: 10px;
                 padding: 2px 0;
             }
-            .struk-item .item-price {
+            .status-card .card-items .item-row .item-price {
                 min-width: 45px;
             }
-            .struk-total-row {
+            .status-card .card-total {
                 font-size: 12px;
             }
-            .struk-ppn {
-                font-size: 10px;
-            }
-            .struk-grand-total {
-                font-size: 14px;
-            }
             .btn-ok {
-                font-size: 14px;
-                padding: 4px 12px;
-                width: 80px;
+                font-size: 12px;
+                padding: 4px 14px;
             }
-            .struk-status {
-                font-size: 10px;
+            .btn-refresh-small {
+                font-size: 11px;
+                padding: 4px 12px;
             }
         }
 
-        /* HP Portrait Kecil */
         @media screen and (max-width: 480px) and (orientation: portrait) {
             .header-top {
                 padding: 3px 8px;
@@ -504,51 +510,50 @@
                 padding: 3px 6px 6px 6px;
                 padding-bottom: env(safe-area-inset-bottom, 6px);
             }
-            .struk-box {
+            .status-card {
                 padding: 8px 8px 6px 8px;
-                border-radius: 16px;
+                border-radius: 14px;
                 border-width: 1.5px;
             }
-            .struk-title {
+            .status-card .card-header .order-id {
+                font-size: 8px;
+            }
+            .status-card .card-header .order-time {
+                font-size: 7px;
+            }
+            .status-card .card-status .status-icon {
+                font-size: 16px;
+            }
+            .status-card .card-status .status-text {
                 font-size: 12px;
             }
-            .struk-no {
-                font-size: 9px;
+            .status-card .card-items {
+                padding: 4px 6px;
             }
-            .struk-header-row {
+            .status-card .card-items .item-row {
                 font-size: 8px;
+                padding: 1px 0;
             }
-            .struk-item {
-                font-size: 8px;
-                padding: 2px 0;
-            }
-            .struk-item .item-qty {
-                min-width: 14px;
+            .status-card .card-items .item-row .item-qty {
+                min-width: 12px;
                 margin: 0 3px;
             }
-            .struk-item .item-price {
+            .status-card .card-items .item-row .item-price {
                 min-width: 35px;
             }
-            .struk-total-row {
+            .status-card .card-total {
                 font-size: 10px;
-            }
-            .struk-ppn {
-                font-size: 8px;
-            }
-            .struk-grand-total {
-                font-size: 12px;
-                padding-top: 3px;
+                padding-top: 4px;
             }
             .btn-ok {
-                font-size: 12px;
+                font-size: 10px;
                 padding: 3px 10px;
-                width: 65px;
                 border-width: 1.5px;
-                margin-top: 5px;
             }
-            .struk-status {
+            .btn-refresh-small {
                 font-size: 9px;
-                margin-top: 4px;
+                padding: 3px 8px;
+                border-width: 1.5px;
             }
             .empty-status {
                 font-size: 12px;
@@ -568,7 +573,6 @@
             }
         }
 
-        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .header-top {
                 padding: 4px 12px;
@@ -601,46 +605,28 @@
                 padding: 4px 14px 8px 14px;
                 padding-bottom: env(safe-area-inset-bottom, 8px);
             }
-            .struk-box {
-                padding: 10px 14px 8px 14px;
-                border-radius: 22px;
+            .status-card {
+                padding: 12px 14px 10px 14px;
+                border-radius: 20px;
                 max-width: 650px;
                 margin-left: auto;
                 margin-right: auto;
             }
-            .struk-title {
+            .status-card .card-status .status-text {
                 font-size: 16px;
             }
-            .struk-no {
+            .status-card .card-items .item-row {
                 font-size: 12px;
             }
-            .struk-item {
-                font-size: 12px;
-                padding: 2px 0;
-            }
-            .struk-item .item-price {
-                min-width: 55px;
-            }
-            .struk-total-row {
+            .status-card .card-total {
                 font-size: 14px;
             }
-            .struk-ppn {
-                font-size: 12px;
-            }
-            .struk-grand-total {
-                font-size: 18px;
-            }
             .btn-ok {
-                font-size: 15px;
+                font-size: 13px;
                 padding: 4px 14px;
-                width: 90px;
-            }
-            .struk-status {
-                font-size: 11px;
             }
         }
 
-        /* Landscape HP Kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .header-top {
                 padding: 2px 10px;
@@ -675,72 +661,50 @@
                 padding: 3px 12px 4px 12px;
                 padding-bottom: env(safe-area-inset-bottom, 4px);
             }
-            .struk-box {
+            .status-card {
                 padding: 6px 10px 5px 10px;
-                border-radius: 16px;
+                border-radius: 14px;
                 border-width: 1.5px;
                 max-width: 550px;
             }
-            .struk-title {
-                font-size: 12px;
-                margin-bottom: 2px;
-            }
-            .struk-no {
-                font-size: 9px;
-                margin-bottom: 4px;
-                padding-bottom: 3px;
-            }
-            .struk-header-row {
+            .status-card .card-header .order-id {
                 font-size: 8px;
-                padding-bottom: 2px;
             }
-            .struk-item {
+            .status-card .card-header .order-time {
+                font-size: 8px;
+            }
+            .status-card .card-status .status-icon {
+                font-size: 14px;
+            }
+            .status-card .card-status .status-text {
+                font-size: 12px;
+            }
+            .status-card .card-items {
+                padding: 3px 6px;
+            }
+            .status-card .card-items .item-row {
                 font-size: 9px;
                 padding: 1px 0;
             }
-            .struk-item .item-qty {
-                min-width: 12px;
-                margin: 0 3px;
-            }
-            .struk-item .item-price {
+            .status-card .card-items .item-row .item-price {
                 min-width: 40px;
             }
-            .struk-total-row {
+            .status-card .card-total {
                 font-size: 11px;
-                padding: 2px 0;
-            }
-            .struk-ppn {
-                font-size: 9px;
-                padding: 1px 0;
-            }
-            .struk-grand-total {
-                font-size: 14px;
                 padding-top: 3px;
-                margin-top: 3px;
             }
             .btn-ok {
-                font-size: 12px;
-                padding: 3px 10px;
-                width: 65px;
-                border-width: 1.5px;
-                margin-top: 4px;
-            }
-            .struk-status {
-                font-size: 9px;
-                margin-top: 3px;
-            }
-            .empty-status {
-                font-size: 12px;
-                padding: 15px 10px;
-            }
-            .btn-refresh {
                 font-size: 10px;
-                padding: 5px;
-                margin-top: 8px;
+                padding: 3px 10px;
+                border-width: 1.5px;
+            }
+            .btn-refresh-small {
+                font-size: 9px;
+                padding: 3px 8px;
+                border-width: 1.5px;
             }
         }
 
-        /* ===== TABLET PORTRAIT ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
             .header-top {
                 padding: 10px 20px;
@@ -773,118 +737,29 @@
                 padding: 8px 24px 16px 24px;
                 padding-bottom: env(safe-area-inset-bottom, 16px);
             }
-            .struk-box {
-                padding: 18px 22px 14px 22px;
-                border-radius: 35px;
+            .status-card {
+                padding: 18px 20px 14px 20px;
+                border-radius: 28px;
                 max-width: 700px;
                 margin-left: auto;
                 margin-right: auto;
             }
-            .struk-title {
-                font-size: 24px;
+            .status-card .card-status .status-text {
+                font-size: 22px;
             }
-            .struk-no {
-                font-size: 18px;
-            }
-            .struk-item {
+            .status-card .card-items .item-row {
                 font-size: 16px;
                 padding: 4px 0;
             }
-            .struk-item .item-price {
-                min-width: 80px;
-            }
-            .struk-total-row {
+            .status-card .card-total {
                 font-size: 18px;
             }
-            .struk-ppn {
-                font-size: 15px;
-            }
-            .struk-grand-total {
-                font-size: 24px;
-            }
             .btn-ok {
-                font-size: 20px;
-                padding: 8px 20px;
-                width: 150px;
-            }
-            .struk-status {
-                font-size: 15px;
+                font-size: 18px;
+                padding: 6px 20px;
             }
         }
 
-        /* ===== TABLET LANDSCAPE ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .header-top {
-                padding: 6px 16px;
-                padding-top: env(safe-area-inset-top, 6px);
-                min-height: 44px;
-            }
-            .btn-back {
-                font-size: 22px;
-                min-width: 38px;
-                min-height: 38px;
-            }
-            .logo-header img {
-                width: 28px;
-            }
-            .brand-text {
-                font-size: 16px;
-            }
-            .info-wrapper {
-                padding: 6px 20px 8px 20px;
-            }
-            .info-item .label {
-                font-size: 13px;
-            }
-            .info-item .value-box {
-                font-size: 13px;
-                padding: 4px 14px;
-                max-width: 180px;
-            }
-            .struk-wrapper {
-                padding: 6px 20px 12px 20px;
-                padding-bottom: env(safe-area-inset-bottom, 12px);
-            }
-            .struk-box {
-                padding: 14px 18px 10px 18px;
-                border-radius: 28px;
-                max-width: 750px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .struk-title {
-                font-size: 20px;
-            }
-            .struk-no {
-                font-size: 15px;
-            }
-            .struk-item {
-                font-size: 14px;
-                padding: 3px 0;
-            }
-            .struk-item .item-price {
-                min-width: 70px;
-            }
-            .struk-total-row {
-                font-size: 16px;
-            }
-            .struk-ppn {
-                font-size: 13px;
-            }
-            .struk-grand-total {
-                font-size: 20px;
-            }
-            .btn-ok {
-                font-size: 17px;
-                padding: 6px 16px;
-                width: 120px;
-            }
-            .struk-status {
-                font-size: 13px;
-            }
-        }
-
-        /* ===== DESKTOP ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .header-top {
                 padding: 8px 24px;
@@ -923,43 +798,26 @@
                 margin: 0 auto;
                 width: 100%;
             }
-            .struk-box {
+            .status-card {
                 padding: 20px 24px 16px 24px;
-                border-radius: 40px;
+                border-radius: 32px;
             }
-            .struk-title {
-                font-size: 26px;
+            .status-card .card-status .status-text {
+                font-size: 24px;
             }
-            .struk-no {
-                font-size: 20px;
-            }
-            .struk-item {
+            .status-card .card-items .item-row {
                 font-size: 16px;
                 padding: 4px 0;
             }
-            .struk-item .item-price {
-                min-width: 100px;
-            }
-            .struk-total-row {
+            .status-card .card-total {
                 font-size: 20px;
             }
-            .struk-ppn {
-                font-size: 16px;
-            }
-            .struk-grand-total {
-                font-size: 26px;
-            }
             .btn-ok {
-                font-size: 22px;
+                font-size: 20px;
                 padding: 8px 24px;
-                width: 160px;
-            }
-            .struk-status {
-                font-size: 16px;
             }
         }
 
-        /* Fallback untuk browser yang tidak support safe-area */
         @supports not (padding: env(safe-area-inset-top)) {
             .header-top {
                 padding-top: 6px;
@@ -1048,22 +906,13 @@
             window.history.back();
         }
 
-        function getStatusLabel(status) {
+        function getStatusInfo(status) {
             const map = {
-                'Diproses': '⏳ Diproses',
-                'Siap': '✅ Siap Diambil',
-                'Selesai': '✔️ Selesai'
+                'Diproses': { label: 'Diproses', icon: '⏳', class: 'diproses' },
+                'Siap': { label: 'Siap Diambil', icon: '✅', class: 'siap' },
+                'Selesai': { label: 'Selesai', icon: '✔️', class: 'selesai' }
             };
-            return map[status] || status;
-        }
-
-        function getStatusClass(status) {
-            const map = {
-                'Diproses': 'status-diproses',
-                'Siap': 'status-siap',
-                'Selesai': 'status-selesai'
-            };
-            return map[status] || 'status-diproses';
+            return map[status] || { label: status, icon: '📋', class: 'diproses' };
         }
 
         function formatRupiah(price) {
@@ -1148,11 +997,9 @@
             const nama = getNama();
             const meja = getMeja();
 
-            // Dapatkan tanggal hari ini
             const today = new Date();
             const todayStr = today.toISOString().slice(0, 10);
 
-            // Cari id_table dari nomor meja
             const mejaStr = meja.toString().trim();
             let idTable = null;
             if (tableIdMap[mejaStr]) {
@@ -1168,12 +1015,9 @@
                 }
             }
 
-            console.log('🔍 Mencari pesanan untuk:', { nama, meja, idTable, tanggal: todayStr });
-
             let orders = [];
 
             if (idTable) {
-                // Cari berdasarkan id_table, nama customer, dan tanggal hari ini
                 const { data: orderDetails, error: detailsError } = await supabaseClient
                     .from('orderdetails')
                     .select('no_struk, nama')
@@ -1196,7 +1040,6 @@
                 }
             }
 
-            // Jika tidak ditemukan, coba cari berdasarkan no_struk yang mengandung nama
             if (orders.length === 0) {
                 const { data: allOrders, error: allError } = await supabaseClient
                     .from('orders')
@@ -1205,7 +1048,6 @@
                     .order('id_order', { ascending: false });
 
                 if (!allError && allOrders) {
-                    // Filter manual berdasarkan nama di orderdetails
                     for (const order of allOrders) {
                         const { data: details } = await supabaseClient
                             .from('orderdetails')
@@ -1220,7 +1062,6 @@
                 }
             }
 
-            console.log('📦 Orders ditemukan:', orders.length);
             await renderOrders(orders);
             return orders;
         }
@@ -1238,7 +1079,6 @@
 
                 await loadMenuNames();
                 await loadTableIdMap();
-
                 await loadOrdersData();
 
                 if (!isRealtimeConnected) {
@@ -1248,7 +1088,7 @@
             } catch (error) {
                 console.error('Error loading orders:', error);
                 document.getElementById('orderList').innerHTML = `
-                    <div class="struk-box">
+                    <div class="status-card">
                         <div class="empty-status">
                             ⚠️ Gagal memuat status pesanan<br>
                             <span class="sub">${error.message}</span>
@@ -1266,7 +1106,7 @@
 
             if (!orders || orders.length === 0) {
                 container.innerHTML = `
-                    <div class="struk-box">
+                    <div class="status-card">
                         <div class="empty-status">
                             🍽️ Belum ada pesanan hari ini<br>
                             <span class="sub">Silakan pesan dari menu</span>
@@ -1298,65 +1138,52 @@
                 const ppn = Math.round(subtotal * 0.1);
                 const total = subtotal + ppn;
 
+                const status = order.status_order || 'Diproses';
+                const statusInfo = getStatusInfo(status);
+
                 const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
-                const dateStr = orderDate.toLocaleString('id-ID', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
+                const timeStr = orderDate.toLocaleTimeString('id-ID', {
                     hour: '2-digit',
                     minute: '2-digit'
                 });
 
-                const status = order.status_order || 'Diproses';
-                const statusLabel = getStatusLabel(status);
-                const statusClass = getStatusClass(status);
-
                 html += `
-                    <div class="struk-box">
-                        <div class="struk-title">📋 Detail Struk:</div>
-                        <div class="struk-no">Nomor Struk: <span>${order.no_struk}</span> &bull; ${dateStr}</div>
-
-                        <div class="struk-header-row">
-                            <span>Pesanan</span>
-                            <span>Jumlah</span>
-                            <span>Harga</span>
+                    <div class="status-card status-${statusInfo.class}">
+                        <div class="card-header">
+                            <span class="order-id"># <span>${order.no_struk}</span></span>
+                            <span class="order-time">${timeStr}</span>
                         </div>
 
-                        ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => `
-                            <div class="struk-item">
-                                <span class="item-name">${item.menu_name}</span>
-                                <span class="item-qty">${item.jumlah || 0}</span>
-                                <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
-                            </div>
-                        `).join('') : `
-                            <div class="struk-item">
-                                <span class="item-name" style="color:rgba(255,255,255,0.3);">Tidak ada detail</span>
-                                <span class="item-qty">-</span>
-                                <span class="item-price">-</span>
-                            </div>
-                        `}
+                        <div class="card-status">
+                            <span class="status-icon">${statusInfo.icon}</span>
+                            <span class="status-text ${statusInfo.class}">${statusInfo.label}</span>
+                        </div>
 
-                        <hr class="struk-divider">
+                        <div class="card-items">
+                            ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => `
+                                <div class="item-row">
+                                    <span class="item-name">${item.menu_name}</span>
+                                    <span class="item-qty">×${item.jumlah || 0}</span>
+                                    <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
+                                </div>
+                            `).join('') : `
+                                <div class="item-row">
+                                    <span class="item-name" style="color:rgba(255,255,255,0.3);">Tidak ada detail</span>
+                                    <span class="item-qty">-</span>
+                                    <span class="item-price">-</span>
+                                </div>
+                            `}
+                        </div>
 
-                        <div class="struk-total-row">
+                        <div class="card-total">
                             <span>Total</span>
-                            <span class="total-amount">${formatRupiah(subtotal)}</span>
-                        </div>
-                        <div class="struk-ppn">
-                            <span>PPN 10%</span>
-                            <span class="ppn-amount">${formatRupiah(ppn)}</span>
+                            <span class="total-amount">${formatRupiah(total)}</span>
                         </div>
 
-                        <div class="struk-grand-total">
-                            <span>Total</span>
-                            <span class="grand-total-amount">${formatRupiah(total)}</span>
+                        <div class="card-actions">
+                            <button class="btn-ok" onclick="window.location.href='customer_order.html?meja=${getMeja()}&nama=${encodeURIComponent(getNama())}'">Pesan Lagi</button>
+                            <button class="btn-refresh-small" onclick="loadOrders()">🔄 Refresh</button>
                         </div>
-
-                        <div class="struk-status">
-                            Status: <span class="${statusClass}">${statusLabel}</span>
-                        </div>
-
-                        <button class="btn-ok" onclick="window.location.href='customer_order.html?meja=${getMeja()}&nama=${encodeURIComponent(getNama())}'">OK</button>
                     </div>
                 `;
             }
