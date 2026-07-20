@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Jangkung Order - Status Pesanan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
@@ -15,13 +15,9 @@
         html, body {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: #0a0a0a;
-            padding: 0;
-            margin: 0;
             overflow: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         body {
@@ -29,13 +25,13 @@
         }
 
         .status-container {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             position: relative;
             background: white;
             overflow: hidden;
-            border-radius: 0;
-            box-shadow: none;
+            display: flex;
+            flex-direction: column;
         }
 
         .bg-utama {
@@ -59,17 +55,18 @@
             z-index: 2;
         }
 
+        /* ===== HEADER ===== */
         .header-top {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: relative;
             z-index: 10;
-            padding: 6px 14px 4px 14px;
+            padding: 6px 12px;
+            padding-top: env(safe-area-inset-top, 6px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: rgba(0, 0, 0, 0.6);
+            flex-shrink: 0;
+            min-height: 44px;
         }
 
         .header-left {
@@ -87,11 +84,16 @@
             transition: all 0.3s;
             padding: 3px 6px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            min-width: 36px;
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .btn-back:hover {
-            transform: scale(1.1);
-            color: #98C81C;
+        .btn-back:active {
+            transform: scale(0.92);
         }
 
         .logo-header {
@@ -99,6 +101,7 @@
             align-items: center;
             gap: 6px;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
         .logo-header img {
             width: clamp(22px, 3.5%, 40px);
@@ -130,50 +133,53 @@
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             white-space: nowrap;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .btn-selesai:hover {
-            background: #c0392b;
-            transform: scale(1.05);
+        .btn-selesai:active {
+            transform: scale(0.95);
         }
 
+        /* ===== TITLE ===== */
         .title-status {
-            position: absolute;
-            left: 50%;
-            top: 9%;
-            transform: translateX(-50%);
+            position: relative;
             z-index: 5;
             color: white;
-            font-size: clamp(22px, 5%, 55px);
+            font-size: clamp(18px, 4%, 45px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
-            width: 90%;
+            padding: 6px 12px 4px 12px;
+            flex-shrink: 0;
             letter-spacing: 1px;
         }
 
+        /* ===== TABLE WRAPPER ===== */
         .table-wrapper {
-            position: absolute;
-            top: 16%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 94%;
-            height: 80%;
+            flex: 1;
+            position: relative;
             z-index: 5;
-            border-radius: 25px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            padding: 8px 10px 6px 10px;
+            margin: 0 10px 10px 10px;
+            margin-bottom: env(safe-area-inset-bottom, 10px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 8px 6px 8px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.25);
+            min-height: 0;
         }
 
         .table-scroll {
             flex: 1;
             overflow-y: auto;
             padding-right: 4px;
+            -webkit-overflow-scrolling: touch;
         }
 
         .table-scroll::-webkit-scrollbar {
@@ -190,9 +196,10 @@
             border-radius: 10px;
         }
 
+        /* ===== TABLE HEADER ===== */
         .table-header {
             display: grid;
-            grid-template-columns: 30px 1.3fr 1.5fr 1.1fr 1fr;
+            grid-template-columns: 25px 1.1fr 1.3fr 1fr 1fr;
             gap: 3px;
             padding-bottom: 4px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.2);
@@ -202,7 +209,7 @@
 
         .table-header .col {
             color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(9px, 1.5%, 18px);
+            font-size: clamp(8px, 1.2%, 14px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: center;
@@ -210,9 +217,10 @@
             letter-spacing: 0.5px;
         }
 
+        /* ===== TABLE ROW ===== */
         .table-row {
             display: grid;
-            grid-template-columns: 30px 1.3fr 1.5fr 1.1fr 1fr;
+            grid-template-columns: 25px 1.1fr 1.3fr 1fr 1fr;
             gap: 3px;
             padding: 4px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
@@ -227,7 +235,7 @@
 
         .table-row .col {
             color: white;
-            font-size: clamp(10px, 1.5%, 18px);
+            font-size: clamp(9px, 1.3%, 15px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: center;
@@ -238,14 +246,14 @@
 
         .table-row .col .status-badge {
             display: inline-block;
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: 50px;
             border: 2px solid rgba(255, 255, 255, 0.2);
-            font-size: clamp(8px, 1.2%, 14px);
+            font-size: clamp(7px, 1%, 12px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             color: white;
-            min-width: 55px;
+            min-width: 45px;
             letter-spacing: 0.5px;
         }
 
@@ -269,33 +277,29 @@
 
         .table-row .col .action-btns {
             display: flex;
-            gap: 4px;
+            gap: 3px;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .btn-action {
-            padding: 3px 8px;
+            padding: 2px 6px;
             border-radius: 50px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             color: white;
-            font-size: clamp(8px, 1.1%, 13px);
+            font-size: clamp(7px, 1%, 11px);
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.25s;
-            min-width: 40px;
+            min-width: 30px;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 3px;
+            gap: 2px;
             white-space: nowrap;
-        }
-
-        .btn-action:hover {
-            transform: scale(1.04);
-            border-color: white;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-action:active {
@@ -307,9 +311,8 @@
             border-color: #98C81C;
         }
 
-        .btn-action.siapkan:hover {
+        .btn-action.siapkan:active {
             background: #7aa814;
-            border-color: #7aa814;
         }
 
         .btn-action.selesai-status {
@@ -317,9 +320,103 @@
             border-color: #029BEE;
         }
 
-        .btn-action.selesai-status:hover {
+        .btn-action.selesai-status:active {
             background: #0288d1;
-            border-color: #0288d1;
+        }
+
+        .item-detail-row {
+            display: none;
+            grid-column: 1 / -1;
+            padding: 4px 0 4px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin: 2px 0;
+        }
+
+        .item-detail-row.show {
+            display: grid;
+            grid-template-columns: 1.5fr 0.5fr 1fr 0.8fr;
+            gap: 3px;
+        }
+
+        .item-detail-row .item-col {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(8px, 1.1%, 13px);
+            font-family: 'Schoolbell', cursive;
+            text-align: left;
+            padding: 2px 4px;
+        }
+
+        .item-detail-row .item-col .item-status-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 50px;
+            font-size: clamp(7px, 1%, 11px);
+            font-family: 'Schoolbell', cursive;
+        }
+
+        .item-status-badge.diproses {
+            background: rgba(243, 156, 18, 0.2);
+            color: #f39c12;
+            border: 1px solid #f39c12;
+        }
+        .item-status-badge.siap {
+            background: rgba(152, 200, 28, 0.2);
+            color: #98C81C;
+            border: 1px solid #98C81C;
+        }
+        .item-status-badge.selesai {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border: 1px solid #2ecc71;
+        }
+
+        .item-detail-row .item-col .btn-item-action {
+            padding: 1px 6px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: clamp(6px, 0.9%, 10px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.25s;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-item-action:active {
+            transform: scale(0.95);
+        }
+        .btn-item-action.siapkan-item {
+            background: #98C81C;
+            border-color: #98C81C;
+        }
+        .btn-item-action.selesai-item {
+            background: #029BEE;
+            border-color: #029BEE;
+        }
+
+        .btn-toggle-detail {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            font-size: clamp(10px, 1.2%, 14px);
+            padding: 2px 4px;
+            transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-toggle-detail:active {
+            transform: scale(0.9);
+        }
+        .btn-toggle-detail:hover {
+            color: #98C81C;
+        }
+
+        .order-time {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: clamp(7px, 0.9%, 10px);
         }
 
         .empty-state {
@@ -418,135 +515,345 @@
 
         /* ===== RESPONSIVE ===== */
 
-        /* HP Portrait */
         @media screen and (max-width: 767px) and (orientation: portrait) {
-            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .table-wrapper { padding: 5px 6px; border-radius: 18px; top: 15%; height: 82%; }
-            .table-header { grid-template-columns: 20px 1.1fr 1.2fr 1fr 0.9fr; gap: 2px; }
-            .table-row { grid-template-columns: 20px 1.1fr 1.2fr 1fr 0.9fr; gap: 2px; padding: 3px 0; min-height: 28px; }
-            .table-header .col { font-size: 8px; }
-            .table-row .col { font-size: 8px; }
-            .table-row .col .status-badge { font-size: 6px; padding: 1px 6px; min-width: 35px; border-width: 1.5px; }
-            .btn-action { font-size: 6px; padding: 2px 5px; min-width: 22px; border-width: 1.5px; gap: 2px; }
-            .title-status { font-size: 16px; top: 8%; }
-            .btn-selesai { padding: 2px 8px; font-size: 8px; }
-            .btn-back { font-size: 14px; }
-            .logo-header img { width: 18px; }
-            .brand-text { font-size: 9px; }
+            .table-wrapper {
+                margin: 0 6px 6px 6px;
+                padding: 4px 4px;
+                border-radius: 14px;
+            }
+            .table-header {
+                grid-template-columns: 18px 1fr 1.1fr 0.9fr 0.8fr;
+                gap: 2px;
+            }
+            .table-row {
+                grid-template-columns: 18px 1fr 1.1fr 0.9fr 0.8fr;
+                gap: 2px;
+                padding: 3px 0;
+                min-height: 26px;
+            }
+            .table-header .col {
+                font-size: 7px;
+            }
+            .table-row .col {
+                font-size: 7px;
+            }
+            .table-row .col .status-badge {
+                font-size: 6px;
+                padding: 1px 5px;
+                min-width: 30px;
+                border-width: 1.5px;
+            }
+            .btn-action {
+                font-size: 6px;
+                padding: 2px 4px;
+                min-width: 20px;
+                border-width: 1.5px;
+            }
+            .title-status {
+                font-size: 14px;
+                padding: 4px 8px 2px 8px;
+            }
+            .btn-selesai {
+                padding: 2px 8px;
+                font-size: 8px;
+                min-height: 26px;
+            }
+            .btn-back {
+                font-size: 14px;
+                min-width: 30px;
+                min-height: 30px;
+            }
+            .logo-header img {
+                width: 18px;
+            }
+            .brand-text {
+                font-size: 9px;
+            }
+            .header-top {
+                padding: 4px 10px;
+                padding-top: env(safe-area-inset-top, 4px);
+                min-height: 36px;
+            }
+            .item-detail-row {
+                padding: 3px 0 3px 10px;
+            }
+            .item-detail-row .item-col {
+                font-size: 7px;
+            }
+            .item-detail-row .item-col .item-status-badge {
+                font-size: 6px;
+                padding: 1px 4px;
+            }
+            .item-detail-row .item-col .btn-item-action {
+                font-size: 5px;
+                padding: 1px 4px;
+            }
+            .btn-toggle-detail {
+                font-size: 8px;
+            }
+            .order-time {
+                font-size: 6px;
+            }
         }
 
-        /* HP Portrait Kecil */
         @media screen and (max-width: 480px) and (orientation: portrait) {
-            .table-wrapper { padding: 4px 4px; border-radius: 14px; top: 14%; height: 83%; }
-            .table-header { grid-template-columns: 15px 1fr 1fr 0.7fr 0.6fr; gap: 1px; }
-            .table-row { grid-template-columns: 15px 1fr 1fr 0.7fr 0.6fr; gap: 1px; padding: 2px 0; min-height: 24px; }
-            .table-header .col { font-size: 6px; }
-            .table-row .col { font-size: 6px; }
-            .table-row .col .status-badge { font-size: 5px; padding: 1px 4px; min-width: 25px; border-width: 1px; }
-            .btn-action { font-size: 5px; padding: 1px 4px; min-width: 16px; border-width: 1px; }
-            .title-status { font-size: 14px; top: 7%; }
-            .btn-selesai { padding: 2px 6px; font-size: 7px; }
-            .btn-back { font-size: 12px; }
-            .logo-header img { width: 16px; }
-            .brand-text { font-size: 8px; }
+            .table-wrapper {
+                margin: 0 4px 4px 4px;
+                padding: 3px 3px;
+                border-radius: 10px;
+            }
+            .table-header {
+                grid-template-columns: 14px 1fr 1fr 0.7fr 0.6fr;
+                gap: 1px;
+            }
+            .table-row {
+                grid-template-columns: 14px 1fr 1fr 0.7fr 0.6fr;
+                gap: 1px;
+                padding: 2px 0;
+                min-height: 22px;
+            }
+            .table-header .col {
+                font-size: 6px;
+            }
+            .table-row .col {
+                font-size: 6px;
+            }
+            .table-row .col .status-badge {
+                font-size: 5px;
+                padding: 1px 4px;
+                min-width: 22px;
+                border-width: 1px;
+            }
+            .btn-action {
+                font-size: 5px;
+                padding: 1px 3px;
+                min-width: 14px;
+                border-width: 1px;
+            }
+            .title-status {
+                font-size: 12px;
+                padding: 3px 6px 2px 6px;
+            }
+            .btn-selesai {
+                padding: 2px 6px;
+                font-size: 7px;
+                min-height: 22px;
+            }
+            .btn-back {
+                font-size: 12px;
+                min-width: 26px;
+                min-height: 26px;
+            }
+            .logo-header img {
+                width: 14px;
+            }
+            .brand-text {
+                font-size: 8px;
+            }
+            .header-top {
+                padding: 3px 8px;
+                padding-top: env(safe-area-inset-top, 3px);
+                min-height: 32px;
+            }
+            .item-detail-row {
+                padding: 2px 0 2px 6px;
+            }
+            .item-detail-row .item-col {
+                font-size: 6px;
+            }
+            .item-detail-row .item-col .item-status-badge {
+                font-size: 5px;
+                padding: 1px 3px;
+            }
+            .item-detail-row .item-col .btn-item-action {
+                font-size: 5px;
+                padding: 1px 3px;
+            }
+            .btn-toggle-detail {
+                font-size: 7px;
+            }
+            .order-time {
+                font-size: 5px;
+            }
         }
 
-        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
-            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .table-wrapper { padding: 5px 12px; border-radius: 20px; top: 14%; height: 83%; }
-            .table-header { grid-template-columns: 25px 1.2fr 1.3fr 1fr 0.9fr; gap: 3px; }
-            .table-row { grid-template-columns: 25px 1.2fr 1.3fr 1fr 0.9fr; gap: 3px; padding: 3px 0; min-height: 28px; }
-            .table-header .col { font-size: 9px; }
-            .table-row .col { font-size: 9px; }
-            .table-row .col .status-badge { font-size: 7px; padding: 2px 8px; min-width: 40px; border-width: 1.5px; }
-            .btn-action { font-size: 7px; padding: 2px 6px; min-width: 28px; border-width: 1.5px; }
-            .title-status { font-size: 16px; top: 7%; }
-            .btn-selesai { padding: 2px 8px; font-size: 8px; }
-            .btn-back { font-size: 16px; }
-            .logo-header img { width: 20px; }
-            .brand-text { font-size: 10px; }
-            .header-top { padding: 4px 12px 3px 12px; }
+            .table-wrapper {
+                margin: 0 12px 8px 12px;
+                padding: 5px 10px;
+                border-radius: 16px;
+            }
+            .table-header {
+                grid-template-columns: 22px 1.1fr 1.2fr 0.9fr 0.8fr;
+                gap: 3px;
+            }
+            .table-row {
+                grid-template-columns: 22px 1.1fr 1.2fr 0.9fr 0.8fr;
+                gap: 3px;
+                padding: 3px 0;
+                min-height: 28px;
+            }
+            .table-header .col {
+                font-size: 9px;
+            }
+            .table-row .col {
+                font-size: 9px;
+            }
+            .table-row .col .status-badge {
+                font-size: 7px;
+                padding: 2px 8px;
+                min-width: 38px;
+                border-width: 1.5px;
+            }
+            .btn-action {
+                font-size: 7px;
+                padding: 2px 6px;
+                min-width: 26px;
+                border-width: 1.5px;
+            }
+            .title-status {
+                font-size: 16px;
+                padding: 4px 10px 2px 10px;
+            }
+            .btn-selesai {
+                padding: 2px 10px;
+                font-size: 9px;
+                min-height: 28px;
+            }
+            .btn-back {
+                font-size: 16px;
+                min-width: 32px;
+                min-height: 32px;
+            }
+            .logo-header img {
+                width: 20px;
+            }
+            .brand-text {
+                font-size: 11px;
+            }
+            .header-top {
+                padding: 4px 12px;
+                padding-top: env(safe-area-inset-top, 4px);
+                min-height: 38px;
+            }
+            .item-detail-row .item-col {
+                font-size: 8px;
+            }
         }
 
-        /* Landscape HP Kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .table-wrapper { padding: 3px 8px; border-radius: 14px; top: 13%; height: 84%; }
-            .table-header { grid-template-columns: 18px 1.1fr 1.2fr 0.9fr 0.8fr; gap: 2px; }
-            .table-row { grid-template-columns: 18px 1.1fr 1.2fr 0.9fr 0.8fr; gap: 2px; padding: 2px 0; min-height: 22px; }
-            .table-header .col { font-size: 7px; }
-            .table-row .col { font-size: 7px; }
-            .table-row .col .status-badge { font-size: 6px; padding: 1px 5px; min-width: 30px; border-width: 1px; }
-            .btn-action { font-size: 6px; padding: 1px 4px; min-width: 18px; border-width: 1px; }
-            .title-status { font-size: 13px; top: 6%; }
-            .btn-selesai { padding: 1px 6px; font-size: 7px; }
-            .btn-back { font-size: 12px; }
-            .logo-header img { width: 16px; }
-            .brand-text { font-size: 8px; }
+            .table-wrapper {
+                margin: 0 8px 4px 8px;
+                padding: 3px 6px;
+                border-radius: 12px;
+            }
+            .table-header {
+                grid-template-columns: 16px 1fr 1.1fr 0.8fr 0.7fr;
+                gap: 2px;
+            }
+            .table-row {
+                grid-template-columns: 16px 1fr 1.1fr 0.8fr 0.7fr;
+                gap: 2px;
+                padding: 2px 0;
+                min-height: 22px;
+            }
+            .table-header .col {
+                font-size: 7px;
+            }
+            .table-row .col {
+                font-size: 7px;
+            }
+            .table-row .col .status-badge {
+                font-size: 6px;
+                padding: 1px 5px;
+                min-width: 28px;
+                border-width: 1px;
+            }
+            .btn-action {
+                font-size: 6px;
+                padding: 1px 4px;
+                min-width: 18px;
+                border-width: 1px;
+            }
+            .title-status {
+                font-size: 12px;
+                padding: 3px 8px 2px 8px;
+            }
+            .btn-selesai {
+                padding: 1px 6px;
+                font-size: 7px;
+                min-height: 22px;
+            }
+            .btn-back {
+                font-size: 12px;
+                min-width: 26px;
+                min-height: 26px;
+            }
+            .logo-header img {
+                width: 16px;
+            }
+            .brand-text {
+                font-size: 8px;
+            }
+            .header-top {
+                padding: 2px 8px;
+                padding-top: env(safe-area-inset-top, 2px);
+                min-height: 30px;
+            }
+            .item-detail-row .item-col {
+                font-size: 7px;
+            }
         }
 
-        /* ===== TABLET PORTRAIT ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .table-wrapper { padding: 8px 15px; border-radius: 25px; top: 15%; height: 82%; }
-            .table-header { grid-template-columns: 30px 1.3fr 1.5fr 1.1fr 1fr; gap: 4px; }
-            .table-row { grid-template-columns: 30px 1.3fr 1.5fr 1.1fr 1fr; gap: 4px; padding: 5px 0; min-height: 38px; }
-            .table-header .col { font-size: 12px; }
-            .table-row .col { font-size: 12px; }
-            .table-row .col .status-badge { font-size: 10px; padding: 3px 12px; min-width: 60px; border-width: 2px; }
-            .btn-action { font-size: 10px; padding: 3px 10px; min-width: 40px; border-width: 2px; }
-            .title-status { font-size: 24px; top: 8%; }
-            .btn-selesai { padding: 4px 14px; font-size: 12px; }
-            .btn-back { font-size: 20px; }
-            .logo-header img { width: 30px; }
-            .brand-text { font-size: 16px; }
-            .header-top { padding: 8px 18px 5px 18px; }
-        }
-
-        /* ===== TABLET LANDSCAPE ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .table-wrapper { padding: 6px 15px; border-radius: 22px; top: 14%; height: 83%; }
-            .table-header { grid-template-columns: 28px 1.2fr 1.4fr 1fr 0.9fr; gap: 4px; }
-            .table-row { grid-template-columns: 28px 1.2fr 1.4fr 1fr 0.9fr; gap: 4px; padding: 4px 0; min-height: 32px; }
-            .table-header .col { font-size: 11px; }
-            .table-row .col { font-size: 11px; }
-            .table-row .col .status-badge { font-size: 9px; padding: 2px 10px; min-width: 50px; border-width: 2px; }
-            .btn-action { font-size: 9px; padding: 2px 8px; min-width: 34px; border-width: 2px; }
-            .title-status { font-size: 20px; top: 7%; }
-            .btn-selesai { padding: 3px 12px; font-size: 11px; }
-            .btn-back { font-size: 18px; }
-            .logo-header img { width: 25px; }
-            .brand-text { font-size: 14px; }
-            .header-top { padding: 6px 16px 4px 16px; }
-        }
-
-        /* ===== DESKTOP ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
-            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .table-wrapper { padding: 8px 20px; border-radius: 28px; top: 14%; height: 83%; max-width: 900px; left: 50%; transform: translateX(-50%); }
-            .table-header { grid-template-columns: 30px 1.3fr 1.5fr 1.1fr 1fr; gap: 4px; }
-            .table-row { grid-template-columns: 30px 1.3fr 1.5fr 1.1fr 1fr; gap: 4px; padding: 5px 0; min-height: 38px; }
-            .table-header .col { font-size: 13px; }
-            .table-row .col { font-size: 13px; }
-            .table-row .col .status-badge { font-size: 11px; padding: 3px 14px; min-width: 65px; border-width: 2px; }
-            .btn-action { font-size: 11px; padding: 3px 12px; min-width: 44px; border-width: 2px; }
-            .title-status { font-size: 26px; top: 7%; }
-            .btn-selesai { padding: 4px 16px; font-size: 13px; }
-            .btn-back { font-size: 22px; }
-            .logo-header img { width: 32px; }
-            .brand-text { font-size: 18px; }
-            .header-top { padding: 8px 20px 5px 20px; }
+            .table-wrapper {
+                margin: 0 auto 12px auto;
+                padding: 8px 18px;
+                border-radius: 24px;
+                max-width: 900px;
+                width: 94%;
+            }
+            .table-header .col {
+                font-size: 13px;
+            }
+            .table-row .col {
+                font-size: 13px;
+            }
+            .table-row .col .status-badge {
+                font-size: 11px;
+                padding: 3px 14px;
+                min-width: 60px;
+                border-width: 2px;
+            }
+            .btn-action {
+                font-size: 10px;
+                padding: 3px 10px;
+                min-width: 38px;
+                border-width: 2px;
+            }
+            .title-status {
+                font-size: 24px;
+                padding: 8px 16px 6px 16px;
+            }
+            .btn-selesai {
+                padding: 4px 16px;
+                font-size: 13px;
+                min-height: 36px;
+            }
+            .btn-back {
+                font-size: 22px;
+                min-width: 44px;
+                min-height: 44px;
+            }
         }
 
-        /* Desktop Lebar */
-        @media screen and (min-width: 1600px) and (orientation: landscape) {
-            .table-wrapper { max-width: 1000px; padding: 10px 25px; border-radius: 32px; }
-            .table-header .col { font-size: 15px; }
-            .table-row .col { font-size: 15px; }
-            .table-row .col .status-badge { font-size: 13px; padding: 4px 16px; min-width: 75px; }
-            .btn-action { font-size: 13px; padding: 4px 14px; min-width: 50px; }
-            .title-status { font-size: 30px; }
+        @supports not (padding: env(safe-area-inset-top)) {
+            .header-top {
+                padding-top: 6px;
+            }
+            .table-wrapper {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
@@ -576,8 +883,8 @@
         <div class="table-wrapper">
             <div class="table-header">
                 <div class="col">No</div>
-                <div class="col">Nomor Struk</div>
-                <div class="col">Nama Customer</div>
+                <div class="col">Struk / Waktu</div>
+                <div class="col">Customer</div>
                 <div class="col">Status</div>
                 <div class="col">Aksi</div>
             </div>
@@ -599,7 +906,9 @@
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         let ordersData = [];
+        let menuNames = {};
         let isRealtimeConnected = false;
+        let expandedOrders = {};
 
         function goBack() {
             window.history.back();
@@ -622,21 +931,38 @@
         }
 
         function getStatusLabel(status) {
-            const map = {
-                'Diproses': 'Diproses',
-                'Siap': 'Siap',
-                'Selesai': 'Selesai'
-            };
+            const map = { 'Diproses': 'Diproses', 'Siap': 'Siap', 'Selesai': 'Selesai' };
             return map[status] || status;
         }
 
         function getStatusClass(status) {
-            const map = {
-                'Diproses': 'diproses',
-                'Siap': 'siap',
-                'Selesai': 'selesai'
-            };
+            const map = { 'Diproses': 'diproses', 'Siap': 'siap', 'Selesai': 'selesai' };
             return map[status] || 'diproses';
+        }
+
+        function formatTime(timeStr) {
+            if (!timeStr) return '';
+            const parts = timeStr.split(':');
+            return parts[0] + ':' + parts[1];
+        }
+
+        async function loadMenuNames() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('menu')
+                    .select('id_menu, nama_menu');
+
+                if (error) throw error;
+                if (data) {
+                    data.forEach(item => {
+                        menuNames[item.id_menu] = item.nama_menu;
+                    });
+                }
+                return true;
+            } catch (error) {
+                console.error('Error loading menu names:', error);
+                return false;
+            }
         }
 
         async function loadOrders() {
@@ -644,6 +970,8 @@
             loading.classList.add('active');
 
             try {
+                await loadMenuNames();
+
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
                     .select('*')
@@ -656,17 +984,22 @@
                 for (const order of orders || []) {
                     const { data: details, error: detailsError } = await supabaseClient
                         .from('orderdetails')
-                        .select('nama')
-                        .eq('no_struk', order.no_struk)
-                        .limit(1);
+                        .select('*')
+                        .eq('no_struk', order.no_struk);
 
                     if (detailsError) {
                         console.warn('Error fetching details for', order.no_struk, detailsError);
                     }
 
+                    const detailsWithName = (details || []).map(item => {
+                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
+                        return { ...item, menu_name: menuName };
+                    });
+
                     ordersWithDetails.push({
                         ...order,
-                        customer_name: details && details.length > 0 ? details[0].nama : '-'
+                        details: detailsWithName || [],
+                        customer_name: detailsWithName.length > 0 ? detailsWithName[0].nama : '-'
                     });
                 }
 
@@ -697,28 +1030,14 @@
 
             const channel = supabaseClient
                 .channel('status-db-changes')
-                .on(
-                    'postgres_changes', {
-                        event: '*',
-                        schema: 'public',
-                        table: 'orders'
-                    },
-                    (payload) => {
-                        console.log('Realtime update orders:', payload);
-                        loadOrdersSilent();
-                    }
-                )
-                .on(
-                    'postgres_changes', {
-                        event: '*',
-                        schema: 'public',
-                        table: 'orderdetails'
-                    },
-                    (payload) => {
-                        console.log('Realtime update details:', payload);
-                        loadOrdersSilent();
-                    }
-                )
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, (payload) => {
+                    console.log('Realtime update orders:', payload);
+                    loadOrdersSilent();
+                })
+                .on('postgres_changes', { event: '*', schema: 'public', table: 'orderdetails' }, (payload) => {
+                    console.log('Realtime update details:', payload);
+                    loadOrdersSilent();
+                })
                 .subscribe((status) => {
                     console.log('Realtime status:', status);
                     if (status === 'SUBSCRIBED') {
@@ -732,6 +1051,8 @@
 
         async function loadOrdersSilent() {
             try {
+                await loadMenuNames();
+
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
                     .select('*')
@@ -744,17 +1065,22 @@
                 for (const order of orders || []) {
                     const { data: details, error: detailsError } = await supabaseClient
                         .from('orderdetails')
-                        .select('nama')
-                        .eq('no_struk', order.no_struk)
-                        .limit(1);
+                        .select('*')
+                        .eq('no_struk', order.no_struk);
 
                     if (detailsError) {
                         console.warn('Error fetching details for', order.no_struk, detailsError);
                     }
 
+                    const detailsWithName = (details || []).map(item => {
+                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
+                        return { ...item, menu_name: menuName };
+                    });
+
                     ordersWithDetails.push({
                         ...order,
-                        customer_name: details && details.length > 0 ? details[0].nama : '-'
+                        details: detailsWithName || [],
+                        customer_name: detailsWithName.length > 0 ? detailsWithName[0].nama : '-'
                     });
                 }
 
@@ -764,6 +1090,34 @@
 
             } catch (error) {
                 console.error('Error silent loading orders:', error);
+            }
+        }
+
+        function toggleDetail(noStruk) {
+            expandedOrders[noStruk] = !expandedOrders[noStruk];
+            renderTable();
+        }
+
+        async function updateItemStatus(noStruk, idDetail, newStatus) {
+            const loading = document.getElementById('loadingOverlay');
+            loading.classList.add('active');
+
+            try {
+                const { error } = await supabaseClient
+                    .from('orderdetails')
+                    .update({ status: newStatus })
+                    .eq('id', idDetail);
+
+                if (error) throw error;
+
+                showToast(`✅ Status item berhasil diubah menjadi ${getStatusLabel(newStatus)}`);
+                await loadOrdersSilent();
+
+            } catch (error) {
+                console.error('Error updating item status:', error);
+                showToast('⚠️ Gagal mengubah status: ' + error.message, true);
+            } finally {
+                loading.classList.remove('active');
             }
         }
 
@@ -782,32 +1136,100 @@
 
             let html = '';
             ordersData.forEach((order, index) => {
+                const isExpanded = expandedOrders[order.no_struk] || false;
                 const status = order.status_order || 'Diproses';
+                const timeStr = formatTime(order.waktu_order);
+
+                let allSiap = true;
+                let allSelesai = true;
+                let hasItem = false;
+
+                if (order.details && order.details.length > 0) {
+                    hasItem = true;
+                    order.details.forEach(item => {
+                        const itemStatus = item.status || 'Diproses';
+                        if (itemStatus !== 'Siap') allSiap = false;
+                        if (itemStatus !== 'Selesai') allSelesai = false;
+                    });
+                }
+
+                const orderStatus = allSelesai && hasItem ? 'Selesai' : 
+                                   (allSiap && hasItem ? 'Siap' : 'Diproses');
 
                 html += `
                     <div class="table-row">
                         <div class="col">${index + 1}</div>
-                        <div class="col">${order.no_struk || '-'}</div>
+                        <div class="col">
+                            ${order.no_struk || '-'}
+                            <br>
+                            <span class="order-time">${timeStr}</span>
+                        </div>
                         <div class="col">${order.customer_name}</div>
                         <div class="col">
-                            <span class="status-badge ${getStatusClass(status)}">
-                                ${getStatusLabel(status)}
+                            <span class="status-badge ${getStatusClass(orderStatus)}">
+                                ${getStatusLabel(orderStatus)}
                             </span>
+                            <br>
+                            <button class="btn-toggle-detail" onclick="toggleDetail('${order.no_struk}')">
+                                ${isExpanded ? '▲' : '▼'} ${order.details ? order.details.length : 0} item
+                            </button>
                         </div>
                         <div class="col">
                             <div class="action-btns">
-                                ${status === 'Diproses' ? `
-                                    <button class="btn-action siapkan" onclick="updateStatus('${order.no_struk}', 'Siap')">
+                                ${orderStatus === 'Diproses' ? `
+                                    <button class="btn-action siapkan" onclick="updateOrderStatus('${order.no_struk}', 'Siap')">
                                         🕐 Siapkan
                                     </button>
                                 ` : ''}
-                                ${status === 'Siap' || status === 'Diproses' ? `
-                                    <button class="btn-action selesai-status" onclick="updateStatus('${order.no_struk}', 'Selesai')">
+                                ${orderStatus === 'Siap' || orderStatus === 'Diproses' ? `
+                                    <button class="btn-action selesai-status" onclick="updateOrderStatus('${order.no_struk}', 'Selesai')">
                                         ✅ Selesai
                                     </button>
                                 ` : ''}
                             </div>
                         </div>
+                        ${isExpanded ? `
+                            <div class="item-detail-row show">
+                                <div class="item-col"><b>Menu</b></div>
+                                <div class="item-col"><b>Jumlah</b></div>
+                                <div class="item-col"><b>Status</b></div>
+                                <div class="item-col"><b>Aksi</b></div>
+                            </div>
+                            ${order.details && order.details.length > 0 ? order.details.map(item => {
+                                const itemStatus = item.status || 'Diproses';
+                                return `
+                                    <div class="item-detail-row show">
+                                        <div class="item-col">${item.menu_name}</div>
+                                        <div class="item-col">${item.jumlah || 0}</div>
+                                        <div class="item-col">
+                                            <span class="item-status-badge ${getStatusClass(itemStatus)}">
+                                                ${getStatusLabel(itemStatus)}
+                                            </span>
+                                        </div>
+                                        <div class="item-col">
+                                            ${itemStatus === 'Diproses' ? `
+                                                <button class="btn-item-action siapkan-item" onclick="updateItemStatus('${order.no_struk}', ${item.id}, 'Siap')">
+                                                    Siapkan
+                                                </button>
+                                            ` : ''}
+                                            ${itemStatus === 'Siap' || itemStatus === 'Diproses' ? `
+                                                <button class="btn-item-action selesai-item" onclick="updateItemStatus('${order.no_struk}', ${item.id}, 'Selesai')">
+                                                    Selesai
+                                                </button>
+                                            ` : ''}
+                                            ${itemStatus === 'Selesai' ? '✅' : ''}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('') : `
+                                <div class="item-detail-row show">
+                                    <div class="item-col" style="color:rgba(255,255,255,0.3);">Tidak ada detail</div>
+                                    <div class="item-col">-</div>
+                                    <div class="item-col">-</div>
+                                    <div class="item-col">-</div>
+                                </div>
+                            `}
+                        ` : ''}
                     </div>
                 `;
             });
@@ -815,13 +1237,26 @@
             container.innerHTML = html;
         }
 
-        async function updateStatus(noStruk, newStatus) {
+        async function updateOrderStatus(noStruk, newStatus) {
             if (!confirm(`Yakin ingin mengubah status ${noStruk} menjadi ${newStatus}?`)) return;
 
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
 
             try {
+                // Update semua item di order ini
+                const order = ordersData.find(o => o.no_struk === noStruk);
+                if (order && order.details) {
+                    for (const item of order.details) {
+                        const { error } = await supabaseClient
+                            .from('orderdetails')
+                            .update({ status: newStatus })
+                            .eq('id', item.id);
+                        if (error) throw error;
+                    }
+                }
+
+                // Update status order
                 const { error } = await supabaseClient
                     .from('orders')
                     .update({ status_order: newStatus })
@@ -829,7 +1264,7 @@
 
                 if (error) throw error;
 
-                showToast(`✅ Status ${noStruk} berhasil diubah menjadi ${newStatus}`);
+                showToast(`✅ Status ${noStruk} berhasil diubah menjadi ${getStatusLabel(newStatus)}`);
                 await loadOrdersSilent();
 
             } catch (error) {
@@ -841,7 +1276,11 @@
         }
 
         async function selesaiSemua() {
-            const pendingOrders = ordersData.filter(o => o.status_order !== 'Selesai');
+            const pendingOrders = ordersData.filter(o => {
+                const status = o.status_order || 'Diproses';
+                return status !== 'Selesai';
+            });
+
             if (pendingOrders.length === 0) {
                 showToast('✅ Semua pesanan sudah selesai!');
                 return;
@@ -855,6 +1294,16 @@
             try {
                 let success = 0;
                 for (const order of pendingOrders) {
+                    // Update semua item
+                    if (order.details) {
+                        for (const item of order.details) {
+                            await supabaseClient
+                                .from('orderdetails')
+                                .update({ status: 'Selesai' })
+                                .eq('id', item.id);
+                        }
+                    }
+
                     const { error } = await supabaseClient
                         .from('orders')
                         .update({ status_order: 'Selesai' })
