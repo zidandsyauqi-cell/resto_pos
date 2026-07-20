@@ -32,7 +32,7 @@
             width: 100%;
             height: 100%;
             position: relative;
-            background: white;
+            background: transparent;
             overflow: hidden;
             border-radius: 0;
             box-shadow: none;
@@ -56,9 +56,9 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.25);
             pointer-events: none;
-            z-index: 2;
+            z-index: 1;
         }
 
         .loading-overlay {
@@ -104,31 +104,31 @@
         .header-top {
             position: relative;
             z-index: 10;
-            padding: 8px 12px;
-            padding-top: env(safe-area-inset-top, 8px);
+            padding: 10px 16px;
+            padding-top: env(safe-area-inset-top, 10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.4);
+            background: transparent;
             flex-shrink: 0;
-            min-height: 48px;
+            min-height: 56px;
         }
         .header-left {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .btn-back {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(22px, 3%, 36px);
+            font-size: 28px;
             cursor: pointer;
             transition: all 0.3s;
             padding: 4px 8px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            min-width: 40px;
-            min-height: 40px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+            min-width: 44px;
+            min-height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -141,21 +141,21 @@
         .logo-header {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
             text-decoration: none;
         }
         .logo-header img {
-            width: clamp(28px, 4%, 50px);
+            width: 40px;
             height: auto;
-            filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.5));
         }
         .brand-text {
             color: white;
-            font-size: clamp(14px, 2.2%, 28px);
+            font-size: 22px;
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
             white-space: nowrap;
         }
         .brand-text span {
@@ -166,11 +166,11 @@
         .menu-image-wrapper {
             position: relative;
             width: 100%;
-            height: 45%;
+            height: 42%;
             flex-shrink: 0;
             overflow: hidden;
-            background: #1a1a1a;
-            z-index: 1;
+            background: transparent;
+            z-index: 2;
         }
         .menu-image-wrapper img {
             width: 100%;
@@ -183,7 +183,8 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+            pointer-events: none;
         }
 
         /* ===== KONTEN ===== */
@@ -191,12 +192,13 @@
             flex: 1;
             position: relative;
             z-index: 5;
-            padding: 12px 16px 16px 16px;
-            padding-bottom: env(safe-area-inset-bottom, 16px);
+            padding: 16px 20px 20px 20px;
+            padding-bottom: env(safe-area-inset-bottom, 20px);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             display: flex;
             flex-direction: column;
+            background: transparent;
         }
         .content-area::-webkit-scrollbar {
             width: 3px;
@@ -212,30 +214,30 @@
 
         .menu-name {
             color: white;
-            font-size: clamp(24px, 6%, 60px);
+            font-size: 48px;
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
             line-height: 1.2;
             margin-bottom: 4px;
         }
 
         .menu-price {
             color: #98C81C;
-            font-size: clamp(18px, 4%, 40px);
+            font-size: 32px;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-            margin-bottom: 8px;
+            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
         }
 
         .menu-desc {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: clamp(14px, 3%, 30px);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 20px;
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: justify;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
             line-height: 1.6;
             flex: 1;
             overflow-y: auto;
@@ -256,13 +258,13 @@
         /* ===== TOMBOL ===== */
         .btn-back-menu {
             width: 100%;
-            padding: clamp(12px, 2.5%, 24px);
-            margin-top: 12px;
+            padding: 16px;
+            margin-top: 14px;
             background: #98C81C;
             border: 2px solid white;
             border-radius: 50px;
             color: white;
-            font-size: clamp(16px, 3.5%, 36px);
+            font-size: 24px;
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             cursor: pointer;
@@ -334,15 +336,57 @@
         /* HP Portrait */
         @media screen and (max-width: 767px) and (orientation: portrait) {
             .header-top {
+                padding: 8px 12px;
+                padding-top: env(safe-area-inset-top, 8px);
+                min-height: 44px;
+            }
+            .btn-back {
+                font-size: 22px;
+                min-width: 36px;
+                min-height: 36px;
+                padding: 2px 6px;
+            }
+            .logo-header img {
+                width: 28px;
+            }
+            .brand-text {
+                font-size: 16px;
+            }
+            .menu-image-wrapper {
+                height: 35%;
+            }
+            .content-area {
+                padding: 12px 14px 16px 14px;
+                padding-bottom: env(safe-area-inset-bottom, 16px);
+            }
+            .menu-name {
+                font-size: 30px;
+            }
+            .menu-price {
+                font-size: 22px;
+            }
+            .menu-desc {
+                font-size: 16px;
+            }
+            .btn-back-menu {
+                font-size: 18px;
+                padding: 12px;
+                margin-top: 10px;
+            }
+        }
+
+        /* HP Portrait Kecil */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .header-top {
                 padding: 6px 10px;
                 padding-top: env(safe-area-inset-top, 6px);
-                min-height: 40px;
+                min-height: 38px;
             }
             .btn-back {
                 font-size: 18px;
                 min-width: 32px;
                 min-height: 32px;
-                padding: 2px 6px;
+                padding: 2px 4px;
             }
             .logo-header img {
                 width: 22px;
@@ -351,67 +395,26 @@
                 font-size: 13px;
             }
             .menu-image-wrapper {
-                height: 38%;
+                height: 30%;
             }
             .content-area {
                 padding: 10px 12px 12px 12px;
                 padding-bottom: env(safe-area-inset-bottom, 12px);
             }
             .menu-name {
-                font-size: 22px;
+                font-size: 24px;
             }
             .menu-price {
-                font-size: 17px;
+                font-size: 18px;
             }
             .menu-desc {
-                font-size: 13px;
+                font-size: 14px;
+                line-height: 1.5;
             }
             .btn-back-menu {
                 font-size: 15px;
                 padding: 10px;
                 margin-top: 8px;
-            }
-        }
-
-        /* HP Portrait Kecil */
-        @media screen and (max-width: 480px) and (orientation: portrait) {
-            .header-top {
-                padding: 4px 8px;
-                padding-top: env(safe-area-inset-top, 4px);
-                min-height: 34px;
-            }
-            .btn-back {
-                font-size: 15px;
-                min-width: 28px;
-                min-height: 28px;
-                padding: 2px 4px;
-            }
-            .logo-header img {
-                width: 18px;
-            }
-            .brand-text {
-                font-size: 11px;
-            }
-            .menu-image-wrapper {
-                height: 32%;
-            }
-            .content-area {
-                padding: 8px 10px 10px 10px;
-                padding-bottom: env(safe-area-inset-bottom, 10px);
-            }
-            .menu-name {
-                font-size: 18px;
-            }
-            .menu-price {
-                font-size: 14px;
-            }
-            .menu-desc {
-                font-size: 11px;
-            }
-            .btn-back-menu {
-                font-size: 13px;
-                padding: 8px;
-                margin-top: 6px;
             }
             .error-display {
                 padding: 16px 20px;
@@ -433,34 +436,31 @@
                 height: 55%;
             }
             .content-area {
-                padding: 8px 16px 12px 16px;
-                padding-bottom: env(safe-area-inset-bottom, 12px);
+                padding: 10px 20px 14px 20px;
+                padding-bottom: env(safe-area-inset-bottom, 14px);
             }
             .menu-name {
-                font-size: clamp(20px, 4%, 40px);
+                font-size: 32px;
             }
             .menu-price {
-                font-size: clamp(16px, 3%, 30px);
+                font-size: 24px;
             }
             .menu-desc {
-                font-size: clamp(12px, 2%, 20px);
+                font-size: 16px;
             }
             .btn-back-menu {
-                font-size: clamp(14px, 2.5%, 24px);
-                padding: clamp(8px, 1.5%, 16px);
-                margin-top: 6px;
+                font-size: 18px;
+                padding: 12px;
+                margin-top: 8px;
             }
         }
 
         /* Landscape HP Kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .menu-image-wrapper {
-                height: 48%;
-            }
             .header-top {
-                padding: 4px 10px;
+                padding: 4px 12px;
                 padding-top: env(safe-area-inset-top, 4px);
-                min-height: 32px;
+                min-height: 36px;
             }
             .btn-back {
                 font-size: 16px;
@@ -474,120 +474,76 @@
             .brand-text {
                 font-size: 12px;
             }
+            .menu-image-wrapper {
+                height: 45%;
+            }
             .content-area {
-                padding: 6px 12px 8px 12px;
-                padding-bottom: env(safe-area-inset-bottom, 8px);
+                padding: 6px 14px 10px 14px;
+                padding-bottom: env(safe-area-inset-bottom, 10px);
             }
             .menu-name {
-                font-size: 16px;
+                font-size: 22px;
             }
             .menu-price {
-                font-size: 13px;
+                font-size: 16px;
+                margin-bottom: 4px;
             }
             .menu-desc {
-                font-size: 10px;
+                font-size: 12px;
                 line-height: 1.4;
             }
             .btn-back-menu {
-                font-size: 12px;
-                padding: 6px;
-                margin-top: 4px;
+                font-size: 14px;
+                padding: 8px;
+                margin-top: 6px;
             }
         }
 
         /* ===== TABLET PORTRAIT ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
             .header-top {
-                padding: 12px 20px;
-                padding-top: env(safe-area-inset-top, 12px);
-                min-height: 60px;
+                padding: 14px 24px;
+                padding-top: env(safe-area-inset-top, 14px);
+                min-height: 64px;
             }
             .btn-back {
-                font-size: 28px;
-                min-width: 48px;
-                min-height: 48px;
+                font-size: 32px;
+                min-width: 52px;
+                min-height: 52px;
             }
             .logo-header img {
-                width: 40px;
+                width: 48px;
             }
             .brand-text {
-                font-size: 22px;
+                font-size: 26px;
             }
             .menu-image-wrapper {
-                height: 42%;
+                height: 40%;
             }
             .content-area {
-                padding: 16px 24px 20px 24px;
-                padding-bottom: env(safe-area-inset-bottom, 20px);
+                padding: 20px 28px 24px 28px;
+                padding-bottom: env(safe-area-inset-bottom, 24px);
             }
             .menu-name {
-                font-size: 36px;
+                font-size: 48px;
             }
             .menu-price {
-                font-size: 28px;
+                font-size: 34px;
             }
             .menu-desc {
-                font-size: 20px;
+                font-size: 22px;
             }
             .btn-back-menu {
-                font-size: 24px;
-                padding: 16px;
-                margin-top: 12px;
+                font-size: 26px;
+                padding: 18px;
+                margin-top: 14px;
             }
         }
 
         /* ===== TABLET LANDSCAPE ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
             .header-top {
-                padding: 8px 16px;
-                padding-top: env(safe-area-inset-top, 8px);
-                min-height: 48px;
-            }
-            .btn-back {
-                font-size: 24px;
-                min-width: 40px;
-                min-height: 40px;
-            }
-            .logo-header img {
-                width: 32px;
-            }
-            .brand-text {
-                font-size: 18px;
-            }
-            .menu-image-wrapper {
-                height: 50%;
-            }
-            .content-area {
-                padding: 12px 20px 16px 20px;
-                padding-bottom: env(safe-area-inset-bottom, 16px);
-            }
-            .menu-name {
-                font-size: 28px;
-            }
-            .menu-price {
-                font-size: 22px;
-            }
-            .menu-desc {
-                font-size: 16px;
-            }
-            .btn-back-menu {
-                font-size: 18px;
-                padding: 12px;
-                margin-top: 8px;
-            }
-        }
-
-        /* ===== DESKTOP ===== */
-        @media screen and (min-width: 1025px) and (orientation: landscape) {
-            .detail-container {
-                max-width: 500px;
-                max-height: 900px;
-                border-radius: 24px;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-                align-self: center;
-            }
-            .header-top {
-                padding: 10px 16px;
+                padding: 10px 20px;
                 padding-top: env(safe-area-inset-top, 10px);
                 min-height: 52px;
             }
@@ -603,17 +559,17 @@
                 font-size: 20px;
             }
             .menu-image-wrapper {
-                height: 42%;
+                height: 50%;
             }
             .content-area {
-                padding: 14px 20px 18px 20px;
+                padding: 14px 24px 18px 24px;
                 padding-bottom: env(safe-area-inset-bottom, 18px);
             }
             .menu-name {
-                font-size: 32px;
+                font-size: 36px;
             }
             .menu-price {
-                font-size: 24px;
+                font-size: 26px;
             }
             .menu-desc {
                 font-size: 18px;
@@ -625,13 +581,65 @@
             }
         }
 
+        /* ===== DESKTOP ===== */
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
+            .detail-container {
+                max-width: 500px;
+                max-height: 900px;
+                border-radius: 24px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+                align-self: center;
+                background: rgba(0, 0, 0, 0.2);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .header-top {
+                padding: 12px 20px;
+                padding-top: env(safe-area-inset-top, 12px);
+                min-height: 56px;
+            }
+            .btn-back {
+                font-size: 28px;
+                min-width: 48px;
+                min-height: 48px;
+            }
+            .logo-header img {
+                width: 40px;
+            }
+            .brand-text {
+                font-size: 22px;
+            }
+            .menu-image-wrapper {
+                height: 40%;
+            }
+            .content-area {
+                padding: 16px 24px 20px 24px;
+                padding-bottom: env(safe-area-inset-bottom, 20px);
+            }
+            .menu-name {
+                font-size: 38px;
+            }
+            .menu-price {
+                font-size: 28px;
+            }
+            .menu-desc {
+                font-size: 18px;
+            }
+            .btn-back-menu {
+                font-size: 22px;
+                padding: 16px;
+                margin-top: 12px;
+            }
+        }
+
         /* Fallback */
         @supports not (padding: env(safe-area-inset-top)) {
             .header-top {
-                padding-top: 8px;
+                padding-top: 10px;
             }
             .content-area {
-                padding-bottom: 16px;
+                padding-bottom: 20px;
             }
         }
     </style>
@@ -687,8 +695,6 @@
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
         const STORAGE_BUCKET = 'menu-images';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        let allMenus = [];
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -779,7 +785,7 @@
 
                 const { data, error } = await supabaseClient
                     .from('menu')
-                    .select('nama_menu, detail, harga, gambar')
+                    .select('nama_menu, detail, harga, gambar, varian')
                     .eq('id_menu', parseInt(menuId))
                     .maybeSingle();
 
@@ -793,7 +799,19 @@
 
                 document.getElementById('menuName').textContent = data.nama_menu ? data.nama_menu.toUpperCase() : '-';
                 document.getElementById('menuPrice').textContent = data.harga ? formatRupiah(data.harga) : '-';
-                document.getElementById('menuDesc').textContent = data.detail || 'Tidak ada deskripsi untuk menu ini.';
+
+                // Tampilkan varian jika ada
+                let descText = data.detail || 'Tidak ada deskripsi untuk menu ini.';
+                if (data.varian) {
+                    try {
+                        const varian = typeof data.varian === 'string' ? JSON.parse(data.varian) : data.varian;
+                        if (varian && varian.length > 0) {
+                            const varianText = varian.map(v => v.name + (v.price > 0 ? ' (+Rp ' + v.price.toLocaleString() + ')' : '')).join(', ');
+                            descText += '\n\nVarian tersedia: ' + varianText;
+                        }
+                    } catch (e) {}
+                }
+                document.getElementById('menuDesc').textContent = descText;
 
                 let imageUrl = 'https://placehold.co/500x500/1a1a1a/ffffff?text=' + encodeURIComponent(data.nama_menu ||
                     'Menu');
