@@ -56,7 +56,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.2);
             pointer-events: none;
             z-index: 1;
         }
@@ -162,20 +162,24 @@
             color: #98C81C;
         }
 
-        /* ===== GAMBAR MENU ===== */
+        /* ===== GAMBAR MENU - TIDAK KEPOTONG ===== */
         .menu-image-wrapper {
             position: relative;
             width: 100%;
-            height: 42%;
+            height: 45%;
             flex-shrink: 0;
             overflow: hidden;
             background: transparent;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .menu-image-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            object-position: center;
         }
         .menu-image-wrapper .image-overlay {
             position: absolute;
@@ -183,7 +187,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
             pointer-events: none;
         }
 
@@ -192,13 +196,14 @@
             flex: 1;
             position: relative;
             z-index: 5;
-            padding: 16px 20px 20px 20px;
+            padding: 14px 20px 20px 20px;
             padding-bottom: env(safe-area-inset-bottom, 20px);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             display: flex;
             flex-direction: column;
             background: transparent;
+            min-height: 0;
         }
         .content-area::-webkit-scrollbar {
             width: 3px;
@@ -214,26 +219,26 @@
 
         .menu-name {
             color: white;
-            font-size: 48px;
+            font-size: 42px;
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
             text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
             line-height: 1.2;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .menu-price {
             color: #98C81C;
-            font-size: 32px;
+            font-size: 28px;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .menu-desc {
             color: rgba(255, 255, 255, 0.85);
-            font-size: 20px;
+            font-size: 18px;
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-align: justify;
@@ -258,13 +263,13 @@
         /* ===== TOMBOL ===== */
         .btn-back-menu {
             width: 100%;
-            padding: 16px;
-            margin-top: 14px;
+            padding: 14px;
+            margin-top: 12px;
             background: #98C81C;
             border: 2px solid white;
             border-radius: 50px;
             color: white;
-            font-size: 24px;
+            font-size: 22px;
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             cursor: pointer;
@@ -353,25 +358,25 @@
                 font-size: 16px;
             }
             .menu-image-wrapper {
-                height: 35%;
+                height: 38%;
             }
             .content-area {
-                padding: 12px 14px 16px 14px;
-                padding-bottom: env(safe-area-inset-bottom, 16px);
+                padding: 10px 14px 14px 14px;
+                padding-bottom: env(safe-area-inset-bottom, 14px);
             }
             .menu-name {
-                font-size: 30px;
+                font-size: 28px;
             }
             .menu-price {
-                font-size: 22px;
+                font-size: 20px;
             }
             .menu-desc {
-                font-size: 16px;
+                font-size: 15px;
             }
             .btn-back-menu {
-                font-size: 18px;
-                padding: 12px;
-                margin-top: 10px;
+                font-size: 17px;
+                padding: 11px;
+                margin-top: 8px;
             }
         }
 
@@ -395,26 +400,26 @@
                 font-size: 13px;
             }
             .menu-image-wrapper {
-                height: 30%;
+                height: 32%;
             }
             .content-area {
-                padding: 10px 12px 12px 12px;
+                padding: 8px 12px 12px 12px;
                 padding-bottom: env(safe-area-inset-bottom, 12px);
             }
             .menu-name {
-                font-size: 24px;
+                font-size: 22px;
             }
             .menu-price {
-                font-size: 18px;
+                font-size: 17px;
             }
             .menu-desc {
-                font-size: 14px;
+                font-size: 13px;
                 line-height: 1.5;
             }
             .btn-back-menu {
-                font-size: 15px;
-                padding: 10px;
-                margin-top: 8px;
+                font-size: 14px;
+                padding: 9px;
+                margin-top: 6px;
             }
             .error-display {
                 padding: 16px 20px;
@@ -440,17 +445,17 @@
                 padding-bottom: env(safe-area-inset-bottom, 14px);
             }
             .menu-name {
-                font-size: 32px;
+                font-size: 30px;
             }
             .menu-price {
-                font-size: 24px;
+                font-size: 22px;
             }
             .menu-desc {
-                font-size: 16px;
+                font-size: 15px;
             }
             .btn-back-menu {
-                font-size: 18px;
-                padding: 12px;
+                font-size: 17px;
+                padding: 11px;
                 margin-top: 8px;
             }
         }
@@ -475,26 +480,26 @@
                 font-size: 12px;
             }
             .menu-image-wrapper {
-                height: 45%;
+                height: 48%;
             }
             .content-area {
                 padding: 6px 14px 10px 14px;
                 padding-bottom: env(safe-area-inset-bottom, 10px);
             }
             .menu-name {
-                font-size: 22px;
+                font-size: 20px;
             }
             .menu-price {
-                font-size: 16px;
+                font-size: 15px;
                 margin-bottom: 4px;
             }
             .menu-desc {
-                font-size: 12px;
+                font-size: 11px;
                 line-height: 1.4;
             }
             .btn-back-menu {
-                font-size: 14px;
-                padding: 8px;
+                font-size: 13px;
+                padding: 7px;
                 margin-top: 6px;
             }
         }
@@ -518,25 +523,25 @@
                 font-size: 26px;
             }
             .menu-image-wrapper {
-                height: 40%;
+                height: 42%;
             }
             .content-area {
-                padding: 20px 28px 24px 28px;
+                padding: 18px 28px 24px 28px;
                 padding-bottom: env(safe-area-inset-bottom, 24px);
             }
             .menu-name {
-                font-size: 48px;
+                font-size: 44px;
             }
             .menu-price {
-                font-size: 34px;
+                font-size: 32px;
             }
             .menu-desc {
-                font-size: 22px;
+                font-size: 20px;
             }
             .btn-back-menu {
-                font-size: 26px;
-                padding: 18px;
-                margin-top: 14px;
+                font-size: 24px;
+                padding: 16px;
+                margin-top: 12px;
             }
         }
 
@@ -559,24 +564,24 @@
                 font-size: 20px;
             }
             .menu-image-wrapper {
-                height: 50%;
+                height: 52%;
             }
             .content-area {
                 padding: 14px 24px 18px 24px;
                 padding-bottom: env(safe-area-inset-bottom, 18px);
             }
             .menu-name {
-                font-size: 36px;
+                font-size: 34px;
             }
             .menu-price {
-                font-size: 26px;
+                font-size: 24px;
             }
             .menu-desc {
-                font-size: 18px;
+                font-size: 17px;
             }
             .btn-back-menu {
-                font-size: 20px;
-                padding: 14px;
+                font-size: 19px;
+                padding: 13px;
                 margin-top: 10px;
             }
         }
@@ -589,7 +594,7 @@
                 border-radius: 24px;
                 box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
                 align-self: center;
-                background: rgba(0, 0, 0, 0.2);
+                background: rgba(0, 0, 0, 0.15);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
                 border: 1px solid rgba(255, 255, 255, 0.05);
@@ -611,25 +616,25 @@
                 font-size: 22px;
             }
             .menu-image-wrapper {
-                height: 40%;
+                height: 42%;
             }
             .content-area {
                 padding: 16px 24px 20px 24px;
                 padding-bottom: env(safe-area-inset-bottom, 20px);
             }
             .menu-name {
-                font-size: 38px;
+                font-size: 36px;
             }
             .menu-price {
-                font-size: 28px;
+                font-size: 26px;
             }
             .menu-desc {
-                font-size: 18px;
+                font-size: 17px;
             }
             .btn-back-menu {
-                font-size: 22px;
-                padding: 16px;
-                margin-top: 12px;
+                font-size: 20px;
+                padding: 14px;
+                margin-top: 10px;
             }
         }
 
@@ -665,7 +670,7 @@
             </div>
         </div>
 
-        <!-- ===== GAMBAR ===== -->
+        <!-- ===== GAMBAR - TIDAK KEPOTONG ===== -->
         <div class="menu-image-wrapper">
             <img src="" alt="Menu" id="menuImage" />
             <div class="image-overlay"></div>
@@ -800,7 +805,6 @@
                 document.getElementById('menuName').textContent = data.nama_menu ? data.nama_menu.toUpperCase() : '-';
                 document.getElementById('menuPrice').textContent = data.harga ? formatRupiah(data.harga) : '-';
 
-                // Tampilkan varian jika ada
                 let descText = data.detail || 'Tidak ada deskripsi untuk menu ini.';
                 if (data.varian) {
                     try {
