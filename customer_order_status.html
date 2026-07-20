@@ -2,34 +2,37 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Jangkung Order - Status</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Jangkung Order - Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: #0a0a0a;
-            padding: 0;
-            margin: 0;
             overflow: hidden;
+            -webkit-overflow-scrolling: touch;
         }
         body {
             font-family: 'Poppins', sans-serif;
         }
-        .status-container {
-            width: 100vw;
-            height: 100vh;
+
+        .container {
+            width: 100%;
+            height: 100%;
             position: relative;
-            background: white;
+            background: #1a1a1a;
             overflow: hidden;
-            border-radius: 0;
-            box-shadow: none;
+            display: flex;
+            flex-direction: column;
         }
+
         .bg-utama {
             position: absolute;
             width: 100%;
@@ -39,16 +42,6 @@
             z-index: 0;
             background: url('bg.png') center center / cover no-repeat;
         }
-        .overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.35);
-            pointer-events: none;
-            z-index: 2;
-        }
 
         .loading-overlay {
             position: absolute;
@@ -56,7 +49,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 100;
             display: none;
             justify-content: center;
@@ -64,388 +57,811 @@
             flex-direction: column;
             gap: 20px;
         }
-        .loading-overlay.active { display: flex; }
+        .loading-overlay.active {
+            display: flex;
+        }
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255,255,255,0.1);
-            border-top: 4px solid #98C81C;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #98C81C;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
         .loading-text {
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-family: 'Poppins', sans-serif;
         }
 
-        .header-top {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+        /* ===== HEADER ===== */
+        .list-header {
+            position: relative;
             z-index: 10;
-            padding: 10px 16px 6px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.5);
-        }
-        .header-left {
             display: flex;
             align-items: center;
             gap: 8px;
+            padding: 8px 12px;
+            padding-top: env(safe-area-inset-top, 8px);
+            flex-shrink: 0;
+            min-height: 48px;
+            background: rgba(0, 0, 0, 0.5);
         }
-        .btn-back {
+        .list-header .btn-back-dashboard {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(22px, 3%, 36px);
+            font-size: clamp(18px, 2.8%, 32px);
             cursor: pointer;
             transition: all 0.3s;
             padding: 4px 8px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        .btn-back:hover { transform: scale(1.1); color: #98C81C; }
-        
-        .logo-header {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+            min-width: 36px;
+            min-height: 36px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            cursor: pointer;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
         }
-        .logo-header img {
-            width: clamp(28px, 4%, 50px);
-            height: auto;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+        .list-header .btn-back-dashboard:active {
+            transform: scale(0.92);
         }
-        .brand-text {
-            color: white;
-            font-size: clamp(13px, 2%, 24px);
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            white-space: nowrap;
-        }
-        .brand-text span { color: #98C81C; }
 
-        .info-wrapper {
-            position: absolute;
-            top: 55px;
-            left: 0;
-            right: 0;
-            z-index: 10;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .info-item {
-            flex: 1;
+        .list-header .brand-left {
             display: flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            flex-shrink: 1;
+            min-width: 0;
         }
-        .info-item .label {
-            color: rgba(255,255,255,0.7);
-            font-size: clamp(12px, 1.6%, 18px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            white-space: nowrap;
+        .list-header .brand-left img {
+            width: clamp(24px, 3.5%, 45px);
+            height: auto;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
         }
-        .info-item .value-box {
-            padding: 4px 12px;
-            border-radius: 50px;
-            border: 2px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.08);
+        .list-header .brand-left .brand-text {
             color: white;
-            font-size: clamp(11px, 1.6%, 18px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            max-width: 150px;
-        }
-
-        .struk-wrapper {
-            position: absolute;
-            top: 110px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 8px 16px 15px 16px;
-            overflow-y: auto;
-            z-index: 5;
-        }
-        .struk-wrapper::-webkit-scrollbar { width: 3px; }
-        .struk-wrapper::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        .struk-wrapper::-webkit-scrollbar-thumb { background: #98C81C; border-radius: 10px; }
-
-        .struk-box {
-            background: rgba(255,255,255,0.05);
-            border-radius: 40px;
-            border: 2px solid rgba(255,255,255,0.2);
-            padding: 16px 20px 14px 20px;
-            min-height: 300px;
-            margin-bottom: 12px;
-        }
-        .struk-title {
-            color: white;
-            font-size: clamp(18px, 2.8%, 32px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            margin-bottom: 6px;
-        }
-        .struk-no {
-            color: rgba(255,255,255,0.6);
-            font-size: clamp(14px, 2%, 22px);
-            font-family: 'Schoolbell', cursive;
-            margin-bottom: 10px;
-            border-bottom: 1px dashed rgba(255,255,255,0.1);
-            padding-bottom: 6px;
-        }
-        .struk-no span { color: white; }
-
-        .struk-header-row {
-            display: flex;
-            justify-content: space-between;
-            color: rgba(255,255,255,0.4);
-            font-size: clamp(11px, 1.5%, 16px);
-            font-family: 'Schoolbell', cursive;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 3px;
-            margin-bottom: 3px;
-        }
-        .struk-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 3px 0;
-            color: white;
-            font-size: clamp(13px, 1.8%, 20px);
-            font-family: 'Schoolbell', cursive;
-            border-bottom: 1px solid rgba(255,255,255,0.02);
-        }
-        .struk-item .item-name { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 8px; }
-        .struk-item .item-qty { margin: 0 6px; color: rgba(255,255,255,0.4); min-width: 24px; text-align: center; }
-        .struk-item .item-price { color: #98C81C; min-width: 70px; text-align: right; }
-
-        .struk-divider {
-            border: none;
-            border-top: 1px dashed rgba(255,255,255,0.15);
-            margin: 6px 0;
-        }
-
-        .struk-total-row {
-            display: flex;
-            justify-content: space-between;
-            color: white;
-            font-size: clamp(14px, 2%, 24px);
-            font-family: 'Schoolbell', cursive;
-            padding: 3px 0;
-        }
-        .struk-total-row .total-amount { color: #98C81C; }
-
-        .struk-ppn {
-            display: flex;
-            justify-content: space-between;
-            color: rgba(255,255,255,0.5);
-            font-size: clamp(12px, 1.6%, 18px);
-            font-family: 'Schoolbell', cursive;
-            padding: 2px 0;
-        }
-        .struk-ppn .ppn-amount { color: rgba(255,255,255,0.5); }
-
-        .struk-grand-total {
-            display: flex;
-            justify-content: space-between;
-            color: white;
-            font-size: clamp(18px, 2.8%, 32px);
-            font-family: 'Schoolbell', cursive;
+            font-size: clamp(12px, 2.2%, 28px);
             font-weight: 700;
-            padding-top: 6px;
-            border-top: 2px solid rgba(255,255,255,0.15);
+            white-space: nowrap;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .list-header .brand-left .brand-text span {
+            color: #98C81C;
+        }
+
+        /* ===== SEARCH ===== */
+        .search-wrapper {
+            position: relative;
+            z-index: 9;
+            padding: 4px 12px 6px 12px;
+            flex-shrink: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .search-bar {
+            width: 100%;
+            padding: clamp(5px, 1.2%, 12px) clamp(10px, 2.2%, 20px);
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: clamp(10px, 1.8%, 20px);
+            font-family: 'Schoolbell', cursive;
+            outline: none;
+            transition: all 0.3s;
+            -webkit-appearance: none;
+        }
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .search-bar:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #98C81C;
+        }
+
+        /* ===== CONTENT ===== */
+        .list-menu {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            overflow-y: auto;
+            padding: 6px 12px 12px;
+            padding-bottom: env(safe-area-inset-bottom, 12px);
+            -webkit-overflow-scrolling: touch;
+        }
+        .list-menu::-webkit-scrollbar {
+            width: 3px;
+        }
+        .list-menu::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .list-menu::-webkit-scrollbar-thumb {
+            background: #98C81C;
+            border-radius: 10px;
+        }
+
+        /* Category Section */
+        .category-section {
             margin-top: 6px;
         }
-        .struk-grand-total .grand-total-amount { color: #98C81C; }
+        .category-title {
+            color: white;
+            font-size: clamp(16px, 3.5%, 40px);
+            font-weight: 600;
+            padding-bottom: 3px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 4px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
 
-        .btn-ok {
+        /* Menu Item */
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .menu-item:active {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
+        .menu-item .menu-img {
+            width: clamp(35px, 6%, 70px);
+            height: clamp(35px, 6%, 70px);
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #2d2d2d;
+        }
+
+        .menu-item .menu-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .menu-item .menu-info .menu-name {
+            color: white;
+            font-size: clamp(11px, 2.2%, 26px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .menu-item .menu-info .menu-price {
+            color: #98C81C;
+            font-size: clamp(10px, 2%, 22px);
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item .btn-detail {
+            padding: clamp(3px, 1%, 8px) clamp(8px, 2%, 24px);
+            background: #98C81C;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            font-size: clamp(9px, 1.8%, 20px);
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .menu-item .btn-detail:active {
+            background: #7aa814;
+            transform: scale(0.95);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 20px 10px;
+            font-size: clamp(12px, 2.5%, 24px);
+            font-family: 'Schoolbell', cursive;
+        }
+
+        /* Error */
+        .error-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 50;
+            color: white;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px 25px;
+            border-radius: 16px;
+            border: 2px solid #e74c3c;
+            max-width: 85%;
+        }
+        .error-display .error-icon {
+            font-size: 35px;
             display: block;
-            width: clamp(80px, 25%, 280px);
-            padding: 8px 16px;
-            margin: 12px auto 0 auto;
+            margin-bottom: 6px;
+        }
+        .error-display .error-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .error-display .error-desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .error-display .btn-retry {
+            margin-top: 10px;
+            padding: 6px 20px;
             background: #98C81C;
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: clamp(18px, 2.8%, 32px);
-            font-family: 'Schoolbell', cursive;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
             cursor: pointer;
             transition: all 0.3s;
-            text-align: center;
-            border: 2px solid white;
+            -webkit-tap-highlight-color: transparent;
         }
-        .btn-ok:hover { background: #7aa814; transform: scale(1.03); }
-
-        .empty-status {
-            text-align: center;
-            color: rgba(255,255,255,0.5);
-            padding: 40px 20px;
-            font-size: clamp(16px, 2.5%, 28px);
-            font-family: 'Schoolbell', cursive;
+        .error-display .btn-retry:active {
+            background: #7aa814;
+            transform: scale(0.95);
         }
-        .empty-status .sub {
-            font-size: clamp(12px, 1.6%, 18px);
-            color: rgba(255,255,255,0.3);
-        }
-        .btn-refresh {
-            width: 100%;
-            padding: 10px;
-            margin-top: 12px;
-            background: rgba(255,255,255,0.1);
-            border: 2px solid rgba(255,255,255,0.2);
-            border-radius: 50px;
-            color: white;
-            font-size: clamp(14px, 1.8%, 20px);
-            font-family: 'Schoolbell', cursive;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .btn-refresh:hover { background: rgba(255,255,255,0.2); }
 
         /* ===== RESPONSIVE ===== */
-        @media screen and (orientation: portrait) {
-            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
+
+        /* Portrait - HP */
+        @media screen and (max-width: 767px) and (orientation: portrait) {
+            .container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+            .list-menu {
+                padding: 4px 10px 8px;
+            }
+            .list-header {
+                padding: 6px 10px;
+                padding-top: env(safe-area-inset-top, 6px);
+                min-height: 40px;
+            }
+            .search-wrapper {
+                padding: 2px 10px 4px 10px;
+            }
+            .menu-item {
+                padding: 5px 0;
+                gap: 6px;
+            }
+            .menu-item .menu-img {
+                width: 35px;
+                height: 35px;
+                border-radius: 6px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 11px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 9px;
+            }
+            .menu-item .btn-detail {
+                font-size: 8px;
+                padding: 2px 8px;
+                border-width: 1.5px;
+            }
+            .category-title {
+                font-size: 13px;
+            }
+            .search-bar {
+                padding: 4px 8px;
+                font-size: 9px;
+                border-width: 1.5px;
+            }
+            .list-header .brand-left img {
+                width: 20px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 11px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 13px;
+                padding: 2px 4px;
+                min-width: 30px;
+                min-height: 30px;
+            }
         }
 
+        /* HP Portrait Kecil */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .list-header {
+                padding: 4px 8px;
+                padding-top: env(safe-area-inset-top, 4px);
+                min-height: 34px;
+            }
+            .search-wrapper {
+                padding: 2px 8px 3px 8px;
+            }
+            .list-menu {
+                padding: 3px 8px 6px;
+                padding-bottom: env(safe-area-inset-bottom, 6px);
+            }
+            .menu-item {
+                padding: 4px 0;
+                gap: 5px;
+            }
+            .menu-item .menu-img {
+                width: 28px;
+                height: 28px;
+                border-radius: 5px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 9px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 8px;
+            }
+            .menu-item .btn-detail {
+                font-size: 7px;
+                padding: 2px 6px;
+                border-width: 1.5px;
+            }
+            .category-title {
+                font-size: 11px;
+                padding-bottom: 2px;
+            }
+            .search-bar {
+                font-size: 8px;
+                padding: 3px 6px;
+                border-width: 1.5px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 9px;
+            }
+            .list-header .brand-left img {
+                width: 16px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 11px;
+                min-width: 26px;
+                min-height: 26px;
+                padding: 2px 4px;
+            }
+        }
+
+        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
-            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .info-wrapper { top: 48px; padding: 0 20px; }
-            .struk-wrapper { top: 95px; padding: 6px 20px 12px 20px; }
-            .struk-box { padding: 12px 16px 10px 16px; min-height: 200px; border-radius: 30px; }
-            .header-top { padding: 6px 16px 4px 16px; }
-            .btn-ok { padding: 6px 14px; font-size: 16px; }
+            .container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+            .list-header {
+                padding: 4px 12px;
+                padding-top: env(safe-area-inset-top, 4px);
+                min-height: 36px;
+            }
+            .search-wrapper {
+                padding: 2px 12px 4px 12px;
+            }
+            .list-menu {
+                padding: 4px 12px 8px;
+                padding-bottom: env(safe-area-inset-bottom, 8px);
+            }
+            .menu-item {
+                padding: 4px 0;
+                gap: 8px;
+            }
+            .menu-item .menu-img {
+                width: 38px;
+                height: 38px;
+                border-radius: 6px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 12px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 10px;
+            }
+            .menu-item .btn-detail {
+                font-size: 9px;
+                padding: 3px 10px;
+                border-width: 1.5px;
+            }
+            .category-title {
+                font-size: 14px;
+                padding-bottom: 2px;
+                margin-bottom: 3px;
+            }
+            .search-bar {
+                padding: 4px 10px;
+                font-size: 10px;
+                border-width: 1.5px;
+            }
+            .list-header .brand-left img {
+                width: 20px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 11px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 14px;
+                padding: 2px 4px;
+                min-width: 30px;
+                min-height: 30px;
+            }
         }
 
+        /* Landscape HP Kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
-            .info-wrapper { top: 40px; padding: 0 16px; }
-            .info-item .label { font-size: 10px; }
-            .info-item .value-box { font-size: 9px; padding: 2px 8px; max-width: 100px; }
-            .struk-wrapper { top: 80px; padding: 4px 14px 8px 14px; }
-            .struk-box { padding: 8px 12px 6px 12px; min-height: 150px; border-radius: 20px; }
-            .struk-title { font-size: 14px; }
-            .struk-no { font-size: 11px; }
-            .struk-item { font-size: 10px; padding: 2px 0; }
-            .struk-item .item-price { min-width: 50px; }
-            .struk-total-row { font-size: 12px; }
-            .struk-ppn { font-size: 10px; }
-            .struk-grand-total { font-size: 14px; }
-            .btn-ok { padding: 4px 12px; font-size: 13px; width: 70px; margin-top: 8px; }
-            .header-top { padding: 4px 12px 2px 12px; }
-            .btn-back { font-size: 16px; }
-            .logo-header img { width: 22px; }
-            .brand-text { font-size: 11px; }
+            .list-header {
+                padding: 2px 10px;
+                padding-top: env(safe-area-inset-top, 2px);
+                min-height: 30px;
+            }
+            .search-wrapper {
+                padding: 1px 10px 2px 10px;
+            }
+            .list-menu {
+                padding: 2px 10px 4px;
+                padding-bottom: env(safe-area-inset-bottom, 4px);
+            }
+            .menu-item {
+                padding: 2px 0;
+                gap: 6px;
+            }
+            .menu-item .menu-img {
+                width: 28px;
+                height: 28px;
+                border-radius: 5px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 10px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 8px;
+            }
+            .menu-item .btn-detail {
+                font-size: 7px;
+                padding: 2px 6px;
+                border-width: 1.5px;
+            }
+            .category-title {
+                font-size: 11px;
+                padding-bottom: 1px;
+                margin-bottom: 2px;
+            }
+            .search-bar {
+                padding: 2px 8px;
+                font-size: 8px;
+                border-width: 1.5px;
+            }
+            .list-header .brand-left img {
+                width: 16px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 9px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 12px;
+                min-width: 26px;
+                min-height: 26px;
+                padding: 2px 4px;
+            }
+            .loading-text {
+                font-size: 11px;
+            }
+            .loading-spinner {
+                width: 25px;
+                height: 25px;
+                border-width: 2px;
+            }
+            .empty-state {
+                font-size: 10px;
+                padding: 10px 5px;
+            }
         }
 
+        /* ===== TABLET PORTRAIT ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .info-wrapper { top: 60px; padding: 0 30px; }
-            .info-item .label { font-size: 18px; }
-            .info-item .value-box { font-size: 18px; padding: 8px 18px; max-width: 250px; }
-            .struk-wrapper { top: 130px; padding: 10px 30px 20px 30px; }
-            .struk-box { padding: 20px 25px 16px 25px; border-radius: 45px; min-height: 400px; }
-            .struk-title { font-size: 28px; }
-            .struk-no { font-size: 22px; }
-            .struk-item { font-size: 18px; padding: 5px 0; }
-            .struk-item .item-price { min-width: 100px; }
-            .struk-total-row { font-size: 22px; }
-            .struk-ppn { font-size: 18px; }
-            .struk-grand-total { font-size: 28px; }
-            .btn-ok { font-size: 24px; padding: 10px 24px; width: 200px; }
-            .header-top { padding: 14px 24px 10px 24px; }
-            .logo-header img { width: 45px; }
-            .brand-text { font-size: 22px; }
+            .list-header {
+                padding: 10px 20px;
+                padding-top: env(safe-area-inset-top, 10px);
+                min-height: 56px;
+            }
+            .search-wrapper {
+                padding: 6px 20px 8px 20px;
+            }
+            .list-menu {
+                padding: 8px 20px 12px;
+                padding-bottom: env(safe-area-inset-bottom, 12px);
+            }
+            .menu-item {
+                padding: 10px 0;
+                gap: 14px;
+            }
+            .menu-item .menu-img {
+                width: 60px;
+                height: 60px;
+                border-radius: 10px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 20px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 16px;
+            }
+            .menu-item .btn-detail {
+                font-size: 14px;
+                padding: 6px 18px;
+            }
+            .category-title {
+                font-size: 24px;
+            }
+            .search-bar {
+                font-size: 14px;
+                padding: 8px 18px;
+            }
+            .list-header .brand-left img {
+                width: 35px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 20px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 22px;
+                min-width: 44px;
+                min-height: 44px;
+                padding: 4px 8px;
+            }
         }
 
+        /* ===== TABLET LANDSCAPE ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .info-wrapper { top: 50px; padding: 0 25px; }
-            .struk-wrapper { top: 100px; padding: 8px 25px 15px 25px; }
-            .struk-box { padding: 14px 18px 12px 18px; border-radius: 35px; min-height: 250px; }
-            .struk-title { font-size: 20px; }
-            .struk-no { font-size: 16px; }
-            .struk-item { font-size: 14px; }
-            .struk-item .item-price { min-width: 70px; }
-            .struk-total-row { font-size: 16px; }
-            .struk-ppn { font-size: 14px; }
-            .struk-grand-total { font-size: 20px; }
-            .btn-ok { font-size: 18px; padding: 6px 18px; width: 140px; }
+            .list-header {
+                padding: 6px 16px;
+                padding-top: env(safe-area-inset-top, 6px);
+                min-height: 42px;
+            }
+            .search-wrapper {
+                padding: 4px 16px 6px 16px;
+            }
+            .list-menu {
+                padding: 6px 16px 10px;
+                padding-bottom: env(safe-area-inset-bottom, 10px);
+            }
+            .menu-item {
+                padding: 6px 0;
+                gap: 10px;
+            }
+            .menu-item .menu-img {
+                width: 45px;
+                height: 45px;
+                border-radius: 8px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 15px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 13px;
+            }
+            .menu-item .btn-detail {
+                font-size: 11px;
+                padding: 4px 12px;
+            }
+            .category-title {
+                font-size: 18px;
+            }
+            .search-bar {
+                font-size: 12px;
+                padding: 6px 14px;
+            }
+            .list-header .brand-left img {
+                width: 28px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 16px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 18px;
+                min-width: 38px;
+                min-height: 38px;
+                padding: 4px 6px;
+            }
         }
 
+        /* ===== DESKTOP ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
-            .status-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .struk-wrapper { padding: 10px 35px 20px 35px; max-width: 900px; margin: 0 auto; left: 0; right: 0; }
-            .info-wrapper { padding: 0 35px; max-width: 900px; left: 0; right: 0; margin: 0 auto; }
-            .struk-box { padding: 20px 25px 16px 25px; border-radius: 45px; min-height: 350px; }
-            .struk-title { font-size: 26px; }
-            .struk-no { font-size: 20px; }
-            .struk-item { font-size: 16px; }
-            .struk-item .item-price { min-width: 100px; }
-            .struk-total-row { font-size: 20px; }
-            .struk-ppn { font-size: 16px; }
-            .struk-grand-total { font-size: 26px; }
-            .btn-ok { font-size: 22px; padding: 8px 24px; width: 180px; }
+            .container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+            .list-header {
+                padding: 10px 24px;
+                padding-top: env(safe-area-inset-top, 10px);
+                min-height: 54px;
+            }
+            .search-wrapper {
+                padding: 6px 24px 8px 24px;
+            }
+            .list-menu {
+                padding: 8px 24px 14px;
+                padding-bottom: env(safe-area-inset-bottom, 14px);
+                max-width: 900px;
+                margin: 0 auto;
+                width: 100%;
+            }
+            .menu-item {
+                padding: 8px 0;
+                gap: 14px;
+            }
+            .menu-item .menu-img {
+                width: 60px;
+                height: 60px;
+                border-radius: 10px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 18px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 15px;
+            }
+            .menu-item .btn-detail {
+                font-size: 13px;
+                padding: 5px 16px;
+            }
+            .category-title {
+                font-size: 22px;
+            }
+            .search-bar {
+                font-size: 14px;
+                padding: 8px 18px;
+            }
+            .list-header .brand-left img {
+                width: 35px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 20px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 22px;
+                min-width: 44px;
+                min-height: 44px;
+                padding: 4px 8px;
+            }
+        }
+
+        /* Desktop Lebar */
+        @media screen and (min-width: 1600px) and (orientation: landscape) {
+            .list-header {
+                padding: 12px 30px;
+                padding-top: env(safe-area-inset-top, 12px);
+                min-height: 64px;
+            }
+            .search-wrapper {
+                padding: 8px 30px 10px 30px;
+            }
+            .list-menu {
+                padding: 10px 30px 18px;
+                padding-bottom: env(safe-area-inset-bottom, 18px);
+                max-width: 1100px;
+            }
+            .menu-item .menu-img {
+                width: 70px;
+                height: 70px;
+                border-radius: 12px;
+            }
+            .menu-item .menu-info .menu-name {
+                font-size: 22px;
+            }
+            .menu-item .menu-info .menu-price {
+                font-size: 18px;
+            }
+            .menu-item .btn-detail {
+                font-size: 16px;
+                padding: 6px 22px;
+            }
+            .category-title {
+                font-size: 28px;
+            }
+            .search-bar {
+                font-size: 16px;
+                padding: 10px 24px;
+            }
+            .list-header .brand-left img {
+                width: 42px;
+            }
+            .list-header .brand-left .brand-text {
+                font-size: 24px;
+            }
+            .list-header .btn-back-dashboard {
+                font-size: 26px;
+                min-width: 50px;
+                min-height: 50px;
+                padding: 4px 10px;
+            }
+        }
+
+        /* Fallback untuk browser yang tidak support safe-area */
+        @supports not (padding: env(safe-area-inset-top)) {
+            .list-header {
+                padding-top: 8px;
+            }
+            .list-menu {
+                padding-bottom: 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="status-container">
+    <div class="container">
+        <!-- Background -->
         <div class="bg-utama"></div>
-        <div class="overlay"></div>
 
         <div class="loading-overlay" id="loadingOverlay">
             <div class="loading-spinner"></div>
-            <div class="loading-text">Memuat status pesanan...</div>
+            <div class="loading-text">Memuat menu...</div>
         </div>
 
-        <div class="header-top">
-            <div class="header-left">
-                <button class="btn-back" onclick="goBack()">←</button>
-                <div class="logo-header" onclick="goToDashboard()">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/50x50/98C81C/ffffff?text=🍽️'" />
-                    <div class="brand-text">Jangkung<span>Order</span></div>
-                </div>
+        <!-- ===== HEADER ===== -->
+        <div class="list-header">
+            <button class="btn-back-dashboard" onclick="goBack()">←</button>
+            <div class="brand-left" onclick="goToDashboard()">
+                <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/45x45/98C81C/ffffff?text=🍽️'" />
+                <div class="brand-text">Jangkung<span>Order</span></div>
             </div>
         </div>
 
-        <div class="info-wrapper">
-            <div class="info-item">
-                <span class="label">Nama:</span>
-                <span class="value-box" id="namaDisplay">-</span>
-            </div>
-            <div class="info-item">
-                <span class="label">Meja:</span>
-                <span class="value-box" id="mejaDisplay">-</span>
-            </div>
+        <!-- ===== SEARCH ===== -->
+        <div class="search-wrapper">
+            <input class="search-bar" id="searchInput" placeholder="🔍 Cari menu..." type="text" />
         </div>
 
-        <div class="struk-wrapper" id="strukWrapper">
-            <div id="orderList"></div>
+        <!-- ===== CONTENT ===== -->
+        <div class="list-menu" id="listMenu">
+            <div id="menuContainer"></div>
+        </div>
+
+        <!-- Error Display -->
+        <div class="error-display" id="errorDisplay" style="display:none;">
+            <span class="error-icon">⚠️</span>
+            <div class="error-title">Gagal Memuat Menu</div>
+            <div class="error-desc" id="errorDesc">Terjadi kesalahan saat memuat menu. Silakan coba lagi.</div>
+            <button class="btn-retry" onclick="loadMenus()">🔄 Coba Lagi</button>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
     <script>
         const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
+        const STORAGE_BUCKET = 'menu-images';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let tableIdMap = {};
-        let menuNames = {};
-        let isRealtimeConnected = false;
+        let allMenus = [];
 
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
@@ -475,331 +891,125 @@
             window.history.back();
         }
 
-        function getStatusLabel(status) {
-            const map = { 
-                'Diproses': '⏳ Diproses', 
-                'Siap': '✅ Siap Diambil', 
-                'Selesai': '✔️ Selesai' 
-            };
-            return map[status] || status;
+        function getImageUrl(imagePath) {
+            if (!imagePath) return null;
+            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) return imagePath;
+            try {
+                const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(imagePath);
+                return data.publicUrl;
+            } catch (error) { return null; }
         }
 
         function formatRupiah(price) {
             return 'Rp ' + Number(price).toLocaleString('id-ID');
         }
 
-        async function loadMenuNames() {
+        function goToDetail(menuId) {
+            const meja = getMeja();
+            const nama = encodeURIComponent(getNama());
+            window.location.href = 'customer_menu_detail.html?meja=' + meja + '&nama=' + nama + '&id=' + menuId;
+        }
+
+        function renderMenus(menus) {
+            const container = document.getElementById('menuContainer');
+
+            if (!menus || menus.length === 0) {
+                container.innerHTML = '<div class="empty-state">😅 Tidak ada menu yang ditemukan</div>';
+                return;
+            }
+
+            const grouped = {};
+            menus.forEach(menu => {
+                const kategori = menu.kategori || 'Lainnya';
+                if (!grouped[kategori]) grouped[kategori] = [];
+                grouped[kategori].push(menu);
+            });
+
+            let html = '';
+            const kategoriOrder = ['Makanan', 'Tambahan', 'Minuman', 'Jangkung Kopi', 'Lainnya'];
+
+            for (const kat of kategoriOrder) {
+                if (grouped[kat] && grouped[kat].length > 0) {
+                    html += `<div class="category-section"><div class="category-title">${kat.toUpperCase()}</div>`;
+
+                    grouped[kat].forEach(menu => {
+                        let imageUrl = 'https://placehold.co/150x150/2d2d2d/ffffff?text=' + encodeURIComponent(
+                            menu.nama_menu || 'Menu');
+                        if (menu.gambar) {
+                            const url = getImageUrl(menu.gambar);
+                            if (url) imageUrl = url;
+                        }
+
+                        const price = menu.harga || 0;
+
+                        html += `
+                            <div class="menu-item" data-id="${menu.id_menu}">
+                                <img class="menu-img" src="${imageUrl}" alt="${menu.nama_menu || 'Menu'}" loading="lazy" onerror="this.src='https://placehold.co/150x150/2d2d2d/ffffff?text=Menu'" />
+                                <div class="menu-info">
+                                    <div class="menu-name">${menu.nama_menu || 'Menu'}</div>
+                                    <div class="menu-price">${formatRupiah(price)}</div>
+                                </div>
+                                <button class="btn-detail" onclick="goToDetail(${menu.id_menu})">📋 detail</button>
+                            </div>
+                        `;
+                    });
+
+                    html += `</div>`;
+                }
+            }
+
+            container.innerHTML = html;
+        }
+
+        async function loadMenus() {
+            const loading = document.getElementById('loadingOverlay');
+            const errorDisplay = document.getElementById('errorDisplay');
+            loading.classList.add('active');
+            errorDisplay.style.display = 'none';
+
             try {
                 const { data, error } = await supabaseClient
                     .from('menu')
-                    .select('id_menu, nama_menu');
+                    .select('id_menu, nama_menu, harga, gambar, detail, kategori')
+                    .eq('status_ketersediaan', 'Tersedia')
+                    .order('kategori')
+                    .order('nama_menu');
 
                 if (error) throw error;
 
-                if (data) {
-                    data.forEach(item => {
-                        menuNames[item.id_menu] = item.nama_menu;
-                    });
-                }
-                console.log('✅ Menu names loaded:', Object.keys(menuNames).length);
-                return true;
-            } catch (error) {
-                console.error('❌ Error loading menu names:', error);
-                return false;
-            }
-        }
-
-        async function loadTableIdMap() {
-            try {
-                const { data, error } = await supabaseClient
-                    .from('tables')
-                    .select('id_table, nomor_meja');
-
-                if (error) throw error;
-
-                if (data && data.length > 0) {
-                    data.forEach(row => {
-                        tableIdMap[row.nomor_meja] = row.id_table;
-                    });
-                }
-                console.log('✅ Table Map loaded:', tableIdMap);
-                return tableIdMap;
-            } catch (error) {
-                console.error('❌ Error loading table map:', error);
-                return {};
-            }
-        }
-
-        function setupRealtime() {
-            if (isRealtimeConnected) return;
-
-            const channel = supabaseClient
-                .channel('status-db-changes')
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, (payload) => {
-                    console.log('Realtime update orders:', payload);
-                    loadOrdersSilent();
-                })
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'orderdetails' }, (payload) => {
-                    console.log('Realtime update details:', payload);
-                    loadOrdersSilent();
-                })
-                .subscribe((status) => {
-                    console.log('Realtime status:', status);
-                    if (status === 'SUBSCRIBED') {
-                        isRealtimeConnected = true;
-                        console.log('✅ Realtime connected!');
-                    }
-                });
-
-            window.realtimeChannel = channel;
-        }
-
-        async function loadOrdersSilent() {
-            try {
-                await loadMenuNames();
-                await loadTableIdMap();
-
-                const meja = getMeja();
-                const mejaStr = meja.toString().trim();
-                
-                let idTable = null;
-                if (tableIdMap[mejaStr]) {
-                    idTable = tableIdMap[mejaStr];
-                } else if (tableIdMap[mejaStr.padStart(2, '0')]) {
-                    idTable = tableIdMap[mejaStr.padStart(2, '0')];
-                } else {
-                    for (const [key, value] of Object.entries(tableIdMap)) {
-                        if (parseInt(key) === parseInt(mejaStr)) {
-                            idTable = value;
-                            break;
-                        }
-                    }
-                }
-
-                let orders = [];
-                if (idTable) {
-                    const result = await supabaseClient
-                        .from('orders')
-                        .select('*')
-                        .eq('id_table', idTable)
-                        .neq('status_order', 'Selesai')
-                        .order('id_order', { ascending: false });
-                    
-                    if (!result.error) {
-                        orders = result.data || [];
-                    }
-                }
-
-                if (!orders || orders.length === 0) {
-                    const result = await supabaseClient
-                        .from('orders')
-                        .select('*')
-                        .neq('status_order', 'Selesai')
-                        .order('id_order', { ascending: false });
-                    
-                    if (!result.error) {
-                        orders = result.data || [];
-                    }
-                }
-
-                console.log('📦 Final orders (silent):', orders ? orders.length : 0);
-                await renderOrders(orders);
+                allMenus = data || [];
+                renderMenus(allMenus);
 
             } catch (error) {
-                console.error('Error silent loading orders:', error);
-            }
-        }
-
-        async function loadOrders() {
-            const loading = document.getElementById('loadingOverlay');
-            loading.classList.add('active');
-
-            try {
-                const meja = getMeja();
-                const nama = getNama();
-
-                document.getElementById('namaDisplay').textContent = nama;
-                document.getElementById('mejaDisplay').textContent = 'Meja ' + meja;
-
-                await loadMenuNames();
-                await loadTableIdMap();
-
-                const mejaStr = meja.toString().trim();
-                let idTable = null;
-                if (tableIdMap[mejaStr]) {
-                    idTable = tableIdMap[mejaStr];
-                } else if (tableIdMap[mejaStr.padStart(2, '0')]) {
-                    idTable = tableIdMap[mejaStr.padStart(2, '0')];
-                } else {
-                    for (const [key, value] of Object.entries(tableIdMap)) {
-                        if (parseInt(key) === parseInt(mejaStr)) {
-                            idTable = value;
-                            break;
-                        }
-                    }
-                }
-
-                console.log('🔍 Meja:', meja, '→ ID Table:', idTable);
-
-                let orders = [];
-                if (idTable) {
-                    const result = await supabaseClient
-                        .from('orders')
-                        .select('*')
-                        .eq('id_table', idTable)
-                        .neq('status_order', 'Selesai')
-                        .order('id_order', { ascending: false });
-                    
-                    if (!result.error) {
-                        orders = result.data || [];
-                    }
-                }
-
-                if (!orders || orders.length === 0) {
-                    const result = await supabaseClient
-                        .from('orders')
-                        .select('*')
-                        .neq('status_order', 'Selesai')
-                        .order('id_order', { ascending: false });
-                    
-                    if (!result.error) {
-                        orders = result.data || [];
-                    }
-                }
-
-                console.log('📦 Final orders:', orders ? orders.length : 0);
-                await renderOrders(orders);
-
-                if (!isRealtimeConnected) {
-                    setupRealtime();
-                }
-
-            } catch (error) {
-                console.error('❌ Error loading orders:', error);
-                document.getElementById('orderList').innerHTML = `
-                    <div class="struk-box">
-                        <div class="empty-status">
-                            ⚠️ Gagal memuat status pesanan<br>
-                            <span class="sub">${error.message}</span>
-                            <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
-                        </div>
-                    </div>
-                `;
+                console.error('Error loading menus:', error);
+                document.getElementById('errorDesc').textContent = 'Gagal memuat menu: ' + (error.message ||
+                    'Unknown error');
+                errorDisplay.style.display = 'block';
+                document.getElementById('menuContainer').innerHTML = '';
             } finally {
                 loading.classList.remove('active');
             }
         }
 
-        async function renderOrders(orders) {
-            const container = document.getElementById('orderList');
-
-            if (!orders || orders.length === 0) {
-                container.innerHTML = `
-                    <div class="struk-box">
-                        <div class="empty-status">
-                            🍽️ Belum ada pesanan aktif<br>
-                            <span class="sub">Silakan pesan dari menu</span>
-                        </div>
-                    </div>
-                `;
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            if (!query) {
+                renderMenus(allMenus);
                 return;
             }
-
-            let html = '';
-            for (const order of orders) {
-                const { data: details, error: detailError } = await supabaseClient
-                    .from('orderdetails')
-                    .select('*')
-                    .eq('no_struk', order.no_struk);
-
-                if (detailError) {
-                    console.error('❌ Error fetching details:', detailError);
-                    continue;
-                }
-
-                const detailsWithMenu = (details || []).map(item => {
-                    const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
-                    return { ...item, menu_name: menuName };
-                });
-
-                console.log('📋 Details for', order.no_struk, ':', detailsWithMenu.length);
-
-                const subtotal = detailsWithMenu.reduce((s, item) => s + (item.subtotal || 0), 0);
-                const ppn = Math.round(subtotal * 0.1);
-                const total = subtotal + ppn;
-
-                const orderDate = new Date(order.tanggal_order + ' ' + order.waktu_order);
-                const dateStr = orderDate.toLocaleString('id-ID', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-
-                html += `
-                    <div class="struk-box">
-                        <div class="struk-title">📋 Detail Struk:</div>
-                        <div class="struk-no">Nomor Struk: <span>${order.no_struk}</span> &bull; ${dateStr}</div>
-
-                        <div class="struk-header-row">
-                            <span>Pesanan</span>
-                            <span>Jumlah</span>
-                            <span>Harga</span>
-                        </div>
-
-                        ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => `
-                            <div class="struk-item">
-                                <span class="item-name">${item.menu_name}</span>
-                                <span class="item-qty">${item.jumlah || 0}</span>
-                                <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
-                            </div>
-                        `).join('') : `
-                            <div class="struk-item">
-                                <span class="item-name" style="color:rgba(255,255,255,0.3);">Tidak ada detail</span>
-                                <span class="item-qty">-</span>
-                                <span class="item-price">-</span>
-                            </div>
-                        `}
-
-                        <hr class="struk-divider">
-
-                        <div class="struk-total-row">
-                            <span>Total</span>
-                            <span class="total-amount">${formatRupiah(subtotal)}</span>
-                        </div>
-                        <div class="struk-ppn">
-                            <span>PPN 10%</span>
-                            <span class="ppn-amount">${formatRupiah(ppn)}</span>
-                        </div>
-
-                        <div class="struk-grand-total">
-                            <span>Total</span>
-                            <span class="grand-total-amount">${formatRupiah(total)}</span>
-                        </div>
-
-                        <div style="text-align:center;margin-top:8px;">
-                            <span style="color:rgba(255,255,255,0.5);font-family:'Schoolbell',cursive;font-size:clamp(12px,1.6%,18px);">
-                                Status: ${getStatusLabel(order.status_order)}
-                            </span>
-                        </div>
-
-                        <button class="btn-ok" onclick="window.location.href='customer_order.html?meja=${getMeja()}&nama=${encodeURIComponent(getNama())}'">OK</button>
-                    </div>
-                `;
-            }
-
-            container.innerHTML = html;
-        }
+            const filtered = allMenus.filter(menu =>
+                (menu.nama_menu || '').toLowerCase().includes(query) ||
+                (menu.detail || '').toLowerCase().includes(query)
+            );
+            renderMenus(filtered);
+        });
 
         const meja = getMeja();
         const nama = getNama();
         localStorage.setItem('meja_number', meja);
         localStorage.setItem('customer_name', nama);
 
-        document.addEventListener('DOMContentLoaded', function() {
-            loadOrders();
-        });
+        document.addEventListener('DOMContentLoaded', loadMenus);
     </script>
 </body>
 </html>
