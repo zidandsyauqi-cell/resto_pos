@@ -166,7 +166,7 @@
         .menu-image-wrapper {
             position: relative;
             width: 100%;
-            height: 45%;
+            height: 48%;
             flex-shrink: 0;
             overflow: hidden;
             background: transparent;
@@ -187,7 +187,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 100%);
             pointer-events: none;
         }
 
@@ -196,7 +196,7 @@
             flex: 1;
             position: relative;
             z-index: 5;
-            padding: 14px 20px 20px 20px;
+            padding: 8px 20px 20px 20px;
             padding-bottom: env(safe-area-inset-bottom, 20px);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
@@ -224,15 +224,6 @@
             font-weight: 700;
             text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
             line-height: 1.2;
-            margin-bottom: 2px;
-        }
-
-        .menu-price {
-            color: #98C81C;
-            font-size: 28px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
             margin-bottom: 8px;
         }
 
@@ -358,17 +349,15 @@
                 font-size: 16px;
             }
             .menu-image-wrapper {
-                height: 38%;
+                height: 40%;
             }
             .content-area {
-                padding: 10px 14px 14px 14px;
+                padding: 6px 14px 14px 14px;
                 padding-bottom: env(safe-area-inset-bottom, 14px);
             }
             .menu-name {
                 font-size: 28px;
-            }
-            .menu-price {
-                font-size: 20px;
+                margin-bottom: 4px;
             }
             .menu-desc {
                 font-size: 15px;
@@ -400,17 +389,15 @@
                 font-size: 13px;
             }
             .menu-image-wrapper {
-                height: 32%;
+                height: 34%;
             }
             .content-area {
-                padding: 8px 12px 12px 12px;
+                padding: 4px 12px 12px 12px;
                 padding-bottom: env(safe-area-inset-bottom, 12px);
             }
             .menu-name {
                 font-size: 22px;
-            }
-            .menu-price {
-                font-size: 17px;
+                margin-bottom: 4px;
             }
             .menu-desc {
                 font-size: 13px;
@@ -435,28 +422,27 @@
             }
         }
 
-        /* ===== LANDSCAPE ===== */
+        /* ===== LANDSCAPE - TEKS LEBIH KE ATAS ===== */
         @media screen and (orientation: landscape) {
             .menu-image-wrapper {
-                height: 55%;
+                height: 52%;
             }
             .content-area {
-                padding: 10px 20px 14px 20px;
-                padding-bottom: env(safe-area-inset-bottom, 14px);
+                padding: 4px 20px 10px 20px;
+                padding-bottom: env(safe-area-inset-bottom, 10px);
             }
             .menu-name {
-                font-size: 30px;
-            }
-            .menu-price {
-                font-size: 22px;
+                font-size: 28px;
+                margin-bottom: 4px;
             }
             .menu-desc {
-                font-size: 15px;
+                font-size: 14px;
+                line-height: 1.4;
             }
             .btn-back-menu {
-                font-size: 17px;
-                padding: 11px;
-                margin-top: 8px;
+                font-size: 16px;
+                padding: 10px;
+                margin-top: 6px;
             }
         }
 
@@ -483,24 +469,21 @@
                 height: 48%;
             }
             .content-area {
-                padding: 6px 14px 10px 14px;
-                padding-bottom: env(safe-area-inset-bottom, 10px);
+                padding: 2px 14px 8px 14px;
+                padding-bottom: env(safe-area-inset-bottom, 8px);
             }
             .menu-name {
-                font-size: 20px;
-            }
-            .menu-price {
-                font-size: 15px;
-                margin-bottom: 4px;
+                font-size: 18px;
+                margin-bottom: 2px;
             }
             .menu-desc {
                 font-size: 11px;
-                line-height: 1.4;
+                line-height: 1.3;
             }
             .btn-back-menu {
-                font-size: 13px;
-                padding: 7px;
-                margin-top: 6px;
+                font-size: 12px;
+                padding: 6px;
+                margin-top: 4px;
             }
         }
 
@@ -523,17 +506,15 @@
                 font-size: 26px;
             }
             .menu-image-wrapper {
-                height: 42%;
+                height: 44%;
             }
             .content-area {
-                padding: 18px 28px 24px 28px;
-                padding-bottom: env(safe-area-inset-bottom, 24px);
+                padding: 10px 28px 20px 28px;
+                padding-bottom: env(safe-area-inset-bottom, 20px);
             }
             .menu-name {
                 font-size: 44px;
-            }
-            .menu-price {
-                font-size: 32px;
+                margin-bottom: 8px;
             }
             .menu-desc {
                 font-size: 20px;
@@ -564,25 +545,23 @@
                 font-size: 20px;
             }
             .menu-image-wrapper {
-                height: 52%;
+                height: 50%;
             }
             .content-area {
-                padding: 14px 24px 18px 24px;
-                padding-bottom: env(safe-area-inset-bottom, 18px);
+                padding: 6px 24px 14px 24px;
+                padding-bottom: env(safe-area-inset-bottom, 14px);
             }
             .menu-name {
-                font-size: 34px;
-            }
-            .menu-price {
-                font-size: 24px;
+                font-size: 32px;
+                margin-bottom: 4px;
             }
             .menu-desc {
-                font-size: 17px;
+                font-size: 16px;
             }
             .btn-back-menu {
-                font-size: 19px;
-                padding: 13px;
-                margin-top: 10px;
+                font-size: 18px;
+                padding: 12px;
+                margin-top: 8px;
             }
         }
 
@@ -616,25 +595,23 @@
                 font-size: 22px;
             }
             .menu-image-wrapper {
-                height: 42%;
+                height: 44%;
             }
             .content-area {
-                padding: 16px 24px 20px 24px;
-                padding-bottom: env(safe-area-inset-bottom, 20px);
+                padding: 8px 24px 16px 24px;
+                padding-bottom: env(safe-area-inset-bottom, 16px);
             }
             .menu-name {
-                font-size: 36px;
-            }
-            .menu-price {
-                font-size: 26px;
+                font-size: 34px;
+                margin-bottom: 6px;
             }
             .menu-desc {
-                font-size: 17px;
+                font-size: 16px;
             }
             .btn-back-menu {
-                font-size: 20px;
-                padding: 14px;
-                margin-top: 10px;
+                font-size: 19px;
+                padding: 13px;
+                margin-top: 8px;
             }
         }
 
@@ -670,7 +647,7 @@
             </div>
         </div>
 
-        <!-- ===== GAMBAR - TIDAK KEPOTONG ===== -->
+        <!-- ===== GAMBAR ===== -->
         <div class="menu-image-wrapper">
             <img src="" alt="Menu" id="menuImage" />
             <div class="image-overlay"></div>
@@ -679,7 +656,6 @@
         <!-- ===== KONTEN ===== -->
         <div class="content-area">
             <div class="menu-name" id="menuName">-</div>
-            <div class="menu-price" id="menuPrice">-</div>
             <div class="menu-desc" id="menuDesc">Memuat deskripsi...</div>
             <a class="btn-back-menu" href="#" id="btnBackMenu">📋 KEMBALI KE MENU</a>
         </div>
@@ -751,7 +727,6 @@
                 encodeURIComponent(getNama());
             errorDisplay.style.display = 'block';
             document.getElementById('menuName').style.display = 'none';
-            document.getElementById('menuPrice').style.display = 'none';
             document.getElementById('menuDesc').style.display = 'none';
             document.getElementById('menuImage').style.display = 'none';
             document.getElementById('btnBackMenu').style.display = 'none';
@@ -790,7 +765,7 @@
 
                 const { data, error } = await supabaseClient
                     .from('menu')
-                    .select('nama_menu, detail, harga, gambar, varian')
+                    .select('nama_menu, detail, harga, gambar')
                     .eq('id_menu', parseInt(menuId))
                     .maybeSingle();
 
@@ -803,19 +778,7 @@
                 }
 
                 document.getElementById('menuName').textContent = data.nama_menu ? data.nama_menu.toUpperCase() : '-';
-                document.getElementById('menuPrice').textContent = data.harga ? formatRupiah(data.harga) : '-';
-
-                let descText = data.detail || 'Tidak ada deskripsi untuk menu ini.';
-                if (data.varian) {
-                    try {
-                        const varian = typeof data.varian === 'string' ? JSON.parse(data.varian) : data.varian;
-                        if (varian && varian.length > 0) {
-                            const varianText = varian.map(v => v.name + (v.price > 0 ? ' (+Rp ' + v.price.toLocaleString() + ')' : '')).join(', ');
-                            descText += '\n\nVarian tersedia: ' + varianText;
-                        }
-                    } catch (e) {}
-                }
-                document.getElementById('menuDesc').textContent = descText;
+                document.getElementById('menuDesc').textContent = data.detail || 'Tidak ada deskripsi untuk menu ini.';
 
                 let imageUrl = 'https://placehold.co/500x500/1a1a1a/ffffff?text=' + encodeURIComponent(data.nama_menu ||
                     'Menu');
@@ -831,7 +794,6 @@
 
                 document.getElementById('errorDisplay').style.display = 'none';
                 document.getElementById('menuName').style.display = 'block';
-                document.getElementById('menuPrice').style.display = 'block';
                 document.getElementById('menuDesc').style.display = 'block';
                 document.getElementById('menuImage').style.display = 'block';
                 document.getElementById('btnBackMenu').style.display = 'block';
