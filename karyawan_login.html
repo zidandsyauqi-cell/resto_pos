@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Jangkung Order - Karyawan</title>
+    <title>Jangkung Order - Login Karyawan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
         * {
@@ -38,7 +38,6 @@
             box-shadow: none;
         }
 
-        /* Background utama dengan bg.png */
         .bg-utama {
             position: absolute;
             width: 100%;
@@ -73,11 +72,10 @@
             transition: all 0.3s;
             padding: 5px 15px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            -webkit-tap-highlight-color: transparent;
         }
-
-        .btn-back:hover {
-            transform: scale(1.1);
-            color: #98C81C;
+        .btn-back:active {
+            transform: scale(0.92);
         }
 
         .logo-top {
@@ -109,7 +107,6 @@
             color: #98C81C;
         }
 
-        /* ===== FORM LOGIN ===== */
         .login-wrapper {
             position: absolute;
             top: 0;
@@ -191,14 +188,11 @@
         }
 
         /* ===== RESPONSIVE ===== */
-
-        /* Portrait */
         @media screen and (orientation: portrait) {
             .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
             .login-form { max-width: 420px; }
         }
 
-        /* Landscape */
         @media screen and (orientation: landscape) {
             .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
             .login-form { max-width: 380px; }
@@ -213,7 +207,6 @@
             .login-wrapper { padding: 10px; }
         }
 
-        /* HP portrait */
         @media screen and (max-width: 480px) and (orientation: portrait) {
             .login-form { max-width: 340px; }
             .login-form .form-image { width: 100px; }
@@ -225,19 +218,6 @@
             .btn-back { font-size: 22px; }
         }
 
-        /* HP sangat kecil */
-        @media screen and (max-width: 360px) and (orientation: portrait) {
-            .login-form { max-width: 300px; }
-            .login-form .form-image { width: 80px; }
-            .login-form .label { font-size: 16px; }
-            .login-form .password-input { font-size: 12px; padding: 8px 12px; }
-            .login-form .error-msg { font-size: 12px; }
-            .logo-top img { width: 25px; }
-            .logo-top .brand-text { font-size: 12px; }
-            .btn-back { font-size: 18px; }
-        }
-
-        /* Landscape HP kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .login-form { max-width: 320px; }
             .login-form .form-image { width: 55px; margin-bottom: 6px; }
@@ -251,29 +231,6 @@
             .login-wrapper { padding: 6px; }
         }
 
-        /* Tablet portrait */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .login-form { max-width: 500px; }
-            .login-form .form-image { width: 160px; }
-            .login-form .label { font-size: 32px; }
-            .login-form .password-input { font-size: 24px; padding: 16px 24px; }
-            .logo-top img { width: 55px; }
-            .logo-top .brand-text { font-size: 26px; }
-            .btn-back { font-size: 36px; }
-        }
-
-        /* Tablet landscape */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .login-form { max-width: 400px; }
-            .login-form .form-image { width: 90px; }
-            .login-form .label { font-size: 22px; }
-            .login-form .password-input { font-size: 16px; padding: 10px 18px; }
-            .logo-top img { width: 40px; }
-            .logo-top .brand-text { font-size: 18px; }
-            .btn-back { font-size: 28px; }
-        }
-
-        /* Desktop */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
             .login-form { max-width: 450px; }
@@ -288,30 +245,20 @@
 </head>
 <body>
     <div class="karyawan-container">
-        <!-- Background -->
         <div class="bg-utama"></div>
-
         <div class="overlay"></div>
 
-        <!-- Tombol Back -->
         <button class="btn-back" onclick="goBack()">←</button>
 
-        <!-- Logo -->
         <div class="logo-top">
             <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/70x70/98C81C/ffffff?text=🍽️'" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
 
-        <!-- Login Form -->
         <div class="login-wrapper">
             <div class="login-form">
-                <!-- Gambar di atas form -->
                 <img src="logo.png" alt="Logo" class="form-image" loading="lazy" onerror="this.style.display='none'" />
-
-                <!-- Label Password -->
                 <div class="label">Password</div>
-
-                <!-- Input Password -->
                 <div class="input-wrapper">
                     <input 
                         type="password" 
@@ -322,8 +269,6 @@
                         autocomplete="current-password"
                     >
                 </div>
-
-                <!-- Error Message -->
                 <div id="errorMsg" class="error-msg">
                     ⚠️ Error: password salah, coba lagi
                 </div>
@@ -332,14 +277,15 @@
     </div>
 
     <script>
-        // Password yang benar
+        // ============================================
+        // PASSWORD KARYAWAN (Ganti sesuai keinginan)
+        // ============================================
         const KARYAWAN_PASSWORD = 'admin';
 
         function goBack() {
             window.history.back();
         }
 
-        // ============ HANDLE LOGIN ============
         function handleLogin() {
             const password = document.getElementById('passwordInput').value.trim();
             const errorMsg = document.getElementById('errorMsg');
@@ -354,9 +300,15 @@
             }
             
             if (password === KARYAWAN_PASSWORD) {
-                localStorage.setItem('user_role', 'Karyawan');
+                // Login berhasil - set session
                 localStorage.setItem('karyawan_logged_in', 'true');
-                window.location.href = 'dashboard.html';
+                localStorage.setItem('login_time', Date.now().toString());
+                localStorage.setItem('karyawan_nama', 'Admin');
+                
+                errorMsg.classList.remove('show');
+                
+                // Redirect ke dashboard karyawan
+                window.location.href = 'karyawan_status.html';
             } else {
                 errorMsg.textContent = '⚠️ Error: password salah, coba lagi';
                 errorMsg.classList.add('show');
@@ -369,16 +321,16 @@
             return false;
         }
 
-        // ============ EVENT LISTENERS ============
+        // Enter key untuk login
         document.getElementById('passwordInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleLogin();
             }
         });
 
-        // ============ CEK LOGIN STATUS ============
+        // Jika sudah login, langsung redirect
         if (localStorage.getItem('karyawan_logged_in') === 'true') {
-            window.location.href = 'dashboard.html';
+            window.location.href = 'karyawan_status.html';
         }
     </script>
 </body>
