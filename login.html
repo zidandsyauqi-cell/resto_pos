@@ -47,6 +47,72 @@
             background: url('bg.png') center center / cover no-repeat;
         }
 
+        /* ===== DEKORASI BACKGROUND ===== */
+        .decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .decorations img {
+            position: absolute;
+            opacity: 0.2;
+            filter: blur(3.5px);
+        }
+
+        /* Tomat di kiri atas */
+        .decorations .tomat-atas-kiri {
+            width: clamp(120px, 25%, 350px);
+            left: -5%;
+            top: -5%;
+            transform: rotate(-15deg);
+        }
+
+        /* Cabe 2 di kanan atas */
+        .decorations .cabe2-atas-kanan {
+            width: clamp(100px, 20%, 300px);
+            right: -5%;
+            top: -5%;
+            transform: rotate(25deg);
+        }
+
+        /* Cabe 2.1 overlay di kanan atas */
+        .decorations .cabe21-atas-kanan {
+            width: clamp(80px, 15%, 220px);
+            right: 8%;
+            top: 5%;
+            transform: rotate(40deg);
+        }
+
+        /* Cabe 1 di kiri bawah */
+        .decorations .cabe1-bawah-kiri {
+            width: clamp(100px, 20%, 300px);
+            left: -5%;
+            bottom: -5%;
+            transform: rotate(-35deg);
+        }
+
+        /* Cabe 1.1 overlay di kiri bawah */
+        .decorations .cabe11-bawah-kiri {
+            width: clamp(80px, 15%, 220px);
+            left: 6%;
+            bottom: 6%;
+            transform: rotate(-50deg);
+        }
+
+        /* Tomat 1 di kanan bawah */
+        .decorations .tomat1-bawah-kanan {
+            width: clamp(120px, 25%, 350px);
+            right: -5%;
+            bottom: -5%;
+            transform: rotate(20deg);
+        }
+
         .overlay {
             position: absolute;
             width: 100%;
@@ -55,7 +121,7 @@
             left: 0;
             background: rgba(0, 0, 0, 0.35);
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
         }
 
         .btn-back {
@@ -433,6 +499,27 @@
     <div class="login-container">
         <!-- Background bg.png -->
         <div class="bg-utama"></div>
+
+        <!-- Dekorasi -->
+        <div class="decorations">
+            <!-- Tomat di kiri atas -->
+            <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Cabe 2 di kanan atas -->
+            <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Cabe 2.1 overlay di kanan atas -->
+            <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Cabe 1 di kiri bawah -->
+            <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Cabe 1.1 overlay di kiri bawah -->
+            <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Tomat 1 di kanan bawah -->
+            <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+        </div>
 
         <!-- Overlay gelap -->
         <div class="overlay"></div>
