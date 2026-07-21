@@ -53,12 +53,12 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.15);
             pointer-events: none;
             z-index: 2;
         }
 
-        /* ===== DEKORASI BACKGROUND (DARI FIGMA) ===== */
+        /* ===== DEKORASI BACKGROUND ===== */
         .decorations {
             position: absolute;
             width: 100%;
@@ -72,122 +72,49 @@
 
         .decorations img {
             position: absolute;
+            opacity: 1;
         }
 
-        /* Posisi dari Figma: left: -100.84px, top: 1919.85px, rotate -90deg */
-        .decorations .bg-ornament-1 {
-            width: 178%;
-            left: -9.3%;
-            top: 99.99%;
-            transform: rotate(-90deg);
-            transform-origin: top left;
-            opacity: 0.15;
-        }
-
-        /* Posisi dari Figma: left: 426px, top: 799.28px, rotate -53deg */
-        .decorations .bg-ornament-2 {
-            width: 84%;
-            left: 39.4%;
-            top: 41.6%;
-            transform: rotate(-53deg);
-            transform-origin: top left;
-            opacity: 0.15;
-        }
-
-        /* Posisi dari Figma: left: 9.31px, top: 1454px, rotate 46deg */
-        .decorations .bg-ornament-3 {
-            width: 69%;
-            left: 0.9%;
-            top: 75.7%;
-            transform: rotate(46deg);
-            transform-origin: top left;
-            opacity: 0.15;
-        }
-
-        /* Posisi dari Figma: left: 404px, top: 1287px */
-        .decorations .bg-ornament-4 {
-            width: 101%;
-            left: 37.4%;
-            top: 67%;
-            opacity: 0.15;
-        }
-
-        /* Posisi dari Figma: left: -688px, top: -448px */
-        .decorations .bg-ornament-5 {
-            width: 101%;
-            left: -63.7%;
-            top: -23.3%;
-            opacity: 0.15;
-        }
-
-        /* Posisi dari Figma: left: -249.42px, top: 1117px, rotate 17deg */
-        .decorations .bg-ornament-6 {
-            width: 73.8%;
-            left: -23.1%;
-            top: 58.2%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            opacity: 0.15;
-        }
-
-        /* Posisi dari Figma: left: 778.58px, top: 216px, rotate 17deg */
-        .decorations .bg-ornament-7 {
-            width: 73.8%;
-            left: 72.1%;
-            top: 11.3%;
-            transform: rotate(17deg);
-            transform-origin: top left;
-            opacity: 0.15;
-        }
-
-        /* ===== GAMBAR CABE DAN TOMAT (DARI FIGMA) ===== */
-        
         /* Tomat di kiri atas */
         .decorations .tomat-atas-kiri {
-            width: 18%;
+            width: clamp(80px, 18%, 220px);
             left: -2%;
             top: -2%;
-            opacity: 1;
         }
 
         /* Cabe 2 di kanan atas */
         .decorations .cabe2-atas-kanan {
-            width: 14%;
+            width: clamp(70px, 14%, 180px);
             right: -1%;
             top: -1%;
-            opacity: 1;
         }
 
-        /* Cabe 2.1 overlay di kanan atas */
+        /* Cabe 2.1 overlay - NEMPEL DI ATAS CABE 2 */
         .decorations .cabe21-atas-kanan {
-            width: 11%;
-            right: 12%;
-            top: 8%;
-            opacity: 1;
+            width: clamp(60px, 12%, 150px);
+            right: 6%;
+            top: 2%;
         }
 
         /* Cabe 1 di kiri bawah */
         .decorations .cabe1-bawah-kiri {
-            width: 14%;
+            width: clamp(70px, 14%, 180px);
             left: -1%;
             bottom: -1%;
-            opacity: 1;
         }
 
-        /* Cabe 1.1 overlay di kiri bawah */
+        /* Cabe 1.1 overlay - NEMPEL DI ATAS CABE 1 */
         .decorations .cabe11-bawah-kiri {
-            width: 11%;
-            left: 10%;
-            bottom: 10%;
-            opacity: 1;
+            width: clamp(60px, 12%, 150px);
+            left: 6%;
+            bottom: 4%;
         }
 
         /* Tomat 1 di kanan bawah */
         .decorations .tomat1-bawah-kanan {
-            width: 18%;
+            width: clamp(80px, 18%, 220px);
             right: -2%;
             bottom: -2%;
-            opacity: 1;
         }
 
         .btn-back {
@@ -243,15 +170,15 @@
             flex: 1;
         }
 
-        /* Box Customer - dari Figma: width 887px, left 88px, top 502px */
+        /* Box Customer */
         .box-customer {
             position: absolute;
             width: 82%;
             height: 26%;
-            left: 8.15%;
-            top: 26.15%;
+            left: 9%;
+            top: 26%;
             background: #98C81C;
-            border-radius: 65px;
+            border-radius: 60px;
             opacity: 0.92;
             display: flex;
             align-items: center;
@@ -278,15 +205,15 @@
             letter-spacing: 3px;
         }
 
-        /* Box Karyawan - dari Figma: width 887px, left 88px, top 1092px */
+        /* Box Karyawan */
         .box-karyawan {
             position: absolute;
             width: 82%;
             height: 26%;
-            left: 8.15%;
-            top: 56.88%;
+            left: 9%;
+            top: 57%;
             background: #98C81C;
-            border-radius: 65px;
+            border-radius: 60px;
             opacity: 0.92;
             display: flex;
             align-items: center;
@@ -499,23 +426,24 @@
 
         <div class="overlay"></div>
 
-        <!-- Dekorasi dari Figma -->
+        <!-- Dekorasi -->
         <div class="decorations">
-            <!-- Background ornamen dari Figma -->
-            <img class="bg-ornament-1" src="https://placehold.co/1922x1281" alt="">
-            <img class="bg-ornament-2" src="https://placehold.co/908x855" alt="">
-            <img class="bg-ornament-3" src="https://placehold.co/745x744" alt="">
-            <img class="bg-ornament-4" src="https://placehold.co/1092x1092" alt="">
-            <img class="bg-ornament-5" src="https://placehold.co/1092x1092" alt="">
-            <img class="bg-ornament-6" src="https://placehold.co/797x797" alt="">
-            <img class="bg-ornament-7" src="https://placehold.co/797x797" alt="">
-
-            <!-- Gambar Cabe & Tomat -->
+            <!-- Tomat kiri atas -->
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Cabe 2 kanan atas -->
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Cabe 2.1 overlay - NEMPEL DI ATAS CABE 2 -->
             <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Cabe 1 kiri bawah -->
             <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Cabe 1.1 overlay - NEMPEL DI ATAS CABE 1 -->
             <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            
+            <!-- Tomat kanan bawah -->
             <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
         </div>
 
