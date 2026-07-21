@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Jangkung Order - Login Karyawan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
@@ -87,6 +87,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .logo-top:active {
+            transform: translateX(-50%) scale(0.95);
         }
 
         .logo-top img {
@@ -132,6 +138,12 @@
             display: block;
             margin: 0 auto 15px;
             filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .login-form .form-image:active {
+            transform: scale(0.95);
         }
 
         .login-form .label {
@@ -250,14 +262,14 @@
 
         <button class="btn-back" onclick="goBack()">←</button>
 
-        <div class="logo-top">
+        <div class="logo-top" onclick="goToHome()">
             <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/70x70/98C81C/ffffff?text=🍽️'" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
 
         <div class="login-wrapper">
             <div class="login-form">
-                <img src="logo.png" alt="Logo" class="form-image" loading="lazy" onerror="this.style.display='none'" />
+                <img src="logo.png" alt="Logo" class="form-image" loading="lazy" onerror="this.style.display='none'" onclick="goToHome()" />
                 <div class="label">Password</div>
                 <div class="input-wrapper">
                     <input 
@@ -284,6 +296,10 @@
 
         function goBack() {
             window.history.back();
+        }
+
+        function goToHome() {
+            window.location.href = 'login.html';
         }
 
         function handleLogin() {
