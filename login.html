@@ -61,54 +61,54 @@
 
         .decorations img {
             position: absolute;
-            opacity: 0.6;
+            opacity: 1;
         }
 
-        /* Tomat di kiri atas - posisi: left: -5%, top: -5% */
+        /* Tomat di kiri atas - 1080px width: 23% (≈248px), left: -2%, top: -2% */
         .decorations .tomat-atas-kiri {
-            width: clamp(150px, 25%, 350px);
-            left: -5%;
-            top: -5%;
+            width: clamp(60px, 23%, 280px);
+            left: -2%;
+            top: -2%;
             transform: rotate(-15deg);
         }
 
-        /* Cabe 2 di kanan atas - posisi: right: -5%, top: -5% */
+        /* Cabe 2 di kanan atas - width: 18% (≈194px), right: -2%, top: -2% */
         .decorations .cabe2-atas-kanan {
-            width: clamp(130px, 20%, 300px);
-            right: -5%;
-            top: -5%;
+            width: clamp(50px, 18%, 220px);
+            right: -2%;
+            top: -2%;
             transform: rotate(25deg);
         }
 
-        /* Cabe 2.1 overlay di kanan atas - posisi: right: 8%, top: 5% */
+        /* Cabe 2.1 overlay - width: 14% (≈151px), right: 10%, top: 6% */
         .decorations .cabe21-atas-kanan {
-            width: clamp(100px, 15%, 220px);
-            right: 8%;
-            top: 5%;
+            width: clamp(40px, 14%, 170px);
+            right: 10%;
+            top: 6%;
             transform: rotate(40deg);
         }
 
-        /* Cabe 1 di kiri bawah - posisi: left: -5%, bottom: -5% */
+        /* Cabe 1 di kiri bawah - width: 18% (≈194px), left: -2%, bottom: -2% */
         .decorations .cabe1-bawah-kiri {
-            width: clamp(130px, 20%, 300px);
-            left: -5%;
-            bottom: -5%;
+            width: clamp(50px, 18%, 220px);
+            left: -2%;
+            bottom: -2%;
             transform: rotate(-35deg);
         }
 
-        /* Cabe 1.1 overlay di kiri bawah - posisi: left: 6%, bottom: 6% */
+        /* Cabe 1.1 overlay - width: 14% (≈151px), left: 8%, bottom: 8% */
         .decorations .cabe11-bawah-kiri {
-            width: clamp(100px, 15%, 220px);
-            left: 6%;
-            bottom: 6%;
+            width: clamp(40px, 14%, 170px);
+            left: 8%;
+            bottom: 8%;
             transform: rotate(-50deg);
         }
 
-        /* Tomat 1 di kanan bawah - posisi: right: -5%, bottom: -5% */
+        /* Tomat 1 di kanan bawah - width: 23% (≈248px), right: -2%, bottom: -2% */
         .decorations .tomat1-bawah-kanan {
-            width: clamp(150px, 25%, 350px);
-            right: -5%;
-            bottom: -5%;
+            width: clamp(60px, 23%, 280px);
+            right: -2%;
+            bottom: -2%;
             transform: rotate(20deg);
         }
 
@@ -118,36 +118,35 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.25);
             pointer-events: none;
             z-index: 2;
         }
 
         .btn-back {
             position: absolute;
-            left: 4%;
-            top: 4%;
+            left: 4.07%;
+            top: 3.9%;
             z-index: 10;
             background: none;
             border: none;
             color: white;
-            font-size: clamp(28px, 3.5%, 50px);
+            font-size: clamp(20px, 3.5%, 50px);
             cursor: pointer;
             transition: all 0.3s;
             padding: 5px 15px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        .btn-back:hover {
-            transform: scale(1.1);
-            color: #98C81C;
+        .btn-back:active {
+            transform: scale(0.95);
         }
 
         /* Header: Logo kiri + Teks kanan */
         .header-top {
             position: absolute;
-            left: 4%;
-            top: 7%;
+            left: 4.26%;
+            top: 7.03%;
             right: 3%;
             z-index: 10;
             display: flex;
@@ -156,7 +155,7 @@
         }
 
         .header-top .logo-left {
-            width: clamp(80px, 20%, 300px);
+            width: clamp(60px, 14%, 180px);
             height: auto;
             flex-shrink: 0;
         }
@@ -169,7 +168,7 @@
 
         .header-top .title-right {
             color: white;
-            font-size: clamp(24px, 6%, 85px);
+            font-size: clamp(18px, 5%, 75px);
             font-weight: 700;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
             line-height: 1.1;
@@ -177,13 +176,13 @@
             flex: 1;
         }
 
-        /* Box Customer */
+        /* Box Customer - 82.13% width, 26.4% height, left 8.15%, top 26.15% */
         .box-customer {
             position: absolute;
-            width: 82%;
-            height: 26%;
-            left: 9%;
-            top: 26%;
+            width: 82.13%;
+            height: 26.4%;
+            left: 8.15%;
+            top: 26.15%;
             background: #98C81C;
             border-radius: 65px;
             opacity: 0.92;
@@ -196,12 +195,6 @@
             box-shadow: 0 8px 30px rgba(152, 200, 28, 0.3);
             border: 3px solid white;
             padding: 0 20px;
-        }
-
-        .box-customer:hover {
-            transform: scale(1.03);
-            opacity: 1;
-            box-shadow: 0 12px 50px rgba(152, 200, 28, 0.5);
         }
 
         .box-customer:active {
@@ -210,21 +203,21 @@
 
         .box-customer .label {
             color: white;
-            font-size: clamp(30px, 6%, 75px);
+            font-size: clamp(20px, 5%, 65px);
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             text-align: center;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             letter-spacing: 3px;
         }
 
-        /* Box Karyawan */
+        /* Box Karyawan - 82.13% width, 26.4% height, left 8.15%, top 56.88% */
         .box-karyawan {
             position: absolute;
-            width: 82%;
-            height: 26%;
-            left: 9%;
-            top: 57%;
+            width: 82.13%;
+            height: 26.4%;
+            left: 8.15%;
+            top: 56.88%;
             background: #98C81C;
             border-radius: 65px;
             opacity: 0.92;
@@ -239,21 +232,15 @@
             padding: 0 20px;
         }
 
-        .box-karyawan:hover {
-            transform: scale(1.03);
-            opacity: 1;
-            box-shadow: 0 12px 50px rgba(152, 200, 28, 0.5);
-        }
-
         .box-karyawan:active {
             transform: scale(0.97);
         }
 
         .box-karyawan .label {
             color: white;
-            font-size: clamp(30px, 6%, 75px);
+            font-size: clamp(20px, 5%, 65px);
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             text-align: center;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             letter-spacing: 3px;
@@ -271,27 +258,46 @@
 
             .box-customer {
                 border-radius: 65px;
-                height: 26%;
-                top: 26%;
             }
 
             .box-karyawan {
                 border-radius: 65px;
-                height: 26%;
-                top: 57%;
             }
 
             .box-customer .label,
             .box-karyawan .label {
-                font-size: clamp(30px, 7%, 80px);
+                font-size: clamp(24px, 6%, 70px);
             }
 
             .header-top .title-right {
-                font-size: clamp(24px, 6%, 75px);
+                font-size: clamp(20px, 6%, 75px);
             }
 
             .header-top .logo-left {
-                width: clamp(100px, 25%, 350px);
+                width: clamp(70px, 16%, 200px);
+            }
+        }
+
+        /* HP portrait kecil */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .box-customer .label,
+            .box-karyawan .label {
+                font-size: clamp(16px, 5%, 45px);
+                letter-spacing: 1px;
+            }
+
+            .header-top .title-right {
+                font-size: clamp(14px, 5%, 45px);
+            }
+
+            .header-top .logo-left {
+                width: clamp(50px, 12%, 120px);
+            }
+
+            .box-customer,
+            .box-karyawan {
+                border-radius: 35px;
+                border-width: 2px;
             }
         }
 
@@ -304,32 +310,32 @@
             }
 
             .box-customer {
-                width: 70%;
-                height: 25%;
-                left: 15%;
-                top: 26%;
+                width: 65%;
+                height: 22%;
+                left: 17.5%;
+                top: 28%;
                 border-radius: 40px;
             }
 
             .box-karyawan {
-                width: 70%;
-                height: 25%;
-                left: 15%;
-                top: 56%;
+                width: 65%;
+                height: 22%;
+                left: 17.5%;
+                top: 55%;
                 border-radius: 40px;
             }
 
             .box-customer .label,
             .box-karyawan .label {
-                font-size: clamp(20px, 4%, 55px);
+                font-size: clamp(16px, 3.5%, 45px);
             }
 
             .header-top .title-right {
-                font-size: clamp(18px, 4.5%, 55px);
+                font-size: clamp(16px, 4.5%, 55px);
             }
 
             .header-top .logo-left {
-                width: clamp(70px, 18%, 250px);
+                width: clamp(60px, 14%, 180px);
             }
 
             .header-top {
@@ -339,85 +345,9 @@
             }
 
             .btn-back {
-                font-size: clamp(24px, 3%, 40px);
+                font-size: clamp(18px, 3%, 40px);
                 left: 2%;
-                top: 3%;
-            }
-        }
-
-        /* Tablet portrait */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .box-customer .label,
-            .box-karyawan .label {
-                font-size: clamp(40px, 8%, 85px);
-            }
-
-            .header-top .title-right {
-                font-size: clamp(30px, 7%, 80px);
-            }
-
-            .header-top .logo-left {
-                width: clamp(150px, 30%, 400px);
-            }
-        }
-
-        /* Tablet landscape */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .box-customer {
-                width: 60%;
-                height: 22%;
-                left: 20%;
-                top: 28%;
-            }
-
-            .box-karyawan {
-                width: 60%;
-                height: 22%;
-                left: 20%;
-                top: 55%;
-            }
-
-            .box-customer .label,
-            .box-karyawan .label {
-                font-size: clamp(28px, 5%, 60px);
-            }
-
-            .header-top .title-right {
-                font-size: clamp(24px, 5%, 60px);
-            }
-
-            .header-top .logo-left {
-                width: clamp(100px, 22%, 280px);
-            }
-        }
-
-        /* Desktop / Laptop landscape */
-        @media screen and (min-width: 1025px) and (orientation: landscape) {
-            .box-customer {
-                width: 55%;
-                height: 20%;
-                left: 22.5%;
-                top: 30%;
-            }
-
-            .box-karyawan {
-                width: 55%;
-                height: 20%;
-                left: 22.5%;
-                top: 55%;
-            }
-
-            .box-customer .label,
-            .box-karyawan .label {
-                font-size: clamp(30px, 5%, 70px);
-            }
-
-            .header-top .title-right {
-                font-size: clamp(28px, 5.5%, 75px);
-            }
-
-            .header-top .logo-left {
-                width: clamp(120px, 22%, 350px);
+                top: 2.5%;
             }
         }
 
@@ -425,36 +355,36 @@
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .box-customer {
                 width: 60%;
-                height: 20%;
+                height: 18%;
                 left: 20%;
                 top: 30%;
-                border-radius: 30px;
+                border-radius: 25px;
             }
 
             .box-karyawan {
                 width: 60%;
-                height: 20%;
+                height: 18%;
                 left: 20%;
                 top: 55%;
-                border-radius: 30px;
+                border-radius: 25px;
             }
 
             .box-customer .label,
             .box-karyawan .label {
-                font-size: clamp(16px, 3%, 35px);
+                font-size: clamp(12px, 2.5%, 28px);
                 letter-spacing: 1px;
             }
 
             .header-top .title-right {
-                font-size: clamp(14px, 3.5%, 35px);
+                font-size: clamp(12px, 3.5%, 30px);
             }
 
             .header-top .logo-left {
-                width: clamp(50px, 15%, 150px);
+                width: clamp(40px, 12%, 120px);
             }
 
             .btn-back {
-                font-size: clamp(18px, 2.5%, 30px);
+                font-size: clamp(14px, 2.5%, 25px);
             }
 
             .box-customer,
@@ -463,8 +393,54 @@
             }
         }
 
-        /* Layar sangat lebar */
-        @media screen and (min-aspect-ratio: 2/1) and (orientation: landscape) {
+        /* Tablet portrait */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .box-customer .label,
+            .box-karyawan .label {
+                font-size: clamp(30px, 6%, 75px);
+            }
+
+            .header-top .title-right {
+                font-size: clamp(26px, 6.5%, 80px);
+            }
+
+            .header-top .logo-left {
+                width: clamp(100px, 18%, 250px);
+            }
+        }
+
+        /* Tablet landscape */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .box-customer {
+                width: 55%;
+                height: 20%;
+                left: 22.5%;
+                top: 30%;
+            }
+
+            .box-karyawan {
+                width: 55%;
+                height: 20%;
+                left: 22.5%;
+                top: 55%;
+            }
+
+            .box-customer .label,
+            .box-karyawan .label {
+                font-size: clamp(20px, 4%, 50px);
+            }
+
+            .header-top .title-right {
+                font-size: clamp(20px, 5%, 60px);
+            }
+
+            .header-top .logo-left {
+                width: clamp(80px, 18%, 220px);
+            }
+        }
+
+        /* Desktop / Laptop landscape */
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
             .box-customer {
                 width: 50%;
                 height: 18%;
@@ -476,57 +452,72 @@
                 width: 50%;
                 height: 18%;
                 left: 25%;
-                top: 54%;
+                top: 55%;
             }
 
             .box-customer .label,
             .box-karyawan .label {
-                font-size: clamp(25px, 4%, 55px);
+                font-size: clamp(24px, 4.5%, 60px);
             }
 
             .header-top .title-right {
-                font-size: clamp(22px, 4.5%, 60px);
+                font-size: clamp(24px, 5.5%, 70px);
             }
 
             .header-top .logo-left {
                 width: clamp(100px, 18%, 280px);
             }
         }
+
+        /* Desktop lebar */
+        @media screen and (min-width: 1600px) and (orientation: landscape) {
+            .box-customer {
+                width: 45%;
+                height: 16%;
+                left: 27.5%;
+                top: 34%;
+            }
+
+            .box-karyawan {
+                width: 45%;
+                height: 16%;
+                left: 27.5%;
+                top: 55%;
+            }
+
+            .box-customer .label,
+            .box-karyawan .label {
+                font-size: clamp(28px, 5%, 75px);
+            }
+
+            .header-top .title-right {
+                font-size: clamp(28px, 6%, 85px);
+            }
+
+            .header-top .logo-left {
+                width: clamp(120px, 20%, 320px);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <!-- Background bg.png -->
         <div class="bg-utama"></div>
 
         <!-- Dekorasi -->
         <div class="decorations">
-            <!-- Tomat di kiri atas -->
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
-            
-            <!-- Cabe 2 di kanan atas -->
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            
-            <!-- Cabe 2.1 overlay di kanan atas -->
             <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            
-            <!-- Cabe 1 di kiri bawah -->
             <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            
-            <!-- Cabe 1.1 overlay di kiri bawah -->
             <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            
-            <!-- Tomat 1 di kanan bawah -->
             <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
         </div>
 
-        <!-- Overlay gelap -->
         <div class="overlay"></div>
 
-        <!-- Tombol Back -->
         <button class="btn-back" onclick="window.location.href='index.html'">←</button>
 
-        <!-- Header: Logo kiri + Teks kanan -->
         <div class="header-top">
             <div class="logo-left">
                 <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/413x295/2d2d2d/ffffff?text=Logo'" />
@@ -534,12 +525,10 @@
             <div class="title-right">WILUJENG<br>SUMPING!</div>
         </div>
 
-        <!-- CUSTOMER -->
         <div class="box-customer" onclick="window.location.href='customer_login.html'">
             <div class="label">CUSTOMER</div>
         </div>
 
-        <!-- KARYAWAN -->
         <div class="box-karyawan" onclick="window.location.href='karyawan_login.html'">
             <div class="label">KARYAWAN</div>
         </div>
