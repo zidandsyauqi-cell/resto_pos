@@ -75,48 +75,48 @@
         }
 
         /* ===== TOMAT ===== */
-        /* Tomat kiri atas - ukuran sama dengan tomat kanan bawah */
+        /* Tomat kiri atas - ukuran 18% */
         .decorations .tomat-atas-kiri {
-            width: clamp(100px, 22%, 280px);
-            left: -3%;
-            top: -3%;
+            width: clamp(80px, 18%, 250px);
+            left: 2%;
+            top: 2%;
         }
 
-        /* Tomat kanan bawah - ukuran sama dengan tomat kiri atas */
+        /* Tomat kanan bawah - ukuran 18% */
         .decorations .tomat1-bawah-kanan {
-            width: clamp(100px, 22%, 280px);
-            right: -3%;
-            bottom: -3%;
+            width: clamp(80px, 18%, 250px);
+            right: 2%;
+            bottom: 2%;
         }
 
         /* ===== CABE KANAN ATAS ===== */
-        /* Cabe 2 - kanan atas */
+        /* Cabe 2 - kanan atas ukuran 14% */
         .decorations .cabe2-atas-kanan {
-            width: clamp(70px, 16%, 200px);
-            right: -2%;
-            top: -2%;
+            width: clamp(60px, 14%, 180px);
+            right: 2%;
+            top: 2%;
         }
 
-        /* Cabe 2.1 - POSISI SAMA DENGAN CABE 2 (overlay) */
+        /* Cabe 2.1 - SAMA POSISI DENGAN CABE 2 (overlay) ukuran 14% */
         .decorations .cabe21-atas-kanan {
-            width: clamp(70px, 16%, 200px);
-            right: -2%;
-            top: -2%;
+            width: clamp(60px, 14%, 180px);
+            right: 2%;
+            top: 2%;
         }
 
         /* ===== CABE KIRI BAWAH ===== */
-        /* Cabe 1 - kiri bawah */
+        /* Cabe 1 - kiri bawah ukuran 14% */
         .decorations .cabe1-bawah-kiri {
-            width: clamp(70px, 16%, 200px);
-            left: -2%;
-            bottom: -2%;
+            width: clamp(60px, 14%, 180px);
+            left: 2%;
+            bottom: 2%;
         }
 
-        /* Cabe 1.1 - POSISI SAMA DENGAN CABE 1 (overlay) */
+        /* Cabe 1.1 - SAMA POSISI DENGAN CABE 1 (overlay) ukuran 14% */
         .decorations .cabe11-bawah-kiri {
-            width: clamp(70px, 16%, 200px);
-            left: -2%;
-            bottom: -2%;
+            width: clamp(60px, 14%, 180px);
+            left: 2%;
+            bottom: 2%;
         }
 
         .btn-back {
@@ -281,6 +281,19 @@
                 border-radius: 35px;
                 border-width: 2px;
             }
+
+            /* Perkecil gambar di HP kecil */
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(50px, 15%, 120px);
+            }
+
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(40px, 12%, 100px);
+            }
         }
 
         @media screen and (orientation: landscape) {
@@ -330,6 +343,19 @@
                 left: 2%;
                 top: 2.5%;
             }
+
+            /* Perkecil gambar di landscape */
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(50px, 12%, 150px);
+            }
+
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(40px, 10%, 120px);
+            }
         }
 
         @media screen and (max-height: 500px) and (orientation: landscape) {
@@ -370,6 +396,18 @@
             .box-customer,
             .box-karyawan {
                 border: 2px solid white;
+            }
+
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(40px, 10%, 100px);
+            }
+
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(30px, 8%, 80px);
             }
         }
 
@@ -430,13 +468,13 @@
             <!-- Cabe 2 kanan atas -->
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
             
-            <!-- Cabe 2.1 - SAMA POSISI DENGAN CABE 2 (overlay) -->
+            <!-- Cabe 2.1 - overlay di atas cabe 2 -->
             <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
             
             <!-- Cabe 1 kiri bawah -->
             <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
             
-            <!-- Cabe 1.1 - SAMA POSISI DENGAN CABE 1 (overlay) -->
+            <!-- Cabe 1.1 - overlay di atas cabe 1 -->
             <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
             
             <!-- Tomat kanan bawah -->
