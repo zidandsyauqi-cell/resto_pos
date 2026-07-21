@@ -64,51 +64,51 @@
             opacity: 1;
         }
 
-        /* Tomat di kiri atas - 1080px width: 23% (≈248px), left: -2%, top: -2% */
+        /* Tomat di kiri atas - posisi: left: -3%, top: -3% */
         .decorations .tomat-atas-kiri {
-            width: clamp(60px, 23%, 280px);
-            left: -2%;
-            top: -2%;
+            width: clamp(80px, 28%, 320px);
+            left: -3%;
+            top: -3%;
             transform: rotate(-15deg);
         }
 
-        /* Cabe 2 di kanan atas - width: 18% (≈194px), right: -2%, top: -2% */
+        /* Cabe 2 di kanan atas - posisi: right: -3%, top: -3% */
         .decorations .cabe2-atas-kanan {
-            width: clamp(50px, 18%, 220px);
-            right: -2%;
-            top: -2%;
+            width: clamp(70px, 22%, 260px);
+            right: -3%;
+            top: -3%;
             transform: rotate(25deg);
         }
 
-        /* Cabe 2.1 overlay - width: 14% (≈151px), right: 10%, top: 6% */
+        /* Cabe 2.1 overlay di kanan atas - posisi: right: 12%, top: 8% */
         .decorations .cabe21-atas-kanan {
-            width: clamp(40px, 14%, 170px);
-            right: 10%;
-            top: 6%;
+            width: clamp(60px, 18%, 220px);
+            right: 12%;
+            top: 8%;
             transform: rotate(40deg);
         }
 
-        /* Cabe 1 di kiri bawah - width: 18% (≈194px), left: -2%, bottom: -2% */
+        /* Cabe 1 di kiri bawah - posisi: left: -3%, bottom: -3% */
         .decorations .cabe1-bawah-kiri {
-            width: clamp(50px, 18%, 220px);
-            left: -2%;
-            bottom: -2%;
+            width: clamp(70px, 22%, 260px);
+            left: -3%;
+            bottom: -3%;
             transform: rotate(-35deg);
         }
 
-        /* Cabe 1.1 overlay - width: 14% (≈151px), left: 8%, bottom: 8% */
+        /* Cabe 1.1 overlay di kiri bawah - posisi: left: 10%, bottom: 10% */
         .decorations .cabe11-bawah-kiri {
-            width: clamp(40px, 14%, 170px);
-            left: 8%;
-            bottom: 8%;
+            width: clamp(60px, 18%, 220px);
+            left: 10%;
+            bottom: 10%;
             transform: rotate(-50deg);
         }
 
-        /* Tomat 1 di kanan bawah - width: 23% (≈248px), right: -2%, bottom: -2% */
+        /* Tomat 1 di kanan bawah - posisi: right: -3%, bottom: -3% */
         .decorations .tomat1-bawah-kanan {
-            width: clamp(60px, 23%, 280px);
-            right: -2%;
-            bottom: -2%;
+            width: clamp(80px, 28%, 320px);
+            right: -3%;
+            bottom: -3%;
             transform: rotate(20deg);
         }
 
@@ -118,15 +118,15 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.15);
             pointer-events: none;
             z-index: 2;
         }
 
         .btn-back {
             position: absolute;
-            left: 4.07%;
-            top: 3.9%;
+            left: 3.5%;
+            top: 3.5%;
             z-index: 10;
             background: none;
             border: none;
@@ -145,8 +145,8 @@
         /* Header: Logo kiri + Teks kanan */
         .header-top {
             position: absolute;
-            left: 4.26%;
-            top: 7.03%;
+            left: 4%;
+            top: 7%;
             right: 3%;
             z-index: 10;
             display: flex;
@@ -176,15 +176,15 @@
             flex: 1;
         }
 
-        /* Box Customer - 82.13% width, 26.4% height, left 8.15%, top 26.15% */
+        /* Box Customer */
         .box-customer {
             position: absolute;
-            width: 82.13%;
-            height: 26.4%;
-            left: 8.15%;
-            top: 26.15%;
+            width: 82%;
+            height: 26%;
+            left: 9%;
+            top: 26%;
             background: #98C81C;
-            border-radius: 65px;
+            border-radius: 60px;
             opacity: 0.92;
             display: flex;
             align-items: center;
@@ -211,15 +211,15 @@
             letter-spacing: 3px;
         }
 
-        /* Box Karyawan - 82.13% width, 26.4% height, left 8.15%, top 56.88% */
+        /* Box Karyawan */
         .box-karyawan {
             position: absolute;
-            width: 82.13%;
-            height: 26.4%;
-            left: 8.15%;
-            top: 56.88%;
+            width: 82%;
+            height: 26%;
+            left: 9%;
+            top: 57%;
             background: #98C81C;
-            border-radius: 65px;
+            border-radius: 60px;
             opacity: 0.92;
             display: flex;
             align-items: center;
@@ -254,14 +254,6 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 0;
-            }
-
-            .box-customer {
-                border-radius: 65px;
-            }
-
-            .box-karyawan {
-                border-radius: 65px;
             }
 
             .box-customer .label,
@@ -466,36 +458,6 @@
 
             .header-top .logo-left {
                 width: clamp(100px, 18%, 280px);
-            }
-        }
-
-        /* Desktop lebar */
-        @media screen and (min-width: 1600px) and (orientation: landscape) {
-            .box-customer {
-                width: 45%;
-                height: 16%;
-                left: 27.5%;
-                top: 34%;
-            }
-
-            .box-karyawan {
-                width: 45%;
-                height: 16%;
-                left: 27.5%;
-                top: 55%;
-            }
-
-            .box-customer .label,
-            .box-karyawan .label {
-                font-size: clamp(28px, 5%, 75px);
-            }
-
-            .header-top .title-right {
-                font-size: clamp(28px, 6%, 85px);
-            }
-
-            .header-top .logo-left {
-                width: clamp(120px, 20%, 320px);
             }
         }
     </style>
