@@ -920,7 +920,6 @@
             try {
                 await loadMenuNames();
 
-                // Ambil semua orders yang belum Selesai
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
                     .select('*')
@@ -940,6 +939,13 @@
 
                     if (detailsError) {
                         console.warn('Error fetching details for', order.no_struk, detailsError);
+                        // Lanjutkan dengan details kosong
+                        ordersWithDetails.push({
+                            ...order,
+                            details: [],
+                            customer_name: '-'
+                        });
+                        continue;
                     }
 
                     const detailsWithName = (details || []).map(item => {
@@ -947,10 +953,11 @@
                         return { ...item, menu_name: menuName };
                     });
 
-                    // Ambil nama customer dari detail pertama
                     let customerName = '-';
                     if (detailsWithName.length > 0 && detailsWithName[0].nama) {
                         customerName = detailsWithName[0].nama;
+                    } else if (order.customer_name) {
+                        customerName = order.customer_name;
                     }
 
                     ordersWithDetails.push({
@@ -1029,6 +1036,12 @@
 
                     if (detailsError) {
                         console.warn('Error fetching details for', order.no_struk, detailsError);
+                        ordersWithDetails.push({
+                            ...order,
+                            details: [],
+                            customer_name: '-'
+                        });
+                        continue;
                     }
 
                     const detailsWithName = (details || []).map(item => {
@@ -1039,6 +1052,8 @@
                     let customerName = '-';
                     if (detailsWithName.length > 0 && detailsWithName[0].nama) {
                         customerName = detailsWithName[0].nama;
+                    } else if (order.customer_name) {
+                        customerName = order.customer_name;
                     }
 
                     ordersWithDetails.push({
@@ -1062,7 +1077,9 @@
             renderTable();
         }
 
-        async function updateItemStatus(noStruk, idDetail, newStatus) {
+        async function updateItemStatus(noStruk, idOrderDetail, newStatus) {
+            if (!confirm(`Yakin ingin mengubah item ini menjadi ${newStatus}?`)) return;
+
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
 
@@ -1070,7 +1087,7 @@
                 const { error } = await supabaseClient
                     .from('orderdetails')
                     .update({ status: newStatus })
-                    .eq('id', idDetail);
+                    .eq('id_order_detail', idOrderDetail);  // <-- PAKAI id_order_detail
 
                 if (error) throw error;
 
@@ -1119,7 +1136,6 @@
                 const orderStatus = allSelesai && hasItem ? 'Selesai' : 
                                    (allSiap && hasItem ? 'Siap' : 'Diproses');
 
-                // Status badge class
                 let statusClass = 'diproses';
                 if (orderStatus === 'Siap') statusClass = 'siap';
                 if (orderStatus === 'Selesai') statusClass = 'selesai';
@@ -1167,6 +1183,8 @@
                                 let itemStatusClass = 'diproses';
                                 if (itemStatus === 'Siap') itemStatusClass = 'siap';
                                 if (itemStatus === 'Selesai') itemStatusClass = 'selesai';
+                                // Gunakan id_order_detail untuk update
+                                const idDetail = item.id_order_detail || item.id;
                                 return `
                                     <div class="item-detail-row show">
                                         <div class="item-col">${item.menu_name}</div>
@@ -1178,12 +1196,12 @@
                                         </div>
                                         <div class="item-col">
                                             ${itemStatus === 'Diproses' ? `
-                                                <button class="btn-item-action siapkan-item" onclick="updateItemStatus('${order.no_struk}', ${item.id}, 'Siap')">
+                                                <button class="btn-item-action siapkan-item" onclick="updateItemStatus('${order.no_struk}', ${idDetail}, 'Siap')">
                                                     🕐 Siapkan
                                                 </button>
                                             ` : ''}
                                             ${itemStatus === 'Siap' || itemStatus === 'Diproses' ? `
-                                                <button class="btn-item-action selesai-item" onclick="updateItemStatus('${order.no_struk}', ${item.id}, 'Selesai')">
+                                                <button class="btn-item-action selesai-item" onclick="updateItemStatus('${order.no_struk}', ${idDetail}, 'Selesai')">
                                                     ✅ Selesai
                                                 </button>
                                             ` : ''}
@@ -1217,10 +1235,11 @@
                 const order = ordersData.find(o => o.no_struk === noStruk);
                 if (order && order.details) {
                     for (const item of order.details) {
+                        const idDetail = item.id_order_detail || item.id;
                         const { error } = await supabaseClient
                             .from('orderdetails')
                             .update({ status: newStatus })
-                            .eq('id', item.id);
+                            .eq('id_order_detail', idDetail);
                         if (error) throw error;
                     }
                 }
@@ -1264,10 +1283,11 @@
                 for (const order of pendingOrders) {
                     if (order.details) {
                         for (const item of order.details) {
+                            const idDetail = item.id_order_detail || item.id;
                             await supabaseClient
                                 .from('orderdetails')
                                 .update({ status: 'Selesai' })
-                                .eq('id', item.id);
+                                .eq('id_order_detail', idDetail);
                         }
                     }
 
