@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Jangkung Order - Karyawan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
@@ -29,13 +29,13 @@
         }
 
         .dashboard-container {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             position: relative;
             background: white;
             overflow: hidden;
-            border-radius: 0;
-            box-shadow: none;
+            display: flex;
+            flex-direction: column;
         }
 
         .bg-utama {
@@ -61,55 +61,61 @@
 
         /* ===== HEADER ===== */
         .header-top {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: relative;
             z-index: 10;
-            padding: 4px 12px 3px 12px;
+            padding: 6px 12px;
+            padding-top: env(safe-area-inset-top, 6px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: transparent;
+            flex-shrink: 0;
+            min-height: 44px;
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
 
         .btn-back {
             background: none;
             border: none;
             color: white;
-            font-size: clamp(14px, 2.2%, 24px);
+            font-size: clamp(18px, 2.8%, 32px);
             cursor: pointer;
             transition: all 0.3s;
-            padding: 2px 5px;
+            padding: 4px 8px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            min-width: 40px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .btn-back:hover {
-            transform: scale(1.1);
-            color: #98C81C;
+        .btn-back:active {
+            transform: scale(0.92);
         }
 
         .logo-header {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
         .logo-header img {
-            width: clamp(18px, 2.8%, 32px);
+            width: clamp(22px, 3.5%, 40px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
         .brand-text {
             color: white;
-            font-size: clamp(9px, 1.3%, 16px);
+            font-size: clamp(12px, 2%, 22px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -122,48 +128,44 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
 
         .btn-logout {
             background: transparent;
             border-radius: 50px;
             border: 2px solid #98C81C;
-            padding: 2px 8px;
+            padding: 4px 12px;
             cursor: pointer;
             transition: all 0.3s;
             color: white;
-            font-size: clamp(7px, 1%, 11px);
+            font-size: clamp(10px, 1.4%, 16px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
+            min-height: 32px;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .btn-logout:hover {
+        .btn-logout:active {
             background: rgba(152, 200, 28, 0.2);
-            transform: scale(1.05);
-        }
-
-        .btn-logout .logout-icon {
-            font-size: clamp(9px, 1.1%, 13px);
+            transform: scale(0.95);
         }
 
         /* ===== KONTEN ===== */
         .content-area {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 5;
-            padding: 8px 10px;
+            padding: 8px 12px 16px 12px;
+            padding-bottom: env(safe-area-inset-bottom, 16px);
+            min-height: 0;
         }
 
         .header-content {
@@ -178,7 +180,7 @@
         }
 
         .header-content .logo-besar {
-            width: clamp(45px, 14%, 140px);
+            width: clamp(50px, 14%, 140px);
             height: auto;
             flex-shrink: 0;
         }
@@ -192,7 +194,7 @@
 
         .header-content .title {
             color: white;
-            font-size: clamp(16px, 4%, 42px);
+            font-size: clamp(18px, 4.5%, 48px);
             font-weight: 600;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
             line-height: 1.1;
@@ -204,7 +206,7 @@
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
             max-width: 700px;
             flex-shrink: 0;
@@ -212,7 +214,7 @@
 
         .menu-card {
             background: #98C81C;
-            border-radius: 25px;
+            border-radius: 28px;
             border: 2px solid white;
             aspect-ratio: 1.4/1;
             display: flex;
@@ -222,13 +224,9 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(152, 200, 28, 0.2);
             text-align: center;
-            padding: 6px;
-            min-height: 40px;
-        }
-
-        .menu-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(152, 200, 28, 0.4);
+            padding: 8px 6px;
+            min-height: 50px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .menu-card:active {
@@ -237,7 +235,7 @@
 
         .menu-card .card-label {
             color: white;
-            font-size: clamp(9px, 2.2%, 24px);
+            font-size: clamp(11px, 2.5%, 28px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -246,146 +244,151 @@
             line-height: 1.2;
         }
 
-        /* ===== RESPONSIVE - SEMUA PERANGKAT TANPA TERPOTONG ===== */
+        /* ===== RESPONSIVE ===== */
 
         /* Portrait - HP */
         @media screen and (max-width: 767px) and (orientation: portrait) {
-            .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 6px 8px; }
+            .content-area { padding: 4px 8px 12px 8px; }
             .header-content { margin-bottom: 8px; gap: 8px; max-width: 400px; }
-            .header-content .logo-besar { width: clamp(35px, 12%, 90px); }
-            .header-content .title { font-size: clamp(14px, 4%, 30px); }
-            .menu-grid { gap: 6px; max-width: 400px; }
-            .menu-card { border-radius: 20px; min-height: 45px; padding: 5px; border-width: 2px; }
-            .menu-card .card-label { font-size: clamp(9px, 2.8%, 22px); }
-        }
-
-        /* ===== TABLET PORTRAIT ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 15px 25px; }
-            .header-content { margin-bottom: 18px; gap: 15px; max-width: 550px; }
-            .header-content .logo-besar { width: clamp(70px, 18%, 160px); }
-            .header-content .title { font-size: clamp(25px, 5.5%, 50px); }
-            .menu-grid { gap: 12px; max-width: 550px; }
-            .menu-card { border-radius: 32px; min-height: 75px; padding: 10px; }
-            .menu-card .card-label { font-size: clamp(14px, 3.5%, 34px); }
-            .header-top { padding: 8px 18px 5px 18px; }
-            .logo-header img { width: 30px; }
-            .brand-text { font-size: 16px; }
-            .btn-logout { padding: 4px 12px; font-size: 11px; }
-            .btn-back { font-size: 22px; }
-        }
-
-        /* ===== TABLET LANDSCAPE ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 8px 25px; }
-            .header-content { margin-bottom: 10px; gap: 12px; max-width: 650px; }
-            .header-content .logo-besar { width: clamp(50px, 14%, 130px); }
-            .header-content .title { font-size: clamp(18px, 4.5%, 38px); }
-            .menu-grid { gap: 8px; max-width: 650px; }
-            .menu-card { border-radius: 25px; min-height: 50px; padding: 6px; border-width: 2px; }
-            .menu-card .card-label { font-size: clamp(11px, 2.8%, 26px); }
-            .header-top { padding: 5px 16px 3px 16px; }
-            .logo-header img { width: 24px; }
+            .header-content .logo-besar { width: clamp(40px, 12%, 90px); }
+            .header-content .title { font-size: clamp(16px, 4.5%, 32px); }
+            .menu-grid { gap: 8px; max-width: 400px; }
+            .menu-card { border-radius: 22px; min-height: 48px; padding: 6px; }
+            .menu-card .card-label { font-size: clamp(10px, 3%, 24px); }
+            .header-top { padding: 4px 10px; padding-top: env(safe-area-inset-top, 4px); min-height: 38px; }
+            .btn-logout { padding: 3px 10px; font-size: 10px; min-height: 28px; }
+            .btn-back { font-size: 20px; min-width: 34px; min-height: 34px; }
+            .logo-header img { width: 20px; }
             .brand-text { font-size: 13px; }
-            .btn-logout { padding: 3px 10px; font-size: 9px; }
-            .btn-back { font-size: 18px; }
-        }
-
-        /* ===== LANDSCAPE HP ===== */
-        @media screen and (max-width: 767px) and (orientation: landscape) {
-            .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 4px 14px; }
-            .header-content { margin-bottom: 6px; gap: 8px; max-width: 500px; }
-            .header-content .logo-besar { width: clamp(30px, 10%, 80px); }
-            .header-content .title { font-size: clamp(12px, 3%, 24px); }
-            .menu-grid { gap: 5px; max-width: 500px; }
-            .menu-card { border-radius: 18px; min-height: 35px; padding: 4px; border-width: 2px; }
-            .menu-card .card-label { font-size: clamp(8px, 2%, 18px); }
-            .header-top { padding: 3px 10px 2px 10px; }
-            .btn-logout { padding: 2px 6px; font-size: 7px; border-width: 1.5px; }
-            .btn-back { font-size: 14px; }
-            .logo-header img { width: 16px; }
-            .brand-text { font-size: 9px; }
-        }
-
-        /* Landscape HP kecil */
-        @media screen and (max-height: 500px) and (orientation: landscape) {
-            .content-area { padding: 3px 12px; }
-            .header-content { margin-bottom: 3px; gap: 5px; max-width: 450px; }
-            .header-content .logo-besar { width: 25px; }
-            .header-content .title { font-size: 10px; }
-            .menu-grid { gap: 4px; max-width: 450px; }
-            .menu-card { border-radius: 14px; min-height: 28px; padding: 3px; border-width: 1.5px; }
-            .menu-card .card-label { font-size: 7px; }
-            .btn-logout { padding: 1px 5px; font-size: 6px; border-width: 1.5px; }
-            .header-top { padding: 2px 8px 1px 8px; }
-            .btn-back { font-size: 12px; }
-            .logo-header img { width: 14px; }
-            .brand-text { font-size: 8px; }
         }
 
         /* HP portrait kecil */
         @media screen and (max-width: 480px) and (orientation: portrait) {
-            .dashboard-container { border-radius: 0; }
-            .content-area { padding: 5px 5px; }
-            .header-content { gap: 5px; margin-bottom: 6px; max-width: 320px; }
-            .header-content .logo-besar { width: 30px; }
-            .header-content .title { font-size: 13px; }
-            .menu-grid { gap: 5px; max-width: 320px; }
-            .menu-card { border-radius: 16px; min-height: 38px; padding: 4px; border-width: 2px; }
-            .menu-card .card-label { font-size: 9px; }
-            .btn-logout { padding: 2px 5px; font-size: 6px; }
-            .logo-header img { width: 14px; }
-            .brand-text { font-size: 8px; }
-            .btn-back { font-size: 12px; }
+            .content-area { padding: 3px 5px 10px 5px; }
+            .header-content { gap: 6px; margin-bottom: 6px; max-width: 320px; }
+            .header-content .logo-besar { width: 35px; }
+            .header-content .title { font-size: 14px; }
+            .menu-grid { gap: 6px; max-width: 320px; }
+            .menu-card { border-radius: 18px; min-height: 40px; padding: 4px; }
+            .menu-card .card-label { font-size: 10px; }
+            .header-top { padding: 3px 8px; padding-top: env(safe-area-inset-top, 3px); min-height: 34px; }
+            .btn-logout { padding: 2px 6px; font-size: 8px; min-height: 24px; border-width: 1.5px; }
+            .btn-back { font-size: 16px; min-width: 30px; min-height: 30px; }
+            .logo-header img { width: 16px; }
+            .brand-text { font-size: 11px; }
         }
 
         /* HP sangat kecil */
         @media screen and (max-width: 360px) and (orientation: portrait) {
-            .header-content .logo-besar { width: 25px; }
-            .header-content .title { font-size: 11px; }
-            .menu-card { border-radius: 12px; min-height: 32px; padding: 3px; }
-            .menu-card .card-label { font-size: 7px; }
-            .brand-text { font-size: 7px; }
-            .logo-header img { width: 12px; }
-            .btn-back { font-size: 10px; }
-            .btn-logout { padding: 1px 4px; font-size: 5px; }
+            .header-content .logo-besar { width: 28px; }
+            .header-content .title { font-size: 12px; }
+            .menu-card { border-radius: 14px; min-height: 34px; padding: 3px; }
+            .menu-card .card-label { font-size: 8px; }
+            .brand-text { font-size: 9px; }
+            .logo-header img { width: 14px; }
+            .btn-back { font-size: 14px; min-width: 26px; min-height: 26px; }
+            .btn-logout { padding: 2px 5px; font-size: 7px; min-height: 22px; }
+        }
+
+        /* ===== TABLET PORTRAIT ===== */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .content-area { padding: 15px 25px 25px 25px; }
+            .header-content { margin-bottom: 18px; gap: 15px; max-width: 550px; }
+            .header-content .logo-besar { width: clamp(80px, 18%, 160px); }
+            .header-content .title { font-size: clamp(28px, 5.5%, 50px); }
+            .menu-grid { gap: 14px; max-width: 550px; }
+            .menu-card { border-radius: 34px; min-height: 80px; padding: 10px; }
+            .menu-card .card-label { font-size: clamp(16px, 3.5%, 34px); }
+            .header-top { padding: 8px 18px; padding-top: env(safe-area-inset-top, 8px); min-height: 52px; }
+            .btn-logout { padding: 5px 14px; font-size: 13px; min-height: 36px; }
+            .btn-back { font-size: 24px; min-width: 44px; min-height: 44px; }
+            .logo-header img { width: 32px; }
+            .brand-text { font-size: 18px; }
+        }
+
+        /* ===== TABLET LANDSCAPE ===== */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .content-area { padding: 8px 20px 15px 20px; }
+            .header-content { margin-bottom: 10px; gap: 12px; max-width: 650px; }
+            .header-content .logo-besar { width: clamp(55px, 14%, 130px); }
+            .header-content .title { font-size: clamp(20px, 4.5%, 40px); }
+            .menu-grid { gap: 10px; max-width: 650px; }
+            .menu-card { border-radius: 26px; min-height: 55px; padding: 6px; }
+            .menu-card .card-label { font-size: clamp(13px, 3%, 28px); }
+            .header-top { padding: 5px 14px; padding-top: env(safe-area-inset-top, 5px); min-height: 40px; }
+            .btn-logout { padding: 3px 10px; font-size: 11px; min-height: 30px; }
+            .btn-back { font-size: 20px; min-width: 36px; min-height: 36px; }
+            .logo-header img { width: 24px; }
+            .brand-text { font-size: 14px; }
+        }
+
+        /* ===== LANDSCAPE HP ===== */
+        @media screen and (max-width: 767px) and (orientation: landscape) {
+            .content-area { padding: 4px 14px 10px 14px; }
+            .header-content { margin-bottom: 6px; gap: 8px; max-width: 500px; }
+            .header-content .logo-besar { width: clamp(35px, 10%, 80px); }
+            .header-content .title { font-size: clamp(14px, 3.5%, 28px); }
+            .menu-grid { gap: 6px; max-width: 500px; }
+            .menu-card { border-radius: 20px; min-height: 40px; padding: 5px; }
+            .menu-card .card-label { font-size: clamp(9px, 2.2%, 20px); }
+            .header-top { padding: 3px 10px; padding-top: env(safe-area-inset-top, 3px); min-height: 34px; }
+            .btn-logout { padding: 2px 8px; font-size: 9px; min-height: 26px; border-width: 1.5px; }
+            .btn-back { font-size: 16px; min-width: 30px; min-height: 30px; }
+            .logo-header img { width: 18px; }
+            .brand-text { font-size: 11px; }
+        }
+
+        /* Landscape HP kecil */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .content-area { padding: 3px 12px 8px 12px; }
+            .header-content { margin-bottom: 4px; gap: 6px; max-width: 450px; }
+            .header-content .logo-besar { width: 28px; }
+            .header-content .title { font-size: 12px; }
+            .menu-grid { gap: 5px; max-width: 450px; }
+            .menu-card { border-radius: 16px; min-height: 32px; padding: 4px; border-width: 1.5px; }
+            .menu-card .card-label { font-size: 8px; }
+            .header-top { padding: 2px 8px; padding-top: env(safe-area-inset-top, 2px); min-height: 30px; }
+            .btn-logout { padding: 2px 6px; font-size: 7px; min-height: 22px; border-width: 1.5px; }
+            .btn-back { font-size: 14px; min-width: 26px; min-height: 26px; }
+            .logo-header img { width: 16px; }
+            .brand-text { font-size: 9px; }
         }
 
         /* ===== DESKTOP ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
-            .dashboard-container { width: 100vw; height: 100vh; border-radius: 0; }
-            .content-area { padding: 12px 35px; }
+            .content-area { padding: 12px 35px 20px 35px; }
             .header-content { margin-bottom: 16px; gap: 14px; max-width: 700px; }
-            .header-content .logo-besar { width: clamp(65px, 16%, 170px); }
-            .header-content .title { font-size: clamp(24px, 5%, 48px); }
-            .menu-grid { gap: 10px; max-width: 700px; }
-            .menu-card { border-radius: 30px; min-height: 65px; padding: 8px; }
-            .menu-card .card-label { font-size: clamp(14px, 3.5%, 34px); }
-            .header-top { padding: 8px 20px 5px 20px; }
-            .logo-header img { width: 32px; }
+            .header-content .logo-besar { width: clamp(70px, 16%, 170px); }
+            .header-content .title { font-size: clamp(26px, 5%, 48px); }
+            .menu-grid { gap: 12px; max-width: 700px; }
+            .menu-card { border-radius: 32px; min-height: 70px; padding: 10px; }
+            .menu-card .card-label { font-size: clamp(16px, 3.5%, 34px); }
+            .header-top { padding: 8px 20px; padding-top: env(safe-area-inset-top, 8px); min-height: 52px; }
+            .btn-logout { padding: 5px 16px; font-size: 14px; min-height: 38px; }
+            .btn-back { font-size: 24px; min-width: 44px; min-height: 44px; }
+            .logo-header img { width: 34px; }
             .brand-text { font-size: 18px; }
-            .btn-logout { padding: 4px 14px; font-size: 12px; }
-            .btn-back { font-size: 24px; }
         }
 
         /* Desktop lebar */
         @media screen and (min-width: 1600px) and (orientation: landscape) {
-            .content-area { padding: 16px 45px; }
+            .content-area { padding: 16px 45px 25px 45px; }
             .header-content { margin-bottom: 20px; gap: 18px; max-width: 800px; }
-            .header-content .logo-besar { width: clamp(80px, 18%, 200px); }
-            .header-content .title { font-size: clamp(28px, 5.5%, 55px); }
-            .menu-grid { gap: 12px; max-width: 800px; }
-            .menu-card { border-radius: 35px; min-height: 80px; padding: 10px; }
-            .menu-card .card-label { font-size: clamp(18px, 4%, 40px); }
-            .header-top { padding: 10px 24px 6px 24px; }
-            .logo-header img { width: 40px; }
-            .brand-text { font-size: 20px; }
-            .btn-logout { padding: 5px 16px; font-size: 14px; }
-            .btn-back { font-size: 28px; }
+            .header-content .logo-besar { width: clamp(85px, 18%, 200px); }
+            .header-content .title { font-size: clamp(30px, 5.5%, 55px); }
+            .menu-grid { gap: 14px; max-width: 800px; }
+            .menu-card { border-radius: 38px; min-height: 85px; padding: 12px; }
+            .menu-card .card-label { font-size: clamp(20px, 4%, 40px); }
+            .header-top { padding: 10px 24px; padding-top: env(safe-area-inset-top, 10px); min-height: 60px; }
+            .btn-logout { padding: 6px 20px; font-size: 16px; min-height: 44px; }
+            .btn-back { font-size: 28px; min-width: 48px; min-height: 48px; }
+            .logo-header img { width: 42px; }
+            .brand-text { font-size: 22px; }
+        }
+
+        @supports not (padding: env(safe-area-inset-top)) {
+            .header-top { padding-top: 6px; }
+            .content-area { padding-bottom: 16px; }
         }
     </style>
 </head>
@@ -399,13 +402,13 @@
             <div class="header-left">
                 <button class="btn-back" onclick="goBack()">←</button>
                 <div class="logo-header" onclick="goToDashboard()">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/40x40/98C81C/ffffff?text=🍽️'" />
+                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/50x50/98C81C/ffffff?text=🍽️'" />
                     <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
             </div>
             <div class="header-right">
-                <button class="btn-logout" onclick="logout()">
-                    <span class="logout-icon">🔓</span> Logout
+                <button class="btn-logout" onclick="logoutKaryawan()">
+                    🔓 Logout
                 </button>
             </div>
         </div>
@@ -445,16 +448,49 @@
             window.location.href = 'dashboard.html';
         }
 
-        // ============ LOGOUT ============
-        function logout() {
-            if (confirm('Yakin ingin logout?')) {
-                localStorage.removeItem('user_role');
+        // ============================================
+        // LOGOUT KARYAWAN
+        // ============================================
+        function logoutKaryawan() {
+            if (confirm('Yakin ingin keluar?')) {
                 localStorage.removeItem('karyawan_logged_in');
-                window.location.href = 'login.html';
+                localStorage.removeItem('login_time');
+                localStorage.removeItem('karyawan_nama');
+                window.location.href = 'karyawan_login.html';
             }
         }
 
-        // ============ CEK LOGIN STATUS ============
+        // ============================================
+        // AUTO LOGOUT 15 MENIT
+        // ============================================
+        (function() {
+            const LOGOUT_TIMER = 15 * 60 * 1000;
+            let logoutTimer;
+
+            function doLogout() {
+                localStorage.removeItem('karyawan_logged_in');
+                localStorage.removeItem('login_time');
+                localStorage.removeItem('karyawan_nama');
+                window.location.href = 'karyawan_login.html';
+            }
+
+            function resetLogoutTimer() {
+                if (logoutTimer) clearTimeout(logoutTimer);
+                logoutTimer = setTimeout(doLogout, LOGOUT_TIMER);
+            }
+
+            const events = ['click', 'keypress', 'scroll', 'touchstart', 'mousemove', 'keydown'];
+            events.forEach(event => {
+                document.addEventListener(event, resetLogoutTimer);
+            });
+
+            resetLogoutTimer();
+            console.log('⏱️ Auto logout setelah 15 menit tidak ada aktivitas');
+        })();
+
+        // ============================================
+        // CEK LOGIN STATUS
+        // ============================================
         if (localStorage.getItem('karyawan_logged_in') !== 'true') {
             window.location.href = 'karyawan_login.html';
         }
