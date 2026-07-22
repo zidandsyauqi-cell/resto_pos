@@ -221,17 +221,17 @@
         .box-menu .label-menu {
             position: absolute;
             left: 5%;
-            top: 8%;
+            top: 6%;
             text-align: left;
             color: white;
-            font-size: clamp(24px, 5.5%, 60px);
+            font-size: clamp(20px, 4.5%, 50px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             z-index: 5;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar full dari ujung ke ujung */
+        /* Gambar full lebar button */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
@@ -240,29 +240,31 @@
             height: 72%;
             display: flex;
             align-items: flex-end;
-            justify-content: flex-start;
+            justify-content: center;
             z-index: 2;
             opacity: 1;
             overflow: hidden;
             border-radius: 0 0 62px 62px;
+            width: 100%;
         }
         .box-menu .menu-images img {
             height: 100%;
-            width: auto;
+            width: 100%;
             object-fit: cover;
             border: none;
-            margin-left: -10%;
-        }
-        .box-menu .menu-images img:first-child {
-            margin-left: 0;
+            flex: 1;
+            min-width: 0;
         }
         .box-menu .menu-images img:nth-child(2) {
             height: 115%;
             z-index: 3;
+            flex: 1.1;
+        }
+        .box-menu .menu-images img:nth-child(1) {
+            flex: 0.9;
         }
         .box-menu .menu-images img:nth-child(3) {
-            height: 100%;
-            z-index: 2;
+            flex: 0.9;
         }
 
         /* ===== BOX PESAN ===== */
@@ -296,17 +298,17 @@
         .box-pesan .label-pesan {
             position: absolute;
             left: 5%;
-            top: 8%;
+            top: 6%;
             text-align: left;
             color: white;
-            font-size: clamp(24px, 5.5%, 60px);
+            font-size: clamp(20px, 4.5%, 50px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             z-index: 5;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar full dari ujung ke ujung */
+        /* Gambar full lebar button */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
@@ -315,29 +317,31 @@
             height: 72%;
             display: flex;
             align-items: flex-end;
-            justify-content: flex-start;
+            justify-content: center;
             z-index: 2;
             opacity: 1;
             overflow: hidden;
             border-radius: 0 0 62px 62px;
+            width: 100%;
         }
         .box-pesan .pesan-images img {
             height: 100%;
-            width: auto;
+            width: 100%;
             object-fit: cover;
             border: none;
-            margin-left: -10%;
-        }
-        .box-pesan .pesan-images img:first-child {
-            margin-left: 0;
+            flex: 1;
+            min-width: 0;
         }
         .box-pesan .pesan-images img:nth-child(2) {
             height: 115%;
             z-index: 3;
+            flex: 1.1;
+        }
+        .box-pesan .pesan-images img:nth-child(1) {
+            flex: 0.9;
         }
         .box-pesan .pesan-images img:nth-child(3) {
-            height: 100%;
-            z-index: 2;
+            flex: 0.9;
         }
 
         /* ===== BOX STATUS ===== */
@@ -425,7 +429,7 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(16px, 4%, 35px);
+                font-size: clamp(14px, 3.5%, 28px);
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
@@ -450,10 +454,6 @@
             }
             .header-top .title-right {
                 font-size: 20px;
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                margin-left: -15%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -518,7 +518,7 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(14px, 2.8%, 32px);
+                font-size: clamp(12px, 2.5%, 28px);
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
@@ -527,10 +527,6 @@
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau {
                 border-radius: 32px;
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                margin-left: -8%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -567,7 +563,7 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(11px, 2%, 24px);
+                font-size: clamp(10px, 2%, 20px);
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
@@ -604,10 +600,6 @@
                 padding: 4px 5% 8px;
                 padding-bottom: env(safe-area-inset-bottom, 8px);
             }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                margin-left: -12%;
-            }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
                 width: clamp(30px, 8vw, 80px);
@@ -643,7 +635,7 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(20px, 3.5%, 48px);
+                font-size: clamp(18px, 3.5%, 42px);
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
