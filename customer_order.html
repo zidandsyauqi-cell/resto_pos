@@ -1,3 +1,4 @@
+gambar tengah yang button menu jangan di apai2n terus bottom nya 30% coba
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -220,12 +221,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
+        /* Semua gambar ukuran sama, bagian BOTTOM yang terpotong */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -15%;
-            top: 15%;
+            bottom: -10%;
+            top: 20%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -246,12 +248,12 @@
         .box-menu .menu-images img:nth-child(1) {
             flex: 1;
             height: 100%;
-            z-index: 2;
+            z-index: 1;
         }
         .box-menu .menu-images img:nth-child(2) {
             flex: 1;
             height: 100%;
-            z-index: 1;
+            z-index: 3;
             margin-left: -10%;
             margin-right: -10%;
         }
@@ -291,13 +293,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* PESAN - gambar 2 di BELAKANG, semua ukuran sama */
+        /* Semua gambar ukuran sama, bagian BOTTOM yang terpotong */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -15%;
-            top: 15%;
+            bottom: -10%;
+            top: 20%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -315,24 +317,22 @@
             flex: 1;
             min-width: 0;
         }
-        /* Gambar 1 dan 3 di ATAS (z-index lebih tinggi) */
         .box-pesan .pesan-images img:nth-child(1) {
             flex: 1;
             height: 100%;
-            z-index: 3;
+            z-index: 1;
         }
-        /* Gambar 2 (tengah) DI BELAKANG (z-index lebih rendah) */
         .box-pesan .pesan-images img:nth-child(2) {
             flex: 1;
             height: 100%;
-            z-index: 1;
-            margin-left: -12%;
-            margin-right: -12%;
+            z-index: 3;
+            margin-left: -10%;
+            margin-right: -10%;
         }
         .box-pesan .pesan-images img:nth-child(3) {
             flex: 1;
             height: 100%;
-            z-index: 3;
+            z-index: 2;
         }
 
         /* ===== BOX STATUS ===== */
@@ -388,14 +388,11 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 65px 65px;
-                top: 10%;
-                bottom: -18%;
+                top: 15%;
+                bottom: -5%;
             }
+            .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -18%;
-                margin-right: -18%;
-            }
-            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -15%;
                 margin-right: -15%;
             }
@@ -433,14 +430,11 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
-                top: 10%;
-                bottom: -18%;
+                top: 15%;
+                bottom: -5%;
             }
+            .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -20%;
-                margin-right: -20%;
-            }
-            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -18%;
                 margin-right: -18%;
             }
@@ -530,14 +524,11 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
-                top: 12%;
-                bottom: -15%;
+                top: 15%;
+                bottom: -5%;
             }
+            .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -14%;
-                margin-right: -14%;
-            }
-            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -12%;
                 margin-right: -12%;
             }
@@ -582,14 +573,11 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 25px 25px;
-                top: 12%;
-                bottom: -12%;
+                top: 15%;
+                bottom: -5%;
             }
+            .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -10%;
-                margin-right: -10%;
-            }
-            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -10%;
                 margin-right: -10%;
             }
@@ -662,14 +650,11 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 45px 45px;
-                top: 15%;
-                bottom: -15%;
+                top: 18%;
+                bottom: -5%;
             }
+            .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -12%;
-                margin-right: -12%;
-            }
-            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -10%;
                 margin-right: -10%;
             }
@@ -746,7 +731,7 @@
                 </div>
             </div>
 
-            <!-- PESAN - gambar 2 DI BELAKANG -->
+            <!-- PESAN -->
             <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
                 <div class="label-pesan">PESAN</div>
                 <div class="pesan-images">
