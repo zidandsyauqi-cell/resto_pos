@@ -33,9 +33,6 @@
             position: relative;
             background: white;
             overflow: hidden;
-            background-image: url('bg.png');
-            background-size: cover;
-            background-position: center;
             border-radius: 0;
             box-shadow: none;
         }
@@ -116,18 +113,18 @@
 
         .btn-back {
             position: absolute;
-            left: 3%;
-            top: 4%;
-            z-index: 10;
+            left: 4%;
+            top: 3%;
+            z-index: 20;
             background: none;
             border: none;
             color: white;
             font-size: clamp(32px, 4%, 55px);
             cursor: pointer;
-            transition: all 0.3s;
-            padding: 5px 15px;
+            padding: 10px 20px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
             -webkit-tap-highlight-color: transparent;
+            z-index: 20;
         }
 
         .btn-back:active {
@@ -137,14 +134,15 @@
         .logo-top {
             position: absolute;
             left: 50%;
-            top: 4.5%;
+            top: 4%;
             transform: translateX(-50%);
-            z-index: 10;
+            z-index: 20;
             display: flex;
             align-items: center;
             gap: 12px;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
+            padding: 8px 16px;
         }
 
         .logo-top:active {
@@ -360,7 +358,7 @@
             }
 
             .logo-top {
-                top: 3.5%;
+                top: 3%;
             }
 
             .logo-top img {
@@ -380,7 +378,7 @@
             .btn-back {
                 font-size: clamp(28px, 3.5%, 45px);
                 left: 2%;
-                top: 3%;
+                top: 2.5%;
             }
 
             .decorations .tomat-atas-kiri,
@@ -437,6 +435,12 @@
                 font-size: clamp(14px, 3%, 25px);
             }
 
+            .btn-back {
+                font-size: clamp(24px, 4%, 40px);
+                left: 3%;
+                top: 2.5%;
+            }
+
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
                 width: clamp(40px, 15vw, 100px);
@@ -489,7 +493,7 @@
             }
 
             .logo-top {
-                top: 2.5%;
+                top: 2%;
             }
 
             .logo-top img {
@@ -508,6 +512,8 @@
 
             .btn-back {
                 font-size: clamp(22px, 3%, 35px);
+                left: 1.5%;
+                top: 2%;
             }
 
             .decorations .tomat-atas-kiri,
@@ -551,6 +557,12 @@
             .logo-top img {
                 width: clamp(60px, 7%, 90px);
             }
+
+            .btn-back {
+                left: 3%;
+                top: 3%;
+                font-size: clamp(32px, 4%, 55px);
+            }
         }
     </style>
 </head>
@@ -574,7 +586,7 @@
         <!-- Tombol Back -->
         <button class="btn-back" onclick="window.location.href='login.html'">←</button>
 
-        <!-- Logo -->
+        <!-- Logo - di tengah secara horizontal -->
         <div class="logo-top" onclick="window.location.href='login.html'">
             <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/80x80/98C81C/ffffff?text=🍽️'" />
             <div class="brand-text">Jangkung<span>Order</span></div>
