@@ -224,7 +224,7 @@
         /* ===== TABLE HEADER ===== */
         .table-header {
             display: grid;
-            grid-template-columns: 35px 1.2fr 1.4fr 1.1fr 1fr;
+            grid-template-columns: 35px 1.2fr 1fr 0.7fr 1.1fr 1fr;
             gap: 4px;
             padding-bottom: 6px;
             border-bottom: 2px solid rgba(255, 255, 255, 0.2);
@@ -245,7 +245,7 @@
         /* ===== TABLE ROW ===== */
         .table-row {
             display: grid;
-            grid-template-columns: 35px 1.2fr 1.4fr 1.1fr 1fr;
+            grid-template-columns: 35px 1.2fr 1fr 0.7fr 1.1fr 1fr;
             gap: 4px;
             padding: 6px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -377,39 +377,50 @@
         .item-detail-row {
             display: none;
             grid-column: 1 / -1;
-            padding: 6px 0 6px 16px;
-            background: rgba(255, 255, 255, 0.04);
+            padding: 8px 0 8px 16px;
+            background: rgba(255, 255, 255, 0.06);
             border-radius: 10px;
-            margin: 2px 0;
+            margin: 3px 0;
         }
 
         .item-detail-row.show {
             display: grid;
-            grid-template-columns: 1.6fr 0.5fr 0.7fr 1fr;
-            gap: 4px;
+            grid-template-columns: 1.8fr 0.6fr 0.8fr 1.2fr;
+            gap: 6px;
+            align-items: center;
         }
 
         .item-detail-row .item-col {
             color: white;
-            font-size: 14px;
+            font-size: 16px;
             font-family: 'Schoolbell', cursive;
             text-align: left;
-            padding: 3px 6px;
+            padding: 4px 8px;
+            font-weight: 400;
         }
 
         .item-detail-row .item-col .item-variant {
             color: #98C81C;
-            font-size: 11px;
-            display: block;
-            margin-top: 1px;
+            font-size: 14px;
+            display: inline;
+            font-weight: 400;
+        }
+
+        .item-detail-row .item-col .item-qty-badge {
+            color: white;
+            font-size: 16px;
             font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 10px;
+            border-radius: 50px;
+            display: inline-block;
         }
 
         .item-detail-row .item-col .item-status-badge {
             display: inline-block;
-            padding: 2px 10px;
+            padding: 4px 14px;
             border-radius: 50px;
-            font-size: 12px;
+            font-size: 14px;
             font-family: 'Schoolbell', cursive;
             font-weight: 600;
         }
@@ -431,11 +442,11 @@
         }
 
         .item-detail-row .item-col .btn-item-action {
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 50px;
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             color: white;
-            font-size: 11px;
+            font-size: 12px;
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             transition: all 0.25s;
@@ -454,11 +465,6 @@
         .btn-item-action.selesai-item {
             background: #029BEE;
             border-color: #029BEE;
-        }
-
-        .item-detail-row .item-col .item-qty-badge {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 13px;
         }
 
         .empty-state {
@@ -563,27 +569,27 @@
                 border-radius: 14px;
             }
             .table-header {
-                grid-template-columns: 22px 1fr 1.1fr 0.9fr 0.8fr;
+                grid-template-columns: 22px 1fr 0.8fr 0.6fr 0.9fr 0.8fr;
                 gap: 2px;
             }
             .table-row {
-                grid-template-columns: 22px 1fr 1.1fr 0.9fr 0.8fr;
+                grid-template-columns: 22px 1fr 0.8fr 0.6fr 0.9fr 0.8fr;
                 gap: 2px;
                 padding: 4px 0;
                 min-height: 38px;
             }
-            .table-header .col { font-size: 10px; }
-            .table-row .col { font-size: 11px; }
+            .table-header .col { font-size: 9px; }
+            .table-row .col { font-size: 10px; }
             .table-row .col .status-badge {
-                font-size: 10px;
-                padding: 2px 8px;
-                min-width: 45px;
+                font-size: 9px;
+                padding: 2px 6px;
+                min-width: 35px;
                 border-width: 1.5px;
             }
             .btn-action {
-                font-size: 9px;
-                padding: 3px 6px;
-                min-width: 30px;
+                font-size: 8px;
+                padding: 2px 5px;
+                min-width: 25px;
                 border-width: 1.5px;
             }
             .title-status {
@@ -612,13 +618,14 @@
                 padding-top: env(safe-area-inset-top, 6px);
                 min-height: 44px;
             }
-            .item-detail-row { padding: 4px 0 4px 10px; }
-            .item-detail-row .item-col { font-size: 10px; }
-            .item-detail-row .item-col .item-status-badge { font-size: 9px; padding: 1px 6px; }
-            .item-detail-row .item-col .btn-item-action { font-size: 8px; padding: 2px 6px; }
+            .item-detail-row { padding: 6px 0 6px 10px; }
+            .item-detail-row .item-col { font-size: 12px; }
+            .item-detail-row .item-col .item-qty-badge { font-size: 12px; padding: 1px 8px; }
+            .item-detail-row .item-col .item-status-badge { font-size: 11px; padding: 2px 8px; }
+            .item-detail-row .item-col .btn-item-action { font-size: 10px; padding: 2px 8px; }
             .btn-toggle-detail { font-size: 10px; }
             .order-time { font-size: 9px; }
-            .item-detail-row .item-col .item-variant { font-size: 9px; }
+            .item-detail-row .item-col .item-variant { font-size: 11px; }
         }
 
         @media screen and (max-width: 480px) and (orientation: portrait) {
@@ -628,27 +635,27 @@
                 border-radius: 10px;
             }
             .table-header {
-                grid-template-columns: 16px 1fr 1fr 0.7fr 0.6fr;
+                grid-template-columns: 14px 1fr 0.7fr 0.5fr 0.7fr 0.6fr;
                 gap: 1px;
             }
             .table-row {
-                grid-template-columns: 16px 1fr 1fr 0.7fr 0.6fr;
+                grid-template-columns: 14px 1fr 0.7fr 0.5fr 0.7fr 0.6fr;
                 gap: 1px;
                 padding: 3px 0;
-                min-height: 32px;
+                min-height: 30px;
             }
-            .table-header .col { font-size: 8px; }
-            .table-row .col { font-size: 9px; }
+            .table-header .col { font-size: 7px; }
+            .table-row .col { font-size: 8px; }
             .table-row .col .status-badge {
-                font-size: 8px;
-                padding: 2px 6px;
-                min-width: 35px;
+                font-size: 7px;
+                padding: 1px 4px;
+                min-width: 28px;
                 border-width: 1px;
             }
             .btn-action {
-                font-size: 7px;
-                padding: 2px 4px;
-                min-width: 22px;
+                font-size: 6px;
+                padding: 1px 3px;
+                min-width: 18px;
                 border-width: 1px;
             }
             .title-status {
@@ -677,13 +684,14 @@
                 padding-top: env(safe-area-inset-top, 4px);
                 min-height: 38px;
             }
-            .item-detail-row { padding: 3px 0 3px 6px; }
-            .item-detail-row .item-col { font-size: 8px; }
-            .item-detail-row .item-col .item-status-badge { font-size: 7px; padding: 1px 4px; }
-            .item-detail-row .item-col .btn-item-action { font-size: 7px; padding: 1px 4px; }
+            .item-detail-row { padding: 4px 0 4px 6px; }
+            .item-detail-row .item-col { font-size: 10px; }
+            .item-detail-row .item-col .item-qty-badge { font-size: 10px; padding: 1px 6px; }
+            .item-detail-row .item-col .item-status-badge { font-size: 9px; padding: 1px 6px; }
+            .item-detail-row .item-col .btn-item-action { font-size: 8px; padding: 1px 6px; }
             .btn-toggle-detail { font-size: 8px; }
             .order-time { font-size: 7px; }
-            .item-detail-row .item-col .item-variant { font-size: 7px; }
+            .item-detail-row .item-col .item-variant { font-size: 9px; }
         }
 
         @media screen and (orientation: landscape) {
@@ -693,11 +701,11 @@
                 border-radius: 16px;
             }
             .table-header {
-                grid-template-columns: 28px 1.1fr 1.2fr 0.9fr 0.8fr;
+                grid-template-columns: 28px 1.1fr 0.9fr 0.6fr 1fr 0.8fr;
                 gap: 3px;
             }
             .table-row {
-                grid-template-columns: 28px 1.1fr 1.2fr 0.9fr 0.8fr;
+                grid-template-columns: 28px 1.1fr 0.9fr 0.6fr 1fr 0.8fr;
                 gap: 3px;
                 padding: 4px 0;
                 min-height: 36px;
@@ -742,8 +750,9 @@
                 padding-top: env(safe-area-inset-top, 6px);
                 min-height: 44px;
             }
-            .item-detail-row .item-col { font-size: 12px; }
-            .item-detail-row .item-col .item-variant { font-size: 10px; }
+            .item-detail-row .item-col { font-size: 14px; }
+            .item-detail-row .item-col .item-qty-badge { font-size: 14px; }
+            .item-detail-row .item-col .item-variant { font-size: 12px; }
         }
 
         @media screen and (max-height: 500px) and (orientation: landscape) {
@@ -753,11 +762,11 @@
                 border-radius: 12px;
             }
             .table-header {
-                grid-template-columns: 20px 1fr 1.1fr 0.8fr 0.7fr;
+                grid-template-columns: 20px 1fr 0.8fr 0.5fr 0.9fr 0.7fr;
                 gap: 2px;
             }
             .table-row {
-                grid-template-columns: 20px 1fr 1.1fr 0.8fr 0.7fr;
+                grid-template-columns: 20px 1fr 0.8fr 0.5fr 0.9fr 0.7fr;
                 gap: 2px;
                 padding: 3px 0;
                 min-height: 30px;
@@ -802,8 +811,9 @@
                 padding-top: env(safe-area-inset-top, 4px);
                 min-height: 36px;
             }
-            .item-detail-row .item-col { font-size: 10px; }
-            .item-detail-row .item-col .item-variant { font-size: 9px; }
+            .item-detail-row .item-col { font-size: 12px; }
+            .item-detail-row .item-col .item-qty-badge { font-size: 12px; }
+            .item-detail-row .item-col .item-variant { font-size: 10px; }
         }
 
         @media screen and (min-width: 1025px) and (orientation: landscape) {
@@ -811,7 +821,7 @@
                 margin: 0 auto 12px auto;
                 padding: 10px 20px;
                 border-radius: 24px;
-                max-width: 1000px;
+                max-width: 1100px;
                 width: 94%;
             }
             .table-header .col { font-size: 16px; }
@@ -854,12 +864,13 @@
                 padding-top: env(safe-area-inset-top, 10px);
                 min-height: 60px;
             }
-            .item-detail-row .item-col { font-size: 16px; }
-            .item-detail-row .item-col .item-status-badge { font-size: 14px; }
-            .item-detail-row .item-col .btn-item-action { font-size: 13px; padding: 4px 12px; }
+            .item-detail-row .item-col { font-size: 18px; }
+            .item-detail-row .item-col .item-qty-badge { font-size: 18px; padding: 4px 14px; }
+            .item-detail-row .item-col .item-status-badge { font-size: 16px; padding: 4px 16px; }
+            .item-detail-row .item-col .btn-item-action { font-size: 14px; padding: 4px 14px; }
             .btn-toggle-detail { font-size: 16px; }
             .order-time { font-size: 14px; }
-            .item-detail-row .item-col .item-variant { font-size: 13px; }
+            .item-detail-row .item-col .item-variant { font-size: 16px; }
         }
 
         @supports not (padding: env(safe-area-inset-top)) {
@@ -899,6 +910,7 @@
                 <div class="col">No</div>
                 <div class="col">Struk / Waktu</div>
                 <div class="col">Customer</div>
+                <div class="col">Meja</div>
                 <div class="col">Status</div>
                 <div class="col">Aksi</div>
             </div>
@@ -921,6 +933,7 @@
 
         let ordersData = [];
         let menuNames = {};
+        let tableMap = {};
         let isRealtimeConnected = false;
         let expandedOrders = {};
 
@@ -981,10 +994,28 @@
                         menuNames[item.id_menu] = item.nama_menu;
                     });
                 }
-                console.log('✅ Menu names loaded:', Object.keys(menuNames).length);
                 return true;
             } catch (error) {
                 console.error('Error loading menu names:', error);
+                return false;
+            }
+        }
+
+        async function loadTableMap() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('tables')
+                    .select('id_table, nomor_meja');
+
+                if (error) throw error;
+                if (data) {
+                    data.forEach(item => {
+                        tableMap[item.id_table] = item.nomor_meja;
+                    });
+                }
+                return true;
+            } catch (error) {
+                console.error('Error loading table map:', error);
                 return false;
             }
         }
@@ -995,6 +1026,7 @@
 
             try {
                 await loadMenuNames();
+                await loadTableMap();
 
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
@@ -1004,8 +1036,6 @@
 
                 if (ordersError) throw ordersError;
 
-                console.log('📦 Orders from DB:', orders ? orders.length : 0);
-
                 const ordersWithDetails = [];
                 for (const order of orders || []) {
                     const { data: details, error: detailsError } = await supabaseClient
@@ -1014,7 +1044,6 @@
                         .eq('no_struk', order.no_struk);
 
                     if (detailsError) {
-                        console.warn('Error fetching details for', order.no_struk, detailsError);
                         ordersWithDetails.push({
                             ...order,
                             details: [],
@@ -1025,7 +1054,11 @@
 
                     const detailsWithName = (details || []).map(item => {
                         const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
-                        return { ...item, menu_name: menuName };
+                        let variant = '';
+                        if (item.note && item.note !== 'null' && item.note.trim() !== '' && item.note !== 'Standar') {
+                            variant = item.note;
+                        }
+                        return { ...item, menu_name: menuName, variant: variant };
                     });
 
                     let customerName = '-';
@@ -1035,15 +1068,17 @@
                         customerName = order.customer_name;
                     }
 
+                    const mejaNumber = tableMap[order.id_table] || '-';
+
                     ordersWithDetails.push({
                         ...order,
                         details: detailsWithName || [],
-                        customer_name: customerName
+                        customer_name: customerName,
+                        meja: mejaNumber
                     });
                 }
 
                 ordersData = ordersWithDetails || [];
-                console.log('✅ Orders loaded with details:', ordersData.length);
                 renderTable();
 
                 if (!isRealtimeConnected) {
@@ -1051,7 +1086,7 @@
                 }
 
             } catch (error) {
-                console.error('❌ Error loading orders:', error);
+                console.error('Error loading orders:', error);
                 showToast('⚠️ Gagal memuat data: ' + error.message, true);
                 document.getElementById('tableBody').innerHTML = `
                     <div class="empty-state">
@@ -1072,18 +1107,14 @@
             const channel = supabaseClient
                 .channel('status-db-changes')
                 .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, (payload) => {
-                    console.log('🔄 Realtime update orders:', payload);
                     loadOrdersSilent();
                 })
                 .on('postgres_changes', { event: '*', schema: 'public', table: 'orderdetails' }, (payload) => {
-                    console.log('🔄 Realtime update details:', payload);
                     loadOrdersSilent();
                 })
                 .subscribe((status) => {
-                    console.log('📡 Realtime status:', status);
                     if (status === 'SUBSCRIBED') {
                         isRealtimeConnected = true;
-                        console.log('✅ Realtime connected!');
                     }
                 });
 
@@ -1093,6 +1124,7 @@
         async function loadOrdersSilent() {
             try {
                 await loadMenuNames();
+                await loadTableMap();
 
                 const { data: orders, error: ordersError } = await supabaseClient
                     .from('orders')
@@ -1110,7 +1142,6 @@
                         .eq('no_struk', order.no_struk);
 
                     if (detailsError) {
-                        console.warn('Error fetching details for', order.no_struk, detailsError);
                         ordersWithDetails.push({
                             ...order,
                             details: [],
@@ -1121,7 +1152,11 @@
 
                     const detailsWithName = (details || []).map(item => {
                         const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
-                        return { ...item, menu_name: menuName };
+                        let variant = '';
+                        if (item.note && item.note !== 'null' && item.note.trim() !== '' && item.note !== 'Standar') {
+                            variant = item.note;
+                        }
+                        return { ...item, menu_name: menuName, variant: variant };
                     });
 
                     let customerName = '-';
@@ -1131,15 +1166,17 @@
                         customerName = order.customer_name;
                     }
 
+                    const mejaNumber = tableMap[order.id_table] || '-';
+
                     ordersWithDetails.push({
                         ...order,
                         details: detailsWithName || [],
-                        customer_name: customerName
+                        customer_name: customerName,
+                        meja: mejaNumber
                     });
                 }
 
                 ordersData = ordersWithDetails || [];
-                console.log('🔄 Orders refreshed (silent):', ordersData.length);
                 renderTable();
 
             } catch (error) {
@@ -1223,6 +1260,7 @@
                             <span class="order-time">🕐 ${timeStr}</span>
                         </div>
                         <div class="col">${order.customer_name}</div>
+                        <div class="col">${order.meja}</div>
                         <div class="col">
                             <span class="status-badge ${statusClass}">
                                 ${getStatusLabel(orderStatus)}
@@ -1248,10 +1286,10 @@
                         </div>
                         ${isExpanded ? `
                             <div class="item-detail-row show">
-                                <div class="item-col" style="font-weight:600;color:#98C81C;">Menu</div>
-                                <div class="item-col" style="font-weight:600;color:#98C81C;">Jumlah</div>
-                                <div class="item-col" style="font-weight:600;color:#98C81C;">Status</div>
-                                <div class="item-col" style="font-weight:600;color:#98C81C;">Aksi</div>
+                                <div class="item-col" style="font-weight:600;color:#98C81C;font-size:18px;">Menu</div>
+                                <div class="item-col" style="font-weight:600;color:#98C81C;font-size:18px;">Jumlah</div>
+                                <div class="item-col" style="font-weight:600;color:#98C81C;font-size:18px;">Status</div>
+                                <div class="item-col" style="font-weight:600;color:#98C81C;font-size:18px;">Aksi</div>
                             </div>
                             ${order.details && order.details.length > 0 ? order.details.map(item => {
                                 const itemStatus = item.status || 'Diproses';
@@ -1259,24 +1297,16 @@
                                 if (itemStatus === 'Siap') itemStatusClass = 'siap';
                                 if (itemStatus === 'Selesai') itemStatusClass = 'selesai';
                                 const idDetail = item.id_order_detail || item.id;
-                                // Tampilkan varian dari note atau dari menu
-                                let variantText = '';
-                                if (item.note && item.note !== 'null' && item.note !== 'Standar') {
-                                    variantText = item.note;
-                                } else {
-                                    // Cek apakah ada varian dari data menu (fallback)
-                                    const menuVariant = menuNames[item.id_menu] ? null : null;
-                                    if (item.variant && item.variant !== 'Standar') {
-                                        variantText = item.variant;
-                                    }
-                                }
+                                const variantText = item.variant || '';
                                 return `
                                     <div class="item-detail-row show">
                                         <div class="item-col">
                                             ${item.menu_name}
-                                            ${variantText ? `<span class="item-variant">📌 ${variantText}</span>` : ''}
+                                            ${variantText ? ` <span class="item-variant">(${variantText})</span>` : ''}
                                         </div>
-                                        <div class="item-col"><span class="item-qty-badge">×${item.jumlah || 0}</span></div>
+                                        <div class="item-col">
+                                            <span class="item-qty-badge">×${item.jumlah || 0}</span>
+                                        </div>
                                         <div class="item-col">
                                             <span class="item-status-badge ${itemStatusClass}">
                                                 ${getStatusLabel(itemStatus)}
@@ -1423,7 +1453,6 @@
             });
 
             resetLogoutTimer();
-            console.log('⏱️ Auto logout setelah 15 menit tidak ada aktivitas');
         })();
 
         // Cek login
