@@ -53,7 +53,7 @@
             z-index: 2;
         }
 
-        /* ===== DEKORASI CABE & TOMAT (DARI FILE LOKAL/GITHUB) ===== */
+        /* ===== DEKORASI CABE & TOMAT (DARI GITHUB) ===== */
         .decorations {
             position: absolute;
             width: 100%;
@@ -112,7 +112,7 @@
             bottom: 4%;
         }
 
-        /* ===== HEADER: Logo Kiri + Teks Kanan ===== */
+        /* ===== HEADER ===== */
         .header-top {
             position: relative;
             z-index: 10;
@@ -196,11 +196,11 @@
             padding-bottom: env(safe-area-inset-bottom, 20px);
         }
 
-        /* ===== BOX MENU ===== */
+        /* ===== BOX MENU (DESAIN DARI FIGMA) ===== */
         .box-menu {
             width: 82%;
             max-width: 600px;
-            height: 22%;
+            height: 26%;
             margin-bottom: 2.5%;
             overflow: hidden;
             border-radius: 65px;
@@ -208,9 +208,6 @@
             transition: all 0.3s ease;
             position: relative;
             flex-shrink: 0;
-        }
-        .box-menu:hover {
-            transform: scale(1.02);
         }
         .box-menu:active {
             transform: scale(0.98);
@@ -240,30 +237,30 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* ===== GAMBAR MENU DI DALAM BUTTON MENU (DARI SUPABASE) ===== */
+        /* Gambar menu di dalam button MENU (dari Supabase) */
         .box-menu .menu-images {
             position: absolute;
             right: 5%;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
-            gap: 6px;
+            gap: 8px;
             z-index: 3;
-            opacity: 0.3;
+            opacity: 0.4;
         }
         .box-menu .menu-images img {
-            width: clamp(40px, 6%, 80px);
-            height: clamp(40px, 6%, 80px);
-            border-radius: 10px;
+            width: clamp(50px, 8%, 100px);
+            height: clamp(50px, 8%, 100px);
+            border-radius: 12px;
             object-fit: cover;
             border: 2px solid rgba(255,255,255,0.3);
         }
 
-        /* ===== BOX PESAN ===== */
+        /* ===== BOX PESAN (DESAIN DARI FIGMA) ===== */
         .box-pesan {
             width: 82%;
             max-width: 600px;
-            height: 22%;
+            height: 26%;
             margin-bottom: 2.5%;
             overflow: hidden;
             border-radius: 65px;
@@ -271,9 +268,6 @@
             transition: all 0.3s ease;
             position: relative;
             flex-shrink: 0;
-        }
-        .box-pesan:hover {
-            transform: scale(1.02);
         }
         .box-pesan:active {
             transform: scale(0.98);
@@ -303,21 +297,21 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* ===== GAMBAR MENU DI DALAM BUTTON PESAN (DARI SUPABASE) ===== */
+        /* Gambar menu di dalam button PESAN (dari Supabase) */
         .box-pesan .pesan-images {
             position: absolute;
             right: 5%;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
-            gap: 6px;
+            gap: 8px;
             z-index: 3;
-            opacity: 0.3;
+            opacity: 0.4;
         }
         .box-pesan .pesan-images img {
-            width: clamp(40px, 6%, 80px);
-            height: clamp(40px, 6%, 80px);
-            border-radius: 10px;
+            width: clamp(50px, 8%, 100px);
+            height: clamp(50px, 8%, 100px);
+            border-radius: 12px;
             object-fit: cover;
             border: 2px solid rgba(255,255,255,0.3);
         }
@@ -326,9 +320,9 @@
         .box-status {
             width: 82%;
             max-width: 600px;
-            height: 22%;
+            height: 12%;
             background: #98C81C;
-            border-radius: 65px;
+            border-radius: 50px;
             border: 3px solid white;
             display: flex;
             align-items: center;
@@ -338,15 +332,12 @@
             position: relative;
             flex-shrink: 0;
         }
-        .box-status:hover {
-            transform: scale(1.02);
-        }
         .box-status:active {
             transform: scale(0.98);
         }
         .box-status .label-status {
             color: white;
-            font-size: clamp(24px, 5.5%, 60px);
+            font-size: clamp(18px, 4%, 45px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-align: center;
@@ -355,8 +346,6 @@
         }
 
         /* ===== RESPONSIVE ===== */
-
-        /* Portrait */
         @media screen and (orientation: portrait) {
             .customer-container {
                 width: 100vw;
@@ -364,23 +353,18 @@
                 border-radius: 0;
             }
             .box-menu,
-            .box-pesan,
-            .box-status {
+            .box-pesan {
+                height: 26%;
                 border-radius: 65px;
+            }
+            .box-status {
+                height: 12%;
+                border-radius: 50px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
             .box-status .bg-hijau {
                 border-radius: 65px;
-            }
-            .box-menu {
-                height: 22%;
-            }
-            .box-pesan {
-                height: 22%;
-            }
-            .box-status {
-                height: 22%;
             }
             .content-wrapper {
                 padding: 10px 5% 20px;
@@ -388,19 +372,17 @@
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
-                width: clamp(30px, 5%, 60px);
-                height: clamp(30px, 5%, 60px);
+                width: clamp(35px, 6%, 70px);
+                height: clamp(35px, 6%, 70px);
             }
         }
 
-        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .customer-container {
                 width: 100vw;
                 height: 100vh;
                 border-radius: 0;
             }
-
             .header-top {
                 padding: 6px 12px;
                 padding-top: env(safe-area-inset-top, 6px);
@@ -412,7 +394,6 @@
             .header-top .title-right {
                 font-size: clamp(14px, 3%, 35px);
             }
-
             .meja-info {
                 padding: 2px 10px;
                 font-size: clamp(9px, 1%, 13px);
@@ -425,21 +406,25 @@
                 top: calc(env(safe-area-inset-top, 6px) + 32px);
                 right: 10px;
             }
-
             .content-wrapper {
                 padding: 6px 10% 12px;
                 padding-bottom: env(safe-area-inset-bottom, 12px);
                 justify-content: center;
             }
-
             .box-menu,
-            .box-pesan,
+            .box-pesan {
+                width: 65%;
+                max-width: 450px;
+                height: 20%;
+                border-radius: 35px;
+                margin-bottom: 1.8%;
+            }
             .box-status {
                 width: 65%;
                 max-width: 450px;
-                height: 16%;
-                border-radius: 35px;
-                margin-bottom: 1.8%;
+                height: 10%;
+                border-radius: 30px;
+                margin-bottom: 0;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -453,12 +438,11 @@
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
-                width: clamp(25px, 4%, 50px);
-                height: clamp(25px, 4%, 50px);
+                width: clamp(30px, 4%, 55px);
+                height: clamp(30px, 4%, 55px);
             }
         }
 
-        /* ===== HP PORTRAIT ===== */
         @media screen and (max-width: 767px) and (orientation: portrait) {
             .customer-container {
                 width: 100vw;
@@ -466,9 +450,11 @@
                 border-radius: 0;
             }
             .box-menu,
-            .box-pesan,
-            .box-status {
+            .box-pesan {
                 border-radius: 40px;
+            }
+            .box-status {
+                border-radius: 30px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -478,7 +464,7 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(20px, 5%, 45px);
+                font-size: clamp(18px, 4.5%, 40px);
             }
             .meja-info {
                 padding: 4px 12px;
@@ -497,30 +483,31 @@
                 font-size: 24px;
             }
             .box-menu {
-                height: 22%;
+                height: 24%;
             }
             .box-pesan {
-                height: 22%;
+                height: 24%;
             }
             .box-status {
-                height: 22%;
+                height: 11%;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
-                width: clamp(25px, 4%, 45px);
-                height: clamp(25px, 4%, 45px);
+                width: clamp(28px, 5%, 50px);
+                height: clamp(28px, 5%, 50px);
             }
         }
 
-        /* ===== HP KECIL PORTRAIT ===== */
         @media screen and (max-width: 480px) and (orientation: portrait) {
             .customer-container {
                 border-radius: 0;
             }
             .box-menu,
-            .box-pesan,
-            .box-status {
+            .box-pesan {
                 border-radius: 30px;
+            }
+            .box-status {
+                border-radius: 25px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -530,7 +517,7 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(16px, 4%, 35px);
+                font-size: clamp(14px, 4%, 30px);
             }
             .meja-info {
                 padding: 3px 10px;
@@ -549,124 +536,85 @@
                 font-size: 20px;
             }
             .box-menu {
-                height: 20%;
+                height: 22%;
             }
             .box-pesan {
-                height: 20%;
+                height: 22%;
             }
             .box-status {
-                height: 20%;
+                height: 10%;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
-                width: clamp(20px, 3.5%, 35px);
-                height: clamp(20px, 3.5%, 35px);
+                width: clamp(22px, 4%, 40px);
+                height: clamp(22px, 4%, 40px);
             }
         }
 
-        /* ===== TABLET PORTRAIT ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+        @media screen and (max-height: 500px) and (orientation: landscape) {
             .customer-container {
                 width: 100vw;
                 height: 100vh;
                 border-radius: 0;
             }
             .box-menu,
-            .box-pesan,
-            .box-status {
-                width: 70%;
-                max-width: 500px;
-                height: 20%;
-                border-radius: 50px;
-                margin-bottom: 2%;
+            .box-pesan {
+                width: 55%;
+                max-width: 320px;
+                height: 18%;
+                border-radius: 25px;
+                margin-bottom: 1.5%;
             }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 50px;
-            }
-            .box-menu .label-menu,
-            .box-pesan .label-pesan,
-            .box-status .label-status {
-                font-size: clamp(28px, 5%, 55px);
-            }
-            .header-top .logo-left {
-                width: clamp(120px, 30%, 280px);
-            }
-            .header-top .title-right {
-                font-size: clamp(28px, 6%, 65px);
-            }
-            .meja-info {
-                padding: 6px 18px;
-                font-size: 16px;
-                top: calc(env(safe-area-inset-top, 10px) + 8px);
-            }
-            .customer-name-display {
-                padding: 5px 16px;
-                font-size: 14px;
-                top: calc(env(safe-area-inset-top, 10px) + 48px);
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(50px, 6%, 80px);
-                height: clamp(50px, 6%, 80px);
-            }
-        }
-
-        /* ===== TABLET LANDSCAPE ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .customer-container {
-                width: 100vw;
-                height: 100vh;
-                border-radius: 0;
-            }
-            .box-menu,
-            .box-pesan,
             .box-status {
                 width: 55%;
-                max-width: 400px;
-                height: 17%;
-                border-radius: 35px;
-                margin-bottom: 1.8%;
+                max-width: 320px;
+                height: 9%;
+                border-radius: 20px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
             .box-status .bg-hijau {
-                border-radius: 35px;
+                border-radius: 25px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(16px, 3.2%, 38px);
+                font-size: clamp(11px, 2%, 24px);
             }
             .header-top .logo-left {
-                width: clamp(60px, 18%, 160px);
+                width: 40px;
             }
             .header-top .title-right {
-                font-size: clamp(16px, 4.5%, 45px);
+                font-size: 12px;
             }
             .header-top {
-                padding-top: env(safe-area-inset-top, 6px);
-                min-height: 44px;
+                padding-top: env(safe-area-inset-top, 4px);
+                min-height: 32px;
+                gap: 4px;
             }
             .meja-info {
-                padding: 3px 12px;
-                font-size: 11px;
-                top: calc(env(safe-area-inset-top, 6px) + 4px);
+                font-size: 8px;
+                padding: 2px 6px;
+                top: calc(env(safe-area-inset-top, 4px) + 2px);
+                right: 6px;
             }
             .customer-name-display {
-                padding: 2px 10px;
-                font-size: 9px;
-                top: calc(env(safe-area-inset-top, 6px) + 32px);
+                font-size: 6px;
+                padding: 1px 6px;
+                top: calc(env(safe-area-inset-top, 4px) + 22px);
+                right: 6px;
+            }
+            .content-wrapper {
+                padding: 4px 5% 8px;
+                padding-bottom: env(safe-area-inset-bottom, 8px);
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
-                width: clamp(35px, 4%, 55px);
-                height: clamp(35px, 4%, 55px);
+                width: clamp(20px, 3%, 35px);
+                height: clamp(20px, 3%, 35px);
             }
         }
 
-        /* ===== DESKTOP LANDSCAPE ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .customer-container {
                 width: 100vw;
@@ -674,13 +622,18 @@
                 border-radius: 0;
             }
             .box-menu,
-            .box-pesan,
+            .box-pesan {
+                width: 50%;
+                max-width: 500px;
+                height: 18%;
+                border-radius: 45px;
+                margin-bottom: 1.8%;
+            }
             .box-status {
                 width: 50%;
                 max-width: 500px;
-                height: 16%;
-                border-radius: 45px;
-                margin-bottom: 1.8%;
+                height: 9%;
+                border-radius: 35px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -710,76 +663,11 @@
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
-                width: clamp(40px, 5%, 70px);
-                height: clamp(40px, 5%, 70px);
+                width: clamp(45px, 6%, 80px);
+                height: clamp(45px, 6%, 80px);
             }
         }
 
-        /* ===== LANDSCAPE HP KECIL ===== */
-        @media screen and (max-height: 500px) and (orientation: landscape) {
-            .customer-container {
-                width: 100vw;
-                height: 100vh;
-                border-radius: 0;
-            }
-
-            .box-menu,
-            .box-pesan,
-            .box-status {
-                width: 55%;
-                max-width: 320px;
-                height: 14%;
-                border-radius: 25px;
-                margin-bottom: 1.5%;
-            }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 25px;
-            }
-            .box-menu .label-menu,
-            .box-pesan .label-pesan,
-            .box-status .label-status {
-                font-size: clamp(11px, 2%, 24px);
-            }
-
-            .header-top .logo-left {
-                width: 40px;
-            }
-            .header-top .title-right {
-                font-size: 12px;
-            }
-            .header-top {
-                padding-top: env(safe-area-inset-top, 4px);
-                min-height: 32px;
-                gap: 4px;
-            }
-
-            .meja-info {
-                font-size: 8px;
-                padding: 2px 6px;
-                top: calc(env(safe-area-inset-top, 4px) + 2px);
-                right: 6px;
-            }
-            .customer-name-display {
-                font-size: 6px;
-                padding: 1px 6px;
-                top: calc(env(safe-area-inset-top, 4px) + 22px);
-                right: 6px;
-            }
-
-            .content-wrapper {
-                padding: 4px 5% 8px;
-                padding-bottom: env(safe-area-inset-bottom, 8px);
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(18px, 3%, 30px);
-                height: clamp(18px, 3%, 30px);
-            }
-        }
-
-        /* Fallback untuk browser yang tidak support safe-area */
         @supports not (padding: env(safe-area-inset-top)) {
             .header-top {
                 padding-top: 10px;
@@ -798,23 +686,16 @@
 </head>
 <body>
     <div class="customer-container">
-        <!-- Background utama dengan bg.png -->
         <div class="bg-utama"></div>
         <div class="overlay"></div>
 
         <!-- ===== DEKORASI CABE & TOMAT ===== -->
         <div class="decorations">
-            <!-- Tomat kiri atas -->
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
-            <!-- Cabe 2 kanan atas -->
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            <!-- Cabe 2.1 overlay -->
             <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            <!-- Cabe 1 kiri bawah -->
             <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            <!-- Cabe 1.1 overlay -->
             <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            <!-- Tomat kanan bawah -->
             <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
         </div>
 
@@ -822,7 +703,7 @@
         <div class="meja-info" id="mejaInfo">Meja <span id="mejaNumber">1</span></div>
         <div class="customer-name-display" id="customerNameDisplay"><span id="namaCustomer">Customer</span></div>
 
-        <!-- HEADER: Logo Kiri + Teks Kanan -->
+        <!-- HEADER -->
         <div class="header-top">
             <div class="logo-left">
                 <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/413x295/2d2d2d/ffffff?text=Logo'" />
@@ -830,13 +711,12 @@
             <div class="title-right">WILUJENG<br>SUMPING!</div>
         </div>
 
-        <!-- CONTENT WRAPPER - SEMUA KONTEN DI TENGAH -->
+        <!-- CONTENT -->
         <div class="content-wrapper">
             <!-- MENU -->
             <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
                 <div class="bg-hijau"></div>
                 <div class="label-menu">MENU</div>
-                <!-- GAMBAR MENU DARI SUPABASE -->
                 <div class="menu-images">
                     <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/igabakar.png" alt="Iga Bakar" loading="lazy" onerror="this.style.display='none'">
                     <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/satepotong.png" alt="Sate Potong" loading="lazy" onerror="this.style.display='none'">
@@ -848,7 +728,6 @@
             <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
                 <div class="bg-hijau"></div>
                 <div class="label-pesan">PESAN</div>
-                <!-- GAMBAR MENU DARI SUPABASE -->
                 <div class="pesan-images">
                     <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/sopbakar.png" alt="Sop Bakar" loading="lazy" onerror="this.style.display='none'">
                     <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/krengsengan.png" alt="Krengsengan" loading="lazy" onerror="this.style.display='none'">
