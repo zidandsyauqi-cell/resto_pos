@@ -302,12 +302,12 @@
             transform: scale(0.95);
         }
 
-        .btn-action.lihat {
+        .btn-action.detail {
             background: #029BEE;
             border-color: #029BEE;
         }
 
-        .btn-action.lihat:active {
+        .btn-action.detail:active {
             background: #0288d1;
         }
 
@@ -546,8 +546,9 @@
         .detail-modal-content .detail-item {
             display: flex;
             justify-content: space-between;
-            padding: 2px 0;
+            padding: 3px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            align-items: center;
         }
 
         .detail-modal-content .detail-item .item-name {
@@ -555,6 +556,12 @@
             font-size: clamp(10px, 1.2%, 14px);
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
+            flex: 1;
+        }
+
+        .detail-modal-content .detail-item .item-name .variant-text {
+            color: #98C81C;
+            font-size: clamp(9px, 1%, 12px);
         }
 
         .detail-modal-content .detail-item .item-qty {
@@ -1153,9 +1160,14 @@
 
                     const detailsWithMenu = (details || []).map(item => {
                         const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
+                        let variant = '';
+                        if (item.note && item.note !== 'null' && item.note.trim() !== '' && item.note !== 'Standar') {
+                            variant = item.note;
+                        }
                         return {
                             ...item,
-                            menu_name: menuName
+                            menu_name: menuName,
+                            variant: variant
                         };
                     });
 
@@ -1248,9 +1260,14 @@
 
                     const detailsWithMenu = (details || []).map(item => {
                         const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
+                        let variant = '';
+                        if (item.note && item.note !== 'null' && item.note.trim() !== '' && item.note !== 'Standar') {
+                            variant = item.note;
+                        }
                         return {
                             ...item,
-                            menu_name: menuName
+                            menu_name: menuName,
+                            variant: variant
                         };
                     });
 
@@ -1298,7 +1315,7 @@
                         <div class="col">${order.customer_name}</div>
                         <div class="col">
                             <div class="action-btns">
-                                <button class="btn-action lihat" onclick="lihatDetail('${order.no_struk}')">👁️</button>
+                                <button class="btn-action detail" onclick="lihatDetail('${order.no_struk}')">📋</button>
                                 ${!isSelesai ? `
                                     <button class="btn-action selesai-list" onclick="selesaikanPesanan('${order.no_struk}')">✔️</button>
                                     <button class="btn-action hapus" onclick="deleteOrder('${order.no_struk}')">🗑️</button>
@@ -1338,9 +1355,10 @@
 
             let itemsHtml = '';
             details.forEach(item => {
+                const variantDisplay = item.variant ? ` <span class="variant-text">(${item.variant})</span>` : '';
                 itemsHtml += `
                     <div class="detail-item">
-                        <span class="item-name">${item.menu_name}</span>
+                        <span class="item-name">${item.menu_name}${variantDisplay}</span>
                         <span class="item-qty">x${item.jumlah || 0}</span>
                         <span class="item-price">${formatRupiah(item.subtotal || 0)}</span>
                     </div>
