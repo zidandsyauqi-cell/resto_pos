@@ -53,7 +53,7 @@
             z-index: 2;
         }
 
-        /* ===== DEKORASI CABE & TOMAT (POSISI 0% - SAMA KAYA LOGIN.HTML) ===== */
+        /* ===== DEKORASI CABE & TOMAT ===== */
         .decorations {
             position: absolute;
             width: 100%;
@@ -70,7 +70,33 @@
             opacity: 1;
         }
 
-        /* Tomat */
+        .decorations .bg-ornament-1 {
+            width: 178%;
+            left: -9.3%;
+            top: 99.99%;
+            transform: rotate(-90deg);
+            transform-origin: top left;
+            opacity: 0.12;
+        }
+
+        .decorations .bg-ornament-2 {
+            width: 92%;
+            left: -53.2%;
+            top: 61.2%;
+            transform: rotate(-12deg);
+            transform-origin: top left;
+            opacity: 0.1;
+        }
+
+        .decorations .bg-ornament-3 {
+            width: 77%;
+            right: -5%;
+            top: 10.6%;
+            transform: rotate(21deg);
+            transform-origin: top left;
+            opacity: 0.1;
+        }
+
         .decorations .tomat-atas-kiri {
             width: clamp(60px, 15vw, 250px);
             left: 0%;
@@ -83,7 +109,6 @@
             bottom: 0%;
         }
 
-        /* Cabe */
         .decorations .cabe2-atas-kanan {
             width: clamp(50px, 12vw, 200px);
             right: 0%;
@@ -192,11 +217,11 @@
             padding-bottom: env(safe-area-inset-bottom, 20px);
         }
 
-        /* ===== BOX MENU ===== */
+        /* ===== BOX MENU (PERSIS FIGMA) ===== */
         .box-menu {
             width: 82%;
             max-width: 600px;
-            height: 26%;
+            height: 26.6%;
             margin-bottom: 2.5%;
             overflow: hidden;
             border-radius: 65px;
@@ -233,30 +258,30 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar menu di dalam button MENU (dari Supabase) */
+        /* Gambar menu di dalam button MENU (dari Supabase) - posisi di kanan */
         .box-menu .menu-images {
             position: absolute;
             right: 5%;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
-            gap: 6px;
+            gap: 8px;
             z-index: 3;
-            opacity: 0.3;
+            opacity: 0.4;
         }
         .box-menu .menu-images img {
-            width: clamp(50px, 8%, 100px);
-            height: clamp(50px, 8%, 100px);
+            width: clamp(50px, 7%, 90px);
+            height: clamp(50px, 7%, 90px);
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid rgba(255,255,255,0.3);
         }
 
-        /* ===== BOX PESAN ===== */
+        /* ===== BOX PESAN (PERSIS FIGMA) ===== */
         .box-pesan {
             width: 82%;
             max-width: 600px;
-            height: 26%;
+            height: 26.6%;
             margin-bottom: 2.5%;
             overflow: hidden;
             border-radius: 65px;
@@ -293,30 +318,30 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar menu di dalam button PESAN (dari Supabase) */
+        /* Gambar menu di dalam button PESAN (dari Supabase) - posisi di kanan */
         .box-pesan .pesan-images {
             position: absolute;
             right: 5%;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
-            gap: 6px;
+            gap: 8px;
             z-index: 3;
-            opacity: 0.3;
+            opacity: 0.4;
         }
         .box-pesan .pesan-images img {
-            width: clamp(50px, 8%, 100px);
-            height: clamp(50px, 8%, 100px);
+            width: clamp(50px, 7%, 90px);
+            height: clamp(50px, 7%, 90px);
             border-radius: 12px;
             object-fit: cover;
             border: 2px solid rgba(255,255,255,0.3);
         }
 
-        /* ===== BOX STATUS ===== */
+        /* ===== BOX STATUS (PERSIS FIGMA) ===== */
         .box-status {
             width: 82%;
             max-width: 600px;
-            height: 12%;
+            height: 5.1%;
             background: #98C81C;
             border-radius: 50px;
             border: 3px solid white;
@@ -327,13 +352,14 @@
             transition: all 0.3s ease;
             position: relative;
             flex-shrink: 0;
+            margin-top: 2px;
         }
         .box-status:active {
             transform: scale(0.98);
         }
         .box-status .label-status {
             color: white;
-            font-size: clamp(18px, 4%, 45px);
+            font-size: clamp(18px, 3.5%, 40px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             text-align: center;
@@ -350,11 +376,11 @@
             }
             .box-menu,
             .box-pesan {
-                height: 26%;
+                height: 26.6%;
                 border-radius: 65px;
             }
             .box-status {
-                height: 12%;
+                height: 5.1%;
                 border-radius: 50px;
             }
             .box-menu .bg-hijau,
@@ -393,8 +419,8 @@
                 border-radius: 35px;
             }
             .box-status {
-                height: 10%;
-                border-radius: 30px;
+                height: 4.5%;
+                border-radius: 25px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -484,8 +510,8 @@
             .box-status {
                 width: 65%;
                 max-width: 450px;
-                height: 10%;
-                border-radius: 30px;
+                height: 4.5%;
+                border-radius: 25px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -531,8 +557,8 @@
             .box-status {
                 width: 55%;
                 max-width: 320px;
-                height: 9%;
-                border-radius: 20px;
+                height: 4%;
+                border-radius: 18px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -605,8 +631,8 @@
             .box-status {
                 width: 50%;
                 max-width: 500px;
-                height: 9%;
-                border-radius: 35px;
+                height: 4.5%;
+                border-radius: 30px;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -662,8 +688,11 @@
         <div class="bg-utama"></div>
         <div class="overlay"></div>
 
-        <!-- ===== DEKORASI CABE & TOMAT (POSISI 0%) ===== -->
+        <!-- ===== DEKORASI ===== -->
         <div class="decorations">
+            <img class="bg-ornament-1" src="https://placehold.co/1922x1281" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="bg-ornament-2" src="https://placehold.co/995x995" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="bg-ornament-3" src="https://placehold.co/832x832" alt="" loading="lazy" onerror="this.style.display='none'">
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
             <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
