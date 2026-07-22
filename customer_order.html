@@ -220,13 +220,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* TURUNKAN GAMBAR - top lebih besar */
+        /* TURUNKAN GAMBAR - top lebih besar tanpa padding */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
             bottom: -20%;
-            top: 32%;
+            top: 35%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -235,7 +235,6 @@
             overflow: hidden;
             border-radius: 0 0 65px 65px;
             width: 100%;
-            padding-top: 20px;
         }
         .box-menu .menu-images img {
             height: 100%;
@@ -297,13 +296,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* TURUNKAN GAMBAR - top lebih besar */
+        /* PESAN - gambar 2 DI BELAKANG, TURUNKAN GAMBAR */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
             bottom: -20%;
-            top: 32%;
+            top: 35%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -312,7 +311,6 @@
             overflow: hidden;
             border-radius: 0 0 65px 65px;
             width: 100%;
-            padding-top: 20px;
         }
         .box-pesan .pesan-images img {
             height: 100%;
@@ -322,24 +320,26 @@
             flex: 1.1;
             min-width: 0;
         }
+        /* Gambar 1 dan 3 DI ATAS (z-index tinggi) */
         .box-pesan .pesan-images img:nth-child(1) {
             flex: 1.15;
             height: 100%;
-            z-index: 1;
+            z-index: 3;
             margin-right: -5%;
             margin-left: -3%;
         }
+        /* Gambar 2 (tengah) DI BELAKANG (z-index rendah) */
         .box-pesan .pesan-images img:nth-child(2) {
             flex: 1.2;
             height: 100%;
-            z-index: 3;
+            z-index: 1;
             margin-left: -8%;
             margin-right: -8%;
         }
         .box-pesan .pesan-images img:nth-child(3) {
             flex: 1.15;
             height: 100%;
-            z-index: 2;
+            z-index: 3;
             margin-left: -3%;
             margin-right: -5%;
         }
@@ -397,9 +397,8 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 65px 65px;
-                top: 30%;
+                top: 32%;
                 bottom: -22%;
-                padding-top: 15px;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -457,9 +456,8 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
-                top: 30%;
+                top: 32%;
                 bottom: -22%;
-                padding-top: 12px;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -569,9 +567,8 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
-                top: 30%;
+                top: 32%;
                 bottom: -22%;
-                padding-top: 15px;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -636,9 +633,8 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 25px 25px;
-                top: 30%;
+                top: 32%;
                 bottom: -18%;
-                padding-top: 10px;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -731,9 +727,8 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 45px 45px;
-                top: 32%;
+                top: 35%;
                 bottom: -20%;
-                padding-top: 20px;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -830,7 +825,7 @@
                 </div>
             </div>
 
-            <!-- PESAN -->
+            <!-- PESAN - gambar 2 DI BELAKANG -->
             <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
                 <div class="label-pesan">PESAN</div>
                 <div class="pesan-images">
