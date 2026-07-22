@@ -78,7 +78,6 @@
             opacity: 1;
         }
 
-        /* Tomat */
         .decorations .tomat-atas-kiri {
             width: clamp(60px, 15vw, 250px);
             left: 0%;
@@ -91,7 +90,6 @@
             bottom: 0%;
         }
 
-        /* Cabe */
         .decorations .cabe2-atas-kanan {
             width: clamp(50px, 12vw, 200px);
             right: 0%;
@@ -124,7 +122,7 @@
             background: none;
             border: none;
             color: white;
-            font-size: clamp(28px, 3.5%, 50px);
+            font-size: clamp(32px, 4%, 55px);
             cursor: pointer;
             transition: all 0.3s;
             padding: 5px 15px;
@@ -133,18 +131,18 @@
         }
 
         .btn-back:active {
-            transform: scale(0.95);
+            transform: scale(0.92);
         }
 
         .logo-top {
             position: absolute;
             left: 50%;
-            top: 5%;
+            top: 4.5%;
             transform: translateX(-50%);
             z-index: 10;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
         }
@@ -154,14 +152,14 @@
         }
 
         .logo-top img {
-            width: clamp(35px, 5%, 70px);
+            width: clamp(50px, 7%, 90px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
         .logo-top .brand-text {
             color: white;
-            font-size: clamp(14px, 2.2%, 30px);
+            font-size: clamp(18px, 3%, 38px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -284,14 +282,9 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        .btn-login:hover {
-            background: #7aa814;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(152, 200, 28, 0.3);
-        }
-
         .btn-login:active {
-            transform: translateY(0);
+            background: #7aa814;
+            transform: scale(0.98);
         }
 
         .error {
@@ -309,7 +302,6 @@
 
         /* ===== RESPONSIVE ===== */
 
-        /* Portrait */
         @media screen and (orientation: portrait) {
             .login-container {
                 width: 100%;
@@ -325,9 +317,12 @@
             .login-box h2 {
                 font-size: 28px;
             }
+
+            .logo-top img {
+                width: clamp(45px, 7%, 80px);
+            }
         }
 
-        /* Landscape */
         @media screen and (orientation: landscape) {
             .login-container {
                 width: 100%;
@@ -365,15 +360,15 @@
             }
 
             .logo-top {
-                top: 4%;
+                top: 3.5%;
             }
 
             .logo-top img {
-                width: 35px;
+                width: clamp(35px, 5%, 70px);
             }
 
             .logo-top .brand-text {
-                font-size: 16px;
+                font-size: clamp(14px, 2.5%, 30px);
             }
 
             .qr-badge {
@@ -383,7 +378,7 @@
             }
 
             .btn-back {
-                font-size: 28px;
+                font-size: clamp(28px, 3.5%, 45px);
                 left: 2%;
                 top: 3%;
             }
@@ -401,7 +396,6 @@
             }
         }
 
-        /* HP kecil portrait */
         @media screen and (max-width: 480px) and (orientation: portrait) {
             .login-container {
                 border-radius: 0;
@@ -435,6 +429,14 @@
                 padding: 4px 12px;
             }
 
+            .logo-top img {
+                width: clamp(35px, 7%, 60px);
+            }
+
+            .logo-top .brand-text {
+                font-size: clamp(14px, 3%, 25px);
+            }
+
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
                 width: clamp(40px, 15vw, 100px);
@@ -448,7 +450,6 @@
             }
         }
 
-        /* Landscape HP kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .login-box {
                 padding: 15px 25px;
@@ -488,15 +489,15 @@
             }
 
             .logo-top {
-                top: 3%;
+                top: 2.5%;
             }
 
             .logo-top img {
-                width: 28px;
+                width: clamp(28px, 4%, 50px);
             }
 
             .logo-top .brand-text {
-                font-size: 13px;
+                font-size: clamp(11px, 2%, 20px);
             }
 
             .qr-badge {
@@ -506,7 +507,7 @@
             }
 
             .btn-back {
-                font-size: 22px;
+                font-size: clamp(22px, 3%, 35px);
             }
 
             .decorations .tomat-atas-kiri,
@@ -522,46 +523,6 @@
             }
         }
 
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .login-box {
-                padding: 30px 40px;
-                max-width: 450px;
-            }
-
-            .login-box h2 {
-                font-size: 26px;
-            }
-        }
-
-        @media screen and (max-width: 360px) and (orientation: portrait) {
-            .login-box {
-                padding: 20px 15px;
-                border-radius: 25px;
-                max-width: 300px;
-            }
-
-            .login-box h2 {
-                font-size: 18px;
-            }
-
-            .form-group input {
-                padding: 8px 12px;
-                font-size: 14px;
-            }
-
-            .btn-login {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .qr-badge {
-                top: 14%;
-                font-size: 9px;
-                padding: 3px 10px;
-            }
-        }
-
-        /* Desktop / Laptop landscape */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .login-box {
                 padding: 35px 45px;
@@ -585,6 +546,10 @@
             .btn-login {
                 padding: 14px;
                 font-size: 17px;
+            }
+
+            .logo-top img {
+                width: clamp(60px, 7%, 90px);
             }
         }
     </style>
