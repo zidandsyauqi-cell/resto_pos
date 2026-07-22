@@ -53,7 +53,7 @@
             z-index: 2;
         }
 
-        /* ===== DEKORASI CABE & TOMAT (DARI GITHUB) ===== */
+        /* ===== DEKORASI CABE & TOMAT (POSISI 0% - SAMA KAYA LOGIN.HTML) ===== */
         .decorations {
             position: absolute;
             width: 100%;
@@ -67,49 +67,45 @@
 
         .decorations img {
             position: absolute;
-            opacity: 0.6;
+            opacity: 1;
         }
 
-        /* Tomat kiri atas */
+        /* Tomat */
         .decorations .tomat-atas-kiri {
             width: clamp(60px, 15vw, 250px);
-            left: -2%;
-            top: -2%;
+            left: 0%;
+            top: 0%;
         }
 
-        /* Tomat kanan bawah */
         .decorations .tomat1-bawah-kanan {
             width: clamp(60px, 15vw, 250px);
-            right: -2%;
-            bottom: -2%;
+            right: 0%;
+            bottom: 0%;
         }
 
-        /* Cabe 2 kanan atas */
+        /* Cabe */
         .decorations .cabe2-atas-kanan {
             width: clamp(50px, 12vw, 200px);
-            right: -2%;
-            top: -2%;
+            right: 0%;
+            top: 0%;
         }
 
-        /* Cabe 2.1 overlay kanan atas */
         .decorations .cabe21-atas-kanan {
             width: clamp(50px, 12vw, 200px);
-            right: 8%;
-            top: 4%;
+            right: 0%;
+            top: 0%;
         }
 
-        /* Cabe 1 kiri bawah */
         .decorations .cabe1-bawah-kiri {
             width: clamp(50px, 12vw, 200px);
-            left: -2%;
-            bottom: -2%;
+            left: 0%;
+            bottom: 0%;
         }
 
-        /* Cabe 1.1 overlay kiri bawah */
         .decorations .cabe11-bawah-kiri {
             width: clamp(50px, 12vw, 200px);
-            left: 8%;
-            bottom: 4%;
+            left: 0%;
+            bottom: 0%;
         }
 
         /* ===== HEADER ===== */
@@ -183,7 +179,7 @@
             color: #98C81C;
         }
 
-        /* ===== WRAPPER KONTEN TENGAH ===== */
+        /* ===== CONTENT ===== */
         .content-wrapper {
             flex: 1;
             position: relative;
@@ -196,7 +192,7 @@
             padding-bottom: env(safe-area-inset-bottom, 20px);
         }
 
-        /* ===== BOX MENU (DESAIN DARI FIGMA) ===== */
+        /* ===== BOX MENU ===== */
         .box-menu {
             width: 82%;
             max-width: 600px;
@@ -244,9 +240,9 @@
             top: 50%;
             transform: translateY(-50%);
             display: flex;
-            gap: 8px;
+            gap: 6px;
             z-index: 3;
-            opacity: 0.4;
+            opacity: 0.3;
         }
         .box-menu .menu-images img {
             width: clamp(50px, 8%, 100px);
@@ -256,7 +252,7 @@
             border: 2px solid rgba(255,255,255,0.3);
         }
 
-        /* ===== BOX PESAN (DESAIN DARI FIGMA) ===== */
+        /* ===== BOX PESAN ===== */
         .box-pesan {
             width: 82%;
             max-width: 600px;
@@ -304,9 +300,9 @@
             top: 50%;
             transform: translateY(-50%);
             display: flex;
-            gap: 8px;
+            gap: 6px;
             z-index: 3;
-            opacity: 0.4;
+            opacity: 0.3;
         }
         .box-pesan .pesan-images img {
             width: clamp(50px, 8%, 100px);
@@ -375,6 +371,72 @@
                 width: clamp(35px, 6%, 70px);
                 height: clamp(35px, 6%, 70px);
             }
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(60px, 18vw, 250px);
+            }
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(50px, 14vw, 200px);
+            }
+        }
+
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .customer-container {
+                border-radius: 0;
+            }
+            .box-menu,
+            .box-pesan {
+                height: 24%;
+                border-radius: 35px;
+            }
+            .box-status {
+                height: 10%;
+                border-radius: 30px;
+            }
+            .box-menu .bg-hijau,
+            .box-pesan .bg-hijau,
+            .box-status .bg-hijau {
+                border-radius: 35px;
+            }
+            .box-menu .label-menu,
+            .box-pesan .label-pesan,
+            .box-status .label-status {
+                font-size: clamp(16px, 4%, 35px);
+            }
+            .meja-info {
+                padding: 3px 10px;
+                font-size: 11px;
+                top: calc(env(safe-area-inset-top, 6px) + 4px);
+            }
+            .customer-name-display {
+                padding: 2px 8px;
+                font-size: 9px;
+                top: calc(env(safe-area-inset-top, 6px) + 38px);
+            }
+            .header-top .logo-left {
+                width: 70px;
+            }
+            .header-top .title-right {
+                font-size: 20px;
+            }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(25px, 4%, 45px);
+                height: clamp(25px, 4%, 45px);
+            }
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(40px, 15vw, 100px);
+            }
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(35px, 12vw, 80px);
+            }
         }
 
         @media screen and (orientation: landscape) {
@@ -424,7 +486,6 @@
                 max-width: 450px;
                 height: 10%;
                 border-radius: 30px;
-                margin-bottom: 0;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau,
@@ -441,113 +502,15 @@
                 width: clamp(30px, 4%, 55px);
                 height: clamp(30px, 4%, 55px);
             }
-        }
-
-        @media screen and (max-width: 767px) and (orientation: portrait) {
-            .customer-container {
-                width: 100vw;
-                height: 100vh;
-                border-radius: 0;
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(40px, 10vw, 150px);
             }
-            .box-menu,
-            .box-pesan {
-                border-radius: 40px;
-            }
-            .box-status {
-                border-radius: 30px;
-            }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 40px;
-            }
-            .box-menu .label-menu,
-            .box-pesan .label-pesan,
-            .box-status .label-status {
-                font-size: clamp(18px, 4.5%, 40px);
-            }
-            .meja-info {
-                padding: 4px 12px;
-                font-size: 12px;
-                top: calc(env(safe-area-inset-top, 8px) + 6px);
-            }
-            .customer-name-display {
-                padding: 3px 10px;
-                font-size: 10px;
-                top: calc(env(safe-area-inset-top, 8px) + 44px);
-            }
-            .header-top .logo-left {
-                width: 100px;
-            }
-            .header-top .title-right {
-                font-size: 24px;
-            }
-            .box-menu {
-                height: 24%;
-            }
-            .box-pesan {
-                height: 24%;
-            }
-            .box-status {
-                height: 11%;
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(28px, 5%, 50px);
-                height: clamp(28px, 5%, 50px);
-            }
-        }
-
-        @media screen and (max-width: 480px) and (orientation: portrait) {
-            .customer-container {
-                border-radius: 0;
-            }
-            .box-menu,
-            .box-pesan {
-                border-radius: 30px;
-            }
-            .box-status {
-                border-radius: 25px;
-            }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 30px;
-            }
-            .box-menu .label-menu,
-            .box-pesan .label-pesan,
-            .box-status .label-status {
-                font-size: clamp(14px, 4%, 30px);
-            }
-            .meja-info {
-                padding: 3px 10px;
-                font-size: 11px;
-                top: calc(env(safe-area-inset-top, 6px) + 4px);
-            }
-            .customer-name-display {
-                padding: 2px 8px;
-                font-size: 9px;
-                top: calc(env(safe-area-inset-top, 6px) + 38px);
-            }
-            .header-top .logo-left {
-                width: 70px;
-            }
-            .header-top .title-right {
-                font-size: 20px;
-            }
-            .box-menu {
-                height: 22%;
-            }
-            .box-pesan {
-                height: 22%;
-            }
-            .box-status {
-                height: 10%;
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(22px, 4%, 40px);
-                height: clamp(22px, 4%, 40px);
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(35px, 8vw, 120px);
             }
         }
 
@@ -612,6 +575,16 @@
             .box-pesan .pesan-images img {
                 width: clamp(20px, 3%, 35px);
                 height: clamp(20px, 3%, 35px);
+            }
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(30px, 8vw, 80px);
+            }
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(25px, 6vw, 60px);
             }
         }
 
@@ -689,7 +662,7 @@
         <div class="bg-utama"></div>
         <div class="overlay"></div>
 
-        <!-- ===== DEKORASI CABE & TOMAT ===== -->
+        <!-- ===== DEKORASI CABE & TOMAT (POSISI 0%) ===== -->
         <div class="decorations">
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
