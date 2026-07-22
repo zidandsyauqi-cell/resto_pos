@@ -220,13 +220,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar MENU - gambar 2 di BELAKANG, menutupi BAWAH button */
+        /* MENU - gambar 2 DI DEPAN */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -25%;
-            top: 10%;
+            bottom: -30%;
+            top: 18%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -247,19 +247,19 @@
         .box-menu .menu-images img:nth-child(1) {
             flex: 1;
             height: 100%;
-            z-index: 2;
+            z-index: 1;
         }
         .box-menu .menu-images img:nth-child(2) {
             flex: 1;
             height: 100%;
-            z-index: 1;
+            z-index: 3;
             margin-left: -10%;
             margin-right: -10%;
         }
         .box-menu .menu-images img:nth-child(3) {
             flex: 1;
             height: 100%;
-            z-index: 2;
+            z-index: 1;
         }
 
         /* ===== BOX PESAN ===== */
@@ -292,13 +292,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar PESAN - gambar 2 di BELAKANG, menutupi BAWAH button */
+        /* PESAN - gambar 2 DI BELAKANG */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -25%;
-            top: 10%;
+            bottom: -30%;
+            top: 18%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -387,16 +387,16 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 65px 65px;
-                top: 5%;
-                bottom: -30%;
-            }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -18%;
-                margin-right: -18%;
+                top: 15%;
+                bottom: -35%;
             }
             .box-menu .menu-images img:nth-child(2) {
                 margin-left: -15%;
                 margin-right: -15%;
+            }
+            .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -18%;
+                margin-right: -18%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -432,16 +432,16 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
-                top: 5%;
-                bottom: -30%;
-            }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -20%;
-                margin-right: -20%;
+                top: 15%;
+                bottom: -35%;
             }
             .box-menu .menu-images img:nth-child(2) {
                 margin-left: -18%;
                 margin-right: -18%;
+            }
+            .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -20%;
+                margin-right: -20%;
             }
             .meja-info {
                 padding: 3px 10px;
@@ -529,16 +529,16 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
-                top: 5%;
-                bottom: -25%;
-            }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -14%;
-                margin-right: -14%;
+                top: 15%;
+                bottom: -30%;
             }
             .box-menu .menu-images img:nth-child(2) {
                 margin-left: -12%;
                 margin-right: -12%;
+            }
+            .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -14%;
+                margin-right: -14%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -581,14 +581,14 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 25px 25px;
-                top: 5%;
-                bottom: -20%;
+                top: 15%;
+                bottom: -25%;
             }
-            .box-pesan .pesan-images img:nth-child(2) {
+            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -10%;
                 margin-right: -10%;
             }
-            .box-menu .menu-images img:nth-child(2) {
+            .box-pesan .pesan-images img:nth-child(2) {
                 margin-left: -10%;
                 margin-right: -10%;
             }
@@ -661,16 +661,16 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 45px 45px;
-                top: 8%;
-                bottom: -25%;
-            }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -12%;
-                margin-right: -12%;
+                top: 18%;
+                bottom: -30%;
             }
             .box-menu .menu-images img:nth-child(2) {
                 margin-left: -10%;
                 margin-right: -10%;
+            }
+            .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -12%;
+                margin-right: -12%;
             }
             .header-top .logo-left {
                 width: clamp(80px, 20%, 220px);
@@ -735,7 +735,7 @@
 
         <!-- CONTENT -->
         <div class="content-wrapper">
-            <!-- MENU - gambar 2 DI BELAKANG -->
+            <!-- MENU - gambar 2 DI DEPAN -->
             <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
                 <div class="label-menu">MENU</div>
                 <div class="menu-images">
