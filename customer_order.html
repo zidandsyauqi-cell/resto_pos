@@ -194,7 +194,7 @@
         .box-menu {
             width: 82%;
             max-width: 600px;
-            height: 30%;
+            height: 32%;
             margin-bottom: 2.5%;
             border-radius: 65px;
             cursor: pointer;
@@ -221,23 +221,22 @@
         .box-menu .label-menu {
             position: absolute;
             left: 5%;
-            top: 5%;
+            top: 4%;
             text-align: left;
             color: white;
-            font-size: clamp(22px, 5%, 55px);
+            font-size: clamp(20px, 4.5%, 50px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             z-index: 5;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar di bawah - tidak terpotong atas */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
-            top: 25%;
+            top: 30%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -261,11 +260,11 @@
             z-index: 1;
         }
         .box-menu .menu-images img:nth-child(2) {
-            flex: 1.2;
-            height: 115%;
+            flex: 1.3;
+            height: 130%;
             z-index: 3;
-            margin-left: -8%;
-            margin-right: -8%;
+            margin-left: -12%;
+            margin-right: -12%;
         }
         .box-menu .menu-images img:nth-child(3) {
             flex: 1;
@@ -277,7 +276,7 @@
         .box-pesan {
             width: 82%;
             max-width: 600px;
-            height: 30%;
+            height: 32%;
             margin-bottom: 2.5%;
             border-radius: 65px;
             cursor: pointer;
@@ -304,23 +303,22 @@
         .box-pesan .label-pesan {
             position: absolute;
             left: 5%;
-            top: 5%;
+            top: 4%;
             text-align: left;
             color: white;
-            font-size: clamp(22px, 5%, 55px);
+            font-size: clamp(20px, 4.5%, 50px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             z-index: 5;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar di bawah - tidak terpotong atas */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
-            top: 25%;
+            top: 30%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -344,11 +342,11 @@
             z-index: 1;
         }
         .box-pesan .pesan-images img:nth-child(2) {
-            flex: 1.2;
-            height: 115%;
+            flex: 1.3;
+            height: 130%;
             z-index: 3;
-            margin-left: -8%;
-            margin-right: -8%;
+            margin-left: -12%;
+            margin-right: -12%;
         }
         .box-pesan .pesan-images img:nth-child(3) {
             flex: 1;
@@ -386,6 +384,8 @@
         }
 
         /* ===== RESPONSIVE ===== */
+
+        /* Portrait HP */
         @media screen and (orientation: portrait) {
             .customer-container {
                 width: 100vw;
@@ -416,7 +416,17 @@
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                height: 110%;
+                flex: 1.4;
+                height: 140%;
+                margin-left: -15%;
+                margin-right: -15%;
+            }
+            .box-menu .menu-images img:nth-child(1),
+            .box-menu .menu-images img:nth-child(3),
+            .box-pesan .pesan-images img:nth-child(1),
+            .box-pesan .pesan-images img:nth-child(3) {
+                flex: 0.9;
+                height: 100%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -446,12 +456,13 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(16px, 4%, 32px);
+                font-size: clamp(15px, 3.5%, 30px);
+                top: 3%;
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 32px 32px;
-                top: 30%;
+                top: 25%;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau {
@@ -459,9 +470,17 @@
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                height: 108%;
-                margin-left: -5%;
-                margin-right: -5%;
+                flex: 1.5;
+                height: 150%;
+                margin-left: -18%;
+                margin-right: -18%;
+            }
+            .box-menu .menu-images img:nth-child(1),
+            .box-menu .menu-images img:nth-child(3),
+            .box-pesan .pesan-images img:nth-child(1),
+            .box-pesan .pesan-images img:nth-child(3) {
+                flex: 0.8;
+                height: 100%;
             }
             .meja-info {
                 padding: 3px 10px;
@@ -491,6 +510,7 @@
             }
         }
 
+        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .customer-container {
                 width: 100vw;
@@ -529,7 +549,7 @@
             .box-pesan {
                 width: 65%;
                 max-width: 450px;
-                height: 22%;
+                height: 20%;
                 border-radius: 35px;
                 margin-bottom: 1.8%;
             }
@@ -542,12 +562,13 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(14px, 2.8%, 30px);
+                font-size: clamp(12px, 2.5%, 28px);
+                top: 3%;
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 32px 32px;
-                top: 25%;
+                top: 28%;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau {
@@ -555,7 +576,17 @@
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                height: 110%;
+                flex: 1.2;
+                height: 120%;
+                margin-left: -10%;
+                margin-right: -10%;
+            }
+            .box-menu .menu-images img:nth-child(1),
+            .box-menu .menu-images img:nth-child(3),
+            .box-pesan .pesan-images img:nth-child(1),
+            .box-pesan .pesan-images img:nth-child(3) {
+                flex: 0.9;
+                height: 100%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -579,7 +610,7 @@
             .box-pesan {
                 width: 55%;
                 max-width: 320px;
-                height: 20%;
+                height: 18%;
                 border-radius: 25px;
                 margin-bottom: 1.5%;
             }
@@ -592,12 +623,13 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(11px, 2.2%, 22px);
+                font-size: clamp(10px, 2%, 20px);
+                top: 2%;
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 22px 22px;
-                top: 28%;
+                top: 25%;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau {
@@ -605,9 +637,10 @@
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                height: 105%;
-                margin-left: -4%;
-                margin-right: -4%;
+                flex: 1.1;
+                height: 110%;
+                margin-left: -8%;
+                margin-right: -8%;
             }
             .header-top .logo-left {
                 width: 40px;
@@ -648,6 +681,7 @@
             }
         }
 
+        /* ===== DESKTOP LANDSCAPE ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .customer-container {
                 width: 100vw;
@@ -671,16 +705,24 @@
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(20px, 3.5%, 45px);
+                font-size: clamp(18px, 3.5%, 42px);
+                top: 4%;
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 42px 42px;
-                top: 22%;
+                top: 32%;
             }
             .box-menu .bg-hijau,
             .box-pesan .bg-hijau {
                 border-radius: 42px;
+            }
+            .box-menu .menu-images img:nth-child(2),
+            .box-pesan .pesan-images img:nth-child(2) {
+                flex: 1.2;
+                height: 120%;
+                margin-left: -10%;
+                margin-right: -10%;
             }
             .header-top .logo-left {
                 width: clamp(80px, 20%, 220px);
