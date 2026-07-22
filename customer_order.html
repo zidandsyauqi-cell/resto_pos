@@ -220,12 +220,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
+        /* Gambar MENU - gambar 2 di BELAKANG, menutupi BAWAH button */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -5%;
-            top: 18%;
+            bottom: -25%;
+            top: 10%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -291,13 +292,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* PESAN - gambar 2 (tengah) DI BELAKANG gambar 1 dan 3 */
+        /* Gambar PESAN - gambar 2 di BELAKANG, menutupi BAWAH button */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -5%;
-            top: 18%;
+            bottom: -25%;
+            top: 10%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -315,13 +316,11 @@
             flex: 1;
             min-width: 0;
         }
-        /* Gambar 1 dan 3 di ATAS (z-index lebih tinggi) */
         .box-pesan .pesan-images img:nth-child(1) {
             flex: 1;
             height: 100%;
             z-index: 3;
         }
-        /* Gambar 2 (tengah) DI BELAKANG (z-index lebih rendah) */
         .box-pesan .pesan-images img:nth-child(2) {
             flex: 1;
             height: 100%;
@@ -388,10 +387,14 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 65px 65px;
-                top: 15%;
-                bottom: -8%;
+                top: 5%;
+                bottom: -30%;
             }
             .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -18%;
+                margin-right: -18%;
+            }
+            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -15%;
                 margin-right: -15%;
             }
@@ -429,10 +432,14 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
-                top: 15%;
-                bottom: -8%;
+                top: 5%;
+                bottom: -30%;
             }
             .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -20%;
+                margin-right: -20%;
+            }
+            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -18%;
                 margin-right: -18%;
             }
@@ -522,10 +529,14 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
-                top: 15%;
-                bottom: -8%;
+                top: 5%;
+                bottom: -25%;
             }
             .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -14%;
+                margin-right: -14%;
+            }
+            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -12%;
                 margin-right: -12%;
             }
@@ -570,10 +581,14 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 25px 25px;
-                top: 15%;
-                bottom: -8%;
+                top: 5%;
+                bottom: -20%;
             }
             .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -10%;
+                margin-right: -10%;
+            }
+            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -10%;
                 margin-right: -10%;
             }
@@ -646,10 +661,14 @@
             .box-menu .menu-images,
             .box-pesan .pesan-images {
                 border-radius: 0 0 45px 45px;
-                top: 18%;
-                bottom: -8%;
+                top: 8%;
+                bottom: -25%;
             }
             .box-pesan .pesan-images img:nth-child(2) {
+                margin-left: -12%;
+                margin-right: -12%;
+            }
+            .box-menu .menu-images img:nth-child(2) {
                 margin-left: -10%;
                 margin-right: -10%;
             }
@@ -716,7 +735,7 @@
 
         <!-- CONTENT -->
         <div class="content-wrapper">
-            <!-- MENU -->
+            <!-- MENU - gambar 2 DI BELAKANG -->
             <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
                 <div class="label-menu">MENU</div>
                 <div class="menu-images">
