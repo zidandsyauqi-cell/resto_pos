@@ -385,7 +385,7 @@
 
         .item-detail-row.show {
             display: grid;
-            grid-template-columns: 1.6fr 0.5fr 1fr 1fr;
+            grid-template-columns: 1.6fr 0.5fr 0.7fr 1fr;
             gap: 4px;
         }
 
@@ -395,6 +395,14 @@
             font-family: 'Schoolbell', cursive;
             text-align: left;
             padding: 3px 6px;
+        }
+
+        .item-detail-row .item-col .item-variant {
+            color: #98C81C;
+            font-size: 11px;
+            display: block;
+            margin-top: 1px;
+            font-weight: 600;
         }
 
         .item-detail-row .item-col .item-status-badge {
@@ -610,6 +618,7 @@
             .item-detail-row .item-col .btn-item-action { font-size: 8px; padding: 2px 6px; }
             .btn-toggle-detail { font-size: 10px; }
             .order-time { font-size: 9px; }
+            .item-detail-row .item-col .item-variant { font-size: 9px; }
         }
 
         @media screen and (max-width: 480px) and (orientation: portrait) {
@@ -674,6 +683,7 @@
             .item-detail-row .item-col .btn-item-action { font-size: 7px; padding: 1px 4px; }
             .btn-toggle-detail { font-size: 8px; }
             .order-time { font-size: 7px; }
+            .item-detail-row .item-col .item-variant { font-size: 7px; }
         }
 
         @media screen and (orientation: landscape) {
@@ -733,6 +743,7 @@
                 min-height: 44px;
             }
             .item-detail-row .item-col { font-size: 12px; }
+            .item-detail-row .item-col .item-variant { font-size: 10px; }
         }
 
         @media screen and (max-height: 500px) and (orientation: landscape) {
@@ -792,6 +803,7 @@
                 min-height: 36px;
             }
             .item-detail-row .item-col { font-size: 10px; }
+            .item-detail-row .item-col .item-variant { font-size: 9px; }
         }
 
         @media screen and (min-width: 1025px) and (orientation: landscape) {
@@ -847,6 +859,7 @@
             .item-detail-row .item-col .btn-item-action { font-size: 13px; padding: 4px 12px; }
             .btn-toggle-detail { font-size: 16px; }
             .order-time { font-size: 14px; }
+            .item-detail-row .item-col .item-variant { font-size: 13px; }
         }
 
         @supports not (padding: env(safe-area-inset-top)) {
@@ -1246,9 +1259,23 @@
                                 if (itemStatus === 'Siap') itemStatusClass = 'siap';
                                 if (itemStatus === 'Selesai') itemStatusClass = 'selesai';
                                 const idDetail = item.id_order_detail || item.id;
+                                // Tampilkan varian dari note atau dari menu
+                                let variantText = '';
+                                if (item.note && item.note !== 'null' && item.note !== 'Standar') {
+                                    variantText = item.note;
+                                } else {
+                                    // Cek apakah ada varian dari data menu (fallback)
+                                    const menuVariant = menuNames[item.id_menu] ? null : null;
+                                    if (item.variant && item.variant !== 'Standar') {
+                                        variantText = item.variant;
+                                    }
+                                }
                                 return `
                                     <div class="item-detail-row show">
-                                        <div class="item-col">${item.menu_name}</div>
+                                        <div class="item-col">
+                                            ${item.menu_name}
+                                            ${variantText ? `<span class="item-variant">📌 ${variantText}</span>` : ''}
+                                        </div>
                                         <div class="item-col"><span class="item-qty-badge">×${item.jumlah || 0}</span></div>
                                         <div class="item-col">
                                             <span class="item-status-badge ${itemStatusClass}">
