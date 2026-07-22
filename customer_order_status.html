@@ -283,6 +283,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .status-item .item-info .item-name .variant-text {
+            color: #98C81C;
+            font-size: clamp(10px, 1.3%, 16px);
+        }
         .status-item .item-info .item-qty-price {
             color: rgba(255, 255, 255, 0.5);
             font-size: clamp(10px, 1.2%, 14px);
@@ -448,6 +452,9 @@
             .status-item .item-info .item-name {
                 font-size: 11px;
             }
+            .status-item .item-info .item-name .variant-text {
+                font-size: 9px;
+            }
             .status-item .item-info .item-qty-price {
                 font-size: 9px;
             }
@@ -522,6 +529,9 @@
             }
             .status-item .item-info .item-name {
                 font-size: 9px;
+            }
+            .status-item .item-info .item-name .variant-text {
+                font-size: 7px;
             }
             .status-item .item-info .item-qty-price {
                 font-size: 7px;
@@ -599,6 +609,9 @@
             .status-item .item-info .item-name {
                 font-size: 13px;
             }
+            .status-item .item-info .item-name .variant-text {
+                font-size: 11px;
+            }
             .status-card .card-total {
                 font-size: 14px;
             }
@@ -661,6 +674,9 @@
             }
             .status-item .item-info .item-name {
                 font-size: 10px;
+            }
+            .status-item .item-info .item-name .variant-text {
+                font-size: 8px;
             }
             .status-item .item-info .item-qty-price {
                 font-size: 8px;
@@ -729,6 +745,9 @@
             .status-item .item-info .item-name {
                 font-size: 18px;
             }
+            .status-item .item-info .item-name .variant-text {
+                font-size: 15px;
+            }
             .status-card .card-total {
                 font-size: 18px;
             }
@@ -782,6 +801,9 @@
             }
             .status-item .item-info .item-name {
                 font-size: 18px;
+            }
+            .status-item .item-info .item-name .variant-text {
+                font-size: 15px;
             }
             .status-card .card-total {
                 font-size: 20px;
@@ -1105,7 +1127,12 @@
 
                 const detailsWithMenu = (details || []).map(item => {
                     const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
-                    return { ...item, menu_name: menuName };
+                    // Ambil varian dari note (jika ada)
+                    let variant = '';
+                    if (item.note && item.note !== 'null' && item.note.trim() !== '' && item.note !== 'Standar') {
+                        variant = item.note;
+                    }
+                    return { ...item, menu_name: menuName, variant: variant };
                 });
 
                 const subtotal = detailsWithMenu.reduce((s, item) => s + (item.subtotal || 0), 0);
@@ -1128,10 +1155,12 @@
                         ${detailsWithMenu && detailsWithMenu.length > 0 ? detailsWithMenu.map(item => {
                             const status = item.status || 'Diproses';
                             const statusInfo = getStatusInfo(status);
+                            // Tampilkan varian dalam tanda kurung jika ada
+                            const variantDisplay = item.variant ? ` <span class="variant-text">(${item.variant})</span>` : '';
                             return `
                                 <div class="status-item item-${statusInfo.class}">
                                     <div class="item-info">
-                                        <div class="item-name">${item.menu_name}</div>
+                                        <div class="item-name">${item.menu_name}${variantDisplay}</div>
                                         <div class="item-qty-price">${item.jumlah || 0} porsi · <span>${formatRupiah(item.subtotal || 0)}</span></div>
                                     </div>
                                     <div class="item-status">
