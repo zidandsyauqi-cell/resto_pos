@@ -111,25 +111,6 @@
             bottom: 0%;
         }
 
-        .btn-back {
-            position: absolute;
-            left: 4%;
-            top: 3%;
-            z-index: 20;
-            background: none;
-            border: none;
-            color: white;
-            font-size: clamp(32px, 4%, 55px);
-            cursor: pointer;
-            padding: 10px 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .btn-back:active {
-            transform: scale(0.92);
-        }
-
         .logo-top {
             position: absolute;
             left: 50%;
@@ -140,24 +121,19 @@
             align-items: center;
             justify-content: center;
             gap: 14px;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
             padding: 8px 20px;
-        }
-
-        .logo-top:active {
-            transform: translateX(-50%) scale(0.95);
+            pointer-events: none;
         }
 
         .logo-top img {
-            width: clamp(70px, 10%, 120px);
+            width: clamp(90px, 14%, 160px);
             height: auto;
             filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
         }
 
         .logo-top .brand-text {
             color: white;
-            font-size: clamp(24px, 4.5%, 55px);
+            font-size: clamp(28px, 5%, 65px);
             font-weight: 700;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             white-space: nowrap;
@@ -317,11 +293,11 @@
             }
 
             .logo-top img {
-                width: clamp(60px, 10%, 100px);
+                width: clamp(80px, 14%, 140px);
             }
 
             .logo-top .brand-text {
-                font-size: clamp(20px, 4.5%, 45px);
+                font-size: clamp(24px, 5%, 55px);
             }
         }
 
@@ -367,23 +343,17 @@
             }
 
             .logo-top img {
-                width: clamp(50px, 8%, 80px);
+                width: clamp(60px, 10%, 100px);
             }
 
             .logo-top .brand-text {
-                font-size: clamp(18px, 3.5%, 35px);
+                font-size: clamp(20px, 4%, 40px);
             }
 
             .qr-badge {
                 top: 12%;
                 font-size: 11px;
                 padding: 4px 16px;
-            }
-
-            .btn-back {
-                font-size: clamp(28px, 3.5%, 45px);
-                left: 2%;
-                top: 2.5%;
             }
 
             .decorations .tomat-atas-kiri,
@@ -433,17 +403,11 @@
             }
 
             .logo-top img {
-                width: clamp(45px, 10%, 70px);
+                width: clamp(55px, 12%, 90px);
             }
 
             .logo-top .brand-text {
-                font-size: clamp(16px, 4%, 30px);
-            }
-
-            .btn-back {
-                font-size: clamp(24px, 4%, 40px);
-                left: 3%;
-                top: 2.5%;
+                font-size: clamp(18px, 4.5%, 35px);
             }
 
             .decorations .tomat-atas-kiri,
@@ -503,23 +467,17 @@
             }
 
             .logo-top img {
-                width: clamp(35px, 6%, 55px);
+                width: clamp(45px, 8%, 70px);
             }
 
             .logo-top .brand-text {
-                font-size: clamp(14px, 2.5%, 22px);
+                font-size: clamp(16px, 3%, 28px);
             }
 
             .qr-badge {
                 top: 11%;
                 font-size: 9px;
                 padding: 3px 12px;
-            }
-
-            .btn-back {
-                font-size: clamp(22px, 3%, 35px);
-                left: 1.5%;
-                top: 2%;
             }
 
             .decorations .tomat-atas-kiri,
@@ -561,17 +519,11 @@
             }
 
             .logo-top img {
-                width: clamp(80px, 10%, 120px);
+                width: clamp(100px, 14%, 160px);
             }
 
             .logo-top .brand-text {
-                font-size: clamp(28px, 4.5%, 55px);
-            }
-
-            .btn-back {
-                left: 3%;
-                top: 3%;
-                font-size: clamp(32px, 4%, 55px);
+                font-size: clamp(32px, 5%, 65px);
             }
         }
     </style>
@@ -593,12 +545,9 @@
             <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
         </div>
 
-        <!-- Tombol Back -->
-        <button class="btn-back" onclick="window.location.href='login.html'">←</button>
-
-        <!-- Logo - DI TENGAH -->
-        <div class="logo-top" onclick="window.location.href='login.html'">
-            <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/120x120/98C81C/ffffff?text=🍽️'" />
+        <!-- Logo BESAR - di tengah, TIDAK BISA DI KLIK -->
+        <div class="logo-top">
+            <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/160x160/98C81C/ffffff?text=🍽️'" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
 
