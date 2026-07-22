@@ -70,6 +70,33 @@
             opacity: 1;
         }
 
+        .decorations .bg-ornament-1 {
+            width: 178%;
+            left: -9.3%;
+            top: 99.99%;
+            transform: rotate(-90deg);
+            transform-origin: top left;
+            opacity: 0.12;
+        }
+
+        .decorations .bg-ornament-2 {
+            width: 92%;
+            left: -53.2%;
+            top: 61.2%;
+            transform: rotate(-12deg);
+            transform-origin: top left;
+            opacity: 0.1;
+        }
+
+        .decorations .bg-ornament-3 {
+            width: 77%;
+            right: -5%;
+            top: 10.6%;
+            transform: rotate(21deg);
+            transform-origin: top left;
+            opacity: 0.1;
+        }
+
         .decorations .tomat-atas-kiri {
             width: clamp(60px, 15vw, 250px);
             left: 0%;
@@ -194,7 +221,7 @@
         .box-menu {
             width: 82%;
             max-width: 600px;
-            height: 32%;
+            height: 26%;
             margin-bottom: 2.5%;
             border-radius: 65px;
             cursor: pointer;
@@ -202,38 +229,47 @@
             position: relative;
             flex-shrink: 0;
             overflow: hidden;
-            background: #98C81C;
+            border: 3px solid white;
         }
         .box-menu:active {
             transform: scale(0.98);
         }
+        .box-menu .bg-hijau {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: #98C81C;
+            border-radius: 62px;
+            opacity: 0.92;
+        }
         .box-menu .label-menu {
             position: absolute;
             left: 5%;
-            top: 4%;
+            top: 15%;
             text-align: left;
             color: white;
-            font-size: clamp(20px, 4.5%, 50px);
+            font-size: clamp(24px, 5.5%, 60px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             z-index: 5;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* MENU - gambar 2 DI DEPAN */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -30%;
-            top: 18%;
+            bottom: 0;
+            top: 30%;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             z-index: 2;
             opacity: 1;
             overflow: hidden;
-            border-radius: 0 0 65px 65px;
+            border-radius: 0 0 62px 62px;
             width: 100%;
         }
         .box-menu .menu-images img {
@@ -244,29 +280,12 @@
             flex: 1;
             min-width: 0;
         }
-        .box-menu .menu-images img:nth-child(1) {
-            flex: 1;
-            height: 100%;
-            z-index: 1;
-        }
-        .box-menu .menu-images img:nth-child(2) {
-            flex: 1;
-            height: 100%;
-            z-index: 3;
-            margin-left: -10%;
-            margin-right: -10%;
-        }
-        .box-menu .menu-images img:nth-child(3) {
-            flex: 1;
-            height: 100%;
-            z-index: 1;
-        }
 
         /* ===== BOX PESAN ===== */
         .box-pesan {
             width: 82%;
             max-width: 600px;
-            height: 32%;
+            height: 26%;
             margin-bottom: 2.5%;
             border-radius: 65px;
             cursor: pointer;
@@ -274,38 +293,47 @@
             position: relative;
             flex-shrink: 0;
             overflow: hidden;
-            background: #98C81C;
+            border: 3px solid white;
         }
         .box-pesan:active {
             transform: scale(0.98);
         }
+        .box-pesan .bg-hijau {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: #98C81C;
+            border-radius: 62px;
+            opacity: 0.92;
+        }
         .box-pesan .label-pesan {
             position: absolute;
             left: 5%;
-            top: 4%;
+            top: 15%;
             text-align: left;
             color: white;
-            font-size: clamp(20px, 4.5%, 50px);
+            font-size: clamp(24px, 5.5%, 60px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             z-index: 5;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* PESAN - gambar 2 DI BELAKANG */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -30%;
-            top: 18%;
+            bottom: 0;
+            top: 30%;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
             z-index: 2;
             opacity: 1;
             overflow: hidden;
-            border-radius: 0 0 65px 65px;
+            border-radius: 0 0 62px 62px;
             width: 100%;
         }
         .box-pesan .pesan-images img {
@@ -316,31 +344,15 @@
             flex: 1;
             min-width: 0;
         }
-        .box-pesan .pesan-images img:nth-child(1) {
-            flex: 1;
-            height: 100%;
-            z-index: 3;
-        }
-        .box-pesan .pesan-images img:nth-child(2) {
-            flex: 1;
-            height: 100%;
-            z-index: 1;
-            margin-left: -12%;
-            margin-right: -12%;
-        }
-        .box-pesan .pesan-images img:nth-child(3) {
-            flex: 1;
-            height: 100%;
-            z-index: 3;
-        }
 
         /* ===== BOX STATUS ===== */
         .box-status {
             width: 82%;
             max-width: 600px;
-            height: 10%;
+            height: 5%;
             background: #98C81C;
             border-radius: 50px;
+            border: 3px solid white;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -363,8 +375,6 @@
         }
 
         /* ===== RESPONSIVE ===== */
-
-        /* Portrait HP */
         @media screen and (orientation: portrait) {
             .customer-container {
                 width: 100vw;
@@ -373,11 +383,11 @@
             }
             .box-menu,
             .box-pesan {
-                height: 30%;
+                height: 26%;
                 border-radius: 65px;
             }
             .box-status {
-                height: 10%;
+                height: 5%;
                 border-radius: 50px;
             }
             .content-wrapper {
@@ -386,17 +396,17 @@
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 65px 65px;
-                top: 15%;
-                bottom: -35%;
+                border-radius: 0 0 62px 62px;
+                top: 28%;
             }
-            .box-menu .menu-images img:nth-child(2) {
-                margin-left: -15%;
-                margin-right: -15%;
+            .box-menu .bg-hijau,
+            .box-pesan .bg-hijau {
+                border-radius: 62px;
             }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -18%;
-                margin-right: -18%;
+            .box-menu .label-menu,
+            .box-pesan .label-pesan {
+                top: 12%;
+                font-size: clamp(20px, 4.5%, 45px);
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -416,32 +426,30 @@
             }
             .box-menu,
             .box-pesan {
-                height: 27%;
+                height: 23%;
                 border-radius: 35px;
             }
             .box-status {
-                height: 9%;
+                height: 4.5%;
                 border-radius: 30px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
-                font-size: clamp(15px, 3.5%, 30px);
-                top: 3%;
+                font-size: clamp(14px, 3.5%, 28px);
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 35px 35px;
-                top: 15%;
-                bottom: -35%;
+                border-radius: 0 0 32px 32px;
+                top: 30%;
             }
-            .box-menu .menu-images img:nth-child(2) {
-                margin-left: -18%;
-                margin-right: -18%;
+            .box-menu .bg-hijau,
+            .box-pesan .bg-hijau {
+                border-radius: 32px;
             }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -20%;
-                margin-right: -20%;
+            .box-menu .label-menu,
+            .box-pesan .label-pesan {
+                top: 10%;
             }
             .meja-info {
                 padding: 3px 10px;
@@ -471,7 +479,6 @@
             }
         }
 
-        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .customer-container {
                 width: 100vw;
@@ -508,37 +515,35 @@
             }
             .box-menu,
             .box-pesan {
-                width: 65%;
-                max-width: 450px;
-                height: 20%;
+                width: 60%;
+                max-width: 420px;
+                height: 22%;
                 border-radius: 35px;
                 margin-bottom: 1.8%;
             }
             .box-status {
-                width: 65%;
-                max-width: 450px;
-                height: 8%;
-                border-radius: 30px;
+                width: 60%;
+                max-width: 420px;
+                height: 4.5%;
+                border-radius: 25px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
                 font-size: clamp(12px, 2.5%, 28px);
-                top: 3%;
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 35px 35px;
-                top: 15%;
-                bottom: -30%;
+                border-radius: 0 0 32px 32px;
+                top: 30%;
             }
-            .box-menu .menu-images img:nth-child(2) {
-                margin-left: -12%;
-                margin-right: -12%;
+            .box-menu .bg-hijau,
+            .box-pesan .bg-hijau {
+                border-radius: 32px;
             }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -14%;
-                margin-right: -14%;
+            .box-menu .label-menu,
+            .box-pesan .label-pesan {
+                top: 12%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -569,28 +574,26 @@
             .box-status {
                 width: 55%;
                 max-width: 320px;
-                height: 7%;
-                border-radius: 20px;
+                height: 4%;
+                border-radius: 18px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
                 font-size: clamp(10px, 2%, 20px);
-                top: 2%;
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 25px 25px;
-                top: 15%;
-                bottom: -25%;
+                border-radius: 0 0 22px 22px;
+                top: 30%;
             }
-            .box-menu .menu-images img:nth-child(2) {
-                margin-left: -10%;
-                margin-right: -10%;
+            .box-menu .bg-hijau,
+            .box-pesan .bg-hijau {
+                border-radius: 22px;
             }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -10%;
-                margin-right: -10%;
+            .box-menu .label-menu,
+            .box-pesan .label-pesan {
+                top: 10%;
             }
             .header-top .logo-left {
                 width: 40px;
@@ -631,7 +634,6 @@
             }
         }
 
-        /* ===== DESKTOP LANDSCAPE ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .customer-container {
                 width: 100vw;
@@ -649,28 +651,26 @@
             .box-status {
                 width: 50%;
                 max-width: 500px;
-                height: 8%;
+                height: 4.5%;
                 border-radius: 35px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
                 font-size: clamp(18px, 3.5%, 42px);
-                top: 3%;
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 45px 45px;
-                top: 18%;
-                bottom: -30%;
+                border-radius: 0 0 42px 42px;
+                top: 30%;
             }
-            .box-menu .menu-images img:nth-child(2) {
-                margin-left: -10%;
-                margin-right: -10%;
+            .box-menu .bg-hijau,
+            .box-pesan .bg-hijau {
+                border-radius: 42px;
             }
-            .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -12%;
-                margin-right: -12%;
+            .box-menu .label-menu,
+            .box-pesan .label-pesan {
+                top: 14%;
             }
             .header-top .logo-left {
                 width: clamp(80px, 20%, 220px);
@@ -713,6 +713,9 @@
 
         <!-- ===== DEKORASI ===== -->
         <div class="decorations">
+            <img class="bg-ornament-1" src="https://placehold.co/1922x1281" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="bg-ornament-2" src="https://placehold.co/995x995" alt="" loading="lazy" onerror="this.style.display='none'">
+            <img class="bg-ornament-3" src="https://placehold.co/832x832" alt="" loading="lazy" onerror="this.style.display='none'">
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
             <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
@@ -735,8 +738,9 @@
 
         <!-- CONTENT -->
         <div class="content-wrapper">
-            <!-- MENU - gambar 2 DI DEPAN -->
+            <!-- MENU -->
             <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
+                <div class="bg-hijau"></div>
                 <div class="label-menu">MENU</div>
                 <div class="menu-images">
                     <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/igabakar.png" alt="Iga Bakar" loading="lazy" onerror="this.style.display='none'">
@@ -745,8 +749,9 @@
                 </div>
             </div>
 
-            <!-- PESAN - gambar 2 DI BELAKANG -->
+            <!-- PESAN -->
             <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
+                <div class="bg-hijau"></div>
                 <div class="label-pesan">PESAN</div>
                 <div class="pesan-images">
                     <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/sopbakar.png" alt="Sop Bakar" loading="lazy" onerror="this.style.display='none'">
