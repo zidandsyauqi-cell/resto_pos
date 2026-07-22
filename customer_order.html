@@ -53,7 +53,7 @@
             z-index: 2;
         }
 
-        /* ===== DEKORASI CABE & TOMAT (POSISI 0% - SAMA KAYA LOGIN.HTML) ===== */
+        /* ===== DEKORASI CABE & TOMAT ===== */
         .decorations {
             position: absolute;
             width: 100%;
@@ -70,7 +70,6 @@
             opacity: 1;
         }
 
-        /* Tomat */
         .decorations .tomat-atas-kiri {
             width: clamp(60px, 15vw, 250px);
             left: 0%;
@@ -83,7 +82,6 @@
             bottom: 0%;
         }
 
-        /* Cabe */
         .decorations .cabe2-atas-kanan {
             width: clamp(50px, 12vw, 200px);
             right: 0%;
@@ -222,37 +220,40 @@
         .box-menu .label-menu {
             position: absolute;
             left: 5%;
-            top: 18%;
+            top: 12%;
             text-align: center;
             color: white;
             font-size: clamp(24px, 5.5%, 60px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            z-index: 2;
+            z-index: 5;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar menu di dalam button MENU (opacity 100%, di bawah) */
+        /* Gambar menu full dari kiri ke kanan tanpa kotak */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
-            top: 30%;
+            top: 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            z-index: 3;
+            align-items: flex-end;
+            justify-content: space-between;
+            z-index: 1;
             opacity: 1;
-            padding: 0 10px;
+            overflow: hidden;
+            border-radius: 65px;
         }
         .box-menu .menu-images img {
-            width: clamp(60px, 10%, 120px);
-            height: clamp(60px, 10%, 120px);
-            border-radius: 14px;
+            flex: 1;
+            height: 100%;
             object-fit: cover;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: none;
+            min-width: 0;
+        }
+        .box-menu .menu-images img:nth-child(2) {
+            flex: 1.2;
         }
 
         /* ===== BOX PESAN ===== */
@@ -285,37 +286,40 @@
         .box-pesan .label-pesan {
             position: absolute;
             left: 5%;
-            top: 18%;
+            top: 12%;
             text-align: center;
             color: white;
             font-size: clamp(24px, 5.5%, 60px);
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            z-index: 2;
+            z-index: 5;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Gambar menu di dalam button PESAN (opacity 100%, di bawah) */
+        /* Gambar menu full dari kiri ke kanan tanpa kotak */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
-            top: 30%;
+            top: 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            z-index: 3;
+            align-items: flex-end;
+            justify-content: space-between;
+            z-index: 1;
             opacity: 1;
-            padding: 0 10px;
+            overflow: hidden;
+            border-radius: 65px;
         }
         .box-pesan .pesan-images img {
-            width: clamp(60px, 10%, 120px);
-            height: clamp(60px, 10%, 120px);
-            border-radius: 14px;
+            flex: 1;
+            height: 100%;
             object-fit: cover;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: none;
+            min-width: 0;
+        }
+        .box-pesan .pesan-images img:nth-child(2) {
+            flex: 1.2;
         }
 
         /* ===== BOX STATUS ===== */
@@ -363,19 +367,13 @@
                 height: 12%;
                 border-radius: 50px;
             }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 65px;
-            }
             .content-wrapper {
                 padding: 10px 5% 20px;
                 gap: 0;
             }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(50px, 8%, 90px);
-                height: clamp(50px, 8%, 90px);
+            .box-menu .menu-images,
+            .box-pesan .pesan-images {
+                border-radius: 65px;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -402,15 +400,14 @@
                 height: 10%;
                 border-radius: 30px;
             }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 35px;
-            }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
                 font-size: clamp(16px, 4%, 35px);
+            }
+            .box-menu .menu-images,
+            .box-pesan .pesan-images {
+                border-radius: 35px;
             }
             .meja-info {
                 padding: 3px 10px;
@@ -427,11 +424,6 @@
             }
             .header-top .title-right {
                 font-size: 20px;
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(35px, 6%, 60px);
-                height: clamp(35px, 6%, 60px);
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -493,20 +485,14 @@
                 height: 10%;
                 border-radius: 30px;
             }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 35px;
-            }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
                 font-size: clamp(14px, 2.8%, 32px);
             }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(40px, 6%, 70px);
-                height: clamp(40px, 6%, 70px);
+            .box-menu .menu-images,
+            .box-pesan .pesan-images {
+                border-radius: 35px;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -540,15 +526,14 @@
                 height: 9%;
                 border-radius: 20px;
             }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 25px;
-            }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
                 font-size: clamp(11px, 2%, 24px);
+            }
+            .box-menu .menu-images,
+            .box-pesan .pesan-images {
+                border-radius: 25px;
             }
             .header-top .logo-left {
                 width: 40px;
@@ -576,11 +561,6 @@
             .content-wrapper {
                 padding: 4px 5% 8px;
                 padding-bottom: env(safe-area-inset-bottom, 8px);
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(30px, 4%, 50px);
-                height: clamp(30px, 4%, 50px);
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -614,15 +594,14 @@
                 height: 9%;
                 border-radius: 35px;
             }
-            .box-menu .bg-hijau,
-            .box-pesan .bg-hijau,
-            .box-status .bg-hijau {
-                border-radius: 45px;
-            }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
             .box-status .label-status {
                 font-size: clamp(20px, 3.5%, 48px);
+            }
+            .box-menu .menu-images,
+            .box-pesan .pesan-images {
+                border-radius: 45px;
             }
             .header-top .logo-left {
                 width: clamp(80px, 20%, 220px);
@@ -639,11 +618,6 @@
                 padding: 3px 12px;
                 font-size: 11px;
                 top: calc(env(safe-area-inset-top, 8px) + 36px);
-            }
-            .box-menu .menu-images img,
-            .box-pesan .pesan-images img {
-                width: clamp(55px, 7%, 100px);
-                height: clamp(55px, 7%, 100px);
             }
         }
 
@@ -668,7 +642,7 @@
         <div class="bg-utama"></div>
         <div class="overlay"></div>
 
-        <!-- ===== DEKORASI CABE & TOMAT (POSISI 0%) ===== -->
+        <!-- ===== DEKORASI ===== -->
         <div class="decorations">
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
