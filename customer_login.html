@@ -56,9 +56,64 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.15);
             pointer-events: none;
             z-index: 1;
+        }
+
+        /* ===== DEKORASI ===== */
+        .decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .decorations img {
+            position: absolute;
+            opacity: 1;
+        }
+
+        /* Tomat */
+        .decorations .tomat-atas-kiri {
+            width: clamp(60px, 15vw, 250px);
+            left: 0%;
+            top: 0%;
+        }
+
+        .decorations .tomat1-bawah-kanan {
+            width: clamp(60px, 15vw, 250px);
+            right: 0%;
+            bottom: 0%;
+        }
+
+        /* Cabe */
+        .decorations .cabe2-atas-kanan {
+            width: clamp(50px, 12vw, 200px);
+            right: 0%;
+            top: 0%;
+        }
+
+        .decorations .cabe21-atas-kanan {
+            width: clamp(50px, 12vw, 200px);
+            right: 0%;
+            top: 0%;
+        }
+
+        .decorations .cabe1-bawah-kiri {
+            width: clamp(50px, 12vw, 200px);
+            left: 0%;
+            bottom: 0%;
+        }
+
+        .decorations .cabe11-bawah-kiri {
+            width: clamp(50px, 12vw, 200px);
+            left: 0%;
+            bottom: 0%;
         }
 
         .btn-back {
@@ -74,11 +129,11 @@
             transition: all 0.3s;
             padding: 5px 15px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .btn-back:hover {
-            transform: scale(1.1);
-            color: #98C81C;
+        .btn-back:active {
+            transform: scale(0.95);
         }
 
         .logo-top {
@@ -90,6 +145,12 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .logo-top:active {
+            transform: translateX(-50%) scale(0.95);
         }
 
         .logo-top img {
@@ -220,6 +281,7 @@
             font-family: 'Poppins', sans-serif;
             transition: all 0.3s;
             margin-top: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .btn-login:hover {
@@ -325,6 +387,18 @@
                 left: 2%;
                 top: 3%;
             }
+
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(40px, 10vw, 150px);
+            }
+
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(35px, 8vw, 120px);
+            }
         }
 
         /* HP kecil portrait */
@@ -359,6 +433,18 @@
                 top: 15%;
                 font-size: 10px;
                 padding: 4px 12px;
+            }
+
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(40px, 15vw, 100px);
+            }
+
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(35px, 12vw, 80px);
             }
         }
 
@@ -421,6 +507,18 @@
 
             .btn-back {
                 font-size: 22px;
+            }
+
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(30px, 8vw, 80px);
+            }
+
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(25px, 6vw, 60px);
             }
         }
 
@@ -493,14 +591,26 @@
 </head>
 <body>
     <div class="login-container">
-        <!-- Background bg.png -->
+        <!-- Background -->
         <div class="bg-utama"></div>
 
         <div class="overlay"></div>
 
+        <!-- ===== DEKORASI ===== -->
+        <div class="decorations">
+            <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+            <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+        </div>
+
+        <!-- Tombol Back -->
         <button class="btn-back" onclick="window.location.href='login.html'">←</button>
 
-        <div class="logo-top">
+        <!-- Logo -->
+        <div class="logo-top" onclick="window.location.href='login.html'">
             <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/80x80/98C81C/ffffff?text=🍽️'" />
             <div class="brand-text">Jangkung<span>Order</span></div>
         </div>
@@ -510,6 +620,7 @@
             Scan QR · Meja <span id="qrMeja">-</span>
         </div>
 
+        <!-- Login Content -->
         <div class="login-content">
             <div class="login-box">
                 <h2>Masuk Sebagai Customer</h2>
