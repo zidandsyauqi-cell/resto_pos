@@ -59,6 +59,59 @@
             z-index: 1;
         }
 
+        /* ===== DEKORASI CABE & TOMAT ===== */
+        .decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .decorations img {
+            position: absolute;
+            opacity: 0.7;
+        }
+
+        .decorations .tomat-atas-kiri {
+            width: clamp(80px, 18vw, 280px);
+            left: -2%;
+            top: -2%;
+        }
+
+        .decorations .tomat1-bawah-kanan {
+            width: clamp(80px, 18vw, 280px);
+            right: -2%;
+            bottom: -2%;
+        }
+
+        .decorations .cabe2-atas-kanan {
+            width: clamp(60px, 14vw, 220px);
+            right: -2%;
+            top: -2%;
+        }
+
+        .decorations .cabe21-atas-kanan {
+            width: clamp(60px, 14vw, 220px);
+            right: 8%;
+            top: 4%;
+        }
+
+        .decorations .cabe1-bawah-kiri {
+            width: clamp(60px, 14vw, 220px);
+            left: -2%;
+            bottom: -2%;
+        }
+
+        .decorations .cabe11-bawah-kiri {
+            width: clamp(60px, 14vw, 220px);
+            left: 8%;
+            bottom: 4%;
+        }
+
         .btn-back {
             position: absolute;
             left: 3%;
@@ -200,11 +253,45 @@
         }
 
         /* ===== RESPONSIVE ===== */
+
+        /* Portrait HP */
         @media screen and (orientation: portrait) {
             .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
             .login-form { max-width: 420px; }
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(60px, 18vw, 250px);
+            }
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(50px, 14vw, 200px);
+            }
         }
 
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .login-form { max-width: 340px; }
+            .login-form .form-image { width: 100px; }
+            .login-form .label { font-size: 18px; }
+            .login-form .password-input { font-size: 14px; padding: 10px 16px; border-width: 2px; }
+            .login-form .error-msg { font-size: 14px; }
+            .logo-top img { width: 30px; }
+            .logo-top .brand-text { font-size: 14px; }
+            .btn-back { font-size: 22px; }
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(40px, 15vw, 100px);
+            }
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(35px, 12vw, 80px);
+            }
+        }
+
+        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
             .login-form { max-width: 380px; }
@@ -217,17 +304,16 @@
             .logo-top .brand-text { font-size: 14px; }
             .btn-back { font-size: 24px; left: 2%; top: 2%; }
             .login-wrapper { padding: 10px; }
-        }
-
-        @media screen and (max-width: 480px) and (orientation: portrait) {
-            .login-form { max-width: 340px; }
-            .login-form .form-image { width: 100px; }
-            .login-form .label { font-size: 18px; }
-            .login-form .password-input { font-size: 14px; padding: 10px 16px; border-width: 2px; }
-            .login-form .error-msg { font-size: 14px; }
-            .logo-top img { width: 30px; }
-            .logo-top .brand-text { font-size: 14px; }
-            .btn-back { font-size: 22px; }
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(40px, 10vw, 150px);
+            }
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(35px, 8vw, 120px);
+            }
         }
 
         @media screen and (max-height: 500px) and (orientation: landscape) {
@@ -241,6 +327,16 @@
             .logo-top .brand-text { font-size: 11px; }
             .btn-back { font-size: 18px; left: 1.5%; top: 1.5%; }
             .login-wrapper { padding: 6px; }
+            .decorations .tomat-atas-kiri,
+            .decorations .tomat1-bawah-kanan {
+                width: clamp(30px, 8vw, 80px);
+            }
+            .decorations .cabe2-atas-kanan,
+            .decorations .cabe21-atas-kanan,
+            .decorations .cabe1-bawah-kiri,
+            .decorations .cabe11-bawah-kiri {
+                width: clamp(25px, 6vw, 60px);
+            }
         }
 
         @media screen and (min-width: 1025px) and (orientation: landscape) {
@@ -259,6 +355,16 @@
     <div class="karyawan-container">
         <div class="bg-utama"></div>
         <div class="overlay"></div>
+
+        <!-- ===== DEKORASI CABE & TOMAT ===== -->
+        <div class="decorations">
+            <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+            <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+        </div>
 
         <button class="btn-back" onclick="goBack()">←</button>
 
