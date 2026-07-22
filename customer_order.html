@@ -190,13 +190,13 @@
             padding-bottom: env(safe-area-inset-bottom, 20px);
         }
 
-        /* ===== BOX MENU ===== */
+        /* ===== BOX MENU - rounded corner lebih kecil ===== */
         .box-menu {
             width: 82%;
             max-width: 600px;
             height: 32%;
             margin-bottom: 2.5%;
-            border-radius: 65px;
+            border-radius: 40px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -220,20 +220,19 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* TURUNKAN GAMBAR - top lebih besar tanpa padding */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -20%;
-            top: 35%;
+            bottom: -22%;
+            top: 38%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
             z-index: 2;
             opacity: 1;
             overflow: hidden;
-            border-radius: 0 0 65px 65px;
+            border-radius: 0 0 40px 40px;
             width: 100%;
         }
         .box-menu .menu-images img {
@@ -266,13 +265,13 @@
             margin-right: -5%;
         }
 
-        /* ===== BOX PESAN ===== */
+        /* ===== BOX PESAN - rounded corner lebih kecil ===== */
         .box-pesan {
             width: 82%;
             max-width: 600px;
             height: 32%;
             margin-bottom: 2.5%;
-            border-radius: 65px;
+            border-radius: 40px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -296,20 +295,19 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* PESAN - gambar 2 DI BELAKANG, TURUNKAN GAMBAR */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -20%;
-            top: 35%;
+            bottom: -22%;
+            top: 38%;
             display: flex;
             align-items: flex-end;
             justify-content: center;
             z-index: 2;
             opacity: 1;
             overflow: hidden;
-            border-radius: 0 0 65px 65px;
+            border-radius: 0 0 40px 40px;
             width: 100%;
         }
         .box-pesan .pesan-images img {
@@ -320,7 +318,6 @@
             flex: 1.1;
             min-width: 0;
         }
-        /* Gambar 1 dan 3 DI ATAS (z-index tinggi) */
         .box-pesan .pesan-images img:nth-child(1) {
             flex: 1.15;
             height: 100%;
@@ -328,7 +325,6 @@
             margin-right: -5%;
             margin-left: -3%;
         }
-        /* Gambar 2 (tengah) DI BELAKANG (z-index rendah) */
         .box-pesan .pesan-images img:nth-child(2) {
             flex: 1.2;
             height: 100%;
@@ -344,13 +340,13 @@
             margin-right: -5%;
         }
 
-        /* ===== BOX STATUS ===== */
+        /* ===== BOX STATUS - rounded corner lebih kecil ===== */
         .box-status {
             width: 82%;
             max-width: 600px;
             height: 10%;
             background: #98C81C;
-            border-radius: 50px;
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -384,11 +380,11 @@
             .box-menu,
             .box-pesan {
                 height: 30%;
-                border-radius: 65px;
+                border-radius: 35px;
             }
             .box-status {
                 height: 10%;
-                border-radius: 50px;
+                border-radius: 25px;
             }
             .content-wrapper {
                 padding: 10px 5% 20px;
@@ -396,9 +392,9 @@
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 65px 65px;
-                top: 32%;
-                bottom: -22%;
+                border-radius: 0 0 35px 35px;
+                top: 35%;
+                bottom: -24%;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -441,11 +437,11 @@
             .box-menu,
             .box-pesan {
                 height: 27%;
-                border-radius: 35px;
+                border-radius: 28px;
             }
             .box-status {
                 height: 9%;
-                border-radius: 30px;
+                border-radius: 20px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
@@ -455,9 +451,9 @@
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 35px 35px;
-                top: 32%;
-                bottom: -22%;
+                border-radius: 0 0 28px 28px;
+                top: 35%;
+                bottom: -24%;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -549,14 +545,14 @@
                 width: 65%;
                 max-width: 450px;
                 height: 20%;
-                border-radius: 35px;
+                border-radius: 30px;
                 margin-bottom: 1.8%;
             }
             .box-status {
                 width: 65%;
                 max-width: 450px;
                 height: 8%;
-                border-radius: 30px;
+                border-radius: 22px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
@@ -566,9 +562,9 @@
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 35px 35px;
-                top: 32%;
-                bottom: -22%;
+                border-radius: 0 0 30px 30px;
+                top: 35%;
+                bottom: -24%;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -615,14 +611,14 @@
                 width: 55%;
                 max-width: 320px;
                 height: 18%;
-                border-radius: 25px;
+                border-radius: 22px;
                 margin-bottom: 1.5%;
             }
             .box-status {
                 width: 55%;
                 max-width: 320px;
                 height: 7%;
-                border-radius: 20px;
+                border-radius: 18px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
@@ -632,9 +628,9 @@
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 25px 25px;
-                top: 32%;
-                bottom: -18%;
+                border-radius: 0 0 22px 22px;
+                top: 35%;
+                bottom: -20%;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
@@ -709,14 +705,14 @@
                 width: 50%;
                 max-width: 500px;
                 height: 22%;
-                border-radius: 45px;
+                border-radius: 35px;
                 margin-bottom: 1.8%;
             }
             .box-status {
                 width: 50%;
                 max-width: 500px;
                 height: 8%;
-                border-radius: 35px;
+                border-radius: 25px;
             }
             .box-menu .label-menu,
             .box-pesan .label-pesan,
@@ -726,9 +722,9 @@
             }
             .box-menu .menu-images,
             .box-pesan .pesan-images {
-                border-radius: 0 0 45px 45px;
-                top: 35%;
-                bottom: -20%;
+                border-radius: 0 0 35px 35px;
+                top: 38%;
+                bottom: -22%;
             }
             .box-menu .menu-images img,
             .box-pesan .pesan-images img {
