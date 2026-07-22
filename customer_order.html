@@ -53,6 +53,65 @@
             z-index: 2;
         }
 
+        /* ===== DEKORASI CABE & TOMAT (DARI FILE LOKAL/GITHUB) ===== */
+        .decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .decorations img {
+            position: absolute;
+            opacity: 0.6;
+        }
+
+        /* Tomat kiri atas */
+        .decorations .tomat-atas-kiri {
+            width: clamp(60px, 15vw, 250px);
+            left: -2%;
+            top: -2%;
+        }
+
+        /* Tomat kanan bawah */
+        .decorations .tomat1-bawah-kanan {
+            width: clamp(60px, 15vw, 250px);
+            right: -2%;
+            bottom: -2%;
+        }
+
+        /* Cabe 2 kanan atas */
+        .decorations .cabe2-atas-kanan {
+            width: clamp(50px, 12vw, 200px);
+            right: -2%;
+            top: -2%;
+        }
+
+        /* Cabe 2.1 overlay kanan atas */
+        .decorations .cabe21-atas-kanan {
+            width: clamp(50px, 12vw, 200px);
+            right: 8%;
+            top: 4%;
+        }
+
+        /* Cabe 1 kiri bawah */
+        .decorations .cabe1-bawah-kiri {
+            width: clamp(50px, 12vw, 200px);
+            left: -2%;
+            bottom: -2%;
+        }
+
+        /* Cabe 1.1 overlay kiri bawah */
+        .decorations .cabe11-bawah-kiri {
+            width: clamp(50px, 12vw, 200px);
+            left: 8%;
+            bottom: 4%;
+        }
+
         /* ===== HEADER: Logo Kiri + Teks Kanan ===== */
         .header-top {
             position: relative;
@@ -181,6 +240,24 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
+        /* ===== GAMBAR MENU DI DALAM BUTTON MENU (DARI SUPABASE) ===== */
+        .box-menu .menu-images {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 3;
+            opacity: 0.3;
+        }
+        .box-menu .menu-images img {
+            width: clamp(40px, 6%, 80px);
+            height: clamp(40px, 6%, 80px);
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
 
         /* ===== BOX PESAN ===== */
         .box-pesan {
@@ -225,6 +302,24 @@
             z-index: 2;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
+        }
+        /* ===== GAMBAR MENU DI DALAM BUTTON PESAN (DARI SUPABASE) ===== */
+        .box-pesan .pesan-images {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 3;
+            opacity: 0.3;
+        }
+        .box-pesan .pesan-images img {
+            width: clamp(40px, 6%, 80px);
+            height: clamp(40px, 6%, 80px);
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
         }
 
         /* ===== BOX STATUS ===== */
@@ -291,6 +386,11 @@
                 padding: 10px 5% 20px;
                 gap: 0;
             }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(30px, 5%, 60px);
+                height: clamp(30px, 5%, 60px);
+            }
         }
 
         /* ===== LANDSCAPE ===== */
@@ -351,6 +451,11 @@
             .box-status .label-status {
                 font-size: clamp(14px, 2.8%, 32px);
             }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(25px, 4%, 50px);
+                height: clamp(25px, 4%, 50px);
+            }
         }
 
         /* ===== HP PORTRAIT ===== */
@@ -400,6 +505,11 @@
             .box-status {
                 height: 22%;
             }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(25px, 4%, 45px);
+                height: clamp(25px, 4%, 45px);
+            }
         }
 
         /* ===== HP KECIL PORTRAIT ===== */
@@ -447,6 +557,11 @@
             .box-status {
                 height: 20%;
             }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(20px, 3.5%, 35px);
+                height: clamp(20px, 3.5%, 35px);
+            }
         }
 
         /* ===== TABLET PORTRAIT ===== */
@@ -490,6 +605,11 @@
                 padding: 5px 16px;
                 font-size: 14px;
                 top: calc(env(safe-area-inset-top, 10px) + 48px);
+            }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(50px, 6%, 80px);
+                height: clamp(50px, 6%, 80px);
             }
         }
 
@@ -539,6 +659,11 @@
                 font-size: 9px;
                 top: calc(env(safe-area-inset-top, 6px) + 32px);
             }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(35px, 4%, 55px);
+                height: clamp(35px, 4%, 55px);
+            }
         }
 
         /* ===== DESKTOP LANDSCAPE ===== */
@@ -582,6 +707,11 @@
                 padding: 3px 12px;
                 font-size: 11px;
                 top: calc(env(safe-area-inset-top, 8px) + 36px);
+            }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(40px, 5%, 70px);
+                height: clamp(40px, 5%, 70px);
             }
         }
 
@@ -642,6 +772,11 @@
                 padding: 4px 5% 8px;
                 padding-bottom: env(safe-area-inset-bottom, 8px);
             }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                width: clamp(18px, 3%, 30px);
+                height: clamp(18px, 3%, 30px);
+            }
         }
 
         /* Fallback untuk browser yang tidak support safe-area */
@@ -667,6 +802,22 @@
         <div class="bg-utama"></div>
         <div class="overlay"></div>
 
+        <!-- ===== DEKORASI CABE & TOMAT ===== -->
+        <div class="decorations">
+            <!-- Tomat kiri atas -->
+            <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+            <!-- Cabe 2 kanan atas -->
+            <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <!-- Cabe 2.1 overlay -->
+            <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <!-- Cabe 1 kiri bawah -->
+            <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <!-- Cabe 1.1 overlay -->
+            <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
+            <!-- Tomat kanan bawah -->
+            <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+        </div>
+
         <!-- Meja & Nama -->
         <div class="meja-info" id="mejaInfo">Meja <span id="mejaNumber">1</span></div>
         <div class="customer-name-display" id="customerNameDisplay"><span id="namaCustomer">Customer</span></div>
@@ -685,12 +836,24 @@
             <div class="box-menu" onclick="window.location.href='customer_menu_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
                 <div class="bg-hijau"></div>
                 <div class="label-menu">MENU</div>
+                <!-- GAMBAR MENU DARI SUPABASE -->
+                <div class="menu-images">
+                    <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/igabakar.png" alt="Iga Bakar" loading="lazy" onerror="this.style.display='none'">
+                    <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/satepotong.png" alt="Sate Potong" loading="lazy" onerror="this.style.display='none'">
+                    <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/tengkleng.png" alt="Tengkleng" loading="lazy" onerror="this.style.display='none'">
+                </div>
             </div>
 
             <!-- PESAN -->
             <div class="box-pesan" onclick="window.location.href='customer_order_list.html?meja=' + getMeja() + '&nama=' + encodeURIComponent(getNama())">
                 <div class="bg-hijau"></div>
                 <div class="label-pesan">PESAN</div>
+                <!-- GAMBAR MENU DARI SUPABASE -->
+                <div class="pesan-images">
+                    <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/sopbakar.png" alt="Sop Bakar" loading="lazy" onerror="this.style.display='none'">
+                    <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/krengsengan.png" alt="Krengsengan" loading="lazy" onerror="this.style.display='none'">
+                    <img src="https://vxgagtasyfpzvlfqcibk.supabase.co/storage/v1/object/public/menu-images/nasigoreng.png" alt="Nasi Goreng" loading="lazy" onerror="this.style.display='none'">
+                </div>
             </div>
 
             <!-- STATUS PESANAN -->
