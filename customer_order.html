@@ -220,12 +220,11 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Tambah padding top biar gambar turun */
         .box-menu .menu-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -10%;
+            bottom: -15%;
             top: 25%;
             display: flex;
             align-items: flex-end;
@@ -235,32 +234,36 @@
             overflow: hidden;
             border-radius: 0 0 65px 65px;
             width: 100%;
-            padding-top: 10px;
+            padding-top: 18px;
         }
         .box-menu .menu-images img {
             height: 100%;
             width: 100%;
             object-fit: cover;
             border: none;
-            flex: 1;
+            flex: 1.1;
             min-width: 0;
         }
         .box-menu .menu-images img:nth-child(1) {
-            flex: 1;
+            flex: 1.15;
             height: 100%;
             z-index: 1;
+            margin-right: -5%;
+            margin-left: -3%;
         }
         .box-menu .menu-images img:nth-child(2) {
-            flex: 1;
+            flex: 1.2;
             height: 100%;
             z-index: 3;
-            margin-left: -10%;
-            margin-right: -10%;
+            margin-left: -8%;
+            margin-right: -8%;
         }
         .box-menu .menu-images img:nth-child(3) {
-            flex: 1;
+            flex: 1.15;
             height: 100%;
             z-index: 2;
+            margin-left: -3%;
+            margin-right: -5%;
         }
 
         /* ===== BOX PESAN ===== */
@@ -293,12 +296,11 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             letter-spacing: 2px;
         }
-        /* Tambah padding top biar gambar turun */
         .box-pesan .pesan-images {
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -10%;
+            bottom: -15%;
             top: 25%;
             display: flex;
             align-items: flex-end;
@@ -308,32 +310,36 @@
             overflow: hidden;
             border-radius: 0 0 65px 65px;
             width: 100%;
-            padding-top: 10px;
+            padding-top: 18px;
         }
         .box-pesan .pesan-images img {
             height: 100%;
             width: 100%;
             object-fit: cover;
             border: none;
-            flex: 1;
+            flex: 1.1;
             min-width: 0;
         }
         .box-pesan .pesan-images img:nth-child(1) {
-            flex: 1;
+            flex: 1.15;
             height: 100%;
             z-index: 1;
+            margin-right: -5%;
+            margin-left: -3%;
         }
         .box-pesan .pesan-images img:nth-child(2) {
-            flex: 1;
+            flex: 1.2;
             height: 100%;
             z-index: 3;
-            margin-left: -10%;
-            margin-right: -10%;
+            margin-left: -8%;
+            margin-right: -8%;
         }
         .box-pesan .pesan-images img:nth-child(3) {
-            flex: 1;
+            flex: 1.15;
             height: 100%;
             z-index: 2;
+            margin-left: -3%;
+            margin-right: -5%;
         }
 
         /* ===== BOX STATUS ===== */
@@ -390,13 +396,30 @@
             .box-pesan .pesan-images {
                 border-radius: 0 0 65px 65px;
                 top: 22%;
-                bottom: -5%;
-                padding-top: 8px;
+                bottom: -18%;
+                padding-top: 15px;
+            }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                flex: 1.15;
+            }
+            .box-menu .menu-images img:nth-child(1),
+            .box-pesan .pesan-images img:nth-child(1) {
+                flex: 1.2;
+                margin-right: -8%;
+                margin-left: -5%;
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -15%;
-                margin-right: -15%;
+                flex: 1.25;
+                margin-left: -12%;
+                margin-right: -12%;
+            }
+            .box-menu .menu-images img:nth-child(3),
+            .box-pesan .pesan-images img:nth-child(3) {
+                flex: 1.2;
+                margin-left: -5%;
+                margin-right: -8%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -433,13 +456,30 @@
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
                 top: 22%;
-                bottom: -5%;
-                padding-top: 6px;
+                bottom: -18%;
+                padding-top: 12px;
+            }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                flex: 1.2;
+            }
+            .box-menu .menu-images img:nth-child(1),
+            .box-pesan .pesan-images img:nth-child(1) {
+                flex: 1.25;
+                margin-right: -10%;
+                margin-left: -6%;
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -18%;
-                margin-right: -18%;
+                flex: 1.3;
+                margin-left: -15%;
+                margin-right: -15%;
+            }
+            .box-menu .menu-images img:nth-child(3),
+            .box-pesan .pesan-images img:nth-child(3) {
+                flex: 1.25;
+                margin-left: -6%;
+                margin-right: -10%;
             }
             .meja-info {
                 padding: 3px 10px;
@@ -528,13 +568,30 @@
             .box-pesan .pesan-images {
                 border-radius: 0 0 35px 35px;
                 top: 22%;
-                bottom: -5%;
-                padding-top: 8px;
+                bottom: -18%;
+                padding-top: 15px;
+            }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                flex: 1.15;
+            }
+            .box-menu .menu-images img:nth-child(1),
+            .box-pesan .pesan-images img:nth-child(1) {
+                flex: 1.2;
+                margin-right: -8%;
+                margin-left: -5%;
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
+                flex: 1.25;
                 margin-left: -12%;
                 margin-right: -12%;
+            }
+            .box-menu .menu-images img:nth-child(3),
+            .box-pesan .pesan-images img:nth-child(3) {
+                flex: 1.2;
+                margin-left: -5%;
+                margin-right: -8%;
             }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
@@ -578,13 +635,30 @@
             .box-pesan .pesan-images {
                 border-radius: 0 0 25px 25px;
                 top: 22%;
-                bottom: -5%;
-                padding-top: 6px;
+                bottom: -15%;
+                padding-top: 10px;
+            }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                flex: 1.1;
+            }
+            .box-menu .menu-images img:nth-child(1),
+            .box-pesan .pesan-images img:nth-child(1) {
+                flex: 1.15;
+                margin-right: -6%;
+                margin-left: -4%;
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
+                flex: 1.2;
                 margin-left: -10%;
                 margin-right: -10%;
+            }
+            .box-menu .menu-images img:nth-child(3),
+            .box-pesan .pesan-images img:nth-child(3) {
+                flex: 1.15;
+                margin-left: -4%;
+                margin-right: -6%;
             }
             .header-top .logo-left {
                 width: 40px;
@@ -656,13 +730,30 @@
             .box-pesan .pesan-images {
                 border-radius: 0 0 45px 45px;
                 top: 25%;
-                bottom: -5%;
-                padding-top: 10px;
+                bottom: -18%;
+                padding-top: 18px;
+            }
+            .box-menu .menu-images img,
+            .box-pesan .pesan-images img {
+                flex: 1.1;
+            }
+            .box-menu .menu-images img:nth-child(1),
+            .box-pesan .pesan-images img:nth-child(1) {
+                flex: 1.15;
+                margin-right: -5%;
+                margin-left: -3%;
             }
             .box-menu .menu-images img:nth-child(2),
             .box-pesan .pesan-images img:nth-child(2) {
-                margin-left: -10%;
-                margin-right: -10%;
+                flex: 1.2;
+                margin-left: -8%;
+                margin-right: -8%;
+            }
+            .box-menu .menu-images img:nth-child(3),
+            .box-pesan .pesan-images img:nth-child(3) {
+                flex: 1.15;
+                margin-left: -3%;
+                margin-right: -5%;
             }
             .header-top .logo-left {
                 width: clamp(80px, 20%, 220px);
