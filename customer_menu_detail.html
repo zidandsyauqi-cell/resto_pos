@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     <title>Jangkung Order - Detail Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
@@ -15,33 +15,36 @@
         html,
         body {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             background: #0a0a0a;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
+        
         body {
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 0;
+            min-height: 100vh;
         }
 
         .detail-container {
             width: 100%;
-            height: 100%;
+            max-width: 1200px;
+            min-height: 100vh;
             position: relative;
             background: transparent;
             overflow: hidden;
-            border-radius: 0;
-            box-shadow: none;
             display: flex;
             flex-direction: column;
+            margin: 0 auto;
         }
 
         .bg-utama {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
@@ -51,7 +54,7 @@
         }
 
         .overlay {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
@@ -62,7 +65,7 @@
         }
 
         .loading-overlay {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
@@ -134,6 +137,9 @@
             justify-content: center;
             -webkit-tap-highlight-color: transparent;
         }
+        .btn-back:hover {
+            transform: scale(1.1);
+        }
         .btn-back:active {
             transform: scale(0.92);
         }
@@ -162,24 +168,39 @@
             color: #98C81C;
         }
 
-        /* ===== GAMBAR MENU - TIDAK KEPOTONG ===== */
-        .menu-image-wrapper {
+        /* ===== MAIN CONTENT WRAPPER ===== */
+        .main-content {
             position: relative;
-            width: 100%;
-            height: 48%;
-            flex-shrink: 0;
+            z-index: 2;
+            display: flex;
+            flex: 1;
+            min-height: 0;
+            padding: 0 20px 20px 20px;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* ===== GAMBAR MENU ===== */
+        .menu-image-wrapper {
+            flex: 1;
+            min-width: 0;
+            max-width: 50%;
+            position: relative;
             overflow: hidden;
             background: transparent;
-            z-index: 2;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 20px;
         }
         .menu-image-wrapper img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            max-height: 80vh;
             object-fit: contain;
             object-position: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
         .menu-image-wrapper .image-overlay {
             position: absolute;
@@ -189,21 +210,23 @@
             left: 0;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 100%);
             pointer-events: none;
+            border-radius: 20px;
         }
 
         /* ===== KONTEN ===== */
         .content-area {
             flex: 1;
+            min-width: 0;
+            max-width: 50%;
             position: relative;
             z-index: 5;
-            padding: 8px 20px 20px 20px;
-            padding-bottom: env(safe-area-inset-bottom, 20px);
+            padding: 10px 0;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             display: flex;
             flex-direction: column;
             background: transparent;
-            min-height: 0;
+            max-height: 80vh;
         }
         .content-area::-webkit-scrollbar {
             width: 3px;
@@ -224,7 +247,8 @@
             font-weight: 700;
             text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
             line-height: 1.2;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            word-break: break-word;
         }
 
         .menu-desc {
@@ -237,7 +261,8 @@
             line-height: 1.6;
             flex: 1;
             overflow-y: auto;
-            padding-right: 6px;
+            padding-right: 10px;
+            word-wrap: break-word;
         }
         .menu-desc::-webkit-scrollbar {
             width: 3px;
@@ -255,7 +280,7 @@
         .btn-back-menu {
             width: 100%;
             padding: 14px;
-            margin-top: 12px;
+            margin-top: 16px;
             background: #98C81C;
             border: 2px solid white;
             border-radius: 50px;
@@ -272,6 +297,11 @@
             flex-shrink: 0;
             -webkit-tap-highlight-color: transparent;
         }
+        .btn-back-menu:hover {
+            background: #7aa814;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(152, 200, 28, 0.4);
+        }
         .btn-back-menu:active {
             background: #7aa814;
             transform: scale(0.98);
@@ -280,7 +310,7 @@
 
         /* ===== ERROR ===== */
         .error-display {
-            position: absolute;
+            position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -291,7 +321,8 @@
             padding: 24px 30px;
             border-radius: 20px;
             border: 2px solid #e74c3c;
-            max-width: 85%;
+            max-width: 90%;
+            width: 400px;
         }
         .error-display .error-icon {
             font-size: 40px;
@@ -322,6 +353,10 @@
             display: inline-block;
             -webkit-tap-highlight-color: transparent;
         }
+        .error-display .btn-retry:hover {
+            background: #7aa814;
+            transform: translateY(-2px);
+        }
         .error-display .btn-retry:active {
             background: #7aa814;
             transform: scale(0.95);
@@ -329,8 +364,39 @@
 
         /* ===== RESPONSIVE ===== */
 
-        /* HP Portrait */
-        @media screen and (max-width: 767px) and (orientation: portrait) {
+        /* Tablet & Desktop Default (2 kolom) */
+        @media screen and (min-width: 769px) {
+            .main-content {
+                flex-direction: row;
+                padding: 0 30px 30px 30px;
+            }
+        }
+
+        /* HP Portrait & Tablet Kecil - 1 kolom */
+        @media screen and (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                padding: 0 16px 16px 16px;
+                gap: 16px;
+            }
+            
+            .menu-image-wrapper {
+                max-width: 100%;
+                width: 100%;
+                max-height: 40vh;
+            }
+            .menu-image-wrapper img {
+                max-height: 40vh;
+                width: auto;
+            }
+            
+            .content-area {
+                max-width: 100%;
+                width: 100%;
+                max-height: 50vh;
+                padding: 5px 0;
+            }
+
             .header-top {
                 padding: 8px 12px;
                 padding-top: env(safe-area-inset-top, 8px);
@@ -348,16 +414,9 @@
             .brand-text {
                 font-size: 16px;
             }
-            .menu-image-wrapper {
-                height: 40%;
-            }
-            .content-area {
-                padding: 6px 14px 14px 14px;
-                padding-bottom: env(safe-area-inset-bottom, 14px);
-            }
             .menu-name {
                 font-size: 28px;
-                margin-bottom: 4px;
+                margin-bottom: 8px;
             }
             .menu-desc {
                 font-size: 15px;
@@ -365,12 +424,12 @@
             .btn-back-menu {
                 font-size: 17px;
                 padding: 11px;
-                margin-top: 8px;
+                margin-top: 10px;
             }
         }
 
         /* HP Portrait Kecil */
-        @media screen and (max-width: 480px) and (orientation: portrait) {
+        @media screen and (max-width: 480px) {
             .header-top {
                 padding: 6px 10px;
                 padding-top: env(safe-area-inset-top, 6px);
@@ -388,16 +447,22 @@
             .brand-text {
                 font-size: 13px;
             }
+            .main-content {
+                padding: 0 12px 12px 12px;
+                gap: 12px;
+            }
             .menu-image-wrapper {
-                height: 34%;
+                max-height: 35vh;
+            }
+            .menu-image-wrapper img {
+                max-height: 35vh;
             }
             .content-area {
-                padding: 4px 12px 12px 12px;
-                padding-bottom: env(safe-area-inset-bottom, 12px);
+                max-height: 45vh;
             }
             .menu-name {
                 font-size: 22px;
-                margin-bottom: 4px;
+                margin-bottom: 6px;
             }
             .menu-desc {
                 font-size: 13px;
@@ -406,10 +471,11 @@
             .btn-back-menu {
                 font-size: 14px;
                 padding: 9px;
-                margin-top: 6px;
+                margin-top: 8px;
             }
             .error-display {
                 padding: 16px 20px;
+                width: 90%;
             }
             .error-display .error-icon {
                 font-size: 30px;
@@ -422,31 +488,7 @@
             }
         }
 
-        /* ===== LANDSCAPE - TEKS LEBIH KE ATAS ===== */
-        @media screen and (orientation: landscape) {
-            .menu-image-wrapper {
-                height: 52%;
-            }
-            .content-area {
-                padding: 4px 20px 10px 20px;
-                padding-bottom: env(safe-area-inset-bottom, 10px);
-            }
-            .menu-name {
-                font-size: 28px;
-                margin-bottom: 4px;
-            }
-            .menu-desc {
-                font-size: 14px;
-                line-height: 1.4;
-            }
-            .btn-back-menu {
-                font-size: 16px;
-                padding: 10px;
-                margin-top: 6px;
-            }
-        }
-
-        /* Landscape HP Kecil */
+        /* Landscape HP */
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .header-top {
                 padding: 4px 12px;
@@ -465,30 +507,61 @@
             .brand-text {
                 font-size: 12px;
             }
+            .main-content {
+                padding: 0 12px 8px 12px;
+                gap: 12px;
+                flex-direction: row;
+            }
             .menu-image-wrapper {
-                height: 48%;
+                max-width: 40%;
+                max-height: 60vh;
+            }
+            .menu-image-wrapper img {
+                max-height: 60vh;
             }
             .content-area {
-                padding: 2px 14px 8px 14px;
-                padding-bottom: env(safe-area-inset-bottom, 8px);
+                max-width: 60%;
+                max-height: 60vh;
             }
             .menu-name {
                 font-size: 18px;
-                margin-bottom: 2px;
+                margin-bottom: 4px;
             }
             .menu-desc {
-                font-size: 11px;
-                line-height: 1.3;
+                font-size: 12px;
+                line-height: 1.4;
             }
             .btn-back-menu {
                 font-size: 12px;
                 padding: 6px;
+                margin-top: 6px;
+            }
+        }
+
+        /* Landscape HP Kecil */
+        @media screen and (max-height: 400px) and (orientation: landscape) {
+            .menu-image-wrapper {
+                max-width: 35%;
+            }
+            .content-area {
+                max-width: 65%;
+            }
+            .menu-name {
+                font-size: 15px;
+            }
+            .menu-desc {
+                font-size: 10px;
+                line-height: 1.3;
+            }
+            .btn-back-menu {
+                font-size: 10px;
+                padding: 4px;
                 margin-top: 4px;
             }
         }
 
-        /* ===== TABLET PORTRAIT ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+        /* Tablet Portrait */
+        @media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
             .header-top {
                 padding: 14px 24px;
                 padding-top: env(safe-area-inset-top, 14px);
@@ -505,29 +578,38 @@
             .brand-text {
                 font-size: 26px;
             }
+            .main-content {
+                padding: 0 30px 30px 30px;
+                gap: 24px;
+                flex-direction: column;
+            }
             .menu-image-wrapper {
-                height: 44%;
+                max-width: 100%;
+                max-height: 45vh;
+            }
+            .menu-image-wrapper img {
+                max-height: 45vh;
             }
             .content-area {
-                padding: 10px 28px 20px 28px;
-                padding-bottom: env(safe-area-inset-bottom, 20px);
+                max-width: 100%;
+                max-height: 40vh;
             }
             .menu-name {
-                font-size: 44px;
-                margin-bottom: 8px;
+                font-size: 38px;
+                margin-bottom: 10px;
             }
             .menu-desc {
-                font-size: 20px;
+                font-size: 18px;
             }
             .btn-back-menu {
-                font-size: 24px;
-                padding: 16px;
+                font-size: 20px;
+                padding: 14px;
                 margin-top: 12px;
             }
         }
 
-        /* ===== TABLET LANDSCAPE ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        /* Tablet Landscape */
+        @media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
             .header-top {
                 padding: 10px 20px;
                 padding-top: env(safe-area-inset-top, 10px);
@@ -544,16 +626,19 @@
             .brand-text {
                 font-size: 20px;
             }
+            .main-content {
+                padding: 0 24px 24px 24px;
+                gap: 24px;
+            }
             .menu-image-wrapper {
-                height: 50%;
+                max-width: 45%;
             }
             .content-area {
-                padding: 6px 24px 14px 24px;
-                padding-bottom: env(safe-area-inset-bottom, 14px);
+                max-width: 55%;
             }
             .menu-name {
                 font-size: 32px;
-                margin-bottom: 4px;
+                margin-bottom: 8px;
             }
             .menu-desc {
                 font-size: 16px;
@@ -561,57 +646,51 @@
             .btn-back-menu {
                 font-size: 18px;
                 padding: 12px;
-                margin-top: 8px;
+                margin-top: 10px;
             }
         }
 
-        /* ===== DESKTOP ===== */
-        @media screen and (min-width: 1025px) and (orientation: landscape) {
+        /* Desktop Large */
+        @media screen and (min-width: 1200px) {
             .detail-container {
-                max-width: 500px;
-                max-height: 900px;
-                border-radius: 24px;
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-                align-self: center;
-                background: rgba(0, 0, 0, 0.15);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.05);
+                max-width: 1400px;
             }
-            .header-top {
-                padding: 12px 20px;
-                padding-top: env(safe-area-inset-top, 12px);
-                min-height: 56px;
-            }
-            .btn-back {
-                font-size: 28px;
-                min-width: 48px;
-                min-height: 48px;
-            }
-            .logo-header img {
-                width: 40px;
-            }
-            .brand-text {
-                font-size: 22px;
-            }
-            .menu-image-wrapper {
-                height: 44%;
-            }
-            .content-area {
-                padding: 8px 24px 16px 24px;
-                padding-bottom: env(safe-area-inset-bottom, 16px);
+            .main-content {
+                padding: 0 40px 40px 40px;
+                gap: 50px;
             }
             .menu-name {
-                font-size: 34px;
-                margin-bottom: 6px;
+                font-size: 52px;
             }
             .menu-desc {
-                font-size: 16px;
+                font-size: 22px;
             }
             .btn-back-menu {
-                font-size: 19px;
-                padding: 13px;
-                margin-top: 8px;
+                font-size: 24px;
+                padding: 16px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Desktop Ultra Wide */
+        @media screen and (min-width: 1920px) {
+            .detail-container {
+                max-width: 1600px;
+            }
+            .main-content {
+                padding: 0 60px 60px 60px;
+                gap: 60px;
+            }
+            .menu-name {
+                font-size: 64px;
+            }
+            .menu-desc {
+                font-size: 26px;
+            }
+            .btn-back-menu {
+                font-size: 28px;
+                padding: 20px;
+                margin-top: 24px;
             }
         }
 
@@ -623,6 +702,12 @@
             .content-area {
                 padding-bottom: 20px;
             }
+        }
+
+        /* Dark mode untuk scrollbar di Firefox */
+        * {
+            scrollbar-color: #98C81C rgba(255, 255, 255, 0.05);
+            scrollbar-width: thin;
         }
     </style>
 </head>
@@ -639,25 +724,28 @@
         <!-- ===== HEADER ===== -->
         <div class="header-top">
             <div class="header-left">
-                <button class="btn-back" onclick="goBack()">←</button>
-                <div class="logo-header" onclick="goToDashboard()">
+                <button class="btn-back" onclick="goBack()" aria-label="Kembali">←</button>
+                <div class="logo-header" onclick="goToDashboard()" role="button" tabindex="0">
                     <img src="logo.png" alt="Logo Jangkung" loading="lazy" onerror="this.src='https://placehold.co/50x50/98C81C/ffffff?text=🍽️'" />
                     <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== GAMBAR ===== -->
-        <div class="menu-image-wrapper">
-            <img src="" alt="Menu" id="menuImage" />
-            <div class="image-overlay"></div>
-        </div>
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="main-content">
+            <!-- Gambar -->
+            <div class="menu-image-wrapper">
+                <img src="" alt="Menu" id="menuImage" />
+                <div class="image-overlay"></div>
+            </div>
 
-        <!-- ===== KONTEN ===== -->
-        <div class="content-area">
-            <div class="menu-name" id="menuName">-</div>
-            <div class="menu-desc" id="menuDesc">Memuat deskripsi...</div>
-            <a class="btn-back-menu" href="#" id="btnBackMenu">📋 KEMBALI KE MENU</a>
+            <!-- Konten -->
+            <div class="content-area">
+                <div class="menu-name" id="menuName">-</div>
+                <div class="menu-desc" id="menuDesc">Memuat deskripsi...</div>
+                <a class="btn-back-menu" href="#" id="btnBackMenu">📋 KEMBALI KE MENU</a>
+            </div>
         </div>
 
         <!-- ===== ERROR ===== -->
@@ -780,7 +868,7 @@
                 document.getElementById('menuName').textContent = data.nama_menu ? data.nama_menu.toUpperCase() : '-';
                 document.getElementById('menuDesc').textContent = data.detail || 'Tidak ada deskripsi untuk menu ini.';
 
-                let imageUrl = 'https://placehold.co/500x500/1a1a1a/ffffff?text=' + encodeURIComponent(data.nama_menu ||
+                let imageUrl = 'https://placehold.co/800x800/1a1a1a/ffffff?text=' + encodeURIComponent(data.nama_menu ||
                     'Menu');
                 if (data.gambar) {
                     const url = getImageUrl(data.gambar);
