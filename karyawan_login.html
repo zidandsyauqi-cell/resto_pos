@@ -59,6 +59,7 @@
             z-index: 1;
         }
 
+        /* ===== DEKORASI CABE & TOMAT (PERSIS SEPERTI REFERENSI) ===== */
         .decorations {
             position: absolute;
             width: 100%;
@@ -75,6 +76,7 @@
             opacity: 1;
         }
 
+        /* ===== TOMAT ===== */
         .decorations .tomat-atas-kiri {
             width: clamp(60px, 15vw, 250px);
             left: 0%;
@@ -87,6 +89,7 @@
             bottom: 0%;
         }
 
+        /* ===== CABE ===== */
         .decorations .cabe2-atas-kanan {
             width: clamp(50px, 12vw, 200px);
             right: 0%;
@@ -252,6 +255,8 @@
         }
 
         /* ===== RESPONSIVE ===== */
+
+        /* Portrait HP */
         @media screen and (orientation: portrait) {
             .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
             .login-form { max-width: 420px; }
@@ -288,6 +293,7 @@
             }
         }
 
+        /* ===== LANDSCAPE ===== */
         @media screen and (orientation: landscape) {
             .karyawan-container { width: 100vw; height: 100vh; border-radius: 0; }
             .login-form { max-width: 380px; }
@@ -352,6 +358,7 @@
         <div class="bg-utama"></div>
         <div class="overlay"></div>
 
+        <!-- ===== DEKORASI CABE & TOMAT (PERSIS SEPERTI REFERENSI) ===== -->
         <div class="decorations">
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
@@ -391,56 +398,18 @@
 
     <script>
         // ============================================
-        // PASSWORD KARYAWAN - Ganti sesuai keinginan
+        // PASSWORD KARYAWAN (Ganti sesuai keinginan)
         // ============================================
         const KARYAWAN_PASSWORD = 'admin';
-        const SESSION_KEY = 'karyawan_session';
 
-        // ============================================
-        // FUNGSI SESSION
-        // ============================================
-        function createSession() {
-            localStorage.setItem(SESSION_KEY, 'true');
-            sessionStorage.setItem('karyawan_session_start', Date.now().toString());
-        }
-
-        function clearAllSession() {
-            localStorage.removeItem(SESSION_KEY);
-            sessionStorage.removeItem('karyawan_session_start');
-        }
-
-        function isSessionValid() {
-            const session = localStorage.getItem(SESSION_KEY);
-            const sessionStart = sessionStorage.getItem('karyawan_session_start');
-            
-            if (!session || !sessionStart) return false;
-            
-            // Session expired setelah 30 menit
-            const elapsed = Date.now() - parseInt(sessionStart);
-            if (elapsed > 30 * 60 * 1000) {
-                clearAllSession();
-                return false;
-            }
-            
-            return true;
-        }
-
-        // ============================================
-        // NAVIGASI
-        // ============================================
         function goBack() {
             window.history.back();
         }
 
         function goToHome() {
-            // Hapus session saat ke index
-            clearAllSession();
-            window.location.href = 'index.html';
+            window.location.href = 'login.html';
         }
 
-        // ============================================
-        // HANDLE LOGIN
-        // ============================================
         function handleLogin() {
             const password = document.getElementById('passwordInput').value.trim();
             const errorMsg = document.getElementById('errorMsg');
@@ -455,8 +424,14 @@
             }
             
             if (password === KARYAWAN_PASSWORD) {
-                createSession();
+                // Login berhasil - set session
+                localStorage.setItem('karyawan_logged_in', 'true');
+                localStorage.setItem('login_time', Date.now().toString());
+                localStorage.setItem('karyawan_nama', 'Admin');
+                
                 errorMsg.classList.remove('show');
+                
+                // Redirect ke dashboard karyawan
                 window.location.href = 'dashboard.html';
             } else {
                 errorMsg.textContent = '⚠️ Error: password salah, coba lagi';
@@ -470,22 +445,16 @@
             return false;
         }
 
-        // ============================================
-        // EVENT LISTENERS
-        // ============================================
+        // Enter key untuk login
         document.getElementById('passwordInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleLogin();
             }
         });
 
-        // ============================================
-        // CEK SESSION SAAT LOAD
-        // ============================================
-        if (isSessionValid()) {
+        // Jika sudah login, langsung redirect
+        if (localStorage.getItem('karyawan_logged_in') === 'true') {
             window.location.href = 'dashboard.html';
-        } else {
-            clearAllSession();
         }
     </script>
 </body>
