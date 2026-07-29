@@ -467,7 +467,6 @@
             gap: 8px;
             flex: 1;
             min-width: 0;
-            cursor: pointer;
         }
         .menu-item .item-left .item-img {
             width: 40px;
@@ -476,11 +475,17 @@
             object-fit: cover;
             flex-shrink: 0;
             background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
         }
         .menu-item .item-left .item-info {
             min-width: 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
         }
-        .menu-item .item-left .item-name {
+        .menu-item .item-left .item-info .item-name {
             color: white;
             font-size: 14px;
             font-family: 'Schoolbell', cursive;
@@ -489,23 +494,45 @@
             overflow: hidden;
             text-overflow: ellipsis;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
         }
-        .menu-item .item-left .item-price {
-            color: white;
+        .menu-item .item-left .item-info .item-price {
+            color: #98C81C;
             font-size: 12px;
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
         }
-        .menu-item .item-left .variant-badge {
+        .menu-item .item-left .item-info .variant-badge {
             font-size: 8px;
             color: #98C81C;
             background: rgba(152, 200, 28, 0.15);
             padding: 1px 6px;
             border-radius: 50px;
             display: inline-block;
-            margin-left: 4px;
             white-space: nowrap;
+        }
+        .menu-item .item-left .item-info .btn-detail {
+            padding: 2px 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-size: 9px;
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            white-space: nowrap;
+            min-height: 24px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        .menu-item .item-left .item-info .btn-detail:active {
+            transform: scale(0.95);
+            background: rgba(152, 200, 28, 0.3);
+            border-color: #98C81C;
         }
 
         .menu-item .item-actions {
@@ -574,10 +601,10 @@
         .menu-item .item-actions .btn-plus:active {
             transform: scale(0.9);
         }
-        .menu-item .item-actions .btn-detail {
+        .menu-item .item-actions .btn-variant {
             padding: 2px 10px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: #98C81C;
+            border: 2px solid white;
             border-radius: 50px;
             color: white;
             font-size: 9px;
@@ -588,11 +615,10 @@
             display: flex;
             align-items: center;
             transition: all 0.3s;
+            flex-shrink: 0;
         }
-        .menu-item .item-actions .btn-detail:active {
+        .menu-item .item-actions .btn-variant:active {
             transform: scale(0.95);
-            background: rgba(152, 200, 28, 0.3);
-            border-color: #98C81C;
         }
 
         .empty-state {
@@ -906,7 +932,7 @@
             transform: scale(0.97);
         }
 
-        /* ===== DETAIL MODAL (dari customer_menu_list) ===== */
+        /* ===== DETAIL MODAL ===== */
         .detail-modal {
             position: fixed;
             top: 0;
@@ -1072,11 +1098,16 @@
                 width: 30px;
                 height: 30px;
             }
-            .menu-item .item-left .item-name {
+            .menu-item .item-left .item-info .item-name {
                 font-size: 12px;
             }
-            .menu-item .item-left .item-price {
+            .menu-item .item-left .item-info .item-price {
                 font-size: 10px;
+            }
+            .menu-item .item-left .item-info .btn-detail {
+                font-size: 8px;
+                padding: 1px 8px;
+                min-height: 20px;
             }
             .menu-item .item-actions .btn-minus,
             .menu-item .item-actions .btn-plus {
@@ -1090,7 +1121,7 @@
                 font-size: 10px;
                 padding: 0 2px;
             }
-            .menu-item .item-actions .btn-detail {
+            .menu-item .item-actions .btn-variant {
                 font-size: 8px;
                 padding: 1px 8px;
                 min-height: 20px;
@@ -1266,7 +1297,7 @@
         let tableIdMap = {};
 
         // ============================================
-        // MAPPING NAMA MENU KE FILE GAMBAR (dari customer_menu_list)
+        // MAPPING NAMA MENU KE FILE GAMBAR
         // ============================================
         const menuImageMap = {
             'Iga Bakar': 'igabakar.png',
@@ -1396,13 +1427,12 @@
         }
 
         // ============================================
-        // FUNGSI DETAIL MODAL (dari customer_menu_list)
+        // FUNGSI DETAIL MODAL
         // ============================================
         function showDetailModal(menuId) {
             const item = menuItems.find(m => m.id === menuId);
             if (!item) return;
 
-            // Ambil gambar
             let imageUrl = 'https://placehold.co/400x300/1a1a1a/ffffff?text=' + encodeURIComponent(item.name);
             const imgUrl = getMenuImageUrl(item.name);
             if (imgUrl) {
@@ -1433,23 +1463,18 @@
         }
 
         function closeDetailAndOrder(menuId) {
-            // Tutup modal detail
             const modal = document.querySelector('.detail-modal');
             if (modal) modal.remove();
 
-            // Cari item di menu
             const item = menuItems.find(m => m.id === menuId);
             if (!item) return;
 
-            // Cek apakah ada varian
             const hasVariants = item.variants && item.variants.length > 0 && !(item.variants.length === 1 && item.variants[0]
                 .name === 'Standar');
 
             if (hasVariants) {
-                // Buka modal varian
                 openVariantModal(menuId);
             } else {
-                // Langsung tambahkan ke keranjang
                 const existing = cart.find(c => c.id === item.id && c.variant === 'Standar');
                 if (existing) {
                     existing.qty += 1;
@@ -1599,21 +1624,22 @@
                         const div = document.createElement('div');
                         div.className = 'menu-item';
                         div.innerHTML = `
-                            <div class="item-left" onclick="showDetailModal(${item.id})">
-                                <img class="item-img" src="${imageUrl}" alt="${item.name}" loading="lazy" onerror="this.src='https://placehold.co/80x80/2d2d2d/ffffff?text=Menu'" />
+                            <div class="item-left">
+                                <img class="item-img" src="${imageUrl}" alt="${item.name}" loading="lazy" onclick="showDetailModal(${item.id})" onerror="this.src='https://placehold.co/80x80/2d2d2d/ffffff?text=Menu'" />
                                 <div class="item-info">
-                                    <div class="item-name">${item.name} ${hasVariants ? '<span class="variant-badge">📌 Varian</span>' : ''}</div>
-                                    <div class="item-price">Rp ${item.price.toLocaleString()}</div>
+                                    <span class="item-name" onclick="showDetailModal(${item.id})">${item.name}</span>
+                                    <button class="btn-detail" onclick="showDetailModal(${item.id})">📋 Detail</button>
+                                    <span class="item-price">Rp ${item.price.toLocaleString()}</span>
+                                    ${hasVariants ? '<span class="variant-badge">📌 Varian</span>' : ''}
                                 </div>
                             </div>
                             <div class="item-actions">
-                                <button class="btn-detail" onclick="event.stopPropagation(); showDetailModal(${item.id})">📋 Detail</button>
                                 ${hasVariants ? `
-                                    <button class="btn-detail" style="background:#98C81C;border-color:#98C81C;color:white;" onclick="event.stopPropagation(); openVariantModal(${item.id})">Pilih</button>
+                                    <button class="btn-variant" onclick="openVariantModal(${item.id})">Pilih</button>
                                 ` : `
-                                    <button class="btn-minus" onclick="event.stopPropagation(); updateCart(${item.id}, -1, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar')">−</button>
+                                    <button class="btn-minus" onclick="updateCart(${item.id}, -1, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar')">−</button>
                                     <input type="number" class="qty-input" id="qty_${item.id}" value="${qty}" min="0" onchange="onCartChange(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar', this.value)" onfocus="this.select()">
-                                    <button class="btn-plus" onclick="event.stopPropagation(); updateCart(${item.id}, 1, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar')">+</button>
+                                    <button class="btn-plus" onclick="updateCart(${item.id}, 1, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar')">+</button>
                                 `}
                             </div>
                         `;
