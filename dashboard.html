@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Jangkung Order - Dashboard</title>
+    <title>Jangkung Order - Karyawan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
         * {
@@ -59,6 +59,7 @@
             z-index: 2;
         }
 
+        /* ===== DEKORASI CABE & TOMAT (PERSIS SEPERTI REFERENSI) ===== */
         .decorations {
             position: absolute;
             width: 100%;
@@ -75,6 +76,7 @@
             opacity: 1;
         }
 
+        /* ===== TOMAT ===== */
         .decorations .tomat-atas-kiri {
             width: clamp(60px, 15vw, 250px);
             left: 0%;
@@ -87,6 +89,7 @@
             bottom: 0%;
         }
 
+        /* ===== CABE ===== */
         .decorations .cabe2-atas-kanan {
             width: clamp(50px, 12vw, 200px);
             right: 0%;
@@ -111,6 +114,7 @@
             bottom: 0%;
         }
 
+        /* ===== HEADER ===== */
         .header-top {
             position: relative;
             z-index: 10;
@@ -185,7 +189,7 @@
         .btn-logout {
             background: transparent;
             border-radius: 50px;
-            border: 2px solid #e74c3c;
+            border: 2px solid #98C81C;
             padding: 4px 12px;
             cursor: pointer;
             transition: all 0.3s;
@@ -202,34 +206,11 @@
         }
 
         .btn-logout:active {
-            background: rgba(231, 76, 60, 0.2);
+            background: rgba(152, 200, 28, 0.2);
             transform: scale(0.95);
         }
 
-        .btn-to-index {
-            background: transparent;
-            border-radius: 50px;
-            border: 2px solid white;
-            padding: 4px 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: white;
-            font-size: clamp(10px, 1.4%, 16px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            min-height: 32px;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .btn-to-index:active {
-            background: rgba(255, 255, 255, 0.1);
-            transform: scale(0.95);
-        }
-
+        /* ===== KONTEN ===== */
         .content-area {
             flex: 1;
             display: flex;
@@ -319,6 +300,8 @@
         }
 
         /* ===== RESPONSIVE ===== */
+
+        /* Portrait - HP */
         @media screen and (max-width: 767px) and (orientation: portrait) {
             .content-area { padding: 4px 8px 12px 8px; }
             .header-content { margin-bottom: 8px; gap: 8px; max-width: 400px; }
@@ -328,7 +311,7 @@
             .menu-card { border-radius: 22px; min-height: 48px; padding: 6px; }
             .menu-card .card-label { font-size: clamp(10px, 3%, 24px); }
             .header-top { padding: 4px 10px; padding-top: env(safe-area-inset-top, 4px); min-height: 38px; }
-            .btn-logout, .btn-to-index { padding: 3px 10px; font-size: 10px; min-height: 28px; }
+            .btn-logout { padding: 3px 10px; font-size: 10px; min-height: 28px; }
             .btn-back { font-size: 20px; min-width: 34px; min-height: 34px; }
             .logo-header img { width: 20px; }
             .brand-text { font-size: 13px; }
@@ -344,6 +327,7 @@
             }
         }
 
+        /* HP portrait kecil */
         @media screen and (max-width: 480px) and (orientation: portrait) {
             .content-area { padding: 3px 5px 10px 5px; }
             .header-content { gap: 6px; margin-bottom: 6px; max-width: 320px; }
@@ -353,7 +337,7 @@
             .menu-card { border-radius: 18px; min-height: 40px; padding: 4px; }
             .menu-card .card-label { font-size: 10px; }
             .header-top { padding: 3px 8px; padding-top: env(safe-area-inset-top, 3px); min-height: 34px; }
-            .btn-logout, .btn-to-index { padding: 2px 6px; font-size: 8px; min-height: 24px; border-width: 1.5px; }
+            .btn-logout { padding: 2px 6px; font-size: 8px; min-height: 24px; border-width: 1.5px; }
             .btn-back { font-size: 16px; min-width: 30px; min-height: 30px; }
             .logo-header img { width: 16px; }
             .brand-text { font-size: 11px; }
@@ -369,6 +353,7 @@
             }
         }
 
+        /* HP sangat kecil */
         @media screen and (max-width: 360px) and (orientation: portrait) {
             .header-content .logo-besar { width: 28px; }
             .header-content .title { font-size: 12px; }
@@ -377,7 +362,7 @@
             .brand-text { font-size: 9px; }
             .logo-header img { width: 14px; }
             .btn-back { font-size: 14px; min-width: 26px; min-height: 26px; }
-            .btn-logout, .btn-to-index { padding: 2px 5px; font-size: 7px; min-height: 22px; }
+            .btn-logout { padding: 2px 5px; font-size: 7px; min-height: 22px; }
             .decorations .tomat-atas-kiri,
             .decorations .tomat1-bawah-kanan {
                 width: clamp(25px, 10vw, 60px);
@@ -390,6 +375,7 @@
             }
         }
 
+        /* ===== TABLET PORTRAIT ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
             .content-area { padding: 15px 25px 25px 25px; }
             .header-content { margin-bottom: 18px; gap: 15px; max-width: 550px; }
@@ -399,7 +385,7 @@
             .menu-card { border-radius: 34px; min-height: 80px; padding: 10px; }
             .menu-card .card-label { font-size: clamp(16px, 3.5%, 34px); }
             .header-top { padding: 8px 18px; padding-top: env(safe-area-inset-top, 8px); min-height: 52px; }
-            .btn-logout, .btn-to-index { padding: 5px 14px; font-size: 13px; min-height: 36px; }
+            .btn-logout { padding: 5px 14px; font-size: 13px; min-height: 36px; }
             .btn-back { font-size: 24px; min-width: 44px; min-height: 44px; }
             .logo-header img { width: 32px; }
             .brand-text { font-size: 18px; }
@@ -415,6 +401,7 @@
             }
         }
 
+        /* ===== TABLET LANDSCAPE ===== */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
             .content-area { padding: 8px 20px 15px 20px; }
             .header-content { margin-bottom: 10px; gap: 12px; max-width: 650px; }
@@ -424,7 +411,7 @@
             .menu-card { border-radius: 26px; min-height: 55px; padding: 6px; }
             .menu-card .card-label { font-size: clamp(13px, 3%, 28px); }
             .header-top { padding: 5px 14px; padding-top: env(safe-area-inset-top, 5px); min-height: 40px; }
-            .btn-logout, .btn-to-index { padding: 3px 10px; font-size: 11px; min-height: 30px; }
+            .btn-logout { padding: 3px 10px; font-size: 11px; min-height: 30px; }
             .btn-back { font-size: 20px; min-width: 36px; min-height: 36px; }
             .logo-header img { width: 24px; }
             .brand-text { font-size: 14px; }
@@ -440,6 +427,7 @@
             }
         }
 
+        /* ===== LANDSCAPE HP ===== */
         @media screen and (max-width: 767px) and (orientation: landscape) {
             .content-area { padding: 4px 14px 10px 14px; }
             .header-content { margin-bottom: 6px; gap: 8px; max-width: 500px; }
@@ -449,7 +437,7 @@
             .menu-card { border-radius: 20px; min-height: 40px; padding: 5px; }
             .menu-card .card-label { font-size: clamp(9px, 2.2%, 20px); }
             .header-top { padding: 3px 10px; padding-top: env(safe-area-inset-top, 3px); min-height: 34px; }
-            .btn-logout, .btn-to-index { padding: 2px 8px; font-size: 9px; min-height: 26px; border-width: 1.5px; }
+            .btn-logout { padding: 2px 8px; font-size: 9px; min-height: 26px; border-width: 1.5px; }
             .btn-back { font-size: 16px; min-width: 30px; min-height: 30px; }
             .logo-header img { width: 18px; }
             .brand-text { font-size: 11px; }
@@ -465,6 +453,7 @@
             }
         }
 
+        /* Landscape HP kecil */
         @media screen and (max-height: 500px) and (orientation: landscape) {
             .content-area { padding: 3px 12px 8px 12px; }
             .header-content { margin-bottom: 4px; gap: 6px; max-width: 450px; }
@@ -474,7 +463,7 @@
             .menu-card { border-radius: 16px; min-height: 32px; padding: 4px; border-width: 1.5px; }
             .menu-card .card-label { font-size: 8px; }
             .header-top { padding: 2px 8px; padding-top: env(safe-area-inset-top, 2px); min-height: 30px; }
-            .btn-logout, .btn-to-index { padding: 2px 6px; font-size: 7px; min-height: 22px; border-width: 1.5px; }
+            .btn-logout { padding: 2px 6px; font-size: 7px; min-height: 22px; border-width: 1.5px; }
             .btn-back { font-size: 14px; min-width: 26px; min-height: 26px; }
             .logo-header img { width: 16px; }
             .brand-text { font-size: 9px; }
@@ -490,6 +479,7 @@
             }
         }
 
+        /* ===== DESKTOP ===== */
         @media screen and (min-width: 1025px) and (orientation: landscape) {
             .content-area { padding: 12px 35px 20px 35px; }
             .header-content { margin-bottom: 16px; gap: 14px; max-width: 700px; }
@@ -499,7 +489,7 @@
             .menu-card { border-radius: 32px; min-height: 70px; padding: 10px; }
             .menu-card .card-label { font-size: clamp(16px, 3.5%, 34px); }
             .header-top { padding: 8px 20px; padding-top: env(safe-area-inset-top, 8px); min-height: 52px; }
-            .btn-logout, .btn-to-index { padding: 5px 16px; font-size: 14px; min-height: 38px; }
+            .btn-logout { padding: 5px 16px; font-size: 14px; min-height: 38px; }
             .btn-back { font-size: 24px; min-width: 44px; min-height: 44px; }
             .logo-header img { width: 34px; }
             .brand-text { font-size: 18px; }
@@ -515,6 +505,7 @@
             }
         }
 
+        /* Desktop lebar */
         @media screen and (min-width: 1600px) and (orientation: landscape) {
             .content-area { padding: 16px 45px 25px 45px; }
             .header-content { margin-bottom: 20px; gap: 18px; max-width: 800px; }
@@ -524,7 +515,7 @@
             .menu-card { border-radius: 38px; min-height: 85px; padding: 12px; }
             .menu-card .card-label { font-size: clamp(20px, 4%, 40px); }
             .header-top { padding: 10px 24px; padding-top: env(safe-area-inset-top, 10px); min-height: 60px; }
-            .btn-logout, .btn-to-index { padding: 6px 20px; font-size: 16px; min-height: 44px; }
+            .btn-logout { padding: 6px 20px; font-size: 16px; min-height: 44px; }
             .btn-back { font-size: 28px; min-width: 48px; min-height: 48px; }
             .logo-header img { width: 42px; }
             .brand-text { font-size: 22px; }
@@ -541,6 +532,7 @@
         <div class="bg-utama"></div>
         <div class="overlay"></div>
 
+        <!-- ===== DEKORASI CABE & TOMAT (PERSIS SEPERTI REFERENSI) ===== -->
         <div class="decorations">
             <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
             <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
@@ -553,15 +545,16 @@
         <!-- Header -->
         <div class="header-top">
             <div class="header-left">
-                <button class="btn-back" onclick="goToIndex()">←</button>
-                <div class="logo-header" onclick="goToIndex()">
+                <button class="btn-back" onclick="goBack()">←</button>
+                <div class="logo-header" onclick="goToDashboard()">
                     <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/50x50/98C81C/ffffff?text=🍽️'" />
                     <div class="brand-text">Jangkung<span>Order</span></div>
                 </div>
             </div>
             <div class="header-right">
-                <!-- <button class="btn-to-index" onclick="goToIndex()">🏠 Index</button> -->
-                <button class="btn-logout" onclick="logoutKaryawan()">🔓 Logout</button>
+                <button class="btn-logout" onclick="logoutKaryawan()">
+                    🔓 Logout
+                </button>
             </div>
         </div>
 
@@ -592,94 +585,60 @@
     </div>
 
     <script>
-        // ============================================
-        // AUTH CHECK - WAJIB ADA DI SEMUA HALAMAN KARYAWAN
-        // ============================================
-        const SESSION_KEY = 'karyawan_session';
-        const LOGIN_PAGE = 'karyawan_login.html';
-
-        function checkAuth() {
-            const session = localStorage.getItem(SESSION_KEY);
-            const sessionStart = sessionStorage.getItem('karyawan_session_start');
-            
-            if (!session || !sessionStart) {
-                redirectToLogin();
-                return false;
-            }
-            
-            const elapsed = Date.now() - parseInt(sessionStart);
-            if (elapsed > 30 * 60 * 1000) {
-                clearAllSession();
-                redirectToLogin();
-                return false;
-            }
-            
-            return true;
+        function goBack() {
+            window.history.back();
         }
 
-        function clearAllSession() {
-            localStorage.removeItem(SESSION_KEY);
-            localStorage.removeItem('karyawan_logged_in');
-            localStorage.removeItem('login_time');
-            sessionStorage.removeItem('karyawan_session_start');
-        }
-
-        function redirectToLogin() {
-            if (window.location.pathname.includes('karyawan_login.html')) return;
-            window.location.href = LOGIN_PAGE;
+        function goToDashboard() {
+            window.location.href = 'dashboard.html';
         }
 
         // ============================================
-        // FUNGSI KE INDEX - HAPUS SESSION & REDIRECT
-        // ============================================
-        function goToIndex() {
-            if (confirm('Keluar dari halaman karyawan? Anda harus login lagi nanti.')) {
-                clearAllSession();
-                window.location.href = 'index.html';
-            }
-        }
-
-        // ============================================
-        // FUNGSI LOGOUT
+        // LOGOUT KARYAWAN
         // ============================================
         function logoutKaryawan() {
             if (confirm('Yakin ingin keluar?')) {
-                clearAllSession();
-                window.location.href = LOGIN_PAGE;
+                localStorage.removeItem('karyawan_logged_in');
+                localStorage.removeItem('login_time');
+                localStorage.removeItem('karyawan_nama');
+                window.location.href = 'karyawan_login.html';
             }
         }
 
         // ============================================
-        // PROTECT BACK BUTTON
+        // AUTO LOGOUT 15 MENIT
         // ============================================
-        window.history.pushState(null, '', window.location.href);
-        window.addEventListener('popstate', function() {
-            if (!checkAuth()) {
-                redirectToLogin();
-            } else {
-                window.history.pushState(null, '', window.location.href);
+        (function() {
+            const LOGOUT_TIMER = 15 * 60 * 1000;
+            let logoutTimer;
+
+            function doLogout() {
+                localStorage.removeItem('karyawan_logged_in');
+                localStorage.removeItem('login_time');
+                localStorage.removeItem('karyawan_nama');
+                window.location.href = 'karyawan_login.html';
             }
-        });
+
+            function resetLogoutTimer() {
+                if (logoutTimer) clearTimeout(logoutTimer);
+                logoutTimer = setTimeout(doLogout, LOGOUT_TIMER);
+            }
+
+            const events = ['click', 'keypress', 'scroll', 'touchstart', 'mousemove', 'keydown'];
+            events.forEach(event => {
+                document.addEventListener(event, resetLogoutTimer);
+            });
+
+            resetLogoutTimer();
+            console.log('⏱️ Auto logout setelah 15 menit tidak ada aktivitas');
+        })();
 
         // ============================================
-        // CEK AUTH SAAT LOAD
+        // CEK LOGIN STATUS
         // ============================================
-        if (!checkAuth()) {
-            redirectToLogin();
+        if (localStorage.getItem('karyawan_logged_in') !== 'true') {
+            window.location.href = 'karyawan_login.html';
         }
-
-        // ============================================
-        // CEK SAAT PAGE VISIBLE
-        // ============================================
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'visible') {
-                if (!checkAuth()) {
-                    redirectToLogin();
-                }
-            }
-        });
-
-        console.log('🔒 Auth aktif - Wajib login setiap kali masuk area karyawan');
     </script>
 </body>
 </html>
