@@ -452,10 +452,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 6px 0;
+            padding: 8px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            gap: 6px;
-            min-height: 36px;
+            gap: 10px;
+            min-height: 55px;
         }
         .menu-item:last-child {
             border-bottom: none;
@@ -464,14 +464,14 @@
         .menu-item .item-left {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             flex: 1;
             min-width: 0;
         }
         .menu-item .item-left .item-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 55px;
+            height: 55px;
+            border-radius: 10px;
             object-fit: cover;
             flex-shrink: 0;
             background: rgba(255, 255, 255, 0.05);
@@ -481,39 +481,25 @@
             min-width: 0;
             flex: 1;
             display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .menu-item .item-left .item-info .item-name-row {
+            display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             flex-wrap: wrap;
         }
         .menu-item .item-left .item-info .item-name {
             color: white;
-            font-size: 14px;
+            font-size: 15px;
             font-family: 'Schoolbell', cursive;
             font-weight: 400;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             cursor: pointer;
+            line-height: 1.2;
         }
-        .menu-item .item-left .item-info .item-price {
-            color: #98C81C;
-            font-size: 12px;
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            white-space: nowrap;
-        }
-        .menu-item .item-left .item-info .variant-badge {
-            font-size: 8px;
-            color: #98C81C;
-            background: rgba(152, 200, 28, 0.15);
-            padding: 1px 6px;
-            border-radius: 50px;
-            display: inline-block;
-            white-space: nowrap;
-        }
-        .menu-item .item-left .item-info .btn-detail {
+        .menu-item .item-left .item-info .item-name-row .btn-detail {
             padding: 2px 10px;
             background: rgba(255, 255, 255, 0.15);
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -523,32 +509,48 @@
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             white-space: nowrap;
-            min-height: 24px;
+            min-height: 22px;
             display: flex;
             align-items: center;
             transition: all 0.3s;
             flex-shrink: 0;
         }
-        .menu-item .item-left .item-info .btn-detail:active {
+        .menu-item .item-left .item-info .item-name-row .btn-detail:active {
             transform: scale(0.95);
             background: rgba(152, 200, 28, 0.3);
             border-color: #98C81C;
+        }
+        .menu-item .item-left .item-info .item-name-row .variant-badge {
+            font-size: 8px;
+            color: #98C81C;
+            background: rgba(152, 200, 28, 0.15);
+            padding: 1px 6px;
+            border-radius: 50px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .menu-item .item-left .item-info .item-price {
+            color: #98C81C;
+            font-size: 14px;
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .menu-item .item-actions {
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
             flex-shrink: 0;
         }
         .menu-item .item-actions .btn-minus {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             background: #e74c3c;
             border: 2px solid white;
             border-radius: 50%;
             color: white;
-            font-size: 12px;
+            font-size: 13px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -559,7 +561,7 @@
             transform: scale(0.9);
         }
         .menu-item .item-actions .qty-input {
-            width: 26px;
+            width: 28px;
             padding: 1px 2px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 4px;
@@ -585,13 +587,13 @@
             -moz-appearance: textfield;
         }
         .menu-item .item-actions .btn-plus {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             background: #98C81C;
             border: 2px solid white;
             border-radius: 50%;
             color: white;
-            font-size: 12px;
+            font-size: 13px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -602,16 +604,16 @@
             transform: scale(0.9);
         }
         .menu-item .item-actions .btn-variant {
-            padding: 2px 10px;
+            padding: 2px 12px;
             background: #98C81C;
             border: 2px solid white;
             border-radius: 50px;
             color: white;
-            font-size: 9px;
+            font-size: 10px;
             font-family: 'Schoolbell', cursive;
             cursor: pointer;
             white-space: nowrap;
-            min-height: 24px;
+            min-height: 26px;
             display: flex;
             align-items: center;
             transition: all 0.3s;
@@ -1091,33 +1093,34 @@
                 padding: 4px 10px 8px 10px;
             }
             .menu-item {
-                padding: 4px 0;
-                min-height: 28px;
+                padding: 5px 0;
+                min-height: 40px;
+                gap: 8px;
             }
             .menu-item .item-left .item-img {
-                width: 30px;
-                height: 30px;
+                width: 40px;
+                height: 40px;
             }
             .menu-item .item-left .item-info .item-name {
-                font-size: 12px;
+                font-size: 13px;
             }
             .menu-item .item-left .item-info .item-price {
-                font-size: 10px;
+                font-size: 12px;
             }
-            .menu-item .item-left .item-info .btn-detail {
+            .menu-item .item-left .item-info .item-name-row .btn-detail {
                 font-size: 8px;
                 padding: 1px 8px;
                 min-height: 20px;
             }
             .menu-item .item-actions .btn-minus,
             .menu-item .item-actions .btn-plus {
-                width: 18px;
-                height: 18px;
-                font-size: 10px;
+                width: 20px;
+                height: 20px;
+                font-size: 11px;
                 border-width: 1.5px;
             }
             .menu-item .item-actions .qty-input {
-                width: 20px;
+                width: 22px;
                 font-size: 10px;
                 padding: 0 2px;
             }
@@ -1217,6 +1220,35 @@
                 padding: 6px;
                 font-size: 14px;
                 min-height: 32px;
+            }
+        }
+
+        /* HP kecil */
+        @media screen and (max-width: 480px) {
+            .menu-item .item-left .item-img {
+                width: 48px;
+                height: 48px;
+            }
+            .menu-item .item-left .item-info .item-name {
+                font-size: 13px;
+            }
+            .menu-item .item-left .item-info .item-price {
+                font-size: 12px;
+            }
+            .menu-item .item-actions .btn-minus,
+            .menu-item .item-actions .btn-plus {
+                width: 22px;
+                height: 22px;
+                font-size: 11px;
+            }
+            .menu-item .item-actions .qty-input {
+                width: 24px;
+                font-size: 11px;
+            }
+            .menu-item .item-left .item-info .item-name-row .btn-detail {
+                font-size: 8px;
+                padding: 1px 8px;
+                min-height: 20px;
             }
         }
 
@@ -1627,10 +1659,12 @@
                             <div class="item-left">
                                 <img class="item-img" src="${imageUrl}" alt="${item.name}" loading="lazy" onclick="showDetailModal(${item.id})" onerror="this.src='https://placehold.co/80x80/2d2d2d/ffffff?text=Menu'" />
                                 <div class="item-info">
-                                    <span class="item-name" onclick="showDetailModal(${item.id})">${item.name}</span>
-                                    <button class="btn-detail" onclick="showDetailModal(${item.id})">📋 Detail</button>
-                                    <span class="item-price">Rp ${item.price.toLocaleString()}</span>
-                                    ${hasVariants ? '<span class="variant-badge">📌 Varian</span>' : ''}
+                                    <div class="item-name-row">
+                                        <span class="item-name" onclick="showDetailModal(${item.id})">${item.name}</span>
+                                        <button class="btn-detail" onclick="showDetailModal(${item.id})">📋 Detail</button>
+                                        ${hasVariants ? '<span class="variant-badge">📌 Varian</span>' : ''}
+                                    </div>
+                                    <div class="item-price">Rp ${item.price.toLocaleString()}</div>
                                 </div>
                             </div>
                             <div class="item-actions">
