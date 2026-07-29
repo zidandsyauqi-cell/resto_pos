@@ -6,1071 +6,52 @@
     <title>Jangkung Order - List Pesanan</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #0a0a0a;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .list-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            background: white;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .bg-utama {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            background: url('bg.png') center center / cover no-repeat;
-        }
-
-        .overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.35);
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* ===== HEADER ===== */
-        .header-top {
-            position: relative;
-            z-index: 10;
-            padding: 10px 16px;
-            padding-top: env(safe-area-inset-top, 10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.6);
-            flex-shrink: 0;
-            min-height: 56px;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-back {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 28px;
-            cursor: pointer;
-            padding: 4px 8px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            min-width: 44px;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .btn-back:active {
-            transform: scale(0.92);
-        }
-
-        .logo-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .logo-header img {
-            width: 36px;
-            height: auto;
-            filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
-        }
-
-        .brand-text {
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            white-space: nowrap;
-        }
-
-        .brand-text span {
-            color: #98C81C;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-selesai {
-            background: #ED1B24;
-            border-radius: 50px;
-            border: 2px solid white;
-            padding: 6px 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: white;
-            font-size: 14px;
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            white-space: nowrap;
-            min-height: 36px;
-            display: flex;
-            align-items: center;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .btn-selesai:active {
-            transform: scale(0.95);
-        }
-
-        .btn-logout {
-            background: #e74c3c;
-            border: 2px solid white;
-            border-radius: 50px;
-            padding: 6px 16px;
-            color: white;
-            font-size: 14px;
-            font-family: 'Schoolbell', cursive;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-height: 36px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .btn-logout:active {
-            transform: scale(0.95);
-        }
-
-        /* ===== TITLE ===== */
-        .title-status {
-            position: relative;
-            z-index: 5;
-            color: white;
-            font-size: clamp(22px, 5%, 55px);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            padding: 8px 16px 6px 16px;
-            flex-shrink: 0;
-            letter-spacing: 1px;
-        }
-
-        /* ===== TABLE WRAPPER ===== */
-        .table-wrapper {
-            flex: 1;
-            position: relative;
-            z-index: 5;
-            margin: 0 12px 12px 12px;
-            margin-bottom: env(safe-area-inset-bottom, 12px);
-            border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            padding: 8px 10px 6px 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            background: rgba(0, 0, 0, 0.2);
-            min-height: 0;
-        }
-
-        .table-scroll {
-            flex: 1;
-            overflow-y: auto;
-            padding-right: 4px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .table-scroll::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        .table-scroll::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .table-scroll::-webkit-scrollbar-thumb {
-            background: #98C81C;
-            border-radius: 10px;
-        }
-
-        .table-header {
-            display: grid;
-            grid-template-columns: 30px 1.3fr 1.6fr 1.2fr;
-            gap: 3px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 3px;
-            flex-shrink: 0;
-        }
-
-        .table-header .col {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: clamp(9px, 1.5%, 18px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: 0.5px;
-        }
-
-        .table-row {
-            display: grid;
-            grid-template-columns: 30px 1.3fr 1.6fr 1.2fr;
-            gap: 3px;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            align-items: center;
-            transition: background 0.15s;
-            min-height: 32px;
-        }
-
-        .table-row:hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .table-row .col {
-            color: white;
-            font-size: clamp(10px, 1.5%, 18px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            word-break: break-word;
-            line-height: 1.3;
-        }
-
-        .table-row .col .action-btns {
-            display: flex;
-            gap: 4px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-action {
-            padding: 3px 8px;
-            border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            font-size: clamp(8px, 1.1%, 13px);
-            font-family: 'Schoolbell', cursive;
-            cursor: pointer;
-            transition: all 0.25s;
-            min-width: 36px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            white-space: nowrap;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .btn-action:active {
-            transform: scale(0.95);
-        }
-
-        .btn-action.detail {
-            background: #029BEE;
-            border-color: #029BEE;
-        }
-
-        .btn-action.detail:active {
-            background: #0288d1;
-        }
-
-        .btn-action.selesai-list {
-            background: #2ecc71;
-            border-color: #2ecc71;
-        }
-
-        .btn-action.selesai-list:active {
-            background: #27ae60;
-        }
-
-        .btn-action.hapus {
-            background: #e74c3c;
-            border-color: #e74c3c;
-        }
-
-        .btn-action.hapus:active {
-            background: #c0392b;
-        }
-
-        .empty-state {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            padding: 20px 0;
-            font-size: clamp(14px, 2%, 24px);
-            font-family: 'Schoolbell', cursive;
-        }
-
-        .empty-state .sub {
-            font-size: clamp(10px, 1.4%, 16px);
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .loading-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 100;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .loading-overlay.active {
-            display: flex;
-        }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top: 3px solid #98C81C;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loading-text {
-            color: white;
-            font-size: 14px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #98C81C;
-            color: white;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-family: 'Schoolbell', cursive;
-            font-size: 16px;
-            z-index: 200;
-            display: none;
-            animation: slideUp 0.5s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 90%;
-            text-align: center;
-        }
-
-        .toast.show {
-            display: block;
-        }
-
-        .toast.error {
-            background: #e74c3c;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateX(-50%) translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* ===== DETAIL MODAL ===== */
-        .detail-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            backdrop-filter: blur(5px);
-            padding: 20px;
-        }
-
-        .detail-modal-content {
-            background: rgba(20, 20, 20, 0.95);
-            padding: 20px 25px;
-            border-radius: 25px;
-            max-width: 400px;
-            width: 90%;
-            border: 2px solid #98C81C;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-
-        .detail-modal-content::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        .detail-modal-content::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .detail-modal-content::-webkit-scrollbar-thumb {
-            background: #98C81C;
-            border-radius: 10px;
-        }
-
-        .detail-modal-content .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 8px;
-        }
-
-        .detail-modal-content .modal-header h2 {
-            color: #98C81C;
-            font-family: 'Schoolbell', cursive;
-            font-size: clamp(18px, 2.8%, 28px);
-            font-weight: 400;
-        }
-
-        .detail-modal-content .modal-header .close-modal {
-            background: none;
-            border: none;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 36px;
-            min-height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .detail-modal-content .modal-header .close-modal:active {
-            transform: scale(0.9);
-        }
-
-        .detail-modal-content .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .detail-modal-content .detail-row .label {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: clamp(10px, 1.4%, 15px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-        }
-
-        .detail-modal-content .detail-row .value {
-            color: white;
-            font-size: clamp(10px, 1.4%, 15px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            text-align: right;
-            max-width: 60%;
-            word-break: break-word;
-        }
-
-        .detail-modal-content .detail-row .value.highlight {
-            color: #98C81C;
-            font-weight: 600;
-        }
-
-        .detail-modal-content .detail-divider {
-            border: none;
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
-            margin: 6px 0;
-        }
-
-        .detail-modal-content .detail-items-title {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: clamp(10px, 1.2%, 14px);
-            font-family: 'Schoolbell', cursive;
-            text-align: center;
-            margin: 6px 0 4px 0;
-            letter-spacing: 2px;
-        }
-
-        .detail-modal-content .detail-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 3px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            align-items: center;
-        }
-
-        .detail-modal-content .detail-item .item-name {
-            color: white;
-            font-size: clamp(10px, 1.2%, 14px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            flex: 1;
-        }
-
-        .detail-modal-content .detail-item .item-name .variant-text {
-            color: #98C81C;
-            font-size: clamp(9px, 1%, 12px);
-        }
-
-        .detail-modal-content .detail-item .item-qty {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: clamp(10px, 1.2%, 14px);
-            font-family: 'Schoolbell', cursive;
-            margin: 0 6px;
-        }
-
-        .detail-modal-content .detail-item .item-price {
-            color: #98C81C;
-            font-size: clamp(10px, 1.2%, 14px);
-            font-family: 'Schoolbell', cursive;
-        }
-
-        .detail-modal-content .detail-total {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0 4px 0;
-            border-top: 2px solid rgba(255, 255, 255, 0.1);
-            margin-top: 4px;
-        }
-
-        .detail-modal-content .detail-total .total-label {
-            color: white;
-            font-size: clamp(12px, 1.6%, 18px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 600;
-        }
-
-        .detail-modal-content .detail-total .total-amount {
-            color: #98C81C;
-            font-size: clamp(12px, 1.6%, 18px);
-            font-family: 'Schoolbell', cursive;
-            font-weight: 700;
-        }
-
-        /* ===== RESPONSIVE ===== */
-
-        /* HP Portrait */
-        @media screen and (max-width: 767px) and (orientation: portrait) {
-            .header-top {
-                padding: 6px 12px;
-                padding-top: env(safe-area-inset-top, 6px);
-                min-height: 48px;
-            }
-            .btn-back {
-                font-size: 22px;
-                min-width: 36px;
-                min-height: 36px;
-            }
-            .logo-header img { width: 28px; }
-            .brand-text { font-size: 16px; }
-            .btn-selesai {
-                font-size: 11px;
-                padding: 4px 10px;
-                min-height: 30px;
-            }
-            .btn-logout {
-                font-size: 11px;
-                padding: 4px 10px;
-                min-height: 30px;
-            }
-            .table-wrapper {
-                margin: 0 8px 8px 8px;
-                padding: 5px 6px;
-                border-radius: 16px;
-            }
-            .table-header {
-                grid-template-columns: 20px 1.1fr 1.2fr 1fr;
-                gap: 2px;
-            }
-            .table-row {
-                grid-template-columns: 20px 1.1fr 1.2fr 1fr;
-                gap: 2px;
-                padding: 3px 0;
-                min-height: 28px;
-            }
-            .table-header .col { font-size: 8px; }
-            .table-row .col { font-size: 8px; }
-            .btn-action {
-                font-size: 7px;
-                padding: 2px 6px;
-                min-width: 24px;
-                border-width: 1.5px;
-            }
-            .title-status { font-size: 18px; padding: 6px 12px 4px 12px; }
-            .detail-modal-content { padding: 15px 18px; border-radius: 20px; max-width: 340px; }
-        }
-
-        /* HP Portrait Kecil */
-        @media screen and (max-width: 480px) and (orientation: portrait) {
-            .header-top {
-                padding: 4px 10px;
-                padding-top: env(safe-area-inset-top, 4px);
-                min-height: 40px;
-            }
-            .btn-back {
-                font-size: 18px;
-                min-width: 30px;
-                min-height: 30px;
-            }
-            .logo-header img { width: 22px; }
-            .brand-text { font-size: 13px; }
-            .btn-selesai {
-                font-size: 9px;
-                padding: 3px 8px;
-                min-height: 26px;
-            }
-            .btn-logout {
-                font-size: 9px;
-                padding: 3px 8px;
-                min-height: 26px;
-            }
-            .table-wrapper {
-                margin: 0 6px 6px 6px;
-                padding: 4px 4px;
-                border-radius: 12px;
-            }
-            .table-header {
-                grid-template-columns: 15px 1fr 1fr 0.7fr;
-                gap: 1px;
-            }
-            .table-row {
-                grid-template-columns: 15px 1fr 1fr 0.7fr;
-                gap: 1px;
-                padding: 2px 0;
-                min-height: 24px;
-            }
-            .table-header .col { font-size: 6px; }
-            .table-row .col { font-size: 6px; }
-            .btn-action {
-                font-size: 5px;
-                padding: 1px 4px;
-                min-width: 16px;
-                border-width: 1px;
-            }
-            .title-status { font-size: 14px; padding: 4px 10px 2px 10px; }
-            .detail-modal-content { padding: 12px 14px; border-radius: 16px; max-width: 300px; }
-            .detail-modal-content .modal-header h2 { font-size: 15px; }
-            .detail-modal-content .detail-row .label,
-            .detail-modal-content .detail-row .value { font-size: 9px; }
-            .detail-modal-content .detail-item .item-name,
-            .detail-modal-content .detail-item .item-qty,
-            .detail-modal-content .detail-item .item-price { font-size: 9px; }
-            .detail-modal-content .detail-total .total-label,
-            .detail-modal-content .detail-total .total-amount { font-size: 11px; }
-        }
-
-        /* ===== LANDSCAPE ===== */
-        @media screen and (orientation: landscape) {
-            .header-top {
-                padding: 6px 14px;
-                padding-top: env(safe-area-inset-top, 6px);
-                min-height: 44px;
-            }
-            .btn-back {
-                font-size: 22px;
-                min-width: 38px;
-                min-height: 38px;
-            }
-            .logo-header img { width: 28px; }
-            .brand-text { font-size: 16px; }
-            .btn-selesai {
-                font-size: 12px;
-                padding: 4px 12px;
-                min-height: 32px;
-            }
-            .btn-logout {
-                font-size: 12px;
-                padding: 4px 12px;
-                min-height: 32px;
-            }
-            .table-wrapper {
-                margin: 0 12px 8px 12px;
-                padding: 5px 12px;
-                border-radius: 18px;
-            }
-            .table-header {
-                grid-template-columns: 25px 1.2fr 1.3fr 1fr;
-                gap: 3px;
-            }
-            .table-row {
-                grid-template-columns: 25px 1.2fr 1.3fr 1fr;
-                gap: 3px;
-                padding: 3px 0;
-                min-height: 28px;
-            }
-            .table-header .col { font-size: 9px; }
-            .table-row .col { font-size: 9px; }
-            .btn-action {
-                font-size: 8px;
-                padding: 2px 7px;
-                min-width: 28px;
-                border-width: 1.5px;
-            }
-            .title-status { font-size: 18px; padding: 6px 14px 4px 14px; }
-            .detail-modal-content { padding: 15px 18px; border-radius: 20px; max-width: 340px; }
-        }
-
-        /* Landscape HP Kecil */
-        @media screen and (max-height: 500px) and (orientation: landscape) {
-            .header-top {
-                padding: 4px 12px;
-                padding-top: env(safe-area-inset-top, 4px);
-                min-height: 36px;
-            }
-            .btn-back {
-                font-size: 18px;
-                min-width: 32px;
-                min-height: 32px;
-            }
-            .logo-header img { width: 22px; }
-            .brand-text { font-size: 13px; }
-            .btn-selesai {
-                font-size: 10px;
-                padding: 3px 8px;
-                min-height: 28px;
-            }
-            .btn-logout {
-                font-size: 10px;
-                padding: 3px 8px;
-                min-height: 28px;
-            }
-            .table-wrapper {
-                margin: 0 8px 4px 8px;
-                padding: 3px 8px;
-                border-radius: 14px;
-            }
-            .table-header {
-                grid-template-columns: 18px 1.1fr 1.2fr 0.9fr;
-                gap: 2px;
-            }
-            .table-row {
-                grid-template-columns: 18px 1.1fr 1.2fr 0.9fr;
-                gap: 2px;
-                padding: 2px 0;
-                min-height: 22px;
-            }
-            .table-header .col { font-size: 7px; }
-            .table-row .col { font-size: 7px; }
-            .btn-action {
-                font-size: 6px;
-                padding: 1px 4px;
-                min-width: 18px;
-                border-width: 1px;
-            }
-            .title-status { font-size: 14px; padding: 4px 12px 2px 12px; }
-            .detail-modal-content { padding: 10px 14px; border-radius: 16px; max-width: 280px; }
-            .detail-modal-content .modal-header h2 { font-size: 14px; }
-            .detail-modal-content .detail-row .label,
-            .detail-modal-content .detail-row .value { font-size: 9px; }
-            .detail-modal-content .detail-item .item-name,
-            .detail-modal-content .detail-item .item-qty,
-            .detail-modal-content .detail-item .item-price { font-size: 8px; }
-            .detail-modal-content .detail-total .total-label,
-            .detail-modal-content .detail-total .total-amount { font-size: 10px; }
-        }
-
-        /* ===== TABLET PORTRAIT ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .header-top {
-                padding: 10px 20px;
-                padding-top: env(safe-area-inset-top, 10px);
-                min-height: 60px;
-            }
-            .btn-back {
-                font-size: 28px;
-                min-width: 48px;
-                min-height: 48px;
-            }
-            .logo-header img { width: 40px; }
-            .brand-text { font-size: 22px; }
-            .btn-selesai {
-                font-size: 14px;
-                padding: 6px 18px;
-                min-height: 40px;
-            }
-            .btn-logout {
-                font-size: 14px;
-                padding: 6px 18px;
-                min-height: 40px;
-            }
-            .table-wrapper {
-                margin: 0 16px 12px 16px;
-                padding: 8px 15px;
-                border-radius: 24px;
-            }
-            .table-header {
-                grid-template-columns: 30px 1.3fr 1.5fr 1.1fr;
-                gap: 4px;
-            }
-            .table-row {
-                grid-template-columns: 30px 1.3fr 1.5fr 1.1fr;
-                gap: 4px;
-                padding: 5px 0;
-                min-height: 38px;
-            }
-            .table-header .col { font-size: 12px; }
-            .table-row .col { font-size: 12px; }
-            .btn-action {
-                font-size: 10px;
-                padding: 3px 10px;
-                min-width: 40px;
-                border-width: 2px;
-            }
-            .title-status { font-size: 24px; padding: 10px 20px 8px 20px; }
-            .detail-modal-content { padding: 20px 25px; border-radius: 25px; max-width: 400px; }
-            .detail-modal-content .modal-header h2 { font-size: 22px; }
-            .detail-modal-content .detail-row .label,
-            .detail-modal-content .detail-row .value { font-size: 14px; }
-            .detail-modal-content .detail-item .item-name,
-            .detail-modal-content .detail-item .item-qty,
-            .detail-modal-content .detail-item .item-price { font-size: 13px; }
-            .detail-modal-content .detail-total .total-label,
-            .detail-modal-content .detail-total .total-amount { font-size: 16px; }
-        }
-
-        /* ===== TABLET LANDSCAPE ===== */
-        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .header-top {
-                padding: 8px 16px;
-                padding-top: env(safe-area-inset-top, 8px);
-                min-height: 50px;
-            }
-            .btn-back {
-                font-size: 24px;
-                min-width: 42px;
-                min-height: 42px;
-            }
-            .logo-header img { width: 34px; }
-            .brand-text { font-size: 18px; }
-            .btn-selesai {
-                font-size: 13px;
-                padding: 5px 14px;
-                min-height: 36px;
-            }
-            .btn-logout {
-                font-size: 13px;
-                padding: 5px 14px;
-                min-height: 36px;
-            }
-            .table-wrapper {
-                margin: 0 16px 10px 16px;
-                padding: 6px 15px;
-                border-radius: 20px;
-            }
-            .table-header {
-                grid-template-columns: 28px 1.2fr 1.4fr 1fr;
-                gap: 4px;
-            }
-            .table-row {
-                grid-template-columns: 28px 1.2fr 1.4fr 1fr;
-                gap: 4px;
-                padding: 4px 0;
-                min-height: 32px;
-            }
-            .table-header .col { font-size: 11px; }
-            .table-row .col { font-size: 11px; }
-            .btn-action {
-                font-size: 9px;
-                padding: 2px 8px;
-                min-width: 34px;
-                border-width: 2px;
-            }
-            .title-status { font-size: 20px; padding: 8px 16px 6px 16px; }
-            .detail-modal-content { padding: 18px 22px; border-radius: 22px; max-width: 360px; }
-            .detail-modal-content .modal-header h2 { font-size: 18px; }
-            .detail-modal-content .detail-row .label,
-            .detail-modal-content .detail-row .value { font-size: 12px; }
-            .detail-modal-content .detail-item .item-name,
-            .detail-modal-content .detail-item .item-qty,
-            .detail-modal-content .detail-item .item-price { font-size: 11px; }
-            .detail-modal-content .detail-total .total-label,
-            .detail-modal-content .detail-total .total-amount { font-size: 14px; }
-        }
-
-        /* ===== DESKTOP ===== */
-        @media screen and (min-width: 1025px) and (orientation: landscape) {
-            .header-top {
-                padding: 10px 24px;
-                padding-top: env(safe-area-inset-top, 10px);
-                min-height: 60px;
-            }
-            .btn-back {
-                font-size: 28px;
-                min-width: 48px;
-                min-height: 48px;
-            }
-            .logo-header img { width: 40px; }
-            .brand-text { font-size: 22px; }
-            .btn-selesai {
-                font-size: 14px;
-                padding: 6px 18px;
-                min-height: 40px;
-            }
-            .btn-logout {
-                font-size: 14px;
-                padding: 6px 18px;
-                min-height: 40px;
-            }
-            .table-wrapper {
-                margin: 0 auto 12px auto;
-                padding: 8px 20px;
-                border-radius: 24px;
-                max-width: 900px;
-                width: 94%;
-            }
-            .table-header {
-                grid-template-columns: 30px 1.3fr 1.5fr 1.1fr;
-                gap: 4px;
-            }
-            .table-row {
-                grid-template-columns: 30px 1.3fr 1.5fr 1.1fr;
-                gap: 4px;
-                padding: 5px 0;
-                min-height: 38px;
-            }
-            .table-header .col { font-size: 13px; }
-            .table-row .col { font-size: 13px; }
-            .btn-action {
-                font-size: 11px;
-                padding: 3px 12px;
-                min-width: 44px;
-                border-width: 2px;
-            }
-            .title-status { font-size: 26px; padding: 10px 20px 8px 20px; }
-            .detail-modal-content { padding: 22px 28px; border-radius: 28px; max-width: 420px; }
-            .detail-modal-content .modal-header h2 { font-size: 24px; }
-            .detail-modal-content .detail-row .label,
-            .detail-modal-content .detail-row .value { font-size: 15px; }
-            .detail-modal-content .detail-item .item-name,
-            .detail-modal-content .detail-item .item-qty,
-            .detail-modal-content .detail-item .item-price { font-size: 14px; }
-            .detail-modal-content .detail-total .total-label,
-            .detail-modal-content .detail-total .total-amount { font-size: 18px; }
-        }
-
-        /* Desktop Lebar */
-        @media screen and (min-width: 1600px) and (orientation: landscape) {
-            .table-wrapper { max-width: 1000px; padding: 10px 25px; border-radius: 28px; }
-            .table-header .col { font-size: 15px; }
-            .table-row .col { font-size: 15px; }
-            .btn-action { font-size: 13px; padding: 4px 14px; min-width: 50px; }
-            .title-status { font-size: 30px; }
-            .detail-modal-content { padding: 25px 30px; border-radius: 30px; max-width: 460px; }
-        }
-
-        @supports not (padding: env(safe-area-inset-top)) {
-            .header-top { padding-top: 10px; }
-            .table-wrapper { margin-bottom: 12px; }
-        }
+        /* ===== CSS SAMA SEPERTI YANG ANDA PUNYA ===== */
+        /* ... (copy semua CSS dari kode Anda) ... */
     </style>
 </head>
 <body>
-    <div class="list-container">
-        <div class="bg-utama"></div>
-        <div class="overlay"></div>
-
-        <div class="loading-overlay" id="loadingOverlay">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Memuat data...</div>
-        </div>
-
-        <!-- ===== HEADER ===== -->
-        <div class="header-top">
-            <div class="header-left">
-                <button class="btn-back" onclick="goBack()">←</button>
-                <div class="logo-header" onclick="goToDashboard()">
-                    <img src="logo.png" alt="Logo" loading="lazy" onerror="this.src='https://placehold.co/50x50/98C81C/ffffff?text=🍽️'" />
-                    <div class="brand-text">Jangkung<span>Order</span></div>
-                </div>
-            </div>
-            <div class="header-right">
-                <button class="btn-selesai" onclick="selesaiSemua()">Selesai</button>
-                <button class="btn-logout" onclick="logoutKaryawan()">🚪 Keluar</button>
-            </div>
-        </div>
-
-        <div class="title-status">LIST PESANAN</div>
-
-        <div class="table-wrapper">
-            <div class="table-header">
-                <div class="col">No</div>
-                <div class="col">Nomor Struk</div>
-                <div class="col">Nama Customer</div>
-                <div class="col">Aksi</div>
-            </div>
-            <div class="table-scroll" id="tableBody">
-                <div class="empty-state">
-                    🔄 Memuat data...
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="toast" id="toast"></div>
+    <!-- ===== HTML SAMA SEPERTI YANG ANDA PUNYA ===== -->
+    <!-- ... (copy semua HTML dari kode Anda) ... -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
     </script>
     <script>
-        const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        // ============================================
+        // CEK SESSION - SEDERHANA, TANPA REDIRECT LOOP
+        // ============================================
+        const SESSION_KEY = 'karyawan_session';
+        const LOGIN_PAGE = 'karyawan_login.html';
 
-        let ordersData = [];
-        let menuNames = {};
-        let isRealtimeConnected = false;
+        // Cek session sekali di awal
+        (function checkSession() {
+            const session = localStorage.getItem(SESSION_KEY);
+            const sessionStart = sessionStorage.getItem('karyawan_session_start');
+            
+            // Jika session tidak ada atau sudah expired, redirect ke login
+            if (!session || !sessionStart) {
+                window.location.href = LOGIN_PAGE;
+                return;
+            }
+            
+            // Cek expired (30 menit)
+            const elapsed = Date.now() - parseInt(sessionStart);
+            if (elapsed > 30 * 60 * 1000) {
+                localStorage.removeItem(SESSION_KEY);
+                localStorage.removeItem('karyawan_logged_in');
+                localStorage.removeItem('login_time');
+                sessionStorage.removeItem('karyawan_session_start');
+                window.location.href = LOGIN_PAGE;
+                return;
+            }
+            
+            // Session valid, refresh waktu (perpanjang session)
+            sessionStorage.setItem('karyawan_session_start', Date.now().toString());
+        })();
 
+        // ============================================
+        // FUNGSI NAVIGASI
+        // ============================================
         function goBack() {
             window.history.back();
         }
@@ -1079,15 +60,33 @@
             window.location.href = 'dashboard.html';
         }
 
+        // ============================================
+        // FUNGSI LOGOUT - HAPUS SESSION
+        // ============================================
         function logoutKaryawan() {
             if (confirm('Yakin ingin keluar?')) {
+                localStorage.removeItem(SESSION_KEY);
                 localStorage.removeItem('karyawan_logged_in');
                 localStorage.removeItem('login_time');
-                localStorage.removeItem('karyawan_nama');
-                window.location.href = 'karyawan_login.html';
+                sessionStorage.removeItem('karyawan_session_start');
+                window.location.href = LOGIN_PAGE;
             }
         }
 
+        // ============================================
+        // SUPABASE CONFIG
+        // ============================================
+        const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let ordersData = [];
+        let menuNames = {};
+        let isRealtimeConnected = false;
+
+        // ============================================
+        // FUNGSI LAINNYA (SAMA SEPERTI YANG ANDA PUNYA)
+        // ============================================
         function showToast(message, isError = false) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -1516,22 +515,25 @@
         }
 
         // ============================================
-        // AUTO LOGOUT 15 MENIT
+        // AUTO LOGOUT 15 MENIT (PERPANJANG SESSION)
         // ============================================
         (function() {
             const LOGOUT_TIMER = 15 * 60 * 1000;
             let logoutTimer;
 
             function doLogout() {
+                localStorage.removeItem(SESSION_KEY);
                 localStorage.removeItem('karyawan_logged_in');
                 localStorage.removeItem('login_time');
-                localStorage.removeItem('karyawan_nama');
-                window.location.href = 'karyawan_login.html';
+                sessionStorage.removeItem('karyawan_session_start');
+                window.location.href = LOGIN_PAGE;
             }
 
             function resetLogoutTimer() {
                 if (logoutTimer) clearTimeout(logoutTimer);
                 logoutTimer = setTimeout(doLogout, LOGOUT_TIMER);
+                // Perpanjang session setiap ada aktivitas
+                sessionStorage.setItem('karyawan_session_start', Date.now().toString());
             }
 
             const events = ['click', 'keypress', 'scroll', 'touchstart', 'mousemove', 'keydown'];
@@ -1543,11 +545,9 @@
             console.log('⏱️ Auto logout setelah 15 menit tidak ada aktivitas');
         })();
 
-        // Cek login
-        if (localStorage.getItem('karyawan_logged_in') !== 'true') {
-            window.location.href = 'karyawan_login.html';
-        }
-
+        // ============================================
+        // INIT
+        // ============================================
         document.addEventListener('DOMContentLoaded', function() {
             loadOrders();
         });
