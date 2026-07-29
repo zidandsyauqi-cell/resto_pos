@@ -59,7 +59,6 @@
             z-index: 1;
         }
 
-        /* ===== DEKORASI CABE & TOMAT ===== */
         .decorations {
             position: absolute;
             width: 100%;
@@ -392,77 +391,53 @@
 
     <script>
         // ============================================
-        // SESSION MANAGEMENT - SANGAT KETAT
+        // PASSWORD KARYAWAN
         // ============================================
         const KARYAWAN_PASSWORD = 'admin';
-        const SESSION_TIMEOUT = 60 * 60 * 1000; // 1 jam (dalam milidetik)
         const SESSION_KEY = 'karyawan_session';
-        const SESSION_TIME_KEY = 'karyawan_session_time';
-        const SESSION_TOKEN_KEY = 'karyawan_session_token';
 
-        // Generate random token untuk session
-        function generateToken() {
-            return Math.random().toString(36).substring(2) + Date.now().toString(36);
-        }
-
-        // Cek apakah session valid
-        function isSessionValid() {
-            const session = localStorage.getItem(SESSION_KEY);
-            const sessionTime = localStorage.getItem(SESSION_TIME_KEY);
-            const sessionToken = localStorage.getItem(SESSION_TOKEN_KEY);
-            
-            if (!session || !sessionTime || !sessionToken) {
-                return false;
-            }
-
-            // Cek timeout
-            const now = Date.now();
-            const elapsed = now - parseInt(sessionTime);
-            if (elapsed > SESSION_TIMEOUT) {
-                clearSession();
-                return false;
-            }
-
-            // Cek token (validasi tambahan)
-            const storedToken = sessionStorage.getItem('karyawan_token');
-            if (storedToken !== sessionToken) {
-                clearSession();
-                return false;
-            }
-
-            return true;
-        }
-
-        // Buat session baru
+        // ============================================
+        // FUNGSI SESSION
+        // ============================================
         function createSession() {
-            const token = generateToken();
             localStorage.setItem(SESSION_KEY, 'true');
-            localStorage.setItem(SESSION_TIME_KEY, Date.now().toString());
-            localStorage.setItem(SESSION_TOKEN_KEY, token);
-            sessionStorage.setItem('karyawan_token', token);
             sessionStorage.setItem('karyawan_session_start', Date.now().toString());
         }
 
-        // Hapus session
         function clearSession() {
             localStorage.removeItem(SESSION_KEY);
-            localStorage.removeItem(SESSION_TIME_KEY);
-            localStorage.removeItem(SESSION_TOKEN_KEY);
-            localStorage.removeItem('karyawan_logged_in');
-            localStorage.removeItem('login_time');
-            localStorage.removeItem('karyawan_nama');
-            sessionStorage.removeItem('karyawan_token');
             sessionStorage.removeItem('karyawan_session_start');
         }
 
+        function isSessionValid() {
+            // Cek apakah session ada di localStorage
+            const session = localStorage.getItem(SESSION_KEY);
+            if (!session) return false;
+            
+            // Cek juga apakah ada di sessionStorage (double check)
+            const sessionStart = sessionStorage.getItem('karyawan_session_start');
+            if (!sessionStart) return false;
+            
+            // Session hanya berlaku 30 menit
+            const elapsed = Date.now() - parseInt(sessionStart);
+            if (elapsed > 30 * 60 * 1000) {
+                clearSession();
+                return false;
+            }
+            
+            return true;
+        }
+
         // ============================================
-        // FUNGSI NAVIGASI
+        // NAVIGASI
         // ============================================
         function goBack() {
             window.history.back();
         }
 
         function goToHome() {
+            // Hapus session saat kembali ke index
+            clearSession();
             window.location.href = 'index.html';
         }
 
@@ -485,7 +460,6 @@
             if (password === KARYAWAN_PASSWORD) {
                 // Buat session
                 createSession();
-                
                 errorMsg.classList.remove('show');
                 
                 // Redirect ke dashboard
@@ -514,21 +488,12 @@
         // ============================================
         // CEK SESSION SAAT LOAD
         // ============================================
-        // Hapus session lama jika sudah expired
-        if (!isSessionValid()) {
-            clearSession();
-        }
-
-        // Jika sudah login, redirect ke dashboard
+        // Jika session valid, redirect ke dashboard
         if (isSessionValid()) {
             window.location.href = 'karyawan_meja.html';
+        } else {
+            clearSession();
         }
-
-        // ============================================
-        // LOCK PAGE - Cegah navigasi keluar tanpa login
-        // ============================================
-        // Cegah user kembali ke halaman sebelumnya dengan tombol back
-        // (Ini akan dihandle di setiap halaman karyawan)
     </script>
 </body>
 </html>
