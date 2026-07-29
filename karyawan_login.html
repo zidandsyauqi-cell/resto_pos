@@ -404,7 +404,7 @@
             sessionStorage.setItem('karyawan_session_start', Date.now().toString());
         }
 
-        function clearSession() {
+        function clearAllSession() {
             localStorage.removeItem(SESSION_KEY);
             sessionStorage.removeItem('karyawan_session_start');
         }
@@ -418,7 +418,7 @@
             // Session expired setelah 30 menit
             const elapsed = Date.now() - parseInt(sessionStart);
             if (elapsed > 30 * 60 * 1000) {
-                clearSession();
+                clearAllSession();
                 return false;
             }
             
@@ -434,7 +434,7 @@
 
         function goToHome() {
             // Hapus session saat ke index
-            clearSession();
+            clearAllSession();
             window.location.href = 'index.html';
         }
 
@@ -457,7 +457,7 @@
             if (password === KARYAWAN_PASSWORD) {
                 createSession();
                 errorMsg.classList.remove('show');
-                window.location.href = 'karyawan_meja.html';
+                window.location.href = 'dashboard.html';
             } else {
                 errorMsg.textContent = '⚠️ Error: password salah, coba lagi';
                 errorMsg.classList.add('show');
@@ -483,9 +483,9 @@
         // CEK SESSION SAAT LOAD
         // ============================================
         if (isSessionValid()) {
-            window.location.href = 'karyawan_meja.html';
+            window.location.href = 'dashboard.html';
         } else {
-            clearSession();
+            clearAllSession();
         }
     </script>
 </body>
