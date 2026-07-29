@@ -467,6 +467,7 @@
             gap: 8px;
             flex: 1;
             min-width: 0;
+            cursor: pointer;
         }
         .menu-item .item-left .item-img {
             width: 40px;
@@ -574,7 +575,7 @@
             transform: scale(0.9);
         }
         .menu-item .item-actions .btn-detail {
-            padding: 2px 8px;
+            padding: 2px 10px;
             background: rgba(255, 255, 255, 0.15);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50px;
@@ -586,9 +587,12 @@
             min-height: 24px;
             display: flex;
             align-items: center;
+            transition: all 0.3s;
         }
         .menu-item .item-actions .btn-detail:active {
             transform: scale(0.95);
+            background: rgba(152, 200, 28, 0.3);
+            border-color: #98C81C;
         }
 
         .empty-state {
@@ -902,6 +906,106 @@
             transform: scale(0.97);
         }
 
+        /* ===== DETAIL MODAL (dari customer_menu_list) ===== */
+        .detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            backdrop-filter: blur(5px);
+            padding: 20px;
+        }
+        .detail-modal-content {
+            background: rgba(30, 30, 30, 0.95);
+            padding: 24px 28px;
+            border-radius: 24px;
+            max-width: 420px;
+            width: 90%;
+            border: 2px solid #98C81C;
+            max-height: 85vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+        }
+        .detail-modal-content .detail-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 28px;
+            cursor: pointer;
+            min-width: 36px;
+            min-height: 36px;
+        }
+        .detail-modal-content .detail-img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .detail-modal-content .detail-name {
+            color: white;
+            font-size: 24px;
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .detail-modal-content .detail-price {
+            color: #98C81C;
+            font-size: 20px;
+            font-family: 'Schoolbell', cursive;
+            font-weight: 400;
+            margin-top: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .detail-modal-content .detail-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            font-family: 'Schoolbell', cursive;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .detail-modal-content .detail-category {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            font-family: 'Schoolbell', cursive;
+            margin-top: 4px;
+        }
+        .detail-modal-content .detail-varian {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-family: 'Schoolbell', cursive;
+            margin-top: 2px;
+        }
+        .detail-modal-content .btn-detail-order {
+            width: 100%;
+            padding: 10px;
+            background: #98C81C;
+            border: 2px solid white;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            min-height: 40px;
+        }
+        .detail-modal-content .btn-detail-order:active {
+            transform: scale(0.97);
+        }
+
         /* ===== RESPONSIVE LANDSCAPE ===== */
         @media screen and (orientation: landscape) and (max-height: 600px) {
             .header-top {
@@ -988,7 +1092,7 @@
             }
             .menu-item .item-actions .btn-detail {
                 font-size: 8px;
-                padding: 1px 6px;
+                padding: 1px 8px;
                 min-height: 20px;
             }
             .menu-section-title {
@@ -1064,6 +1168,24 @@
                 padding: 4px 12px;
                 font-size: 13px;
                 min-height: 28px;
+            }
+            .detail-modal-content {
+                padding: 16px 18px;
+                max-width: 340px;
+            }
+            .detail-modal-content .detail-name {
+                font-size: 20px;
+            }
+            .detail-modal-content .detail-price {
+                font-size: 17px;
+            }
+            .detail-modal-content .detail-img {
+                max-height: 140px;
+            }
+            .detail-modal-content .btn-detail-order {
+                padding: 6px;
+                font-size: 14px;
+                min-height: 32px;
             }
         }
 
@@ -1143,6 +1265,42 @@
         let currentCategory = 'all';
         let tableIdMap = {};
 
+        // ============================================
+        // MAPPING NAMA MENU KE FILE GAMBAR (dari customer_menu_list)
+        // ============================================
+        const menuImageMap = {
+            'Iga Bakar': 'igabakar.png',
+            'Iga Bakar Jumbo': 'igabakarjumbo.png',
+            'Sate Potong': 'satepotong.png',
+            'Sate Potong Sapi': 'satepotong.png',
+            'Sate Potong Kambing': 'satepotong.png',
+            'Sate Potong Ayam': 'satepotong.png',
+            'Babat/Gule Goreng': 'gulegoreng.png',
+            'Nasi Goreng': 'nasigoreng.png',
+            'Nasi Goreng Sapi': 'nasigoreng.png',
+            'Nasi Goreng Kambing': 'nasigoreng.png',
+            'Nasi Goreng Ayam': 'nasigoreng.png',
+            'Tongseng': 'tongseng.png',
+            'Tongseng Sapi': 'tongseng.png',
+            'Tongseng Kambing': 'tongseng.png',
+            'Tongseng Ayam': 'tongseng.png',
+            'Krengsengan': 'krengsengan.png',
+            'Krengsengan Sapi': 'krengsengan.png',
+            'Krengsengan Kambing': 'krengsengan.png',
+            'Krengsengan Ayam': 'krengsengan.png',
+            'Tengkleng': 'tengkleng.png',
+            'Tengkleng Sapi': 'tengkleng.png',
+            'Tengkleng Kambing': 'tengkleng.png',
+            'Sop Bakar': 'sopbakar.png',
+            'Sop Bakar Sapi': 'sopbakar.png',
+            'Sop Bakar Kambing': 'sopbakar.png',
+            'Sop Bakar Ayam': 'sopbakar.png',
+            'Nasi Putih': 'nasi.png',
+            'Kerupuk/Emping': 'kerupuk.png',
+            'Kerupuk': 'kerupuk.png',
+            'Emping': 'kerupuk.png'
+        };
+
         function getMeja() {
             const params = new URLSearchParams(window.location.search);
             const meja = params.get('meja');
@@ -1169,6 +1327,29 @@
 
         function goBack() {
             window.history.back();
+        }
+
+        function getMenuImageUrl(menuName) {
+            let fileName = menuImageMap[menuName];
+            if (!fileName) {
+                const menu = menuItems.find(m => m.name === menuName);
+                if (menu && menu.image_url) {
+                    return getImageUrl(menu.image_url);
+                }
+                fileName = menuName.toLowerCase()
+                    .replace(/\s+/g, '')
+                    .replace(/\//g, '')
+                    .replace(/&/g, '')
+                    .replace(/\(/g, '')
+                    .replace(/\)/g, '')
+                    + '.png';
+            }
+            try {
+                const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(fileName);
+                return data.publicUrl;
+            } catch (error) {
+                return null;
+            }
         }
 
         function getImageUrl(imagePath) {
@@ -1212,6 +1393,73 @@
             const count = cart.reduce((s, i) => s + i.qty, 0);
             document.getElementById('headerTotal').textContent = 'Rp ' + total.toLocaleString();
             document.getElementById('headerCartCount').textContent = count;
+        }
+
+        // ============================================
+        // FUNGSI DETAIL MODAL (dari customer_menu_list)
+        // ============================================
+        function showDetailModal(menuId) {
+            const item = menuItems.find(m => m.id === menuId);
+            if (!item) return;
+
+            // Ambil gambar
+            let imageUrl = 'https://placehold.co/400x300/1a1a1a/ffffff?text=' + encodeURIComponent(item.name);
+            const imgUrl = getMenuImageUrl(item.name);
+            if (imgUrl) {
+                imageUrl = imgUrl;
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'detail-modal';
+            modal.innerHTML = `
+                <div class="detail-modal-content">
+                    <button class="detail-close" onclick="this.closest('.detail-modal').remove()">✕</button>
+                    <img class="detail-img" src="${imageUrl}" alt="${item.name}" onerror="this.src='https://placehold.co/400x300/1a1a1a/ffffff?text=${encodeURIComponent(item.name)}'" />
+                    <div class="detail-name">${item.name}</div>
+                    <div class="detail-price">Rp ${item.price.toLocaleString()}</div>
+                    ${item.description ? `<div class="detail-desc">${item.description}</div>` : ''}
+                    <div class="detail-category">📂 ${item.category || 'Lainnya'}</div>
+                    ${item.variants && item.variants.length > 0 && !(item.variants.length === 1 && item.variants[0].name === 'Standar') 
+                        ? `<div class="detail-varian">📌 Varian: ${item.variants.map(v => v.name).join(', ')}</div>` 
+                        : ''}
+                    <button class="btn-detail-order" onclick="closeDetailAndOrder(${item.id})">🛒 Pesan Sekarang</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) { this.remove(); }
+            });
+        }
+
+        function closeDetailAndOrder(menuId) {
+            // Tutup modal detail
+            const modal = document.querySelector('.detail-modal');
+            if (modal) modal.remove();
+
+            // Cari item di menu
+            const item = menuItems.find(m => m.id === menuId);
+            if (!item) return;
+
+            // Cek apakah ada varian
+            const hasVariants = item.variants && item.variants.length > 0 && !(item.variants.length === 1 && item.variants[0]
+                .name === 'Standar');
+
+            if (hasVariants) {
+                // Buka modal varian
+                openVariantModal(menuId);
+            } else {
+                // Langsung tambahkan ke keranjang
+                const existing = cart.find(c => c.id === item.id && c.variant === 'Standar');
+                if (existing) {
+                    existing.qty += 1;
+                } else {
+                    cart.push({ id: item.id, name: item.name, price: item.price, qty: 1, variant: 'Standar' });
+                }
+                localStorage.setItem('customer_cart', JSON.stringify(cart));
+                renderAll();
+                showToast(`✅ ${item.name} ditambahkan!`);
+            }
         }
 
         async function loadTableIdMap() {
@@ -1340,10 +1588,8 @@
                     grouped[cat].forEach(item => {
                         let imageUrl = 'https://placehold.co/80x80/2d2d2d/ffffff?text=' + encodeURIComponent(item
                             .name);
-                        if (item.image_url) {
-                            const url = getImageUrl(item.image_url);
-                            if (url) imageUrl = url;
-                        }
+                        const imgUrl = getMenuImageUrl(item.name);
+                        if (imgUrl) imageUrl = imgUrl;
 
                         const hasVariants = item.variants && item.variants.length > 0 && !(item.variants
                             .length === 1 && item.variants[0].name === 'Standar');
@@ -1353,7 +1599,7 @@
                         const div = document.createElement('div');
                         div.className = 'menu-item';
                         div.innerHTML = `
-                            <div class="item-left">
+                            <div class="item-left" onclick="showDetailModal(${item.id})">
                                 <img class="item-img" src="${imageUrl}" alt="${item.name}" loading="lazy" onerror="this.src='https://placehold.co/80x80/2d2d2d/ffffff?text=Menu'" />
                                 <div class="item-info">
                                     <div class="item-name">${item.name} ${hasVariants ? '<span class="variant-badge">📌 Varian</span>' : ''}</div>
@@ -1361,12 +1607,13 @@
                                 </div>
                             </div>
                             <div class="item-actions">
+                                <button class="btn-detail" onclick="event.stopPropagation(); showDetailModal(${item.id})">📋 Detail</button>
                                 ${hasVariants ? `
-                                    <button class="btn-detail" onclick="openVariantModal(${item.id})">Pilih</button>
+                                    <button class="btn-detail" style="background:#98C81C;border-color:#98C81C;color:white;" onclick="event.stopPropagation(); openVariantModal(${item.id})">Pilih</button>
                                 ` : `
-                                    <button class="btn-minus" onclick="updateCart(${item.id}, -1, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar')">−</button>
+                                    <button class="btn-minus" onclick="event.stopPropagation(); updateCart(${item.id}, -1, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar')">−</button>
                                     <input type="number" class="qty-input" id="qty_${item.id}" value="${qty}" min="0" onchange="onCartChange(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar', this.value)" onfocus="this.select()">
-                                    <button class="btn-plus" onclick="updateCart(${item.id}, 1, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar')">+</button>
+                                    <button class="btn-plus" onclick="event.stopPropagation(); updateCart(${item.id}, 1, '${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Standar')">+</button>
                                 `}
                             </div>
                         `;
