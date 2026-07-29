@@ -824,13 +824,31 @@
         .variant-modal-content .qty-section .qty-btn:active {
             transform: scale(0.9);
         }
-        .variant-modal-content .qty-section .qty-number {
+        .variant-modal-content .qty-section .qty-input-modal {
+            width: 50px;
+            padding: 4px 6px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            font-size: 20px;
-            font-weight: 600;
-            min-width: 30px;
+            font-size: 18px;
             text-align: center;
             font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            -webkit-appearance: none;
+            outline: none;
+        }
+        .variant-modal-content .qty-section .qty-input-modal:focus {
+            border-color: #98C81C;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .variant-modal-content .qty-section .qty-input-modal::-webkit-inner-spin-button,
+        .variant-modal-content .qty-section .qty-input-modal::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .variant-modal-content .qty-section .qty-input-modal[type=number] {
+            -moz-appearance: textfield;
         }
         .variant-modal-content .btn-add-modal {
             width: 100%;
@@ -1179,6 +1197,11 @@
                 height: 24px;
                 font-size: 14px;
             }
+            .variant-modal-content .qty-section .qty-input-modal {
+                width: 40px;
+                font-size: 14px;
+                padding: 2px 4px;
+            }
             .variant-modal-content .btn-add-modal {
                 padding: 6px;
                 font-size: 14px;
@@ -1249,6 +1272,10 @@
                 font-size: 8px;
                 padding: 1px 8px;
                 min-height: 20px;
+            }
+            .variant-modal-content .qty-section .qty-input-modal {
+                width: 45px;
+                font-size: 16px;
             }
         }
 
@@ -1744,13 +1771,21 @@
                     <div class="qty-section">
                         <span>Jumlah</span>
                         <button class="qty-btn minus" id="modalMinus">−</button>
-                        <span class="qty-number" id="modalQty">1</span>
+                        <input type="number" class="qty-input-modal" id="modalQtyInput" value="1" min="1" onchange="updateModalQty(this.value)">
                         <button class="qty-btn plus" id="modalPlus">+</button>
                     </div>
                     <button class="btn-add-modal" id="modalAdd">➕ TAMBAH</button>
                 </div>
             `;
             document.body.appendChild(modal);
+
+            // Fungsi update qty dari input
+            window.updateModalQty = function(value) {
+                let val = parseInt(value) || 1;
+                if (val < 1) val = 1;
+                qty = val;
+                document.getElementById('modalQtyInput').value = val;
+            };
 
             modal.querySelectorAll('.variant-opt').forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -1761,12 +1796,15 @@
             });
 
             modal.querySelector('#modalMinus').addEventListener('click', () => {
-                if (qty > 1) { qty--;
-                    modal.querySelector('#modalQty').textContent = qty; }
+                if (qty > 1) {
+                    qty--;
+                    document.getElementById('modalQtyInput').value = qty;
+                }
             });
+
             modal.querySelector('#modalPlus').addEventListener('click', () => {
                 qty++;
-                modal.querySelector('#modalQty').textContent = qty;
+                document.getElementById('modalQtyInput').value = qty;
             });
 
             modal.querySelector('#modalAdd').addEventListener('click', function() {
