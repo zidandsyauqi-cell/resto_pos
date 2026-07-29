@@ -126,28 +126,6 @@
             gap: 8px;
         }
 
-        .btn-selesai {
-            background: #ED1B24;
-            border-radius: 50px;
-            border: 2px solid white;
-            padding: 6px 18px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: white;
-            font-size: 16px;
-            font-family: 'Schoolbell', cursive;
-            font-weight: 400;
-            white-space: nowrap;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .btn-selesai:active {
-            transform: scale(0.95);
-        }
-
         .btn-logout {
             background: #e74c3c;
             border: 2px solid white;
@@ -181,6 +159,46 @@
             padding: 10px 16px 8px 16px;
             flex-shrink: 0;
             letter-spacing: 2px;
+        }
+
+        /* ===== FILTER TABS ===== */
+        .filter-tabs {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 4px 12px 8px 12px;
+            flex-shrink: 0;
+            z-index: 5;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .filter-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-tab {
+            padding: 4px 14px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+            font-family: 'Schoolbell', cursive;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .filter-tab:active {
+            transform: scale(0.95);
+        }
+        .filter-tab.active {
+            background: #98C81C;
+            border-color: #98C81C;
+            color: white;
         }
 
         /* ===== TABLE WRAPPER ===== */
@@ -288,10 +306,16 @@
             color: #f39c12;
         }
 
-        .status-badge.siap {
+        .status-badge.disiapkan {
             background: rgba(152, 200, 28, 0.3);
             border-color: #98C81C;
             color: #98C81C;
+        }
+
+        .status-badge.diantar {
+            background: rgba(52, 152, 219, 0.3);
+            border-color: #3498db;
+            color: #3498db;
         }
 
         .status-badge.selesai {
@@ -331,22 +355,31 @@
             transform: scale(0.95);
         }
 
-        .btn-action.siapkan {
+        .btn-action.disiapkan {
             background: #98C81C;
             border-color: #98C81C;
         }
 
-        .btn-action.siapkan:active {
+        .btn-action.disiapkan:active {
             background: #7aa814;
         }
 
+        .btn-action.diantar {
+            background: #3498db;
+            border-color: #3498db;
+        }
+
+        .btn-action.diantar:active {
+            background: #2980b9;
+        }
+
         .btn-action.selesai-status {
-            background: #029BEE;
-            border-color: #029BEE;
+            background: #2ecc71;
+            border-color: #2ecc71;
         }
 
         .btn-action.selesai-status:active {
-            background: #0288d1;
+            background: #27ae60;
         }
 
         .order-time {
@@ -430,10 +463,15 @@
             color: #f39c12;
             border: 1.5px solid #f39c12;
         }
-        .item-status-badge.siap {
+        .item-status-badge.disiapkan {
             background: rgba(152, 200, 28, 0.25);
             color: #98C81C;
             border: 1.5px solid #98C81C;
+        }
+        .item-status-badge.diantar {
+            background: rgba(52, 152, 219, 0.25);
+            color: #3498db;
+            border: 1.5px solid #3498db;
         }
         .item-status-badge.selesai {
             background: rgba(46, 204, 113, 0.25);
@@ -458,13 +496,17 @@
         .btn-item-action:active {
             transform: scale(0.95);
         }
-        .btn-item-action.siapkan-item {
+        .btn-item-action.disiapkan-item {
             background: #98C81C;
             border-color: #98C81C;
         }
+        .btn-item-action.diantar-item {
+            background: #3498db;
+            border-color: #3498db;
+        }
         .btn-item-action.selesai-item {
-            background: #029BEE;
-            border-color: #029BEE;
+            background: #2ecc71;
+            border-color: #2ecc71;
         }
 
         .empty-state {
@@ -596,11 +638,6 @@
                 font-size: 20px;
                 padding: 6px 10px 4px 10px;
             }
-            .btn-selesai {
-                padding: 3px 10px;
-                font-size: 12px;
-                min-height: 32px;
-            }
             .btn-logout {
                 font-size: 11px;
                 padding: 4px 10px;
@@ -626,6 +663,8 @@
             .btn-toggle-detail { font-size: 10px; }
             .order-time { font-size: 9px; }
             .item-detail-row .item-col .item-variant { font-size: 11px; }
+            .filter-tabs { padding: 4px 8px 6px 8px; gap: 4px; }
+            .filter-tab { font-size: 10px; padding: 3px 10px; min-height: 26px; }
         }
 
         @media screen and (max-width: 480px) and (orientation: portrait) {
@@ -662,11 +701,6 @@
                 font-size: 16px;
                 padding: 4px 8px 2px 8px;
             }
-            .btn-selesai {
-                padding: 2px 8px;
-                font-size: 10px;
-                min-height: 28px;
-            }
             .btn-logout {
                 font-size: 9px;
                 padding: 3px 8px;
@@ -692,6 +726,8 @@
             .btn-toggle-detail { font-size: 8px; }
             .order-time { font-size: 7px; }
             .item-detail-row .item-col .item-variant { font-size: 9px; }
+            .filter-tabs { padding: 3px 6px 4px 6px; gap: 3px; }
+            .filter-tab { font-size: 8px; padding: 2px 8px; min-height: 22px; border-width: 1.5px; }
         }
 
         @media screen and (orientation: landscape) {
@@ -728,11 +764,6 @@
                 font-size: 22px;
                 padding: 6px 12px 4px 12px;
             }
-            .btn-selesai {
-                padding: 4px 14px;
-                font-size: 13px;
-                min-height: 34px;
-            }
             .btn-logout {
                 font-size: 12px;
                 padding: 4px 12px;
@@ -753,6 +784,8 @@
             .item-detail-row .item-col { font-size: 14px; }
             .item-detail-row .item-col .item-qty-badge { font-size: 14px; }
             .item-detail-row .item-col .item-variant { font-size: 12px; }
+            .filter-tabs { padding: 4px 12px 6px 12px; gap: 5px; }
+            .filter-tab { font-size: 11px; padding: 3px 12px; min-height: 28px; }
         }
 
         @media screen and (max-height: 500px) and (orientation: landscape) {
@@ -789,11 +822,6 @@
                 font-size: 18px;
                 padding: 4px 10px 2px 10px;
             }
-            .btn-selesai {
-                padding: 2px 10px;
-                font-size: 11px;
-                min-height: 28px;
-            }
             .btn-logout {
                 font-size: 10px;
                 padding: 3px 8px;
@@ -814,6 +842,8 @@
             .item-detail-row .item-col { font-size: 12px; }
             .item-detail-row .item-col .item-qty-badge { font-size: 12px; }
             .item-detail-row .item-col .item-variant { font-size: 10px; }
+            .filter-tabs { padding: 3px 10px 4px 10px; gap: 4px; }
+            .filter-tab { font-size: 9px; padding: 2px 8px; min-height: 24px; border-width: 1.5px; }
         }
 
         @media screen and (min-width: 1025px) and (orientation: landscape) {
@@ -842,11 +872,6 @@
                 font-size: 32px;
                 padding: 12px 20px 8px 20px;
             }
-            .btn-selesai {
-                padding: 6px 20px;
-                font-size: 17px;
-                min-height: 44px;
-            }
             .btn-logout {
                 font-size: 14px;
                 padding: 6px 18px;
@@ -871,6 +896,8 @@
             .btn-toggle-detail { font-size: 16px; }
             .order-time { font-size: 14px; }
             .item-detail-row .item-col .item-variant { font-size: 16px; }
+            .filter-tabs { padding: 4px 20px 8px 20px; gap: 8px; }
+            .filter-tab { font-size: 13px; padding: 4px 16px; min-height: 32px; border-width: 2px; }
         }
 
         @supports not (padding: env(safe-area-inset-top)) {
@@ -898,12 +925,20 @@
                 </div>
             </div>
             <div class="header-right">
-                <button class="btn-selesai" onclick="selesaiSemua()">Selesai</button>
                 <button class="btn-logout" onclick="logoutKaryawan()">🚪 Keluar</button>
             </div>
         </div>
 
         <div class="title-status">📋 STATUS PESANAN</div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs" id="filterTabs">
+            <button class="filter-tab active" data-filter="all" onclick="filterStatus('all')">Semua</button>
+            <button class="filter-tab" data-filter="Diproses" onclick="filterStatus('Diproses')">⏳ Diproses</button>
+            <button class="filter-tab" data-filter="Disiapkan" onclick="filterStatus('Disiapkan')">👨‍🍳 Disiapkan</button>
+            <button class="filter-tab" data-filter="Diantar" onclick="filterStatus('Diantar')">🚚 Diantar</button>
+            <button class="filter-tab" data-filter="Selesai" onclick="filterStatus('Selesai')">✅ Selesai</button>
+        </div>
 
         <div class="table-wrapper">
             <div class="table-header">
@@ -917,552 +952,4 @@
             <div class="table-scroll" id="tableBody">
                 <div class="empty-state">
                     🔄 Memuat data...
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="toast" id="toast"></div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-    </script>
-    <script>
-        const SUPABASE_URL = 'https://vxgagtasyfpzvlfqcibk.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ4Z2FndGFzeWZwenZsZnFjaWJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzOTMzNzQsImV4cCI6MjA5ODk2OTM3NH0.pA9FySOQVR4BDPH_FbNA_1j5ytWBR2rPf6b441XWCXM';
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        let ordersData = [];
-        let menuNames = {};
-        let tableMap = {};
-        let isRealtimeConnected = false;
-        let expandedOrders = {};
-
-        function goBack() {
-            window.history.back();
-        }
-
-        function goToDashboard() {
-            window.location.href = 'dashboard.html';
-        }
-
-        function logoutKaryawan() {
-            if (confirm('Yakin ingin keluar?')) {
-                localStorage.removeItem('karyawan_logged_in');
-                localStorage.removeItem('login_time');
-                localStorage.removeItem('karyawan_nama');
-                window.location.href = 'karyawan_login.html';
-            }
-        }
-
-        function showToast(message, isError = false) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = 'toast show';
-            if (isError) {
-                toast.classList.add('error');
-            }
-            setTimeout(() => {
-                toast.className = 'toast';
-            }, 3000);
-        }
-
-        function getStatusLabel(status) {
-            const map = { 'Diproses': 'Diproses', 'Siap': 'Siap', 'Selesai': 'Selesai' };
-            return map[status] || status;
-        }
-
-        function getStatusClass(status) {
-            const map = { 'Diproses': 'diproses', 'Siap': 'siap', 'Selesai': 'selesai' };
-            return map[status] || 'diproses';
-        }
-
-        function formatTime(timeStr) {
-            if (!timeStr) return '';
-            const parts = timeStr.split(':');
-            return parts[0] + ':' + parts[1];
-        }
-
-        async function loadMenuNames() {
-            try {
-                const { data, error } = await supabaseClient
-                    .from('menu')
-                    .select('id_menu, nama_menu');
-
-                if (error) throw error;
-                if (data) {
-                    data.forEach(item => {
-                        menuNames[item.id_menu] = item.nama_menu;
-                    });
-                }
-                return true;
-            } catch (error) {
-                console.error('Error loading menu names:', error);
-                return false;
-            }
-        }
-
-        async function loadTableMap() {
-            try {
-                const { data, error } = await supabaseClient
-                    .from('tables')
-                    .select('id_table, nomor_meja');
-
-                if (error) throw error;
-                if (data) {
-                    data.forEach(item => {
-                        tableMap[item.id_table] = item.nomor_meja;
-                    });
-                }
-                return true;
-            } catch (error) {
-                console.error('Error loading table map:', error);
-                return false;
-            }
-        }
-
-        async function loadOrders() {
-            const loading = document.getElementById('loadingOverlay');
-            loading.classList.add('active');
-
-            try {
-                await loadMenuNames();
-                await loadTableMap();
-
-                const { data: orders, error: ordersError } = await supabaseClient
-                    .from('orders')
-                    .select('*')
-                    .neq('status_order', 'Selesai')
-                    .order('id_order', { ascending: false });
-
-                if (ordersError) throw ordersError;
-
-                const ordersWithDetails = [];
-                for (const order of orders || []) {
-                    const { data: details, error: detailsError } = await supabaseClient
-                        .from('orderdetails')
-                        .select('*')
-                        .eq('no_struk', order.no_struk);
-
-                    if (detailsError) {
-                        ordersWithDetails.push({
-                            ...order,
-                            details: [],
-                            customer_name: '-'
-                        });
-                        continue;
-                    }
-
-                    const detailsWithName = (details || []).map(item => {
-                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
-                        let variant = '';
-                        if (item.note && item.note !== 'null' && item.note.trim() !== '' && item.note !== 'Standar') {
-                            variant = item.note;
-                        }
-                        return { ...item, menu_name: menuName, variant: variant };
-                    });
-
-                    let customerName = '-';
-                    if (detailsWithName.length > 0 && detailsWithName[0].nama) {
-                        customerName = detailsWithName[0].nama;
-                    } else if (order.customer_name) {
-                        customerName = order.customer_name;
-                    }
-
-                    const mejaNumber = tableMap[order.id_table] || '-';
-
-                    ordersWithDetails.push({
-                        ...order,
-                        details: detailsWithName || [],
-                        customer_name: customerName,
-                        meja: mejaNumber
-                    });
-                }
-
-                ordersData = ordersWithDetails || [];
-                renderTable();
-
-                if (!isRealtimeConnected) {
-                    setupRealtime();
-                }
-
-            } catch (error) {
-                console.error('Error loading orders:', error);
-                showToast('⚠️ Gagal memuat data: ' + error.message, true);
-                document.getElementById('tableBody').innerHTML = `
-                    <div class="empty-state">
-                        ⚠️ Gagal memuat data<br>
-                        <span class="sub">${error.message}</span>
-                        <br><br>
-                        <button onclick="loadOrders()" style="padding:10px 20px;background:#98C81C;border:none;border-radius:50px;color:white;font-size:16px;cursor:pointer;">🔄 Coba Lagi</button>
-                    </div>
-                `;
-            } finally {
-                loading.classList.remove('active');
-            }
-        }
-
-        function setupRealtime() {
-            if (isRealtimeConnected) return;
-
-            const channel = supabaseClient
-                .channel('status-db-changes')
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, (payload) => {
-                    loadOrdersSilent();
-                })
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'orderdetails' }, (payload) => {
-                    loadOrdersSilent();
-                })
-                .subscribe((status) => {
-                    if (status === 'SUBSCRIBED') {
-                        isRealtimeConnected = true;
-                    }
-                });
-
-            window.realtimeChannel = channel;
-        }
-
-        async function loadOrdersSilent() {
-            try {
-                await loadMenuNames();
-                await loadTableMap();
-
-                const { data: orders, error: ordersError } = await supabaseClient
-                    .from('orders')
-                    .select('*')
-                    .neq('status_order', 'Selesai')
-                    .order('id_order', { ascending: false });
-
-                if (ordersError) throw ordersError;
-
-                const ordersWithDetails = [];
-                for (const order of orders || []) {
-                    const { data: details, error: detailsError } = await supabaseClient
-                        .from('orderdetails')
-                        .select('*')
-                        .eq('no_struk', order.no_struk);
-
-                    if (detailsError) {
-                        ordersWithDetails.push({
-                            ...order,
-                            details: [],
-                            customer_name: '-'
-                        });
-                        continue;
-                    }
-
-                    const detailsWithName = (details || []).map(item => {
-                        const menuName = menuNames[item.id_menu] || item.menu_name || 'Menu tidak ditemukan';
-                        let variant = '';
-                        if (item.note && item.note !== 'null' && item.note.trim() !== '' && item.note !== 'Standar') {
-                            variant = item.note;
-                        }
-                        return { ...item, menu_name: menuName, variant: variant };
-                    });
-
-                    let customerName = '-';
-                    if (detailsWithName.length > 0 && detailsWithName[0].nama) {
-                        customerName = detailsWithName[0].nama;
-                    } else if (order.customer_name) {
-                        customerName = order.customer_name;
-                    }
-
-                    const mejaNumber = tableMap[order.id_table] || '-';
-
-                    ordersWithDetails.push({
-                        ...order,
-                        details: detailsWithName || [],
-                        customer_name: customerName,
-                        meja: mejaNumber
-                    });
-                }
-
-                ordersData = ordersWithDetails || [];
-                renderTable();
-
-            } catch (error) {
-                console.error('Error silent loading orders:', error);
-            }
-        }
-
-        function toggleDetail(noStruk) {
-            expandedOrders[noStruk] = !expandedOrders[noStruk];
-            renderTable();
-        }
-
-        async function updateItemStatus(noStruk, idOrderDetail, newStatus) {
-            if (!confirm(`Yakin ingin mengubah item ini menjadi ${newStatus}?`)) return;
-
-            const loading = document.getElementById('loadingOverlay');
-            loading.classList.add('active');
-
-            try {
-                const { error } = await supabaseClient
-                    .from('orderdetails')
-                    .update({ status: newStatus })
-                    .eq('id_order_detail', idOrderDetail);
-
-                if (error) throw error;
-
-                showToast(`✅ Item berhasil diubah menjadi ${getStatusLabel(newStatus)}`);
-                await loadOrdersSilent();
-
-            } catch (error) {
-                console.error('Error updating item status:', error);
-                showToast('⚠️ Gagal mengubah status: ' + error.message, true);
-            } finally {
-                loading.classList.remove('active');
-            }
-        }
-
-        function renderTable() {
-            const container = document.getElementById('tableBody');
-
-            if (!ordersData || ordersData.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        🍽️ Belum ada pesanan aktif<br>
-                        <span class="sub">Tunggu pesanan masuk</span>
-                    </div>
-                `;
-                return;
-            }
-
-            let html = '';
-            ordersData.forEach((order, index) => {
-                const isExpanded = expandedOrders[order.no_struk] || false;
-                const timeStr = formatTime(order.waktu_order);
-
-                let allSiap = true;
-                let allSelesai = true;
-                let hasItem = false;
-
-                if (order.details && order.details.length > 0) {
-                    hasItem = true;
-                    order.details.forEach(item => {
-                        const itemStatus = item.status || 'Diproses';
-                        if (itemStatus !== 'Siap') allSiap = false;
-                        if (itemStatus !== 'Selesai') allSelesai = false;
-                    });
-                }
-
-                const orderStatus = allSelesai && hasItem ? 'Selesai' : 
-                                   (allSiap && hasItem ? 'Siap' : 'Diproses');
-
-                let statusClass = 'diproses';
-                if (orderStatus === 'Siap') statusClass = 'siap';
-                if (orderStatus === 'Selesai') statusClass = 'selesai';
-
-                html += `
-                    <div class="table-row">
-                        <div class="col">${index + 1}</div>
-                        <div class="col">
-                            ${order.no_struk || '-'}
-                            <span class="order-time">🕐 ${timeStr}</span>
-                        </div>
-                        <div class="col">${order.customer_name}</div>
-                        <div class="col">${order.meja}</div>
-                        <div class="col">
-                            <span class="status-badge ${statusClass}">
-                                ${getStatusLabel(orderStatus)}
-                            </span>
-                            <br>
-                            <button class="btn-toggle-detail" onclick="toggleDetail('${order.no_struk}')">
-                                ${isExpanded ? '▲' : '▼'} ${order.details ? order.details.length : 0} item
-                            </button>
-                        </div>
-                        <div class="col">
-                            <div class="action-btns">
-                                ${orderStatus === 'Diproses' ? `
-                                    <button class="btn-action siapkan" onclick="updateOrderStatus('${order.no_struk}', 'Siap')">
-                                        🕐 Siapkan
-                                    </button>
-                                ` : ''}
-                                ${orderStatus === 'Siap' || orderStatus === 'Diproses' ? `
-                                    <button class="btn-action selesai-status" onclick="updateOrderStatus('${order.no_struk}', 'Selesai')">
-                                        ✅ Selesai
-                                    </button>
-                                ` : ''}
-                            </div>
-                        </div>
-                        ${isExpanded ? `
-                            <div class="item-detail-row show">
-                                <div class="item-col" style="font-weight:600;color:#98C81C;font-size:18px;">Menu</div>
-                                <div class="item-col" style="font-weight:600;color:#98C81C;font-size:18px;">Jumlah</div>
-                                <div class="item-col" style="font-weight:600;color:#98C81C;font-size:18px;">Status</div>
-                                <div class="item-col" style="font-weight:600;color:#98C81C;font-size:18px;">Aksi</div>
-                            </div>
-                            ${order.details && order.details.length > 0 ? order.details.map(item => {
-                                const itemStatus = item.status || 'Diproses';
-                                let itemStatusClass = 'diproses';
-                                if (itemStatus === 'Siap') itemStatusClass = 'siap';
-                                if (itemStatus === 'Selesai') itemStatusClass = 'selesai';
-                                const idDetail = item.id_order_detail || item.id;
-                                const variantText = item.variant || '';
-                                return `
-                                    <div class="item-detail-row show">
-                                        <div class="item-col">
-                                            ${item.menu_name}
-                                            ${variantText ? ` <span class="item-variant">(${variantText})</span>` : ''}
-                                        </div>
-                                        <div class="item-col">
-                                            <span class="item-qty-badge">×${item.jumlah || 0}</span>
-                                        </div>
-                                        <div class="item-col">
-                                            <span class="item-status-badge ${itemStatusClass}">
-                                                ${getStatusLabel(itemStatus)}
-                                            </span>
-                                        </div>
-                                        <div class="item-col">
-                                            ${itemStatus === 'Diproses' ? `
-                                                <button class="btn-item-action siapkan-item" onclick="updateItemStatus('${order.no_struk}', ${idDetail}, 'Siap')">
-                                                    🕐 Siapkan
-                                                </button>
-                                            ` : ''}
-                                            ${itemStatus === 'Siap' || itemStatus === 'Diproses' ? `
-                                                <button class="btn-item-action selesai-item" onclick="updateItemStatus('${order.no_struk}', ${idDetail}, 'Selesai')">
-                                                    ✅ Selesai
-                                                </button>
-                                            ` : ''}
-                                            ${itemStatus === 'Selesai' ? '✅ Selesai' : ''}
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('') : `
-                                <div class="item-detail-row show">
-                                    <div class="item-col" style="color:rgba(255,255,255,0.3);">Tidak ada detail</div>
-                                    <div class="item-col">-</div>
-                                    <div class="item-col">-</div>
-                                    <div class="item-col">-</div>
-                                </div>
-                            `}
-                        ` : ''}
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-        }
-
-        async function updateOrderStatus(noStruk, newStatus) {
-            if (!confirm(`Yakin ingin mengubah semua item di ${noStruk} menjadi ${newStatus}?`)) return;
-
-            const loading = document.getElementById('loadingOverlay');
-            loading.classList.add('active');
-
-            try {
-                const order = ordersData.find(o => o.no_struk === noStruk);
-                if (order && order.details) {
-                    for (const item of order.details) {
-                        const idDetail = item.id_order_detail || item.id;
-                        const { error } = await supabaseClient
-                            .from('orderdetails')
-                            .update({ status: newStatus })
-                            .eq('id_order_detail', idDetail);
-                        if (error) throw error;
-                    }
-                }
-
-                const { error } = await supabaseClient
-                    .from('orders')
-                    .update({ status_order: newStatus })
-                    .eq('no_struk', noStruk);
-
-                if (error) throw error;
-
-                showToast(`✅ Status ${noStruk} berhasil diubah menjadi ${getStatusLabel(newStatus)}`);
-                await loadOrdersSilent();
-
-            } catch (error) {
-                console.error('Error updating status:', error);
-                showToast('⚠️ Gagal mengubah status: ' + error.message, true);
-            } finally {
-                loading.classList.remove('active');
-            }
-        }
-
-        async function selesaiSemua() {
-            const pendingOrders = ordersData.filter(o => {
-                const status = o.status_order || 'Diproses';
-                return status !== 'Selesai';
-            });
-
-            if (pendingOrders.length === 0) {
-                showToast('✅ Semua pesanan sudah selesai!');
-                return;
-            }
-
-            if (!confirm(`Yakin ingin menyelesaikan semua ${pendingOrders.length} pesanan?`)) return;
-
-            const loading = document.getElementById('loadingOverlay');
-            loading.classList.add('active');
-
-            try {
-                let success = 0;
-                for (const order of pendingOrders) {
-                    if (order.details) {
-                        for (const item of order.details) {
-                            const idDetail = item.id_order_detail || item.id;
-                            await supabaseClient
-                                .from('orderdetails')
-                                .update({ status: 'Selesai' })
-                                .eq('id_order_detail', idDetail);
-                        }
-                    }
-
-                    const { error } = await supabaseClient
-                        .from('orders')
-                        .update({ status_order: 'Selesai' })
-                        .eq('no_struk', order.no_struk);
-
-                    if (!error) success++;
-                }
-
-                showToast(`✅ ${success} pesanan berhasil diselesaikan`);
-                await loadOrdersSilent();
-
-            } catch (error) {
-                console.error('Error finishing all orders:', error);
-                showToast('⚠️ Gagal menyelesaikan pesanan: ' + error.message, true);
-            } finally {
-                loading.classList.remove('active');
-            }
-        }
-
-        // ============================================
-        // AUTO LOGOUT 15 MENIT
-        // ============================================
-        (function() {
-            const LOGOUT_TIMER = 15 * 60 * 1000;
-            let logoutTimer;
-
-            function doLogout() {
-                localStorage.removeItem('karyawan_logged_in');
-                localStorage.removeItem('login_time');
-                localStorage.removeItem('karyawan_nama');
-                window.location.href = 'karyawan_login.html';
-            }
-
-            function resetLogoutTimer() {
-                if (logoutTimer) clearTimeout(logoutTimer);
-                logoutTimer = setTimeout(doLogout, LOGOUT_TIMER);
-            }
-
-            const events = ['click', 'keypress', 'scroll', 'touchstart', 'mousemove', 'keydown'];
-            events.forEach(event => {
-                document.addEventListener(event, resetLogoutTimer);
-            });
-
-            resetLogoutTimer();
-        })();
-
-        // Cek login
-        if (localStorage.getItem('karyawan_logged_in') !== 'true') {
-            window.location.href = 'karyawan_login.html';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            loadOrders();
-        });
-    </script>
-</body>
-</html>
+                </div
