@@ -1,10 +1,8 @@
-<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Jangkung Order</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Schoolbell&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,279 +18,258 @@
             align-items: center;
             background: #0a0a0a;
             padding: 0;
-            margin: 0;
             overflow: hidden;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .index-container {
-            width: 100vw;
-            height: 100vh;
+        .landing-container {
+            width: 100%;
+            height: 100%;
             position: relative;
-            background: white;
+            background: #98C81C;
             overflow: hidden;
-        }
-
-        .bg-utama {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            background: url('bg.png') center center / cover no-repeat;
-        }
-
-        .overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.4);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .decorations {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .decorations img {
-            position: absolute;
-            opacity: 1;
-        }
-
-        .decorations .tomat-atas-kiri {
-            width: clamp(60px, 15vw, 250px);
-            left: 0%;
-            top: 0%;
-        }
-
-        .decorations .tomat1-bawah-kanan {
-            width: clamp(60px, 15vw, 250px);
-            right: 0%;
-            bottom: 0%;
-        }
-
-        .decorations .cabe2-atas-kanan {
-            width: clamp(50px, 12vw, 200px);
-            right: 0%;
-            top: 0%;
-        }
-
-        .decorations .cabe21-atas-kanan {
-            width: clamp(50px, 12vw, 200px);
-            right: 0%;
-            top: 0%;
-        }
-
-        .decorations .cabe1-bawah-kiri {
-            width: clamp(50px, 12vw, 200px);
-            left: 0%;
-            bottom: 0%;
-        }
-
-        .decorations .cabe11-bawah-kiri {
-            width: clamp(50px, 12vw, 200px);
-            left: 0%;
-            bottom: 0%;
-        }
-
-        .content-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            cursor: pointer;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 5;
-            padding: 20px;
         }
 
-        .logo-besar {
-            width: clamp(120px, 25%, 250px);
-            height: auto;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        /* Logo di tengah */
+        .logo-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            width: 70%;
+            max-width: 600px;
+            padding: 0 10px;
         }
 
-        .logo-besar img {
+        .logo-center .logo-img {
             width: 100%;
+            max-width: 100%;
             height: auto;
             display: block;
+            margin: 0 auto;
         }
 
-        .title-index {
-            color: white;
-            font-size: clamp(28px, 6%, 60px);
-            font-weight: 700;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            text-align: center;
-            margin-bottom: 6px;
-            letter-spacing: 3px;
-        }
-
-        .title-index span {
-            color: #98C81C;
-        }
-
-        .subtitle-index {
-            color: rgba(255,255,255,0.6);
-            font-size: clamp(12px, 2%, 22px);
-            font-family: 'Schoolbell', cursive;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .btn-group {
+        /* Loading Spinner */
+        .loading-spinner {
+            position: absolute;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
         }
 
-        .btn-index {
-            padding: clamp(12px, 2.5%, 22px) clamp(30px, 6%, 60px);
-            border-radius: 60px;
-            border: 3px solid white;
-            font-size: clamp(16px, 3%, 32px);
-            font-family: 'Schoolbell', cursive;
+        .spinner {
+            width: 35px;
+            height: 35px;
+            border: 3px solid rgba(255,255,255,0.2);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: rgba(255,255,255,0.7);
+            font-size: clamp(10px, 1.2%, 14px);
             font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 150px;
-            text-align: center;
-            -webkit-tap-highlight-color: transparent;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .btn-index:active {
-            transform: scale(0.95);
-        }
-
-        .btn-customer {
-            background: #98C81C;
-            color: white;
-        }
-
-        .btn-customer:active {
-            background: #7aa814;
-        }
-
-        .btn-karyawan {
-            background: transparent;
-            color: white;
-        }
-
-        .btn-karyawan:active {
-            background: rgba(255,255,255,0.1);
+            letter-spacing: 4px;
+            font-family: Arial, sans-serif;
         }
 
         /* ===== RESPONSIVE ===== */
-        @media screen and (max-width: 480px) {
-            .btn-group { gap: 10px; flex-direction: column; align-items: center; }
-            .btn-index { min-width: 120px; padding: 10px 20px; font-size: 14px; border-width: 2px; }
-            .logo-besar { width: 80px; margin-bottom: 12px; }
-            .title-index { font-size: 22px; }
-            .subtitle-index { font-size: 11px; margin-bottom: 16px; }
-            .decorations .tomat-atas-kiri,
-            .decorations .tomat1-bawah-kanan {
-                width: clamp(40px, 15vw, 100px);
+
+        /* Portrait - semua HP */
+        @media screen and (orientation: portrait) {
+            .landing-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
             }
-            .decorations .cabe2-atas-kanan,
-            .decorations .cabe21-atas-kanan,
-            .decorations .cabe1-bawah-kiri,
-            .decorations .cabe11-bawah-kiri {
-                width: clamp(35px, 12vw, 80px);
+
+            .logo-center {
+                width: 75%;
+                max-width: 500px;
             }
         }
 
-        @media screen and (orientation: landscape) and (max-height: 500px) {
-            .logo-besar { width: 60px; margin-bottom: 8px; }
-            .title-index { font-size: 18px; }
-            .subtitle-index { font-size: 10px; margin-bottom: 12px; }
-            .btn-index { padding: 6px 16px; font-size: 12px; min-width: 100px; border-width: 2px; }
-            .btn-group { gap: 8px; }
+        /* Landscape - semua perangkat */
+        @media screen and (orientation: landscape) {
+            .landing-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+
+            .logo-center {
+                width: 50%;
+                max-width: 450px;
+            }
         }
 
+        /* HP kecil portrait */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .logo-center {
+                width: 70%;
+                max-width: 300px;
+            }
+
+            .spinner {
+                width: 25px;
+                height: 25px;
+            }
+
+            .loading-text {
+                font-size: 8px;
+            }
+
+            .loading-spinner {
+                bottom: 6%;
+            }
+        }
+
+        /* HP sangat kecil (iPhone SE) */
+        @media screen and (max-width: 375px) and (orientation: portrait) {
+            .logo-center {
+                width: 65%;
+                max-width: 220px;
+            }
+
+            .spinner {
+                width: 20px;
+                height: 20px;
+                border-width: 2px;
+            }
+
+            .loading-text {
+                font-size: 7px;
+            }
+
+            .loading-spinner {
+                bottom: 5%;
+            }
+        }
+
+        /* Landscape HP kecil */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .logo-center {
+                width: 40%;
+                max-width: 300px;
+            }
+
+            .spinner {
+                width: 20px;
+                height: 20px;
+                border-width: 2px;
+            }
+
+            .loading-text {
+                font-size: 8px;
+            }
+
+            .loading-spinner {
+                bottom: 5%;
+            }
+        }
+
+        /* Tablet portrait */
         @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .logo-besar { width: 180px; }
-            .title-index { font-size: 40px; }
+            .logo-center {
+                width: 60%;
+                max-width: 450px;
+            }
         }
 
-        @media screen and (min-width: 1025px) {
-            .logo-besar { width: 220px; }
-            .title-index { font-size: 50px; }
+        /* Tablet landscape */
+        @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .logo-center {
+                width: 40%;
+                max-width: 400px;
+            }
+        }
+
+        /* Desktop / Laptop */
+        @media screen and (min-width: 1025px) and (orientation: landscape) {
+            .logo-center {
+                width: 45%;
+                max-width: 550px;
+            }
+
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border-width: 4px;
+            }
+
+            .loading-text {
+                font-size: 14px;
+            }
+        }
+
+        /* Desktop sangat lebar */
+        @media screen and (min-width: 1600px) and (orientation: landscape) {
+            .logo-center {
+                width: 40%;
+                max-width: 600px;
+            }
+
+            .spinner {
+                width: 45px;
+                height: 45px;
+                border-width: 4px;
+            }
+
+            .loading-text {
+                font-size: 16px;
+            }
+        }
+
+        /* Layar cinematic (sangat lebar) */
+        @media screen and (min-aspect-ratio: 2/1) and (orientation: landscape) {
+            .logo-center {
+                width: 35%;
+                max-width: 450px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="index-container">
-        <div class="bg-utama"></div>
-        <div class="overlay"></div>
-
-        <div class="decorations">
-            <img class="tomat-atas-kiri" src="tomat2.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
-            <img class="cabe2-atas-kanan" src="cabe2.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            <img class="cabe21-atas-kanan" src="cabe2.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            <img class="cabe1-bawah-kiri" src="cabe1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            <img class="cabe11-bawah-kiri" src="cabe1.1.png" alt="Cabe" loading="lazy" onerror="this.style.display='none'">
-            <img class="tomat1-bawah-kanan" src="tomat1.png" alt="Tomat" loading="lazy" onerror="this.style.display='none'">
+    <div class="landing-container" id="landingPage">
+        <!-- Logo di tengah -->
+        <div class="logo-center">
+            <img src="logo.png" alt="Jangkung Order" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+            <div style="display:none; font-size: clamp(60px, 15%, 250px);">🍽️</div>
         </div>
 
-        <div class="content-wrapper">
-            <div class="logo-besar">
-                <img src="logo.png" alt="Logo" loading="lazy" onerror="this.style.display='none'" />
-            </div>
-
-            <div class="title-index">Jangkung<span>Order</span></div>
-            <div class="subtitle-index">Pesan Makanan & Minuman Jadi Lebih Mudah</div>
-
-            <div class="btn-group">
-                <button class="btn-index btn-customer" onclick="goToCustomer()">👨‍🍳 Customer</button>
-                <button class="btn-index btn-karyawan" onclick="goToKaryawan()">🔒 Karyawan</button>
-            </div>
+        <!-- Loading Spinner -->
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <div class="loading-text">MEMUAT...</div>
         </div>
     </div>
 
     <script>
-        // ============================================
-        // KE CUSTOMER - LANGSUNG MASUK
-        // ============================================
-        function goToCustomer() {
-            window.location.href = 'customer_login.html';
-        }
+        // Redirect ke login setelah 2.5 detik
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2500);
 
-        // ============================================
-        // KE KARYAWAN - HAPUS SESSION DULU
-        // ============================================
-        function goToKaryawan() {
-            // 🔥 Hapus semua session karyawan biar wajib login password
-            localStorage.removeItem('karyawan_session');
-            localStorage.removeItem('karyawan_logged_in');
-            localStorage.removeItem('login_time');
-            sessionStorage.removeItem('karyawan_session_start');
-            
-            // Ke halaman login
-            window.location.href = 'karyawan_login.html';
-        }
-
-        console.log('🏠 Index - Pilih Customer atau Karyawan');
+        // Redirect saat diklik
+        document.getElementById('landingPage').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
     </script>
 </body>
 </html>
